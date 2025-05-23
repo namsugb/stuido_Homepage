@@ -28,30 +28,7 @@ export default function RootLayout({
               </div>
               <span className="ml-2 text-xl font-bold">아침햇살 스튜디오</span>
             </Link>
-            <nav>
-              <ul className="flex space-x-4">
-                <li>
-                  <Link href="/" className="hover:text-gray-600">
-                    홈
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/gallery" className="hover:text-gray-600">
-                    의상 컨셉 보기
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/reservation" className="hover:text-gray-600">
-                    예약
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/admin-login" className="hover:text-gray-600">
-                    관리자
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+
           </div>
         </header>
         {children}
