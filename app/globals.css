@@ -1,0 +1,417 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 248, 248, 246;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* 슬라이더 섹션 고정 스타일 추가 */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding-top: 4rem;
+  }
+}
+
+/* 슬라이더 이미지 컨테이너 고정 스타일 */
+.slider-image-container {
+  position: relative;
+  height: 50vh;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .slider-image-container {
+    height: 100%;
+    width: 60%;
+  }
+}
+
+/* 슬라이더 텍스트 컨테이너 고정 스타일 */
+.slider-text-container {
+  position: relative;
+  height: 25vh;
+  width: 100%;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .slider-text-container {
+    height: 100%;
+    width: 40%;
+  }
+}
+
+/* 슬라이더 내비게이션 고정 스타일 */
+.slider-navigation {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .slider-navigation {
+    padding: 0 2.5rem;
+  }
+}
+
+/* 슬라이더 이미지 조정 */
+.hero-slider-image {
+  object-fit: contain !important;
+  object-position: center !important;
+  max-height: 100%;
+  width: auto;
+  transition: all 1s ease;
+  transform-origin: center center;
+}
+
+/* 모던한 슬라이더 스타일 */
+.slider-nav-btn {
+  @apply flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-black/20 text-white backdrop-blur-sm transition hover:bg-black/30 focus:outline-none;
+}
+
+.slider-content-container {
+  @apply w-full h-full flex items-center justify-center px-4;
+}
+
+.slider-content-box {
+  @apply rounded-lg bg-black/50 backdrop-blur-sm p-4 md:p-8 text-center md:text-left w-full max-w-md;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.slider-title {
+  @apply text-xl md:text-3xl lg:text-4xl font-bold text-white mb-2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.slider-description {
+  @apply text-sm md:text-lg text-white/90 mb-3;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.slider-btn {
+  @apply px-3 py-2 md:px-6 md:py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105 text-xs md:text-base;
+}
+
+.slider-indicator {
+  @apply h-2 w-8 rounded-full bg-white/50 transition-all duration-300;
+}
+
+.slider-indicator.active {
+  @apply bg-white w-12;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 그리드 기반 갤러리 레이아웃 수정 */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 12px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  aspect-ratio: 1 / 1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* 이미지 크기 조정 - 모바일 우선 접근법으로 변경 */
+.span-1,
+.span-2 {
+  grid-column: span 1;
+}
+
+/* 갤러리 페이지 Masonry 레이아웃 */
+.gallery-masonry {
+  column-count: 4;
+  column-gap: 16px;
+}
+
+.gallery-masonry-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+
+/* 태블릿 반응형 */
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+  }
+
+  .span-2 {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+
+  .span-1 {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* 데스크톱 반응형 */
+@media (min-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+/* 태블릿 반응형 */
+@media (max-width: 1024px) {
+  .slider-content-box {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .gallery-masonry {
+    column-count: 3;
+  }
+}
+
+/* 모바일 반응형 - 간격 조정 */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 80vh;
+    padding-top: 3rem;
+  }
+
+  .slider-image-container {
+    height: 45vh;
+  }
+
+  .slider-text-container {
+    height: 25vh;
+    transform: scale(0.9);
+    margin-top: -1rem;
+  }
+
+  .slider-content-box {
+    padding: 0.75rem;
+    transform-origin: center;
+    max-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .slider-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .slider-description {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .slider-nav-btn {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .gallery-masonry {
+    column-count: 2;
+  }
+}
+
+/* 작은 모바일 화면 - 더 작은 간격 */
+@media (max-width: 480px) {
+  .hero-section {
+    height: 75vh;
+    padding-top: 2.5rem;
+  }
+
+  .slider-image-container {
+    height: 40vh;
+  }
+
+  .slider-text-container {
+    height: 22vh;
+    transform: scale(0.85);
+    margin-top: -1.5rem;
+  }
+
+  .slider-content-box {
+    padding: 0.75rem;
+    max-width: 95%;
+  }
+
+  .slider-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .slider-description {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .span-1,
+  .span-2 {
+    grid-column: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .span-2 {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+  }
+
+  .slider-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .slider-indicator.active {
+    width: 6px;
+  }
+
+  .gallery-masonry {
+    column-count: 1;
+    column-gap: 12px;
+  }
+}
