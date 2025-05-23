@@ -3,11 +3,11 @@ import { createClient } from "@supabase/supabase-js"
 // 환경변수 확인 함수
 function checkEnvironmentVariables() {
   const vars = {
-    SUPABASE_URL: process.env.SUPABASE_URL,
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
-    SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY,
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    SUPABASE_URL: "https://pwgvbduxfyjrxepvsmaq.supabase.co",
+    NEXT_PUBLIC_SUPABASE_URL: "https://pwgvbduxfyjrxepvsmaq.supabase.co",
+    SUPABASE_SERVICE_ROLE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3Z3ZiZHV4ZnlqcnhlcHZzbWFxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NzgxMTMwOSwiZXhwIjoyMDYzMzg3MzA5fQ.nhs90MajsqtU_3__vcVQhcZoU838wdPaEbYHY1fZ3K4",
+    SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3Z3ZiZHV4ZnlqcnhlcHZzbWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4MTEzMDksImV4cCI6MjA2MzM4NzMwOX0.zKhpnBPKelP5dssyO11LSFWhI3xjXMJIKLf63yBjHp8",
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3Z3ZiZHV4ZnlqcnhlcHZzbWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4MTEzMDksImV4cCI6MjA2MzM4NzMwOX0.zKhpnBPKelP5dssyO11LSFWhI3xjXMJIKLf63yBjHp8",
   }
 
   console.log("=== 환경변수 확인 ===")
