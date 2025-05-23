@@ -280,45 +280,47 @@ export default function Page() {
         <div
           className={`relative h-full w-full z-10 flex flex-col md:flex-row ${imagesLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}
         >
-          {/* 이미지 컨테이너 */}
-          <div className="slider-image-container flex items-center justify-center">
-            {sliderImages.map((image, index) => (
-              <div
-                key={index}
-                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                  index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
-                }`}
-              >
-                <div className="relative h-full w-full flex items-center justify-center">
-                  <div className="relative max-h-full max-w-full px-6 md:px-12">
-                    <img
-                      src={image.src || "/placeholder.svg"}
-                      alt={image.alt}
-                      className="hero-slider-image object-contain object-center rounded-lg shadow-2xl"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
 
-          {/* 텍스트 컨테이너 */}
-          <div className="slider-text-container flex items-center justify-center">
-            <div className="slider-content-container">
-              <div className="slider-content-box">
-                <h2 className="slider-title">{sliderImages[currentSlide].title}</h2>
-                <p className="slider-description">{sliderImages[currentSlide].description}</p>
-                <div className="mt-6 flex items-center justify-center md:justify-start space-x-4">
-                  <Link href="/gallery" className="slider-btn bg-white text-gray-900 hover:bg-gray-100">
-                    갤러리 보기
-                  </Link>
-                  <Link href="/reservation" className="slider-btn bg-transparent border border-white hover:bg-white/10">
-                    예약하기
-                  </Link>
+        {/* 이미지 컨테이너 */}
+        <div className="slider-image-container relative flex items-center justify-center w-full h-[300px] sm:h-[400px] md:h-auto">
+          {sliderImages.map((image, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
+              }`}
+            >
+              <div className="relative h-full w-full flex items-center justify-center">
+                <div className="relative max-h-full max-w-full px-6 md:px-12">
+                  <img
+                    src={image.src || "/placeholder.svg"}
+                    alt={image.alt}
+                    className="hero-slider-image object-contain object-center max-h-full max-w-full rounded-lg shadow-2xl"
+                  />
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* 텍스트 컨테이너 */}
+        <div className="slider-text-container relative z-20 w-full bg-black/50 text-white px-6 py-10 md:bg-transparent md:px-0 md:py-0 flex items-center justify-center">
+          <div className="slider-content-container max-w-xl text-center md:text-left">
+            <div className="slider-content-box">
+              <h2 className="slider-title text-2xl md:text-4xl font-bold">{sliderImages[currentSlide].title}</h2>
+              <p className="slider-description mt-4 text-base md:text-lg">{sliderImages[currentSlide].description}</p>
+              <div className="mt-6 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
+                <Link href="/gallery" className="slider-btn bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded">
+                  갤러리 보기
+                </Link>
+                <Link href="/reservation" className="slider-btn bg-transparent border border-white hover:bg-white/10 px-6 py-3 rounded">
+                  예약하기
+                </Link>
+              </div>
+            </div>
           </div>
+        </div>
+
         </div>
 
         {/* 슬라이더 내비게이션 */}
