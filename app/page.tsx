@@ -303,23 +303,38 @@ export default function Page() {
           ))}
         </div>
 
-        {/* 텍스트 컨테이너 */}
-        <div className="slider-text-container relative z-20 w-full bg-black/50 text-white px-6 py-10 md:bg-transparent md:px-0 md:py-0 flex items-center justify-center">
-          <div className="slider-content-container max-w-xl text-center md:text-left">
-            <div className="slider-content-box">
-              <h2 className="slider-title text-2xl md:text-4xl font-bold">{sliderImages[currentSlide].title}</h2>
-              <p className="slider-description mt-4 text-base md:text-lg">{sliderImages[currentSlide].description}</p>
-              <div className="mt-6 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
-                <Link href="/gallery" className="slider-btn bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded">
-                  갤러리 보기
-                </Link>
-                <Link href="/reservation" className="slider-btn bg-transparent border border-white hover:bg-white/10 px-6 py-3 rounded">
-                  예약하기
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+    {/* 텍스트 컨테이너 */}
+    <div className="flex flex-col items-center text-center max-w-sm w-[90%] mx-auto bg-black/60 text-white px-4 py-6 rounded-lg shadow-md">
+      {/* 제목 */}
+      <h2 className="text-lg md:text-xl font-bold mb-2">
+        {sliderImages[currentSlide].title}
+      </h2>
+
+      {/* 설명 */}
+      <p className="text-sm md:text-base leading-relaxed mb-5">
+        {sliderImages[currentSlide].description}
+      </p>
+
+      {/* 버튼 2개 가로 정렬 */}
+      <div className="flex flex-row gap-3">
+        <Link
+          href="/gallery"
+          className="px-4 py-1.5 bg-white text-black rounded-full text-xs font-medium hover:bg-gray-100 transition"
+        >
+          갤러리 보기
+        </Link>
+        <Link
+          href="/reservation"
+          className="px-4 py-1.5 border border-white text-white rounded-full text-xs font-medium hover:bg-white/10 transition"
+        >
+          예약하기
+        </Link>
+      </div>
+    </div>
+
+
+
+
 
         </div>
 

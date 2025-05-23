@@ -321,10 +321,12 @@ body {
   }
 
   .slider-text-container {
-    height: 25vh;
-    transform: scale(0.9);
-    margin-top: -1rem;
+    height: auto;              /* 높이 제한 없애기 */
+    transform: none;           /* 크기 조정 안 함 */
+    margin-top: 0;             /* 정상 위치 */
+    padding: 2rem 1.5rem;      /* 여백만 유지하고 Tailwind 쪽에서 조절 */
   }
+
 
   .slider-content-box {
     padding: 0.75rem;
