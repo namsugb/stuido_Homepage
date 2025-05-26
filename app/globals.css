@@ -403,8 +403,8 @@ body {
     width: 100vw;
     height: auto;
     z-index: 30;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
+    margin: auto;
+    padding: 10rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;

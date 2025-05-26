@@ -166,16 +166,16 @@ export default function Page() {
       {/* 헤더 섹션 */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
         <div className="container mx-auto px-2">
-          <div className="flex items-center justify-between py-3">
+          <div className="flex items-center justify-center py-3">
             <Link href="/" className="flex items-center">
               <div className="h-10 w-6 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
                 <img src="/logo.jpeg" alt="아침햇살 스튜디오 로고" className="h-full w-full object-contain" />
               </div>
-              <span className="ml-2 text-md font-medium text-gray-800 whitespace-nowrap">아침햇살 스튜디오</span>
+              <span className="ml-2 text-lg font-bold text-gray-800 whitespace-nowrap">아침햇살 스튜디오</span>
             </Link>
 
             {/* 메뉴: 모바일/데스크톱 모두 가로 스크롤 */}
-            <nav className="flex items-center space-x-6 overflow-x-auto whitespace-nowrap flex-nowrap scrollbar-hide ml-4">
+            <nav className="flex items-center space-x-6 overflow-x-auto whitespace-nowrap flex-nowrap scrollbar-hide ml-8">
               <Link href="/" className="text-gray-700 hover:text-[#4a6741] transition">
                 이벤트
               </Link>
@@ -231,7 +231,7 @@ export default function Page() {
 
           {/* 가운데 영역: 이미지 + 텍스트 */}
           <div className="slider-center-area flex h-full mx-auto">
-            <div className="slider-image-container relative flex items-center justify-center">
+            <div className="slider-image-container relative flex items-center justify-center mt-7">
               {sliderImages.map((image, index) => (
                 <div
                   key={index}
