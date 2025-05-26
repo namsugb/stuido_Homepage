@@ -14,21 +14,21 @@ export default function Page() {
 
   const sliderImages = [
     {
-      src: "/family-pink-portrait.jpeg",
+      src: "/slider/family-pink-portrait.jpeg",
       alt: "핑크 컨셉 가족 사진",
       bgColor: "#f9e6e6",
       title: "특별한 컨셉 촬영",
       description: "개성 있는 테마로 잊지 못할 추억을 만들어 드립니다",
     },
     {
-      src: "/wedding-portrait.jpeg",
+      src: "/slider/wedding-portrait.jpeg",
       alt: "웨딩 촬영",
       bgColor: "#e8eef5",
       title: "인생의 빛나는 순간",
       description: "결혼이라는 특별한 여정의 시작을 아름답게 기록합니다",
     },
     {
-      src: "/traditional-family.jpeg",
+      src: "/slider/traditional-family.jpeg",
       alt: "전통 한복 가족 사진",
       bgColor: "#f5f0e8",
       title: "소중한 가족의 순간",
