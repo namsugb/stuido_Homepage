@@ -199,36 +199,11 @@ export default function GalleryPage() {
     { id: "casual", name: "캐주얼" },
     { id: "wedding", name: "리마인드웨딩" },
     { id: "celebration", name: "칠순/팔순 잔치" },
-    { id: "id", name: "증명사진" }, 
+    { id: "id", name: "증명사진" },
   ]
 
   return (
-    <div className="min-h-screen bg-[#f8f8f6]">
-      {/* 헤더 (메인 페이지와 동일한 스타일) */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between py-3">
-            <Link href="/" className="flex items-center">
-              {/* Update the logo image in the header */}
-              <div className="h-10 w-10 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
-                <img
-                  src="/logo.jpeg"
-                  alt="아침햇살 스튜디오 로고"
-                  className="h-full w-full object-contain p-1"
-                />
-              </div>
-              <span className="ml-3 text-lg font-medium text-gray-800">아침햇살 스튜디오</span>
-            </Link>
-
-            {/* 뒤로가기 버튼 */}
-            <Link href="/" className="flex items-center text-gray-700 hover:text-[#4a6741] transition">
-              <ArrowLeft className="h-5 w-5 mr-1" />
-              <span>메인으로 돌아가기</span>
-            </Link>
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen mt-20 bg-[#f8f8f6]">
       {/* 갤러리 메인 컨텐츠 */}
       <main className="container mx-auto px-6 pt-20 pb-20">
         <div className="text-center mb-12">
@@ -245,11 +220,10 @@ export default function GalleryPage() {
             <button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
-              className={`px-6 py-2 rounded-full transition-all ${
-                selectedCategory === category.id
-                  ? "bg-[#4a6741] text-white"
-                  : "bg-white text-gray-700 hover:bg-gray-100"
-              }`}
+              className={`px-6 py-2 rounded-full transition-all ${selectedCategory === category.id
+                ? "bg-[#4a6741] text-white"
+                : "bg-white text-gray-700 hover:bg-gray-100"
+                }`}
             >
               {category.name}
             </button>

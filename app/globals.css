@@ -443,12 +443,13 @@ body {
 /* 작은 모바일 화면 - 더 작은 간격 */
 @media (max-width: 480px) {
   .hero-section {
-    height: 75vh;
+    height: 80vh;
     padding-top: 2.5rem;
   }
 
   .slider-image-container {
     height: 40vh;
+    margin-top: 5rem;
   }
 
   .slider-text-container {

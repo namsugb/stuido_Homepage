@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Link from "next/link"
-
+import { Calendar } from "lucide-react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -20,6 +20,41 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
+        <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
+          <div className="container mx-auto px-2">
+            <div className="flex items-center justify-center py-6">
+              <Link href="/" className="flex items-center">
+                <div className="h-10 w-6 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
+                  <img src="/logo.jpeg" alt="아침햇살 스튜디오 로고" className="h-full w-full object-contain" />
+                </div>
+                <span className="ml-2 text-lg font-bold text-gray-800 whitespace-nowrap">아침햇살 스튜디오</span>
+              </Link>
+
+              {/* 메뉴: 모바일/데스크톱 모두 가로 스크롤 */}
+              <nav className="flex items-center space-x-6 overflow-x-auto whitespace-nowrap flex-nowrap scrollbar-hide ml-8">
+                <Link href="/events" className="text-gray-700 hover:text-[#4a6741] transition">
+                  이벤트
+                </Link>
+                <Link href="/gallery" className="text-gray-700 hover:text-[#4a6741] transition">
+                  갤러리
+                </Link>
+                <Link href="/products" className="text-gray-700 hover:text-[#4a6741] transition">
+                  상품소개
+                </Link>
+                <Link href="/gallery" className="text-gray-700 hover:text-[#4a6741] transition">
+                  의상
+                </Link>
+                <Link
+                  href="/reservation"
+                  className="flex items-center bg-[#4a6741] text-white px-4 py-2 rounded-full hover:bg-[#3a5331] transition"
+                >
+                  <Calendar className="h-4 w-4 mr-2" />
+                  <span>예약하기</span>
+                </Link>
+              </nav>
+            </div>
+          </div>
+        </header>
         {children}
       </body>
     </html>

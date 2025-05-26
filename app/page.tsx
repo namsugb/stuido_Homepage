@@ -163,42 +163,7 @@ export default function Page() {
 
   return (
     <div className="relative min-h-screen bg-[#f8f8f6]">
-      {/* 헤더 섹션 */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
-        <div className="container mx-auto px-2">
-          <div className="flex items-center justify-center py-3">
-            <Link href="/" className="flex items-center">
-              <div className="h-10 w-6 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
-                <img src="/logo.jpeg" alt="아침햇살 스튜디오 로고" className="h-full w-full object-contain" />
-              </div>
-              <span className="ml-2 text-lg font-bold text-gray-800 whitespace-nowrap">아침햇살 스튜디오</span>
-            </Link>
 
-            {/* 메뉴: 모바일/데스크톱 모두 가로 스크롤 */}
-            <nav className="flex items-center space-x-6 overflow-x-auto whitespace-nowrap flex-nowrap scrollbar-hide ml-8">
-              <Link href="/" className="text-gray-700 hover:text-[#4a6741] transition">
-                이벤트
-              </Link>
-              <Link href="/gallery" className="text-gray-700 hover:text-[#4a6741] transition">
-                갤러리
-              </Link>
-              <Link href="#about" className="text-gray-700 hover:text-[#4a6741] transition">
-                상품소개
-              </Link>
-              <Link href="/gallery" className="text-gray-700 hover:text-[#4a6741] transition">
-                의상
-              </Link>
-              <Link
-                href="/reservation"
-                className="flex items-center bg-[#4a6741] text-white px-4 py-2 rounded-full hover:bg-[#3a5331] transition"
-              >
-                <Calendar className="h-4 w-4 mr-2" />
-                <span>예약하기</span>
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
 
       {/* 메인 히어로 섹션 - 모던한 슬라이더 */}
       <section className="hero-section">
@@ -271,45 +236,22 @@ export default function Page() {
       </section >
 
       {/* 스튜디오 소개 섹션 */}
-      < section id="about" className="py-20" >
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-8 text-3xl font-bold">아침햇살 스튜디오 소개</h2>
-            <div className="mb-12 text-lg leading-relaxed text-gray-700 space-y-4">
-              <p>
-                도심 속 아름다운 정원을 품은 아침햇살 스튜디오는 단순한 사진관이 아닌, 여러분의 소중한 이야기가 빛나는
-                특별한 공간입니다.
-              </p>
-
-              <p>
-                매 순간이 지나가도 그 감정만은 영원히 간직할 수 있도록, 저희는 빛과 그림자의 섬세한 조화 속에서
-                여러분만의 진솔한 이야기를 담아냅니다. 자연광이 스며드는 따스한 공간에서, 꾸밈없는 웃음과 진심 어린
-                감정이 가장 아름답게 빛나는 순간을 포착합니다.
-              </p>
-
-              <p>
-                가족의 따스함, 새로운 시작을 알리는 웨딩, 인생의 귀중한 전환점을 기념하는 프로필까지—아침햇살 스튜디오는
-                여러분의 모든 특별한 순간을 예술로 승화시킵니다.
-              </p>
-
-              <p className="text-sm text-gray-500 italic">
-                가족사진 · 리마인드웨딩 · 증명사진 · 프로필 · 우정사진 · 흑백기념 · 반려동물 · 행사스냅 · 드론 VR촬영
-              </p>
-            </div>
-          </div>
+      < section id="about" className="py-16" >
+        <div className="container mx-auto px-2">
+          <h2 className="mb-8 text-3xl font-bold text-center">상품 소개</h2>
 
           {/* 그리드 기반 카드 레이아웃 */}
-          <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
             {[
               {
                 title: "가족사진",
                 description: "3대가 함께하는 가족사진부터 아이들의 성장 기록까지, 소중한 가족의 모든 순간을 담습니다.",
-                image: "/family-photo-updated.jpeg",
+                image: "/card/family-photo-updated.jpeg",
               },
               {
                 title: "리마인드웨딩",
                 description: "결혼의 소중한 순간을 다시 한번 아름답게 기록하여 특별한 추억을 만들어 드립니다.",
-                image: "/remind-wedding-updated.jpeg",
+                image: "/card/remind-wedding-updated.jpeg",
               },
               {
                 title: "칠순/팔순",
@@ -332,7 +274,7 @@ export default function Page() {
                 image: "/id-photo-new.jpeg",
               },
             ].map((item, index) => (
-              <div key={index} className="rounded-lg bg-white p-6 py-8 shadow-sm hover:shadow-md transition">
+              <div key={index} className="rounded-lg bg-white p-2 pb-4 pt-2 shadow-sm hover:shadow-md transition">
                 <div className="mb-4 relative h-64 w-full overflow-hidden rounded-lg">
                   <img
                     src={item.image || "/placeholder.svg"}
@@ -360,7 +302,7 @@ export default function Page() {
                 <img
                   src={image.src || "/placeholder.svg"}
                   alt={image.alt}
-                  className="rounded-md w-full h-full object-cover"
+                  className="rounded-md w-full h-full object-fit"
                 />
               </div>
             ))}
@@ -377,85 +319,7 @@ export default function Page() {
         </div>
       </section >
 
-      {/* 촬영 패키지 섹션 */}
-      < section id="packages" className="py-20 bg-gray-50" >
-        <div className="container mx-auto px-6">
-          <h2 className="mb-12 text-center text-3xl font-bold">촬영 패키지</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {[
-              {
-                title: "소가족 사진",
-                price: "99,000원",
-                image: "/package/wedding-portrait.jpeg", // 이미지 경로 추가
-                features: ["두 가지 컨셉 촬영",
-                  "촬영 의상 무료 대여",
-                  "부모님 헤어&메이크업 무료",
-                  "고급 액자 1점 (28x36cm)",
-                  "액자컷 수정 파일 제공"],
-              },
-              {
-                title: "대가족 사진",
-                price: "150,000원",
-                image: "/package/family-photo-updated.jpeg",
-                features: ["두 가지 컨셉 촬영",
-                  "촬영 의상 무료 대여",
-                  "부모님 헤어&메이크업 무료",
-                  "고급 액자 1점 (28x36cm)",
-                  "액자컷 수정 파일 제공"],
-                featured: true,
-              },
-              {
-                title: "칠순/팔순 상차림",
-                price: "150,000원",
-                image: "/package/hanbok-couple-new.jpeg",
-                features: ["두 가지 컨셉 촬영",
-                  "촬영 의상 무료 대여",
-                  "부모님 헤어&메이크업 무료",
-                  "고급 액자 1점 (28x36cm)",
-                  "액자컷 수정 파일 제공"],
-              },
-            ].map((pkg, index) => (
-              <div
-                key={index}
-                className={`relative rounded-lg overflow-hidden ${pkg.featured ? "bg-[#e9efe7]" : "bg-white"
-                  } shadow-sm transition hover:shadow-md`}
-              >
 
-
-                {/* 패키지 이미지 */}
-                <img
-                  src={pkg.image}
-                  alt={`${pkg.title} 이미지`}
-                  className="w-full h-80 object-cover"
-                />
-
-                {/* 콘텐츠 영역 */}
-                <div className="p-8">
-                  <h3 className="mb-2 text-xl font-bold">{pkg.title}</h3>
-                  <p className="mb-6 text-2xl font-bold text-[#4a6741]">{pkg.price}</p>
-                  <ul className="mb-8 space-y-2">
-                    {pkg.features.map((feature, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="mr-2 text-[#4a6741]">✓</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href="/reservation"
-                    className={`w-full rounded-full ${pkg.featured
-                      ? "bg-[#4a6741] text-white hover:bg-[#3a5331]"
-                      : "border border-[#4a6741] text-[#4a6741] hover:bg-[#4a6741] hover:text-white"
-                      } px-6 py-3 font-medium transition flex items-center justify-center`}
-                  >
-                    예약하기
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section >
 
 
       {/* 고객 후기 섹션 */}
