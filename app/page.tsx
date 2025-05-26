@@ -278,52 +278,53 @@ export default function Page() {
           </div>
         )}
 
-        {/* 메인 이미지 슬라이더 */}
-        <div
-          className={`relative h-full w-full z-10 flex flex-col md:flex-row ${imagesLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}
-        >
-          {/* 이미지 컨테이너 */}
-          <div className="slider-image-container relative flex items-center justify-center w-full h-[300px] sm:h-[400px] md:h-auto">
-            {sliderImages.map((image, index) => (
-              <div
-                key={index}
-                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
-                  }`}
-              >
-                <div className="relative h-full w-full flex items-center justify-center">
-                  <div className="relative max-h-full max-w-full px-6 md:px-12">
-                    <img
-                      src={image.src || "/placeholder.svg"}
-                      alt={image.alt}
-                      className="hero-slider-image object-contain object-center max-h-full max-w-full rounded-lg shadow-2xl"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
+        {/* 메인 이미지 슬라이더 - 네비게이션 고정, 가운데 영역만 움직임 */}
+        <div className="slider-row relative h-full w-full z-10">
+          {/* 왼쪽 네비게이션 */}
+          <div className="slider-navigation left">
+            <button onClick={prevSlide} className="slider-nav-btn group pointer-events-auto" aria-label="이전 슬라이드">
+              <ChevronLeft className="h-6 w-6 transition-transform group-hover:-translate-x-1" />
+            </button>
           </div>
 
-          {/* 텍스트 컨테이너 */}
-          <div className="slider-text-container">
-            <div className="slider-content-box">
-              <h2 className="slider-title">{sliderImages[currentSlide].title}</h2>
-              <p className="slider-description">{sliderImages[currentSlide].description}</p>
-              <div className="flex flex-row gap-3 items-center justify-center">
-                <Link href="/gallery" className="slider-btn bg-white text-black">갤러리 보기</Link>
-                <Link href="/reservation" className="slider-btn border border-white text-white">예약하기</Link>
+          {/* 가운데 영역: 이미지 + 텍스트 */}
+          <div className="slider-center-area flex h-full mx-auto">
+            <div className="slider-image-container relative flex items-center justify-center">
+              {sliderImages.map((image, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"}`}
+                >
+                  <div className="relative h-full w-full flex items-center justify-center">
+                    <div className="relative max-h-full max-w-full px-6 md:px-12">
+                      <img
+                        src={image.src || "/placeholder.svg"}
+                        alt={image.alt}
+                        className="hero-slider-image object-contain object-center max-h-full max-w-full rounded-lg shadow-2xl"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="slider-text-container flex flex-col justify-center">
+              <div className="slider-content-box">
+                <h2 className="slider-title">{sliderImages[currentSlide].title}</h2>
+                <p className="slider-description">{sliderImages[currentSlide].description}</p>
+                <div className="flex flex-row gap-3 items-center justify-center md:justify-start">
+                  <Link href="/gallery" className="slider-btn bg-white text-black">갤러리 보기</Link>
+                  <Link href="/reservation" className="slider-btn border border-white text-white">예약하기</Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* 슬라이더 내비게이션 */}
-        <div className="slider-navigation">
-          <button onClick={prevSlide} className="slider-nav-btn group pointer-events-auto" aria-label="이전 슬라이드">
-            <ChevronLeft className="h-6 w-6 transition-transform group-hover:-translate-x-1" />
-          </button>
-          <button onClick={nextSlide} className="slider-nav-btn group pointer-events-auto" aria-label="다음 슬라이드">
-            <ChevronRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
-          </button>
+          {/* 오른쪽 네비게이션 */}
+          <div className="slider-navigation right">
+            <button onClick={nextSlide} className="slider-nav-btn group pointer-events-auto" aria-label="다음 슬라이드">
+              <ChevronRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
         </div>
       </section>
 
