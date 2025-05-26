@@ -140,9 +140,11 @@ export default function Page() {
       alt: "핑크 컨셉 가족 사진",
       span: 2,
     },
-    { src: "/gallery/KakaoTalk_20250523_002337024_13.jpg", 
-      alt: "웨딩 촬영", 
-      span: 1 },
+    {
+      src: "/gallery/KakaoTalk_20250523_002337024_13.jpg",
+      alt: "웨딩 촬영",
+      span: 1
+    },
     {
       src: "/gallery/KakaoTalk_20250523_002337024_15.jpg",
       alt: "시니어 웨딩 촬영",
@@ -280,62 +282,38 @@ export default function Page() {
         <div
           className={`relative h-full w-full z-10 flex flex-col md:flex-row ${imagesLoaded ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}
         >
-
-        {/* 이미지 컨테이너 */}
-        <div className="slider-image-container relative flex items-center justify-center w-full h-[300px] sm:h-[400px] md:h-auto">
-          {sliderImages.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
-              }`}
-            >
-              <div className="relative h-full w-full flex items-center justify-center">
-                <div className="relative max-h-full max-w-full px-6 md:px-12">
-                  <img
-                    src={image.src || "/placeholder.svg"}
-                    alt={image.alt}
-                    className="hero-slider-image object-contain object-center max-h-full max-w-full rounded-lg shadow-2xl"
-                  />
+          {/* 이미지 컨테이너 */}
+          <div className="slider-image-container relative flex items-center justify-center w-full h-[300px] sm:h-[400px] md:h-auto">
+            {sliderImages.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
+                  }`}
+              >
+                <div className="relative h-full w-full flex items-center justify-center">
+                  <div className="relative max-h-full max-w-full px-6 md:px-12">
+                    <img
+                      src={image.src || "/placeholder.svg"}
+                      alt={image.alt}
+                      className="hero-slider-image object-contain object-center max-h-full max-w-full rounded-lg shadow-2xl"
+                    />
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* 텍스트 컨테이너 */}
+          <div className="slider-text-container">
+            <div className="slider-content-box">
+              <h2 className="slider-title">{sliderImages[currentSlide].title}</h2>
+              <p className="slider-description">{sliderImages[currentSlide].description}</p>
+              <div className="flex flex-row gap-3 items-center justify-center">
+                <Link href="/gallery" className="slider-btn bg-white text-black">갤러리 보기</Link>
+                <Link href="/reservation" className="slider-btn border border-white text-white">예약하기</Link>
+              </div>
             </div>
-          ))}
-        </div>
-
-    {/* 텍스트 컨테이너 */}
-    <div className="flex flex-col items-center text-center max-w-sm w-[90%] mx-auto bg-black/60 text-white px-4 py-6 rounded-lg shadow-md">
-      {/* 제목 */}
-      <h2 className="text-lg md:text-xl font-bold mb-2">
-        {sliderImages[currentSlide].title}
-      </h2>
-
-      {/* 설명 */}
-      <p className="text-sm md:text-base leading-relaxed mb-5">
-        {sliderImages[currentSlide].description}
-      </p>
-
-      {/* 버튼 2개 가로 정렬 */}
-      <div className="flex flex-row gap-3">
-        <Link
-          href="/gallery"
-          className="px-4 py-1.5 bg-white text-black rounded-full text-xs font-medium hover:bg-gray-100 transition"
-        >
-          갤러리 보기
-        </Link>
-        <Link
-          href="/reservation"
-          className="px-4 py-1.5 border border-white text-white rounded-full text-xs font-medium hover:bg-white/10 transition"
-        >
-          예약하기
-        </Link>
-      </div>
-    </div>
-
-
-
-
-
+          </div>
         </div>
 
         {/* 슬라이더 내비게이션 */}
@@ -466,39 +444,38 @@ export default function Page() {
                 title: "소가족 사진",
                 price: "99,000원",
                 image: "/package/wedding-portrait.jpeg", // 이미지 경로 추가
-                features: ["두 가지 컨셉 촬영", 
-                          "촬영 의상 무료 대여", 
-                          "부모님 헤어&메이크업 무료", 
-                          "고급 액자 1점 (28x36cm)",
-                        "액자컷 수정 파일 제공"],
+                features: ["두 가지 컨셉 촬영",
+                  "촬영 의상 무료 대여",
+                  "부모님 헤어&메이크업 무료",
+                  "고급 액자 1점 (28x36cm)",
+                  "액자컷 수정 파일 제공"],
               },
               {
                 title: "대가족 사진",
                 price: "150,000원",
                 image: "/package/family-photo-updated.jpeg",
-                features: ["두 가지 컨셉 촬영", 
-                  "촬영 의상 무료 대여", 
-                  "부모님 헤어&메이크업 무료", 
+                features: ["두 가지 컨셉 촬영",
+                  "촬영 의상 무료 대여",
+                  "부모님 헤어&메이크업 무료",
                   "고급 액자 1점 (28x36cm)",
-                "액자컷 수정 파일 제공"],
+                  "액자컷 수정 파일 제공"],
                 featured: true,
               },
               {
                 title: "칠순/팔순 상차림",
                 price: "150,000원",
                 image: "/package/hanbok-couple-new.jpeg",
-                features: ["두 가지 컨셉 촬영", 
-                  "촬영 의상 무료 대여", 
-                  "부모님 헤어&메이크업 무료", 
+                features: ["두 가지 컨셉 촬영",
+                  "촬영 의상 무료 대여",
+                  "부모님 헤어&메이크업 무료",
                   "고급 액자 1점 (28x36cm)",
-                "액자컷 수정 파일 제공"],
+                  "액자컷 수정 파일 제공"],
               },
             ].map((pkg, index) => (
               <div
                 key={index}
-                className={`relative rounded-lg overflow-hidden ${
-                  pkg.featured ? "bg-[#e9efe7]" : "bg-white"
-                } shadow-sm transition hover:shadow-md`}
+                className={`relative rounded-lg overflow-hidden ${pkg.featured ? "bg-[#e9efe7]" : "bg-white"
+                  } shadow-sm transition hover:shadow-md`}
               >
 
 
@@ -523,11 +500,10 @@ export default function Page() {
                   </ul>
                   <Link
                     href="/reservation"
-                    className={`w-full rounded-full ${
-                      pkg.featured
-                        ? "bg-[#4a6741] text-white hover:bg-[#3a5331]"
-                        : "border border-[#4a6741] text-[#4a6741] hover:bg-[#4a6741] hover:text-white"
-                    } px-6 py-3 font-medium transition flex items-center justify-center`}
+                    className={`w-full rounded-full ${pkg.featured
+                      ? "bg-[#4a6741] text-white hover:bg-[#3a5331]"
+                      : "border border-[#4a6741] text-[#4a6741] hover:bg-[#4a6741] hover:text-white"
+                      } px-6 py-3 font-medium transition flex items-center justify-center`}
                   >
                     예약하기
                   </Link>
