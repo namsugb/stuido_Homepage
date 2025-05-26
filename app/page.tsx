@@ -165,31 +165,28 @@ export default function Page() {
     <div className="relative min-h-screen bg-[#f8f8f6]">
       {/* 헤더 섹션 */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-2">
           <div className="flex items-center justify-between py-3">
             <Link href="/" className="flex items-center">
-              <div className="h-10 w-10 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
+              <div className="h-10 w-6 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
                 <img src="/logo.jpeg" alt="아침햇살 스튜디오 로고" className="h-full w-full object-contain" />
               </div>
-              <span className="ml-3 text-lg font-medium text-gray-800">아침햇살 스튜디오</span>
+              <span className="ml-2 text-md font-medium text-gray-800 whitespace-nowrap">아침햇살 스튜디오</span>
             </Link>
 
-            {/* 데스크톱 메뉴 */}
-            <nav className="hidden md:flex items-center space-x-6">
+            {/* 메뉴: 모바일/데스크톱 모두 가로 스크롤 */}
+            <nav className="flex items-center space-x-6 overflow-x-auto whitespace-nowrap flex-nowrap scrollbar-hide ml-4">
               <Link href="/" className="text-gray-700 hover:text-[#4a6741] transition">
-                홈
+                이벤트
+              </Link>
+              <Link href="/gallery" className="text-gray-700 hover:text-[#4a6741] transition">
+                갤러리
               </Link>
               <Link href="#about" className="text-gray-700 hover:text-[#4a6741] transition">
-                소개
+                상품소개
               </Link>
               <Link href="/gallery" className="text-gray-700 hover:text-[#4a6741] transition">
                 의상
-              </Link>
-              <Link href="#packages" className="text-gray-700 hover:text-[#4a6741] transition">
-                패키지
-              </Link>
-              <Link href="#contact" className="text-gray-700 hover:text-[#4a6741] transition">
-                연락처
               </Link>
               <Link
                 href="/reservation"
@@ -199,63 +196,8 @@ export default function Page() {
                 <span>예약하기</span>
               </Link>
             </nav>
-
-            {/* 모바일 메뉴 버튼 */}
-            <button className="md:hidden text-gray-700 focus:outline-none" onClick={toggleMenu}>
-              <Menu className="h-6 w-6" />
-            </button>
           </div>
         </div>
-
-        {/* 모바일 메뉴 */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-100 py-4">
-            <div className="container mx-auto px-6">
-              <nav className="flex flex-col space-y-4">
-                <Link href="/" className="flex items-center text-gray-700 hover:text-[#4a6741] transition">
-                  <svg
-                    className="h-4 w-4 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 12l2-2m0 0l7-7m7 7l2 2"
-                    ></path>
-                  </svg>
-                  <span>홈</span>
-                </Link>
-                <Link href="#about" className="flex items-center text-gray-700 hover:text-[#4a6741] transition">
-                  <User className="h-4 w-4 mr-2" />
-                  <span>소개</span>
-                </Link>
-                <Link href="/gallery" className="flex items-center text-gray-700 hover:text-[#4a6741] transition">
-                  <Camera className="h-4 w-4 mr-2" />
-                  <span>의상</span>
-                </Link>
-                <Link href="#packages" className="flex items-center text-gray-700 hover:text-[#4a6741] transition">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  <span>패키지</span>
-                </Link>
-                <Link href="#contact" className="flex items-center text-gray-700 hover:text-[#4a6741] transition">
-                  <Phone className="h-4 w-4 mr-2" />
-                  <span>연락처</span>
-                </Link>
-                <Link
-                  href="/reservation"
-                  className="flex items-center bg-[#4a6741] text-white px-4 py-2 rounded-full hover:bg-[#3a5331] transition w-full justify-center"
-                >
-                  <Calendar className="h-4 w-4 mr-2" />
-                  <span>예약하기</span>
-                </Link>
-              </nav>
-            </div>
-          </div>
-        )}
       </header>
 
       {/* 메인 히어로 섹션 - 모던한 슬라이더 */}
@@ -282,7 +224,7 @@ export default function Page() {
         <div className="slider-row relative h-full w-full z-10">
           {/* 왼쪽 네비게이션 */}
           <div className="slider-navigation left">
-            <button onClick={prevSlide} className="slider-nav-btn group pointer-events-auto" aria-label="이전 슬라이드">
+            <button onClick={prevSlide} className="slider-nav-btn group pointer-events-auto bg-gray-200/50 rounded-full p-2" aria-label="이전 슬라이드">
               <ChevronLeft className="h-6 w-6 transition-transform group-hover:-translate-x-1" />
             </button>
           </div>
@@ -321,7 +263,7 @@ export default function Page() {
 
           {/* 오른쪽 네비게이션 */}
           <div className="slider-navigation right">
-            <button onClick={nextSlide} className="slider-nav-btn group pointer-events-auto" aria-label="다음 슬라이드">
+            <button onClick={nextSlide} className="slider-nav-btn group bg-gray-200/50 rounded-full p-2" aria-label="다음 슬라이드">
               <ChevronRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
