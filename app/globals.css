@@ -59,6 +59,7 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -99,6 +100,7 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -135,19 +137,34 @@ body {
 
 /* 슬라이더 텍스트 컨테이너 고정 스타일 */
 .slider-text-container {
-  position: relative;
-  height: 25vh;
-  width: 100%;
-  z-index: 20;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 35vh;
+  width: 100vw;
+  height: auto;
+  z-index: 30;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
 @media (min-width: 768px) {
   .slider-text-container {
-    height: 100%;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
     width: 40%;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+    pointer-events: auto;
   }
 }
 
@@ -156,9 +173,10 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 20;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -223,6 +241,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -321,21 +340,42 @@ body {
   }
 
   .slider-text-container {
-    height: auto;              /* 높이 제한 없애기 */
-    transform: none;           /* 크기 조정 안 함 */
-    margin-top: 0;             /* 정상 위치 */
-    padding: 2rem 1.5rem;      /* 여백만 유지하고 Tailwind 쪽에서 조절 */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 35vh;
+    width: 100vw;
+    height: auto;
+    z-index: 30;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
   }
 
-
   .slider-content-box {
-    padding: 0.75rem;
-    transform-origin: center;
-    max-height: 100%;
-    overflow: hidden;
+    pointer-events: auto;
+  }
+
+  .slider-navigation {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto;
+    z-index: 40;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    pointer-events: none;
+  }
+
+  .slider-nav-btn {
+    pointer-events: auto;
   }
 
   .slider-title {
@@ -348,9 +388,14 @@ body {
     margin-bottom: 0.75rem;
   }
 
-  .slider-nav-btn {
-    height: 2.5rem;
-    width: 2.5rem;
+  .slider-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .slider-indicator.active {
+    width: 6px;
   }
 
   .gallery-masonry {
