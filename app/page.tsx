@@ -231,7 +231,7 @@ export default function Page() {
 
           {/* 가운데 영역: 이미지 + 텍스트 */}
           <div className="slider-center-area flex h-full mx-auto">
-            <div className="slider-image-container relative flex items-center justify-center mt-7">
+            <div className="slider-image-container relative flex items-center justify-center mt-8">
               {sliderImages.map((image, index) => (
                 <div
                   key={index}
@@ -250,7 +250,7 @@ export default function Page() {
               ))}
             </div>
             <div className="slider-text-container flex flex-col justify-center">
-              <div className="slider-content-box">
+              <div className="slider-content-box mt-10">
                 <h2 className="slider-title">{sliderImages[currentSlide].title}</h2>
                 <p className="slider-description">{sliderImages[currentSlide].description}</p>
                 <div className="flex flex-row gap-3 items-center justify-center md:justify-start">
@@ -267,11 +267,11 @@ export default function Page() {
               <ChevronRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
-        </div>
-      </section>
+        </div >
+      </section >
 
       {/* 스튜디오 소개 섹션 */}
-      <section id="about" className="py-20">
+      < section id="about" className="py-20" >
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-8 text-3xl font-bold">아침햇살 스튜디오 소개</h2>
@@ -346,10 +346,10 @@ export default function Page() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* 갤러리 섹션 */}
-      <section id="gallery" className="bg-white py-20">
+      < section id="gallery" className="bg-white py-20" >
         <div className="container mx-auto px-6">
           <h2 className="mb-12 text-center text-3xl font-bold text-black">갤러리</h2>
 
@@ -375,10 +375,10 @@ export default function Page() {
             </Link>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* 촬영 패키지 섹션 */}
-      <section id="packages" className="py-20 bg-gray-50">
+      < section id="packages" className="py-20 bg-gray-50" >
         <div className="container mx-auto px-6">
           <h2 className="mb-12 text-center text-3xl font-bold">촬영 패키지</h2>
           <div className="grid gap-8 md:grid-cols-3">
@@ -455,11 +455,11 @@ export default function Page() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
 
       {/* 고객 후기 섹션 */}
-      <section className="bg-[#f8f8f6] py-20">
+      < section className="bg-[#f8f8f6] py-20" >
         <div className="container mx-auto px-6">
           <h2 className="mb-12 text-center text-3xl font-bold">고객 후기</h2>
           <div className="mx-auto max-w-4xl">
@@ -539,10 +539,10 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* 예약 안내 섹션 */}
-      <section id="contact" className="bg-[#4a6741] py-20 text-white">
+      < section id="contact" className="bg-[#4a6741] py-20 text-white" >
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-6 text-3xl font-bold">지금 예약하세요</h2>
@@ -565,10 +565,10 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* 푸터 */}
-      <footer className="bg-[#333] py-12 text-white">
+      < footer className="bg-[#333] py-12 text-white" >
         <div className="container mx-auto px-6">
           <div className="grid gap-8 md:grid-cols-3">
             <div>
@@ -600,14 +600,14 @@ export default function Page() {
             © {new Date().getFullYear()} 아침햇살 스튜디오. All rights reserved.
           </div>
         </div>
-      </footer>
+      </footer >
 
       {/* 플로팅 버튼 */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+      < div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3" >
         <button className="flex h-14 w-14 items-center justify-center rounded-full bg-yellow-400 text-gray-800 shadow-lg transition hover:bg-yellow-500">
           <MessageCircle className="h-6 w-6" />
         </button>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
