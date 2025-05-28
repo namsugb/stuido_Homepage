@@ -179,7 +179,7 @@ export default function Page() {
         {!imagesLoaded && (
           <div className="absolute inset-0 z-30 flex items-center justify-center bg-gray-100">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 border-4 border-[#4a6741] border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-16 h-16 border-4 border-[#bfa888] border-t-transparent rounded-full animate-spin"></div>
               <p className="mt-4 text-gray-600">이미지 로딩 중...</p>
             </div>
           </div>
@@ -247,34 +247,44 @@ export default function Page() {
                 title: "가족사진",
                 description: "3대가 함께하는 가족사진부터 아이들의 성장 기록까지, 소중한 가족의 모든 순간을 담습니다.",
                 image: "/card/family-photo-updated.jpeg",
+                category: "family",
               },
               {
                 title: "리마인드웨딩",
                 description: "결혼의 소중한 순간을 다시 한번 아름답게 기록하여 특별한 추억을 만들어 드립니다.",
                 image: "/card/remind-wedding-updated.jpeg",
+                category: "wedding",
               },
               {
                 title: "칠순/팔순",
                 description: "인생의 뜻깊은 순간을 품격있게 담아 가족 모두가 소중히 간직할 수 있는 사진을 선사합니다.",
                 image: "/hanbok-couple-new.jpeg",
+                category: "celebration",
               },
               {
                 title: "장수",
                 description: "100세 시대, 건강하고 행복한 노년의 모습을 아름답게 담아 소중한 기록으로 남겨드립니다.",
                 image: "/senior-hanbok-new.jpeg",
+                category: "longevity",
               },
               {
                 title: "프로필",
                 description: "개인의 매력과 개성을 살린 프로필 사진으로 특별한 인상을 남겨보세요.",
                 image: "/profile-photo-new.jpeg",
+                category: "profile",
               },
               {
                 title: "증명",
                 description: "취업, 입학 등에 필요한 다양한 규격의 증명사진을 전문적으로 촬영해 드립니다.",
                 image: "/id-photo-new.jpeg",
+                category: "id",
               },
             ].map((item, index) => (
-              <div key={index} className="rounded-lg bg-white p-2 pb-4 pt-2 shadow-sm hover:shadow-md transition">
+              <Link
+                key={index}
+                href={`/products?category=${item.category}`}
+                className="rounded-lg bg-white p-2 pb-4 pt-2 shadow-sm hover:shadow-md transition block"
+              >
                 <div className="mb-4 relative h-64 w-full overflow-hidden rounded-lg">
                   <img
                     src={item.image || "/placeholder.svg"}
@@ -284,7 +294,7 @@ export default function Page() {
                 </div>
                 <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
                 <p className="text-sm text-gray-600">{item.description}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -319,9 +329,6 @@ export default function Page() {
         </div>
       </section >
 
-
-
-
       {/* 고객 후기 섹션 */}
       < section className="bg-[#f8f8f6] py-20" >
         <div className="container mx-auto px-6">
@@ -330,9 +337,7 @@ export default function Page() {
             <div className="relative rounded-lg bg-white p-8 shadow-sm">
               <div className="mb-6 text-center">
                 <p className="mb-6 text-lg italic text-gray-600">
-                  "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록
-                  배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진
-                  결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다."
+                  "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록 배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진 결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다."
                 </p>
                 <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
                   <img src="/remind-wedding-updated.jpeg" alt="고객 프로필" className="h-full w-full object-cover" />
@@ -345,7 +350,7 @@ export default function Page() {
                 {[0, 1, 2].map((i) => (
                   <button
                     key={i}
-                    className={`h-2 w-2 rounded-full ${i === 0 ? "bg-[#4a6741]" : "bg-gray-300"}`}
+                    className={`h-2 w-2 rounded-full ${i === 0 ? "bg-[#bfa888]" : "bg-gray-300"}`}
                     aria-label={`후기 ${i + 1}로 이동`}
                   />
                 ))}
@@ -355,22 +360,20 @@ export default function Page() {
             <div className="relative rounded-lg bg-white p-8 shadow-sm mt-4">
               <div className="mb-6 text-center">
                 <p className="mb-6 text-lg italic text-gray-600">
-                  "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록
-                  배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진
-                  결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다."
+                  "증명사진 촬영이 처음이라 긴장했는데, 작가님이 친절하게 포즈와 표정을 지도해주셔서 자연스럽게 잘 나왔어요. 빠른 결과물 전달도 만족스럽습니다!"
                 </p>
                 <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                  <img src="/remind-wedding-updated.jpeg" alt="고객 프로필" className="h-full w-full object-cover" />
+                  <img src="/id-photo-new.jpeg" alt="고객 프로필" className="h-full w-full object-cover" />
                 </div>
-                <p className="mt-2 font-medium">김지영 고객님</p>
-                <p className="text-sm text-gray-500">가족 촬영</p>
+                <p className="mt-2 font-medium">이수민 고객님</p>
+                <p className="text-sm text-gray-500">증명사진 촬영</p>
               </div>
 
               <div className="flex justify-center gap-2">
                 {[0, 1, 2].map((i) => (
                   <button
                     key={i}
-                    className={`h-2 w-2 rounded-full ${i === 0 ? "bg-[#4a6741]" : "bg-gray-300"}`}
+                    className={`h-2 w-2 rounded-full ${i === 1 ? "bg-[#bfa888]" : "bg-gray-300"}`}
                     aria-label={`후기 ${i + 1}로 이동`}
                   />
                 ))}
@@ -380,22 +383,20 @@ export default function Page() {
             <div className="relative rounded-lg bg-white p-8 shadow-sm mt-4">
               <div className="mb-6 text-center">
                 <p className="mb-6 text-lg italic text-gray-600">
-                  "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록
-                  배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진
-                  결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다."
+                  "프로필 촬영을 했는데, 다양한 컨셉과 조명으로 여러 스타일을 시도해볼 수 있어서 좋았어요. 결과물도 세련되고 자연스럽게 나와서 매우 만족합니다."
                 </p>
                 <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                  <img src="/remind-wedding-updated.jpeg" alt="고객 프로필" className="h-full w-full object-cover" />
+                  <img src="/profile-photo-new.jpeg" alt="고객 프로필" className="h-full w-full object-cover" />
                 </div>
-                <p className="mt-2 font-medium">김지영 고객님</p>
-                <p className="text-sm text-gray-500">가족 촬영</p>
+                <p className="mt-2 font-medium">박정훈 고객님</p>
+                <p className="text-sm text-gray-500">프로필 촬영</p>
               </div>
 
               <div className="flex justify-center gap-2">
                 {[0, 1, 2].map((i) => (
                   <button
                     key={i}
-                    className={`h-2 w-2 rounded-full ${i === 0 ? "bg-[#4a6741]" : "bg-gray-300"}`}
+                    className={`h-2 w-2 rounded-full ${i === 2 ? "bg-[#bfa888]" : "bg-gray-300"}`}
                     aria-label={`후기 ${i + 1}로 이동`}
                   />
                 ))}
@@ -406,7 +407,7 @@ export default function Page() {
       </section >
 
       {/* 예약 안내 섹션 */}
-      < section id="contact" className="bg-[#4a6741] py-20 text-white" >
+      < section id="contact" className="bg-[#bfa888] py-20 text-white" >
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-6 text-3xl font-bold">지금 예약하세요</h2>
@@ -416,13 +417,13 @@ export default function Page() {
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
                 href="tel:061-721-4800"
-                className="rounded-full bg-white px-8 py-3 font-medium text-[#4a6741] transition hover:bg-gray-100"
+                className="rounded-full bg-white px-8 py-3 font-medium text-[#bfa888] transition hover:bg-[#f5eee6]"
               >
                 061-721-4800
               </a>
               <Link
                 href="/reservation"
-                className="rounded-full border border-white px-8 py-3 font-medium transition hover:bg-white hover:text-[#4a6741]"
+                className="rounded-full border border-white px-8 py-3 font-medium transition hover:bg-white hover:text-[#bfa888]"
               >
                 온라인 예약
               </Link>
@@ -445,10 +446,10 @@ export default function Page() {
               <p className="mb-2 text-sm text-gray-300">전화: 061-721-4800</p>
               <p className="text-sm text-gray-300">이메일: info@achimhaessal.kr</p>
               <div className="mt-4 flex items-center gap-3">
-                <span className="rounded-full bg-[#4a6741] px-2 py-1 text-xs">예약</span>
-                <span className="rounded-full bg-[#4a6741] px-2 py-1 text-xs">주차</span>
-                <span className="rounded-full bg-[#4a6741] px-2 py-1 text-xs">무선 인터넷</span>
-                <span className="rounded-full bg-[#4a6741] px-2 py-1 text-xs">애완동물 동반</span>
+                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs">예약</span>
+                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs">주차</span>
+                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs">무선 인터넷</span>
+                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs">애완동물 동반</span>
               </div>
             </div>
             <div>
@@ -465,13 +466,6 @@ export default function Page() {
           </div>
         </div>
       </footer >
-
-      {/* 플로팅 버튼 */}
-      < div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3" >
-        <button className="flex h-14 w-14 items-center justify-center rounded-full bg-yellow-400 text-gray-800 shadow-lg transition hover:bg-yellow-500">
-          <MessageCircle className="h-6 w-6" />
-        </button>
-      </div >
     </div >
   )
 }

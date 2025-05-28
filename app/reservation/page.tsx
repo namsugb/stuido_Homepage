@@ -114,32 +114,9 @@ export default function ReservationPage() {
 
   return (
     <div className="min-h-screen bg-[#f8f8f6]">
-      {/* 헤더 */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between py-3">
-            <Link href="/" className="flex items-center">
-              <div className="h-10 w-10 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
-                <img
-                  src="/logo.jpeg"
-                  alt="아침햇살 스튜디오 로고"
-                  className="h-full w-full object-contain p-1"
-                />
-              </div>
-              <span className="ml-3 text-lg font-medium text-gray-800">아침햇살 스튜디오</span>
-            </Link>
-
-            {/* 뒤로가기 버튼 */}
-            <Link href="/" className="flex items-center text-gray-700 hover:text-[#4a6741] transition">
-              <ArrowLeft className="h-5 w-5 mr-1" />
-              <span>메인으로 돌아가기</span>
-            </Link>
-          </div>
-        </div>
-      </header>
 
       {/* 메인 컨텐츠 */}
-      <main className="container mx-auto px-6 pt-20 pb-20">
+      <main className="container mt-16 mx-auto px-6 pt-20 pb-20">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4">온라인 예약</h1>
@@ -151,7 +128,7 @@ export default function ReservationPage() {
           {isSubmitted ? (
             // 예약 완료 메시지
             <div className="bg-white rounded-lg shadow-md p-8 text-center">
-              <div className="w-20 h-20 bg-[#4a6741] rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-[#bfa888] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="h-10 w-10 text-white" />
               </div>
               <h2 className="text-2xl font-bold mb-4">예약 신청이 완료되었습니다</h2>
@@ -167,7 +144,7 @@ export default function ReservationPage() {
                 </Link>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="px-6 py-3 bg-[#4a6741] rounded-full text-white hover:bg-[#3a5331] transition"
+                  className="px-6 py-3 bg-[#bfa888] rounded-full text-white hover:bg-[#a68b6d] transition"
                 >
                   다른 예약하기
                 </button>
@@ -187,7 +164,7 @@ export default function ReservationPage() {
                 {/* 고객 정보 섹션 */}
                 <div className="md:col-span-2">
                   <h2 className="text-xl font-bold mb-4 flex items-center">
-                    <Users className="h-5 w-5 mr-2 text-[#4a6741]" />
+                    <Users className="h-5 w-5 mr-2 text-[#bfa888]" />
                     고객 정보
                   </h2>
                 </div>
@@ -203,9 +180,8 @@ export default function ReservationPage() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2 rounded-md border ${
-                      errors.name ? "border-red-500" : "border-gray-300"
-                    } focus:outline-none focus:ring-2 focus:ring-[#4a6741]`}
+                    className={`w-full px-4 py-2 rounded-md border ${errors.name ? "border-red-500" : "border-gray-300"
+                      } focus:outline-none focus:ring-2 focus:ring-[#bfa888]`}
                     placeholder="홍길동"
                   />
                   {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
@@ -222,9 +198,8 @@ export default function ReservationPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2 rounded-md border ${
-                      errors.phone ? "border-red-500" : "border-gray-300"
-                    } focus:outline-none focus:ring-2 focus:ring-[#4a6741]`}
+                    className={`w-full px-4 py-2 rounded-md border ${errors.phone ? "border-red-500" : "border-gray-300"
+                      } focus:outline-none focus:ring-2 focus:ring-[#bfa888]`}
                     placeholder="010-1234-5678"
                   />
                   {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
@@ -235,7 +210,7 @@ export default function ReservationPage() {
                 {/* 예약 정보 섹션 */}
                 <div className="md:col-span-2 border-t pt-6 mt-2">
                   <h2 className="text-xl font-bold mb-4 flex items-center">
-                    <Calendar className="h-5 w-5 mr-2 text-[#4a6741]" />
+                    <Calendar className="h-5 w-5 mr-2 text-[#bfa888]" />
                     예약 정보
                   </h2>
                 </div>
@@ -252,9 +227,8 @@ export default function ReservationPage() {
                     value={formData.date}
                     onChange={handleChange}
                     min={today}
-                    className={`w-full px-4 py-2 rounded-md border ${
-                      errors.date ? "border-red-500" : "border-gray-300"
-                    } focus:outline-none focus:ring-2 focus:ring-[#4a6741]`}
+                    className={`w-full px-4 py-2 rounded-md border ${errors.date ? "border-red-500" : "border-gray-300"
+                      } focus:outline-none focus:ring-2 focus:ring-[#bfa888]`}
                   />
                   {errors.date && <p className="mt-1 text-sm text-red-500">{errors.date}</p>}
                 </div>
@@ -269,9 +243,8 @@ export default function ReservationPage() {
                     name="time"
                     value={formData.time}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2 rounded-md border ${
-                      errors.time ? "border-red-500" : "border-gray-300"
-                    } focus:outline-none focus:ring-2 focus:ring-[#4a6741]`}
+                    className={`w-full px-4 py-2 rounded-md border ${errors.time ? "border-red-500" : "border-gray-300"
+                      } focus:outline-none focus:ring-2 focus:ring-[#bfa888]`}
                   >
                     <option value="">시간 선택</option>
                     {timeSlots.map((time) => (
@@ -293,7 +266,7 @@ export default function ReservationPage() {
                     name="shootingType"
                     value={formData.shootingType}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4a6741]"
+                    className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#bfa888]"
                   >
                     {shootingTypes.map((type) => (
                       <option key={type.value} value={type.value}>
@@ -315,9 +288,8 @@ export default function ReservationPage() {
                     value={formData.people}
                     onChange={handleChange}
                     min="1"
-                    className={`w-full px-4 py-2 rounded-md border ${
-                      errors.people ? "border-red-500" : "border-gray-300"
-                    } focus:outline-none focus:ring-2 focus:ring-[#4a6741]`}
+                    className={`w-full px-4 py-2 rounded-md border ${errors.people ? "border-red-500" : "border-gray-300"
+                      } focus:outline-none focus:ring-2 focus:ring-[#bfa888]`}
                     placeholder="1"
                   />
                   {errors.people && <p className="mt-1 text-sm text-red-500">{errors.people}</p>}
@@ -334,7 +306,7 @@ export default function ReservationPage() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4a6741]"
+                    className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#bfa888]"
                     placeholder="촬영에 관한 요청사항이나 문의사항을 적어주세요."
                   ></textarea>
                 </div>
@@ -348,7 +320,7 @@ export default function ReservationPage() {
                     name="privacy"
                     type="checkbox"
                     required
-                    className="h-4 w-4 mt-1 text-[#4a6741] focus:ring-[#4a6741] border-gray-300 rounded"
+                    className="h-4 w-4 mt-1 text-[#bfa888] focus:ring-[#bfa888] border-gray-300 rounded"
                   />
                   <label htmlFor="privacy" className="ml-2 block text-sm text-gray-700">
                     개인정보 수집 및 이용에 동의합니다. <span className="text-red-500">*</span>
@@ -364,7 +336,7 @@ export default function ReservationPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 px-6 bg-[#4a6741] text-white rounded-full font-medium hover:bg-[#3a5331] transition flex items-center justify-center disabled:opacity-70"
+                  className="w-full py-3 px-6 bg-[#bfa888] text-white rounded-full font-medium hover:bg-[#a68b6d] transition flex items-center justify-center disabled:opacity-70"
                 >
                   {isSubmitting ? (
                     <>
@@ -399,30 +371,30 @@ export default function ReservationPage() {
           )}
 
           {/* 안내 사항 */}
-          <div className="mt-8 bg-[#e9efe7] rounded-lg p-6">
+          <div className="mt-8 bg-[#f5eee6] rounded-lg p-6">
             <h3 className="text-lg font-bold mb-3 flex items-center">
-              <MessageSquare className="h-5 w-5 mr-2 text-[#4a6741]" />
+              <MessageSquare className="h-5 w-5 mr-2 text-[#bfa888]" />
               예약 안내
             </h3>
             <ul className="space-y-2 text-sm text-gray-700">
               <li className="flex items-start">
-                <span className="text-[#4a6741] mr-2">•</span>
+                <span className="text-[#bfa888] mr-2">•</span>
                 예약은 최소 3주 전에 신청해주시는 것이 좋습니다.
               </li>
               <li className="flex items-start">
-                <span className="text-[#4a6741] mr-2">•</span>
+                <span className="text-[#bfa888] mr-2">•</span>
                 예약 확정은 전화 또는 문자로 안내드립니다.
               </li>
               <li className="flex items-start">
-                <span className="text-[#4a6741] mr-2">•</span>
+                <span className="text-[#bfa888] mr-2">•</span>
                 예약 취소는 촬영 7일 전까지 연락주셔야 합니다.
               </li>
               <li className="flex items-start">
-                <span className="text-[#4a6741] mr-2">•</span>
+                <span className="text-[#bfa888] mr-2">•</span>
                 일요일은 기본적으로 휴무이며, 매월 첫째, 셋째 일요일은 예약이 불가합니다.
               </li>
               <li className="flex items-start">
-                <span className="text-[#4a6741] mr-2">•</span>
+                <span className="text-[#bfa888] mr-2">•</span>
                 궁금한 점이 있으시면 061-721-4800으로 문의해주세요.
               </li>
             </ul>

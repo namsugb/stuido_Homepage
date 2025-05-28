@@ -203,9 +203,9 @@ export default function GalleryPage() {
   ]
 
   return (
-    <div className="min-h-screen mt-20 bg-[#f8f8f6]">
+    <div className="min-h-screen bg-[#f8f8f6]">
       {/* 갤러리 메인 컨텐츠 */}
-      <main className="container mx-auto px-6 pt-20 pb-20">
+      <main className="container mt-16 mx-auto px-6 pt-20 pb-20">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">의상 컨셉 보기</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -221,7 +221,7 @@ export default function GalleryPage() {
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
               className={`px-6 py-2 rounded-full transition-all ${selectedCategory === category.id
-                ? "bg-[#4a6741] text-white"
+                ? "bg-[#bfa888] text-white"
                 : "bg-white text-gray-700 hover:bg-gray-100"
                 }`}
             >
