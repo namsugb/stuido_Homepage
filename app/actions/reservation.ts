@@ -61,6 +61,7 @@ export async function submitReservation(formData: ReservationFormData) {
           shooting_type: formData.shootingType,
           people: Number.parseInt(formData.people),
           message: formData.message || null,
+          status: "신규문의",
         },
       ])
       .select()

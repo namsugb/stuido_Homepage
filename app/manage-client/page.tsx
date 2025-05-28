@@ -21,11 +21,11 @@ import { Input } from "@/components/ui/input"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { format } from "date-fns"
-import { CalendarIcon, Download, Search, X } from "lucide-react"
+import { CalendarIcon, Download, Search, X, Trash2 } from "lucide-react"
 
 // 상단에 import 추가
 import { ReservationStatusUpdater } from "./reservation-status-updater"
-import { Toaster } from "sonner"
+import { Toaster, toast } from "sonner"
 
 // Reservation 타입의 status 필드 타입 변경
 type Reservation = {
@@ -70,6 +70,58 @@ export default function ManageClientPage() {
 
   // CSV 내보내기를 위한 ref
   const csvLinkRef = useRef<HTMLAnchorElement>(null)
+
+  // 모달 내에서 수정 가능한 상태 관리
+  const [editReservation, setEditReservation] = useState<Reservation | null>(null)
+
+  // 상세 모달 열릴 때 선택된 예약 정보 복사
+  useEffect(() => {
+    if (isModalOpen && selectedReservation) {
+      setEditReservation({ ...selectedReservation })
+    }
+  }, [isModalOpen, selectedReservation])
+
+  // 예약 정보 저장 함수
+  async function handleSaveEdit() {
+    if (!editReservation) return
+    try {
+      const supabase = createSupabaseClient()
+      const { data, error } = await supabase
+        .from("reservations")
+        .update({
+          name: editReservation.name,
+          phone: editReservation.phone,
+          email: editReservation.email,
+          date: editReservation.date,
+          time: editReservation.time,
+          shooting_type: editReservation.shooting_type,
+          people: editReservation.people,
+          message: editReservation.message,
+          status: editReservation.status,
+        })
+        .eq("id", Number(editReservation.id))
+        .select()
+
+      console.log('update result:', data, error)
+      if (error) throw error
+      if (!data) {
+        toast.error('업데이트된 데이터가 없습니다. (id 불일치 또는 권한 문제)')
+        return
+      }
+      // 상태 동기화
+      setReservations((prev) =>
+        prev.map((r) => (r.id === editReservation.id ? { ...editReservation } : r))
+      )
+      setFilteredReservations((prev) =>
+        prev.map((r) => (r.id === editReservation.id ? { ...editReservation } : r))
+      )
+      setSelectedReservation({ ...editReservation })
+      setIsModalOpen(false)
+      toast.success("저장되었습니다.")
+    } catch (err: any) {
+      toast.error("수정 중 오류 발생: " + err.message)
+    }
+  }
 
   // Supabase 클라이언트 생성 함수
   const createSupabaseClient = () => {
@@ -204,10 +256,10 @@ export default function ManageClientPage() {
     }
 
     const total = reservations.length
-    const 신규문의 = reservations.filter((r) => r.status === "신규문의" || r.status === "pending").length
+    const 신규문의 = reservations.filter((r) => r.status === "신규문의").length
     const 상담중 = reservations.filter((r) => r.status === "상담중").length
-    const 예약확정 = reservations.filter((r) => r.status === "예약확정" || r.status === "confirmed").length
-    const 촬영완료 = reservations.filter((r) => r.status === "촬영완료" || r.status === "completed").length
+    const 예약확정 = reservations.filter((r) => r.status === "예약확정").length
+    const 촬영완료 = reservations.filter((r) => r.status === "촬영완료").length
 
     return { total, 신규문의, 상담중, 예약확정, 촬영완료 }
   }
@@ -287,6 +339,21 @@ export default function ManageClientPage() {
     setReservations((prev) =>
       prev.map((reservation) => (reservation.id === id ? { ...reservation, status: newStatus as any } : reservation)),
     )
+  }
+
+  // 예약 삭제 함수
+  async function handleDeleteReservation(id: number) {
+    if (!window.confirm("정말로 이 예약을 삭제하시겠습니까?")) return;
+    try {
+      const supabase = createSupabaseClient();
+      const { error } = await supabase.from("reservations").delete().eq("id", id);
+      if (error) throw error;
+      setReservations((prev) => prev.filter((r) => r.id !== id));
+      setFilteredReservations((prev) => prev.filter((r) => r.id !== id));
+      toast.success("예약이 삭제되었습니다.");
+    } catch (err: any) {
+      toast.error("삭제 중 오류 발생: " + err.message);
+    }
   }
 
   // 로딩 중 표시
@@ -477,7 +544,6 @@ export default function ManageClientPage() {
                     setEndDate(date)
                     setIsEndDateOpen(false)
                   }}
-                  initialFocus
                 />
               </PopoverContent>
             </Popover>
@@ -511,36 +577,35 @@ export default function ManageClientPage() {
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">이름</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  연락처
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  촬영 유형
-                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">연락처</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">촬영 유형</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">날짜</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">시간</th>
                 {hasStatusColumn && (
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    상태
-                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">상태</th>
                 )}
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">액션</th>
+                <th className="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">삭제</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredReservations.length === 0 ? (
                 <tr>
-                  <td colSpan={hasStatusColumn ? 8 : 7} className="px-6 py-4 text-center text-gray-500">
+                  <td colSpan={hasStatusColumn ? 7 : 6} className="px-6 py-4 text-center text-gray-500">
                     {searchTerm || startDate || endDate ? "검색 결과가 없습니다." : "예약 데이터가 없습니다."}
                   </td>
                 </tr>
               ) : (
                 filteredReservations.map((reservation) => (
-                  <tr key={reservation.id} className="hover:bg-gray-50">
+                  <tr
+                    key={reservation.id}
+                    className="hover:bg-gray-50 cursor-pointer group"
+                    onClick={() => {
+                      setSelectedReservation(reservation)
+                      setIsModalOpen(true)
+                    }}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reservation.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      {reservation.name}
-                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{reservation.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reservation.phone}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reservation.shooting_type}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reservation.date}</td>
@@ -550,26 +615,18 @@ export default function ManageClientPage() {
                         {reservation.status && getStatusBadge(reservation.status)}
                       </td>
                     )}
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 space-x-2">
-                      <div className="flex items-center gap-2">
-                        {hasStatusColumn && reservation.status && (
-                          <ReservationStatusUpdater
-                            reservationId={reservation.id}
-                            currentStatus={reservation.status}
-                            onStatusChange={(newStatus) => handleStatusChange(reservation.id, newStatus)}
-                          />
-                        )}
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => {
-                            setSelectedReservation(reservation)
-                            setIsModalOpen(true)
-                          }}
-                        >
-                          상세보기
-                        </Button>
-                      </div>
+                    {/* 삭제 버튼 */}
+                    <td className="px-3 py-4 text-right">
+                      <button
+                        className="text-red-500 hover:text-white hover:bg-red-500 rounded-full p-2 transition group-hover:scale-110"
+                        title="예약 삭제"
+                        onClick={e => {
+                          e.stopPropagation();
+                          handleDeleteReservation(reservation.id);
+                        }}
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
                     </td>
                   </tr>
                 ))
@@ -585,62 +642,103 @@ export default function ManageClientPage() {
       </div>
 
       {/* 예약 상세 모달 */}
-      {selectedReservation && (
+      {selectedReservation && editReservation && (
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle>예약 상세 정보</DialogTitle>
-              <DialogDescription>예약 ID: {selectedReservation.id}</DialogDescription>
+              <DialogDescription>예약 ID: {editReservation.id}</DialogDescription>
             </DialogHeader>
-
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">이름:</span>
-                <span className="col-span-3">{selectedReservation.name}</span>
+                <input
+                  className="col-span-3 border rounded px-2 py-1"
+                  value={editReservation.name}
+                  onChange={e => setEditReservation({ ...editReservation, name: e.target.value })}
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">연락처:</span>
-                <span className="col-span-3">{selectedReservation.phone}</span>
+                <input
+                  className="col-span-3 border rounded px-2 py-1"
+                  value={editReservation.phone}
+                  onChange={e => setEditReservation({ ...editReservation, phone: e.target.value })}
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">이메일:</span>
-                <span className="col-span-3">{selectedReservation.email || "-"}</span>
+                <input
+                  className="col-span-3 border rounded px-2 py-1"
+                  value={editReservation.email || ""}
+                  onChange={e => setEditReservation({ ...editReservation, email: e.target.value })}
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">날짜:</span>
-                <span className="col-span-3">{selectedReservation.date}</span>
+                <input
+                  type="date"
+                  className="col-span-3 border rounded px-2 py-1"
+                  value={editReservation.date}
+                  onChange={e => setEditReservation({ ...editReservation, date: e.target.value })}
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">시간:</span>
-                <span className="col-span-3">{selectedReservation.time}</span>
+                <input
+                  className="col-span-3 border rounded px-2 py-1"
+                  value={editReservation.time}
+                  onChange={e => setEditReservation({ ...editReservation, time: e.target.value })}
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">촬영 유형:</span>
-                <span className="col-span-3">{selectedReservation.shooting_type}</span>
+                <input
+                  className="col-span-3 border rounded px-2 py-1"
+                  value={editReservation.shooting_type}
+                  onChange={e => setEditReservation({ ...editReservation, shooting_type: e.target.value })}
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">인원:</span>
-                <span className="col-span-3">{selectedReservation.people}명</span>
+                <input
+                  type="number"
+                  className="col-span-3 border rounded px-2 py-1"
+                  value={editReservation.people}
+                  onChange={e => setEditReservation({ ...editReservation, people: Number(e.target.value) })}
+                />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">메시지:</span>
-                <span className="col-span-3">{selectedReservation.message || "-"}</span>
+                <input
+                  className="col-span-3 border rounded px-2 py-1"
+                  value={editReservation.message || ""}
+                  onChange={e => setEditReservation({ ...editReservation, message: e.target.value })}
+                />
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <span className="text-right font-medium">예약 생성일:</span>
-                <span className="col-span-3">{new Date(selectedReservation.created_at).toLocaleString("ko-KR")}</span>
-              </div>
-
-              {/* status 컬럼이 있는 경우에만 상태 표시 */}
-              {hasStatusColumn && selectedReservation.status && (
+              {/* status 컬럼이 있는 경우에만 상태 수정 */}
+              {hasStatusColumn && (
                 <div className="grid grid-cols-4 items-center gap-4">
                   <span className="text-right font-medium">상태:</span>
-                  <div className="col-span-3">{getStatusBadge(selectedReservation.status)}</div>
+                  <select
+                    className="col-span-3 border rounded px-2 py-1"
+                    value={editReservation.status}
+                    onChange={e => setEditReservation({ ...editReservation, status: e.target.value as any })}
+                  >
+                    <option value="신규문의">신규문의</option>
+                    <option value="상담중">상담중</option>
+                    <option value="예약확정">예약확정</option>
+                    <option value="촬영완료">촬영완료</option>
+                  </select>
                 </div>
               )}
+              <div className="grid grid-cols-4 items-center gap-4">
+                <span className="text-right font-medium">예약 생성일:</span>
+                <span className="col-span-3">{new Date(editReservation.created_at).toLocaleString("ko-KR")}</span>
+              </div>
             </div>
-
             <DialogFooter>
+              <Button onClick={handleSaveEdit} variant="default">저장</Button>
               <Button onClick={() => setIsModalOpen(false)}>닫기</Button>
             </DialogFooter>
           </DialogContent>
