@@ -41,6 +41,7 @@ type Reservation = {
   created_at: string
   // status 필드는 옵션으로 처리하고 타입 변경
   status?: "신규문의" | "상담중" | "예약확정" | "촬영완료"
+  memo?: string // 관리자 메모
 }
 
 export default function ManageClientPage() {
@@ -91,13 +92,13 @@ export default function ManageClientPage() {
         .update({
           name: editReservation.name,
           phone: editReservation.phone,
-          email: editReservation.email,
           date: editReservation.date,
           time: editReservation.time,
           shooting_type: editReservation.shooting_type,
           people: editReservation.people,
           message: editReservation.message,
           status: editReservation.status,
+          memo: editReservation.memo || null,
         })
         .eq("id", Number(editReservation.id))
         .select()
@@ -406,7 +407,7 @@ export default function ManageClientPage() {
   }
 
   return (
-    <div className="container mx-auto p-4 md:p-8">
+    <div className="container mt-32 mx-auto p-4 md:p-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">예약 관리 시스템</h1>
         <Button variant="outline" onClick={handleLogout}>
@@ -667,14 +668,6 @@ export default function ManageClientPage() {
                 />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
-                <span className="text-right font-medium">이메일:</span>
-                <input
-                  className="col-span-3 border rounded px-2 py-1"
-                  value={editReservation.email || ""}
-                  onChange={e => setEditReservation({ ...editReservation, email: e.target.value })}
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">날짜:</span>
                 <input
                   type="date"
@@ -714,6 +707,15 @@ export default function ManageClientPage() {
                   className="col-span-3 border rounded px-2 py-1"
                   value={editReservation.message || ""}
                   onChange={e => setEditReservation({ ...editReservation, message: e.target.value })}
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <span className="text-right font-medium">관리자 메모:</span>
+                <textarea
+                  className="col-span-3 border rounded px-2 py-1 min-h-[60px] resize-y"
+                  value={editReservation.memo || ""}
+                  onChange={e => setEditReservation({ ...editReservation, memo: e.target.value })}
+                  placeholder="관리자만 볼 수 있는 메모를 입력하세요"
                 />
               </div>
               {/* status 컬럼이 있는 경우에만 상태 수정 */}
