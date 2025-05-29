@@ -182,13 +182,10 @@ export default function ManageClientPage() {
           console.error("Supabase 오류:", error)
           setError(error.message)
         } else {
-          console.log("데이터 가져오기 성공:", data?.length, "개의 예약")
-
           // 모든 예약에 기본 상태 추가 (status 컬럼이 없는 경우)
           const processedReservations =
             (data?.map((reservation) => ({
               ...reservation,
-              // status 필드가 없으면 '신규문의'으로 가정
               status: hasStatusColumn ? reservation.status || "신규문의" : undefined,
             })) as Reservation[]) || []
 
@@ -205,6 +202,8 @@ export default function ManageClientPage() {
 
     if (tableColumns.length > 0 && isAuthenticated) {
       fetchReservations()
+    } else if (!isAuthenticated) {
+      setLoading(false)
     }
   }, [tableColumns, hasStatusColumn, isAuthenticated])
 
@@ -358,7 +357,7 @@ export default function ManageClientPage() {
   }
 
   // 로딩 중 표시
-  if (loading && isAuthenticated)
+  if (loading)
     return (
       <div className="flex justify-center items-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>

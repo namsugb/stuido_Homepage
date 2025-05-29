@@ -32,14 +32,17 @@ export default function RootLayout({
 
               {/* 메뉴: 모바일/데스크톱 모두 가로 스크롤 */}
               <nav className="flex items-center space-x-6 overflow-x-auto whitespace-nowrap flex-nowrap scrollbar-hide ml-8">
-                <Link href="/events" className="text-gray-700 hover:text-[#bfa888] transition">
-                  이벤트
+                <Link href="/about" className="text-gray-700 hover:text-[#bfa888] transition">
+                  소개
                 </Link>
                 <Link href="/gallery" className="text-gray-700 hover:text-[#bfa888] transition">
                   갤러리
                 </Link>
                 <Link href="/products" className="text-gray-700 hover:text-[#bfa888] transition">
                   상품소개
+                </Link>
+                <Link href="/events" className="text-gray-700 hover:text-[#bfa888] transition">
+                  이벤트
                 </Link>
                 <Link href="/gallery" className="text-gray-700 hover:text-[#bfa888] transition">
                   의상
@@ -69,7 +72,7 @@ export default function RootLayout({
 
           {/* 네이버 톡톡 */}
           <a
-            href="https://talk.naver.com/ct/wc6k1z"
+            href="https://talk.naver.com/ct/wcaal4"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-14 h-14 rounded-full bg-[#19ce60] shadow-lg text-white hover:bg-[#13b152] transition"

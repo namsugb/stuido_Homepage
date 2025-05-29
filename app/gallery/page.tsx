@@ -194,12 +194,11 @@ export default function GalleryPage() {
 
   // 카테고리 데이터
   const categories = [
-    { id: "all", name: "전체 보기" },
-    { id: "uniform", name: "정장" },
-    { id: "casual", name: "캐주얼" },
+    { id: "family", name: "가족사진" },
     { id: "wedding", name: "리마인드웨딩" },
-    { id: "celebration", name: "칠순/팔순 잔치" },
+    { id: "longevity", name: "장수사진" },
     { id: "id", name: "증명사진" },
+    { id: "friend", name: "우정/프로필/커플/주니어" },
   ]
 
   return (
@@ -207,7 +206,7 @@ export default function GalleryPage() {
       {/* 갤러리 메인 컨텐츠 */}
       <main className="container mt-16 mx-auto px-6 pt-20 pb-20">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">의상 컨셉 보기</h1>
+          <h1 className="text-4xl font-bold mb-4">갤러리</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
             아침햇살 스튜디오의 작품들을 감상해보세요. 가족사진, 리마인드웨딩, 칠순/팔순 잔치, 증명사진 등 다양한 촬영
             작품을 카테고리별로 확인하실 수 있습니다.
