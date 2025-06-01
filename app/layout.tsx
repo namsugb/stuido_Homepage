@@ -1,11 +1,9 @@
-
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Link from "next/link"
 import { Calendar, CalendarCheck, MessageCircleMore, Phone } from "lucide-react"
-import { usePathname } from "next/navigation"
 import FloatingButtons from "@/components/FloatingButtons"
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,8 +18,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const pathname = usePathname();
-  const hideFloating = pathname.startsWith("/manage-client");
   return (
     <html lang="ko">
       <body>
