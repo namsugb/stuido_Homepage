@@ -1,9 +1,12 @@
+"use client";
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Link from "next/link"
 import { Calendar, CalendarCheck, MessageCircleMore, Phone } from "lucide-react"
+import { usePathname } from "next/navigation"
+import FloatingButtons from "@/components/FloatingButtons"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -17,6 +20,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const pathname = usePathname();
+  const hideFloating = pathname.startsWith("/manage-client");
   return (
     <html lang="ko">
       <body>
@@ -25,9 +30,12 @@ export default function RootLayout({
             <div className="flex items-center justify-center py-6">
               <Link href="/" className="flex items-center">
                 <div className="h-10 w-6 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
-                  <img src="/logo.jpeg" alt="아침햇살 스튜디오 로고" className="h-full w-full object-contain" />
+                  <img src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" className="h-full w-full object-contain" />
                 </div>
-                <span className="ml-2 text-lg font-bold text-gray-800 whitespace-nowrap">아침햇살 스튜디오</span>
+                <div className="ml-2 flex flex-col text-base md:text-lg font-bold text-gray-800 leading-tight min-w-[80px]">
+                  <span className="whitespace-nowrap">아침햇살</span>
+                  <span className="whitespace-nowrap">스튜디오</span>
+                </div>
               </Link>
 
               {/* 메뉴: 모바일/데스크톱 모두 가로 스크롤 */}
@@ -59,37 +67,7 @@ export default function RootLayout({
           </div>
         </header>
         {children}
-        {/* 우측하단 고정 플로팅 버튼 그룹 (아이콘만) */}
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
-          {/* 전화 */}
-          <a
-            href="tel:061-721-4800"
-            className="flex items-center justify-center w-14 h-14 rounded-full bg-white shadow-lg text-[#bfa888] hover:bg-[#f5eee6] transition border border-[#bfa888]"
-            title="전화 문의"
-          >
-            <Phone className="w-7 h-7" />
-          </a>
-
-          {/* 네이버 톡톡 */}
-          <a
-            href="https://talk.naver.com/ct/wcaal4"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center w-14 h-14 rounded-full bg-[#19ce60] shadow-lg text-white hover:bg-[#13b152] transition"
-            title="네이버 톡톡"
-          >
-            <MessageCircleMore className="w-7 h-7" />
-          </a>
-
-          {/* 예약하기 */}
-          <a
-            href="/reservation"
-            className="flex items-center justify-center w-14 h-14 rounded-full bg-[#bfa888] shadow-lg text-white hover:bg-[#a68b6d] transition"
-            title="예약하기"
-          >
-            <CalendarCheck className="w-7 h-7" />
-          </a>
-        </div>
+        <FloatingButtons />
       </body>
     </html>
   )

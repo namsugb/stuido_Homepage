@@ -214,7 +214,7 @@ export default function ProductsPageContent() {
     const singleProducts = products.filter(p => p.category !== "package");
 
     return (
-        <div className="min-h-screen bg-[#f8f8f6]">
+        <div className="min-h-screen bg-white">
             <main className="container mx-auto px-3 pt-20 pb-20">
                 <div className="text-center mt-16 mb-12">
                     <h1 className="text-4xl font-bold mb-4">촬영 상품 안내</h1>
@@ -223,58 +223,62 @@ export default function ProductsPageContent() {
                     </p>
                 </div>
 
-                {/* 프리미엄 상품 섹션 */}
-                <h2 className="text-2xl font-bold mb-6 text-center">패키지 상품</h2>
-                <div className="grid grid-cols-2 gap-2 mb-16">
-                    {premiumProducts.map((product) => (
-                        <div key={product.id} className="bg-white shadow-lg overflow-hidden relative group aspect-[4/3] flex items-stretch">
-                            <div className="absolute inset-0">
-                                <img
-                                    src={product.image}
-                                    alt={product.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                />
-                                <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
-                            </div>
-                            {/* 전체 오버레이 */}
-                            <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center">
-                                <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
-                                    <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
-                                    <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
-                                        {product.features && product.features.length > 0 && product.features.join(", ")}
+                {/* 패키지지 상품 섹션 */}
+                <div className="mb-16 bg-white py-1 rounded-lg shadow-sm">
+                    <h2 className="text-2xl my-5 py-5 font-bold mb-6 text-center">패키지 상품</h2>
+                    <div className="grid grid-cols-2 gap-2 mb-16 pb-8 px-3">
+                        {premiumProducts.map((product) => (
+                            <div key={product.id} className="bg-white shadow-lg overflow-hidden relative group aspect-[4/3] flex items-stretch">
+                                <div className="absolute inset-0">
+                                    <img
+                                        src={product.image}
+                                        alt={product.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                    <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
+                                </div>
+                                {/* 전체 오버레이 */}
+                                <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
+                                    <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
+                                        <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
+                                        <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
+                                            {product.features && product.features.length > 0 && product.features.join(", ")}
+                                        </div>
+                                        <div className="text-xs md:text-lg font-normal text-white mb-1">{product.price}</div>
                                     </div>
-                                    <div className="text-xs md:text-lg font-normal text-white mb-1">{product.price}</div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
 
-                {/* 단독상품 섹션 */}
-                <h2 className="text-2xl font-bold mb-6 text-center">개별 상품</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                    {singleProducts.map((product) => (
-                        <div key={product.id} className="bg-white shadow-md overflow-hidden relative group aspect-[4/3] flex items-stretch">
-                            <div className="absolute inset-0">
-                                <img
-                                    src={product.image}
-                                    alt={product.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                />
-                                <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
-                            </div>
-                            {/* 전체 오버레이 */}
-                            <div className="absolute inset-0 w-full z-10 flex flex-col items-center justify-center">
-                                <div className="bg-black bg-opacity-20 h-full w-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
-                                    <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
-                                    <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
-                                        {product.features && product.features.length > 0 && product.features.join(", ")}
+                {/* 개별 상품품 섹션 */}
+                <div className="mb-16 bg-white rounded-lg shadow-sm">
+                    <h2 className="text-2xl mt-16 pt-5 font-bold mb-6 text-center">개별 상품</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 pb-8 px-3">
+                        {singleProducts.map((product) => (
+                            <div key={product.id} className="bg-white shadow-md overflow-hidden relative group aspect-[4/3] flex items-stretch">
+                                <div className="absolute inset-0">
+                                    <img
+                                        src={product.image}
+                                        alt={product.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                    <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
+                                </div>
+                                {/* 전체 오버레이 */}
+                                <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
+                                    <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
+                                        <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
+                                        <div className="text-base md:text-lg font-normal text-white mb-1">{product.price}</div>
+                                        <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
+                                            {product.features && product.features.length > 0 && product.features.join(", ")}
+                                        </div>
                                     </div>
-                                    <div className="text-xs md:text-lg font-normal text-white mb-1">{product.price}</div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
 
                 {/* 추가 안내 */}

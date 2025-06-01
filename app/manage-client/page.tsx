@@ -476,7 +476,7 @@ export default function ManageClientPage() {
         {/* 탭 (status 컬럼이 있는 경우만) */}
         {hasStatusColumn && (
           <Tabs defaultValue="all" onValueChange={setActiveTab}>
-            <TabsList>
+            <TabsList className="flex w-full overflow-x-auto whitespace-nowrap flex-nowrap scrollbar-hide">
               <TabsTrigger value="all">전체 ({stats.total})</TabsTrigger>
               <TabsTrigger value="신규문의">신규문의 ({stats.신규문의})</TabsTrigger>
               <TabsTrigger value="상담중">상담중 ({stats.상담중})</TabsTrigger>

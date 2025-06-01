@@ -202,7 +202,7 @@ export default function GalleryPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#f8f8f6]">
+    <div className="min-h-screen bg-white">
       {/* 갤러리 메인 컨텐츠 */}
       <main className="container mt-16 mx-auto px-6 pt-20 pb-20">
         <div className="text-center mb-12">

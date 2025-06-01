@@ -4,10 +4,10 @@ import Image from "next/image";
 
 export default function AboutPage() {
     return (
-        <div className="min-h-screen bg-[#f8f8f6]">
+        <div className="min-h-screen bg-white">
             <main className="container mx-auto px-4 pt-24 pb-20">
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold mb-4">아침햇살 스튜디오 소개</h1>
+                    <h1 className="text-4xl font-bold my-4">아침햇살 스튜디오 소개</h1>
                     <p className="text-gray-600 max-w-2xl mx-auto">
                         따뜻한 햇살처럼, 소중한 순간을 아름답게 담아드립니다.<br />
                         가족의 이야기, 인생의 전환점, 그리고 당신만의 특별한 시간을 사진으로 남겨보세요.

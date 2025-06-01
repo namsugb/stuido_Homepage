@@ -168,7 +168,7 @@ export default function Page() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#f8f8f6]">
+    <div className="relative min-h-screen bg-white">
 
 
       {/* 메인 히어로 섹션 - 모던한 슬라이더 */}
@@ -254,44 +254,44 @@ export default function Page() {
               {
                 title: "가족사진",
                 description: "3대가 함께하는 가족사진부터 아이들의 성장 기록까지, 소중한 가족의 모든 순간을 담습니다.",
-                image: "/card/family-photo-updated.jpeg",
+                image: "/product/family-photo-updated.jpeg",
                 category: "family",
               },
               {
                 title: "리마인드웨딩",
                 description: "결혼의 소중한 순간을 다시 한번 아름답게 기록하여 특별한 추억을 만들어 드립니다.",
-                image: "/card/remind-wedding-updated.jpeg",
+                image: "/product/remind-wedding-updated.jpeg",
                 category: "wedding",
               },
               {
                 title: "칠순/팔순",
                 description: "인생의 뜻깊은 순간을 품격있게 담아 가족 모두가 소중히 간직할 수 있는 사진을 선사합니다.",
-                image: "/hanbok-couple-new.jpeg",
+                image: "/product/hanbok-couple-new.jpeg",
                 category: "celebration",
               },
               {
                 title: "장수",
                 description: "100세 시대, 건강하고 행복한 노년의 모습을 아름답게 담아 소중한 기록으로 남겨드립니다.",
-                image: "/senior-hanbok-new.jpeg",
+                image: "/product/senior-hanbok-new.jpeg",
                 category: "longevity",
               },
               {
                 title: "프로필",
                 description: "개인의 매력과 개성을 살린 프로필 사진으로 특별한 인상을 남겨보세요.",
-                image: "/profile-photo-new.jpeg",
+                image: "/product/profile-photo-new.jpeg",
                 category: "profile",
               },
               {
                 title: "증명",
                 description: "취업, 입학 등에 필요한 다양한 규격의 증명사진을 전문적으로 촬영해 드립니다.",
-                image: "/id-photo-new.jpeg",
+                image: "/product/id-photo-new.jpeg",
                 category: "id",
               },
             ].map((item, index) => (
               <Link
                 key={index}
                 href={`/products?category=${item.category}`}
-                className="rounded-lg bg-white p-2 pb-4 pt-2 shadow-sm hover:shadow-md transition block"
+                className="rounded-lg bg-white p-2 pb-4 pt-2 shadow-2xl hover:shadow-md transition block"
               >
                 <div className="mb-4 relative h-64 w-full overflow-hidden rounded-lg">
                   <img
@@ -307,6 +307,8 @@ export default function Page() {
           </div>
         </div>
       </section >
+
+      <div className="w-full h-px bg-gray-200 my-8" />
 
       {/* 갤러리 섹션 */}
       < section id="gallery" className="bg-white py-20" >
@@ -337,8 +339,10 @@ export default function Page() {
         </div>
       </section >
 
+      <div className="w-full h-px bg-gray-200 my-8" />
+
       {/* 고객 후기 섹션 */}
-      < section className="bg-[#f8f8f6] py-20" >
+      < section className="bg-white py-20" >
         <div className="container mx-auto px-6">
           <h2 className="mb-12 text-center text-3xl font-bold">고객 후기</h2>
           <div className="mx-auto max-w-4xl">
@@ -413,6 +417,8 @@ export default function Page() {
           </div>
         </div>
       </section >
+
+      <div className="w-full h-px bg-gray-200 my-8" />
 
       {/* 예약 안내 섹션 */}
       < section id="contact" className="bg-[#bfa888] py-20 text-white" >
