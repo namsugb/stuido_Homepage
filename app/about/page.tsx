@@ -26,22 +26,27 @@ export default function AboutPage() {
                         />
                     </div>
                     <div className="flex-1">
-                        <h2 className="text-2xl font-bold mb-3">사진작가 소개</h2>
+                        <h2 className="text-2xl font-bold mb-3">대표 소개</h2>
                         <p className="text-gray-700 mb-2">
-                            <b>김아침</b> 작가는 15년 경력의 가족사진 전문 포토그래퍼로,<br />
-                            따뜻한 시선과 섬세한 연출로 많은 가족의 소중한 순간을 기록해왔습니다.<br />
-                            <br />
-                            <span className="text-gray-500 text-sm">
-                                - 중앙대학교 사진학과 졸업<br />
-                                - 국내외 가족사진 공모전 다수 수상<br />
-                                - 2020년 대한민국 가족사진전 금상<br />
-                                - 현) 아침햇살 스튜디오 대표작가
-                            </span>
+                            <b>남유행</b> | 아침햇살스튜디오 대표 / 한국프로사진협회 초대작가
                         </p>
-                        <p className="text-gray-700">
-                            "사진은 시간이 지나도 변하지 않는 사랑의 기록입니다.<br />
-                            여러분의 소중한 이야기를 진심을 담아 촬영하겠습니다."
+                        <p className="text-gray-700 mb-4">
+                            사진은 제게 '사람의 마음을 담는 일'입니다.<br />
+                            피사체를 마주할 때면, 그 사람만의 이야기를 사진에 고스란히 담아내고 싶어집니다.<br />
+                            감성과 따뜻함이 묻어나는 인물사진, 가족의 웃음과 사랑이 그대로 전해지는 사진이 제가 추구하는 방향입니다.<br />
+                            스튜디오를 운영한 지 벌써 2대째, 시간이 흘러도 변하지 않는 건 '진심으로 사람을 바라보는 시선'입니다.<br />
+                            사진을 통해 누군가의 행복한 순간을 오래도록 기억하게 해주는 일이, 제게는 가장 소중한 일입니다.
                         </p>
+                        <h3 className="text-xl font-semibold mb-2 mt-6">주요 약력</h3>
+                        <ul className="list-disc list-inside text-gray-600 space-y-1">
+                            <li>서울예전 사진과 졸업</li>
+                            <li>현) 한국프로사진협회 초대작가</li>
+                            <li>현) 한국프로사진협회 사진문화원장</li>
+                            <li>현) 한국프로사진협회 전남지회 고문</li>
+                            <li>전) 한국프로사진협회 작가제도부 위원장</li>
+                            <li>전) 한국프로사진협회 교육이사</li>
+                            <li>전) 한국프로사진협회 전라남도지회 지회장</li>
+                        </ul>
                     </div>
                 </section>
 

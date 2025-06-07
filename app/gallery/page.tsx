@@ -7,141 +7,61 @@ import { ArrowLeft, X } from "lucide-react"
 // Replace the galleryData object with the following that uses placeholder images
 const galleryData = {
   all: [
-    {
-      src: "/placeholder.svg?height=400&width=400&query=pink%20family%20portrait",
-      alt: "핑크 컨셉 가족 사진",
-      category: "family",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=love%20concept%20family%20photo",
-      alt: "LOVE 컨셉 가족 사진",
-      category: "family",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=family%20with%20pet%20photo",
-      alt: "반려동물과 함께하는 가족 사진",
-      category: "family",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=blue%20concept%20family%20photo",
-      alt: "화사한 블루 컨셉 가족 사진",
-      category: "family",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=family%20by%20window",
-      alt: "창가에서 촬영한 가족 사진",
-      category: "family",
-    },
-    // 리마인드 웨딩 이미지
-    {
-      src: "/placeholder.svg?height=400&width=400&query=senior%20couple%20wedding",
-      alt: "노부부 리마인드 웨딩",
-      category: "wedding",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=family%20wedding%20photo",
-      alt: "가족 리마인드 웨딩",
-      category: "wedding",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=mother%20daughter%20wedding",
-      alt: "모녀 웨딩 촬영",
-      category: "wedding",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=family%20wedding%20portrait",
-      alt: "가족 웨딩 촬영",
-      category: "wedding",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=family%20wedding%20studio",
-      alt: "가족 웨딩 스튜디오 촬영",
-      category: "wedding",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=young%20couple%20wedding",
-      alt: "청년 웨딩 촬영",
-      category: "wedding",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=family%20group%20wedding",
-      alt: "가족 웨딩 단체 촬영",
-      category: "wedding",
-    },
-    { src: "/placeholder.svg?height=400&width=400&query=family%20portrait", alt: "가족 사진", category: "family" },
-    // 칠순/팔순 이미지
-    {
-      src: "/placeholder.svg?height=400&width=400&query=elderly%20couple%20hanbok",
-      alt: "한복 입은 노부부 칠순 기념 촬영",
-      category: "celebration",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=family%20celebration%20ceremony",
-      alt: "가족과 함께하는 칠순 기념식",
-      category: "celebration",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=elderly%20birthday%20cake",
-      alt: "케이크와 함께하는 칠순 기념 촬영",
-      category: "celebration",
-    },
-    // 증명사진 이미지 추가
-    {
-      src: "/placeholder.svg?height=400&width=400&query=female%20ID%20photo%20formal",
-      alt: "여성 증명사진 - 정장",
-      category: "id",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=female%20ID%20photo%20studio",
-      alt: "여성 증명사진 - 아침햇살 스튜디오",
-      category: "id",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=male%20ID%20photo%20blue",
-      alt: "남성 증명사진 - 파란 배경",
-      category: "id",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=male%20ID%20photo%20mint",
-      alt: "남성 증명사진 - 민트 배경",
-      category: "id",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=female%20ID%20photo%20beige",
-      alt: "여성 증명사진 - 베이지 배경",
-      category: "id",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=female%20ID%20photo%20blue",
-      alt: "여성 증명사진 - 파란 배경",
-      category: "id",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=female%20ID%20photo%20formal%20blue",
-      alt: "여성 증명사진 - 파란 배경 정장",
-      category: "id",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=female%20ID%20photo%20long%20hair",
-      alt: "여성 증명사진 - 긴 머리",
-      category: "id",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=female%20ID%20photo%20white%20formal",
-      alt: "여성 증명사진 - 흰 배경 정장",
-      category: "id",
-    },
-    {
-      src: "/placeholder.svg?height=400&width=400&query=female%20ID%20photo%20white%20casual",
-      alt: "여성 증명사진 - 흰 배경 캐주얼",
-      category: "id",
-    },
-    // 추가 이미지들 (카테고리별로 분류)
-    {
-      src: "/placeholder.svg?height=400&width=400&query=family%20birthday%20celebration",
-      alt: "가족 생일 촬영",
-      category: "family",
-    },
+    // family
+    { src: "/main_gallery/family/family01.jpg", alt: "가족사진 1", category: "family" },
+    { src: "/main_gallery/family/family02.jpg", alt: "가족사진 2", category: "family" },
+    { src: "/main_gallery/family/family03.jpg", alt: "가족사진 3", category: "family" },
+    { src: "/main_gallery/family/family04.jpg", alt: "가족사진 4", category: "family" },
+    { src: "/main_gallery/family/family05.jpg", alt: "가족사진 5", category: "family" },
+    { src: "/main_gallery/family/family06.jpg", alt: "가족사진 6", category: "family" },
+    { src: "/main_gallery/family/family07.jpg", alt: "가족사진 7", category: "family" },
+    { src: "/main_gallery/family/family08.jpg", alt: "가족사진 8", category: "family" },
+    { src: "/main_gallery/family/family09.jpg", alt: "가족사진 9", category: "family" },
+
+    // id
+    { src: "/main_gallery/id/id01.jpg", alt: "증명사진 1", category: "id" },
+    { src: "/main_gallery/id/id02.jpg", alt: "증명사진 2", category: "id" },
+    { src: "/main_gallery/id/id03.jpg", alt: "증명사진 3", category: "id" },
+    { src: "/main_gallery/id/id04.jpg", alt: "증명사진 4", category: "id" },
+    { src: "/main_gallery/id/id05.jpg", alt: "증명사진 5", category: "id" },
+    { src: "/main_gallery/id/id06.jpg", alt: "증명사진 6", category: "id" },
+    { src: "/main_gallery/id/id07.jpg", alt: "증명사진 7", category: "id" },
+    { src: "/main_gallery/id/id08.jpg", alt: "증명사진 8", category: "id" },
+    { src: "/main_gallery/id/id09.jpg", alt: "증명사진 9", category: "id" },
+    { src: "/main_gallery/id/id10.jpg", alt: "증명사진 10", category: "id" },
+    { src: "/main_gallery/id/id11.jpg", alt: "증명사진 11", category: "id" },
+
+    // long
+    { src: "/main_gallery/long/long01.jpg", alt: "장수사진 1", category: "longevity" },
+    { src: "/main_gallery/long/long02.jpg", alt: "장수사진 2", category: "longevity" },
+    { src: "/main_gallery/long/long03.jpg", alt: "장수사진 3", category: "longevity" },
+    { src: "/main_gallery/long/long04.jpg", alt: "장수사진 4", category: "longevity" },
+    { src: "/main_gallery/long/long05.jpg", alt: "장수사진 5", category: "longevity" },
+
+    // profile
+    { src: "/main_gallery/profile/profile01.jpg", alt: "프로필사진 1", category: "friend" },
+    { src: "/main_gallery/profile/profile02.jpg", alt: "프로필사진 2", category: "friend" },
+    { src: "/main_gallery/profile/profile03.jpg", alt: "프로필사진 3", category: "friend" },
+    { src: "/main_gallery/profile/profile04.jpg", alt: "프로필사진 4", category: "friend" },
+    { src: "/main_gallery/profile/profile05.jpg", alt: "프로필사진 5", category: "friend" },
+    { src: "/main_gallery/profile/profile06.jpg", alt: "프로필사진 6", category: "friend" },
+    { src: "/main_gallery/profile/profile07.jpg", alt: "프로필사진 7", category: "friend" },
+    { src: "/main_gallery/profile/profile08.jpg", alt: "프로필사진 8", category: "friend" },
+    { src: "/main_gallery/profile/profile09.jpg", alt: "프로필사진 9", category: "friend" },
+    { src: "/main_gallery/profile/profile10.jpg", alt: "프로필사진 10", category: "friend" },
+    { src: "/main_gallery/profile/profile11.jpg", alt: "프로필사진 11", category: "friend" },
+
+    // remind (리마인드웨딩)
+    { src: "/main_gallery/remind/remind_2f1a8824_12x17.jpg", alt: "리마인드웨딩 1", category: "wedding" },
+    { src: "/main_gallery/remind/remind_003_03_1차.jpg", alt: "리마인드웨딩 2", category: "wedding" },
+    { src: "/main_gallery/remind/remind_004_01_1차.jpg", alt: "리마인드웨딩 3", category: "wedding" },
+    { src: "/main_gallery/remind/remind_004a0344-1.jpg", alt: "리마인드웨딩 4", category: "wedding" },
+    { src: "/main_gallery/remind/remind_004a0391.jpg", alt: "리마인드웨딩 5", category: "wedding" },
+    { src: "/main_gallery/remind/remind_005_01_1차.jpg", alt: "리마인드웨딩 6", category: "wedding" },
+    { src: "/main_gallery/remind/remind_8u0a0352_복사.jpg", alt: "리마인드웨딩 7", category: "wedding" },
+    { src: "/main_gallery/remind/remind_박봉숙_(4).jpg", alt: "리마인드웨딩 8", category: "wedding" },
+    { src: "/main_gallery/remind/remind_윤혜원_(10).jpg", alt: "리마인드웨딩 9", category: "wedding" },
+    { src: "/main_gallery/remind/remind_윤혜원_(8).jpg", alt: "리마인드웨딩 10", category: "wedding" }
   ],
 }
 
@@ -246,7 +166,7 @@ export default function GalleryPage() {
                   <img
                     src={image.src || "/placeholder.svg"}
                     alt={image.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 bg-white"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                     <span className="text-white text-sm bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">

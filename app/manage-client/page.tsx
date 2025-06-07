@@ -26,6 +26,7 @@ import { CalendarIcon, Download, Search, X, Trash2 } from "lucide-react"
 // 상단에 import 추가
 import { ReservationStatusUpdater } from "./reservation-status-updater"
 import { Toaster, toast } from "sonner"
+import { addReservation } from "../actions/reservation"
 
 // Reservation 타입의 status 필드 타입 변경
 type Reservation = {
@@ -74,6 +75,20 @@ export default function ManageClientPage() {
 
   // 모달 내에서 수정 가능한 상태 관리
   const [editReservation, setEditReservation] = useState<Reservation | null>(null)
+
+  // 예약 추가 관련 상태
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [addForm, setAddForm] = useState({
+    name: "",
+    phone: "",
+    date: "",
+    time: "",
+    shootingType: "family",
+    people: "",
+    message: "",
+    memo: "",
+  })
+  const [addError, setAddError] = useState("")
 
   // 상세 모달 열릴 때 선택된 예약 정보 복사
   useEffect(() => {
@@ -356,6 +371,32 @@ export default function ManageClientPage() {
     }
   }
 
+  // 예약 추가 핸들러
+  async function handleAddReservation(e: React.FormEvent) {
+    e.preventDefault();
+    setAddError("");
+    if (!addForm.name || !addForm.phone || !addForm.date || !addForm.time || !addForm.shootingType || !addForm.people) {
+      setAddError("필수 항목을 모두 입력하세요.");
+      return;
+    }
+    try {
+      const result = await addReservation({
+        ...addForm,
+        status: "예약확정",
+      });
+      if (result.success) {
+        setReservations((prev) => [...prev, result.data[0]]);
+        setFilteredReservations((prev) => [...prev, result.data[0]]);
+        setIsAddModalOpen(false);
+        setAddForm({ name: "", phone: "", date: "", time: "", shootingType: "family", people: "", message: "", memo: "" });
+      } else {
+        setAddError(result.message || "저장 실패");
+      }
+    } catch (err: any) {
+      setAddError("저장 중 오류 발생: " + err.message);
+    }
+  }
+
   // 로딩 중 표시
   if (loading)
     return (
@@ -409,9 +450,14 @@ export default function ManageClientPage() {
     <div className="container mt-32 mx-auto p-4 md:p-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">예약 관리 시스템</h1>
-        <Button variant="outline" onClick={handleLogout}>
-          로그아웃
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setIsAddModalOpen(true)}>
+            예약 추가
+          </Button>
+          <Button variant="outline" onClick={handleLogout}>
+            로그아웃
+          </Button>
+        </div>
       </div>
 
       {!hasStatusColumn && (
@@ -745,6 +791,57 @@ export default function ManageClientPage() {
           </DialogContent>
         </Dialog>
       )}
+
+      {/* 예약 추가 모달 */}
+      <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>예약 추가</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleAddReservation} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">이름 *</label>
+              <input className="w-full border rounded px-2 py-1" value={addForm.name} onChange={e => setAddForm(f => ({ ...f, name: e.target.value }))} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">연락처 *</label>
+              <input className="w-full border rounded px-2 py-1" value={addForm.phone} onChange={e => setAddForm(f => ({ ...f, phone: e.target.value }))} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">날짜 *</label>
+              <input type="date" className="w-full border rounded px-2 py-1" value={addForm.date} onChange={e => setAddForm(f => ({ ...f, date: e.target.value }))} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">시간 *</label>
+              <input className="w-full border rounded px-2 py-1" value={addForm.time} onChange={e => setAddForm(f => ({ ...f, time: e.target.value }))} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">촬영 유형 *</label>
+              <select className="w-full border rounded px-2 py-1" value={addForm.shootingType} onChange={e => setAddForm(f => ({ ...f, shootingType: e.target.value }))}>
+                <option value="family">가족사진</option>
+                <option value="wedding">웨딩/리마인드</option>
+                <option value="celebration">칠순/팔순</option>
+                <option value="profile">프로필/증명</option>
+                <option value="pet">반려동물</option>
+                <option value="event">행사스냅</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">인원 *</label>
+              <input type="number" className="w-full border rounded px-2 py-1" value={addForm.people} onChange={e => setAddForm(f => ({ ...f, people: e.target.value }))} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">요청사항/메모</label>
+              <textarea className="w-full border rounded px-2 py-1" value={addForm.message} onChange={e => setAddForm(f => ({ ...f, message: e.target.value }))} />
+            </div>
+            {addError && <div className="text-red-500 text-sm">{addError}</div>}
+            <DialogFooter>
+              <Button type="submit">저장</Button>
+              <Button type="button" onClick={() => setIsAddModalOpen(false)}>취소</Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
       <Toaster />
     </div>
   )
