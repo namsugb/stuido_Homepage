@@ -5,7 +5,6 @@ import { createServerSupabaseClient } from "@/lib/supabase"
 export type ReservationFormData = {
   name: string
   phone: string
-  email: string
   date: string
   time: string
   shootingType: string
@@ -32,14 +31,6 @@ export async function submitReservation(formData: ReservationFormData) {
       }
     }
 
-    // 이메일 형식 검사 (이메일이 제공된 경우)
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      return {
-        success: false,
-        message: "올바른 이메일 형식이 아닙니다.",
-      }
-    }
-
     // 전화번호 형식 검사
     if (!/^\d{2,3}-?\d{3,4}-?\d{4}$/.test(formData.phone)) {
       return {
@@ -55,7 +46,6 @@ export async function submitReservation(formData: ReservationFormData) {
         {
           name: formData.name,
           phone: formData.phone,
-          email: formData.email || null,
           date: formData.date,
           time: formData.time,
           shooting_type: formData.shootingType,

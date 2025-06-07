@@ -56,7 +56,7 @@ export default function RootLayout({
                   className="flex items-center bg-[#bfa888] text-white px-4 py-2 rounded-full hover:bg-[#a68b6d] transition"
                 >
                   <Calendar className="h-4 w-4 mr-2" />
-                  <span>예약하기</span>
+                  <span>예약문의</span>
                 </Link>
               </nav>
             </div>

@@ -49,15 +49,21 @@ export default function Page() {
       const img = new Image()
       img.src = image.src
       img.onload = () => {
-        // 첫 번째 이미지가 로드되면 바로 표시
-        if (idx === 0) setFirstImageLoaded(true)
-        // 이미지 로드 완료 시 카운터 증가
         imagesLoadedCountRef.current += 1
-        // 모든 이미지가 로드되면 상태 업데이트
+        if (idx === 0) {
+          // 이미지가 렌더 가능한 상태인지 다시 확인
+          if (img.complete) {
+            requestAnimationFrame(() => {
+              setFirstImageLoaded(true)
+            })
+          }
+        }
+
         if (imagesLoadedCountRef.current === sliderImages.length) {
           setImagesLoaded(true)
         }
       }
+
       img.onerror = () => {
         // 첫 번째 이미지가 에러여도 바로 표시
         if (idx === 0) setFirstImageLoaded(true)
@@ -174,40 +180,36 @@ export default function Page() {
       {/* 메인 히어로 섹션 - 모던한 슬라이더 */}
       <section className="hero-section">
         {/* 슬라이더 배경 */}
-        <div
-          className="absolute inset-0 transition-colors duration-1000 z-0"
-          style={{ backgroundColor: sliderImages[currentSlide].bgColor }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"></div>
-        </div>
-
-        {/* 로딩 인디케이터 */}
-        {!firstImageLoaded && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center bg-gray-100">
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 border-4 border-[#bfa888] border-t-transparent rounded-full animate-spin"></div>
-              <p className="mt-4 text-gray-600">이미지 로딩 중...</p>
-            </div>
+        <div className="slider-row relative h-full w-full">
+          {/* 이미지/오버레이: pointer-events-none, z-0 */}
+          <div
+            className="absolute inset-0 transition-colors duration-1000 z-0 pointer-events-none"
+            style={{ backgroundColor: sliderImages[currentSlide].bgColor }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 pointer-events-none"></div>
           </div>
-        )}
 
-        {/* 메인 이미지 슬라이더 - 네비게이션 고정, 가운데 영역만 움직임 */}
-        {firstImageLoaded && (
-          <div className="slider-row relative h-full w-full z-10">
-            {/* 왼쪽 네비게이션 */}
-            <div className="slider-navigation left">
-              <button onClick={prevSlide} className="slider-nav-btn group pointer-events-auto bg-gray-200/50 rounded-full p-2" aria-label="이전 슬라이드">
-                <ChevronLeft className="h-6 w-6 transition-transform group-hover:-translate-x-1" />
-              </button>
+          {/* 로딩 인디케이터 */}
+          {!firstImageLoaded && (
+            <div className="absolute inset-0 z-30 flex items-center justify-center bg-gray-100">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 border-4 border-[#bfa888] border-t-transparent rounded-full animate-spin"></div>
+                <p className="mt-4 text-gray-600">이미지 로딩 중...</p>
+              </div>
             </div>
+          )}
 
-            {/* 가운데 영역: 이미지 + 텍스트 */}
-            <div className="slider-center-area flex h-full mx-auto">
-              <div className="slider-image-container relative flex items-center justify-center mt-8">
+
+          {/* 메인 이미지 슬라이더 - 네비게이션 고정, 가운데 영역만 움직임 */}
+          {firstImageLoaded && (
+            <div className="slider-center-area flex h-full mx-auto relative z-30">
+
+              {/* 이미지: pointer-events-none → 그대로 유지 */}
+              <div className="slider-image-container relative flex items-center justify-center mt-8 pointer-events-none">
                 {sliderImages.map((image, index) => (
                   <div
                     key={index}
-                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"}`}
+                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"} pointer-events-none`}
                   >
                     <div className="relative h-full w-full flex items-center justify-center">
                       <div className="relative max-h-full max-w-full px-6 md:px-12">
@@ -221,26 +223,22 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-              <div className="slider-text-container flex flex-col justify-center">
+
+              {/* 텍스트/버튼: pointer-events-auto로 활성화 */}
+              <div className="slider-text-container flex flex-col justify-center z-50 pointer-events-auto">
                 <div className="slider-content-box mt-10">
                   <h2 className="slider-title">{sliderImages[currentSlide].title}</h2>
                   <p className="slider-description">{sliderImages[currentSlide].description}</p>
-                  <div className="flex flex-row gap-3 items-center justify-center md:justify-start">
+                  <div className="relative z-50 flex flex-row gap-3 items-center justify-center md:justify-start">
                     <Link href="/gallery" className="slider-btn bg-white text-black">갤러리 보기</Link>
-                    <Link href="/reservation" className="slider-btn border border-white text-white">예약하기</Link>
+                    <Link href="/reservation" className="slider-btn border border-white text-white">예약문의</Link>
                   </div>
                 </div>
               </div>
             </div>
+          )}
 
-            {/* 오른쪽 네비게이션 */}
-            <div className="slider-navigation right">
-              <button onClick={nextSlide} className="slider-nav-btn group bg-gray-200/50 rounded-full p-2" aria-label="다음 슬라이드">
-                <ChevronRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
-              </button>
-            </div>
-          </div >
-        )}
+        </div>
       </section >
 
       {/* 스튜디오 소개 섹션 */}

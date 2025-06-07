@@ -10,7 +10,6 @@ export default function ReservationPage() {
   const [formData, setFormData] = useState<ReservationFormData>({
     name: "",
     phone: "",
-    email: "",
     date: "",
     time: "",
     shootingType: "family",
@@ -48,9 +47,6 @@ export default function ReservationPage() {
     if (!formData.phone.trim()) newErrors.phone = "연락처를 입력해주세요"
     else if (!/^\d{2,3}-?\d{3,4}-?\d{4}$/.test(formData.phone.trim())) newErrors.phone = "올바른 연락처 형식이 아닙니다"
 
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
-      newErrors.email = "올바른 이메일 형식이 아닙니다"
-
     if (!formData.date) newErrors.date = "날짜를 선택해주세요"
     if (!formData.time) newErrors.time = "시간을 선택해주세요"
     if (!formData.people) newErrors.people = "인원 수를 입력해주세요"
@@ -70,7 +66,8 @@ export default function ReservationPage() {
 
     try {
       // 서버 액션 호출
-      const result = await submitReservation(formData)
+      const { ...formDataWithoutEmail } = formData;
+      const result = await submitReservation(formDataWithoutEmail);
 
       if (result.success) {
         setIsSubmitted(true)
@@ -78,7 +75,6 @@ export default function ReservationPage() {
         setFormData({
           name: "",
           phone: "",
-          email: "",
           date: "",
           time: "",
           shootingType: "family",
@@ -204,8 +200,6 @@ export default function ReservationPage() {
                   />
                   {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
                 </div>
-
-                {/* 이메일 */}
 
                 {/* 예약 정보 섹션 */}
                 <div className="md:col-span-2 border-t pt-6 mt-2">
