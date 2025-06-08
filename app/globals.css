@@ -316,7 +316,7 @@ body {
   overflow: hidden;
   border-radius: 8px;
   transition: transform 0.3s ease;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
 }
 
 .gallery-item img {
@@ -356,11 +356,11 @@ body {
 
   .span-2 {
     grid-column: span 2;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 8 / 3;
   }
 
   .span-1 {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
   }
 }
 
@@ -477,12 +477,12 @@ body {
   .span-1,
   .span-2 {
     grid-column: auto;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
   }
 
   .span-2 {
     grid-column: span 2;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 8 / 3;
   }
 
   .slider-indicator {
