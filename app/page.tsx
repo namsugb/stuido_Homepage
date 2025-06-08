@@ -252,7 +252,7 @@ export default function Page() {
               {
                 title: "가족사진",
                 description: "3대가 함께하는 가족사진부터 아이들의 성장 기록까지, 소중한 가족의 모든 순간을 담습니다.",
-                image: "/product/family-photo-updated.jpeg",
+                image: "/product/big-family.jpg",
                 category: "family",
               },
               {
@@ -350,7 +350,7 @@ export default function Page() {
                   "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록 배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진 결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다."
                 </p>
                 <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                  <img src="/remind-wedding-updated.jpeg" alt="고객 프로필" className="h-full w-full object-cover" />
+                  <img src="/main_gallery/family/family01.jpg" alt="3대 가족 촬영 예시" className="h-full w-full object-cover" />
                 </div>
                 <p className="mt-2 font-medium">김지영 고객님</p>
                 <p className="text-sm text-gray-500">가족 촬영</p>
@@ -373,7 +373,7 @@ export default function Page() {
                   "증명사진 촬영이 처음이라 긴장했는데, 작가님이 친절하게 포즈와 표정을 지도해주셔서 자연스럽게 잘 나왔어요. 빠른 결과물 전달도 만족스럽습니다!"
                 </p>
                 <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                  <img src="/id-photo-new.jpeg" alt="고객 프로필" className="h-full w-full object-cover" />
+                  <img src="/main_gallery/id/id01.jpg" alt="증명사진 촬영 예시" className="h-full w-full object-cover" />
                 </div>
                 <p className="mt-2 font-medium">이수민 고객님</p>
                 <p className="text-sm text-gray-500">증명사진 촬영</p>
@@ -396,7 +396,7 @@ export default function Page() {
                   "프로필 촬영을 했는데, 다양한 컨셉과 조명으로 여러 스타일을 시도해볼 수 있어서 좋았어요. 결과물도 세련되고 자연스럽게 나와서 매우 만족합니다."
                 </p>
                 <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                  <img src="/profile-photo-new.jpeg" alt="고객 프로필" className="h-full w-full object-cover" />
+                  <img src="/main_gallery/profile/profile01.jpg" alt="프로필 촬영 예시" className="h-full w-full object-cover" />
                 </div>
                 <p className="mt-2 font-medium">박정훈 고객님</p>
                 <p className="text-sm text-gray-500">프로필 촬영</p>

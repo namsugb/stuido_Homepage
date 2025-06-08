@@ -66,7 +66,7 @@ const galleryData = {
 }
 
 export default function GalleryPage() {
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [selectedCategory, setSelectedCategory] = useState("family")
   const [filteredImages, setFilteredImages] = useState(galleryData.all)
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -150,34 +150,24 @@ export default function GalleryPage() {
         </div>
 
         {/* 갤러리 그리드 */}
-        <div className="gallery-grid">
+        <div className="gallery-masonry">
           {isLoading ? (
-            // 로딩 스켈레톤
             Array.from({ length: 12 }).map((_, index) => (
-              <div key={index} className="gallery-item animate-pulse">
-                <div className="bg-gray-200 rounded-lg h-full w-full"></div>
+              <div key={index} className="gallery-masonry-item animate-pulse">
+                <div className="bg-gray-200 rounded-lg" style={{ aspectRatio: "4/3", width: "100%", height: "200px" }}></div>
               </div>
             ))
           ) : filteredImages.length > 0 ? (
-            // 필터링된 이미지 표시
             filteredImages.map((image, index) => (
-              <div key={index} className="gallery-item" onClick={() => handleImageClick(image.src)}>
-                <div className="relative group overflow-hidden rounded-lg cursor-pointer h-full">
-                  <img
-                    src={image.src || "/placeholder.svg"}
-                    alt={image.alt}
-                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 bg-white"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <span className="text-white text-sm bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
-                      확대보기
-                    </span>
-                  </div>
-                </div>
+              <div key={index} className="gallery-masonry-item" onClick={() => handleImageClick(image.src)}>
+                <img
+                  src={image.src || "/placeholder.svg"}
+                  alt={image.alt}
+                  className="w-full h-auto cursor-pointer transition-transform duration-500 rounded-lg group-hover:scale-105 bg-white"
+                />
               </div>
             ))
           ) : (
-            // 결과 없음 메시지
             <div className="col-span-full text-center py-12">
               <p className="text-gray-500 text-lg">해당 카테고리에 이미지가 없습니다.</p>
             </div>
