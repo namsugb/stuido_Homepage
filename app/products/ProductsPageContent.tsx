@@ -114,7 +114,7 @@ export default function ProductsPageContent() {
                 price: "150,000원",
                 duration: "문의",
                 people: "가족 전체",
-                image: "/main_product/old.jpg",
+                image: "/main_product/grandparents.jpg",
                 features: ["28×36cm 기본액자 1개"],
                 description: "칠순/팔순 상차림 촬영, 기본 액자 포함"
             },
