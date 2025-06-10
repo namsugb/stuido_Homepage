@@ -114,7 +114,7 @@ export default function ProductsPageContent() {
                 price: "150,000원",
                 duration: "문의",
                 people: "가족 전체",
-                image: "/main_product/hanbok-couple.jpg",
+                image: "/main_product/old.jpg",
                 features: ["28×36cm 기본액자 1개"],
                 description: "칠순/팔순 상차림 촬영, 기본 액자 포함"
             },
@@ -158,7 +158,7 @@ export default function ProductsPageContent() {
                 price: "100,000원",
                 duration: "문의",
                 people: "2명",
-                image: "/main_product/wedding-couple.jpg",
+                image: "/main_product/couple.jpg",
                 features: ["수정본 2장", "4×6inch 2매"],
                 description: "커플 촬영, 수정본 2장 및 4×6inch 2매 제공"
             },
@@ -169,7 +169,7 @@ export default function ProductsPageContent() {
                 price: "20,000원",
                 duration: "문의",
                 people: "1명 기준",
-                image: "/main_product/family-pink-laydown.jpg",
+                image: "/main_product/friend.jpg",
                 features: ["포켓용 2매"],
                 description: "우정 촬영, 1인 기준 포켓용 2매 제공"
             },
@@ -180,7 +180,7 @@ export default function ProductsPageContent() {
                 price: "30,000원",
                 duration: "문의",
                 people: "1명",
-                image: "/main_product/family-pink.jpg",
+                image: "/main_product/info.jpg",
                 features: ["증명/여권 사진 촬영"],
                 description: "증명 및 여권 사진 촬영"
             },
@@ -191,7 +191,7 @@ export default function ProductsPageContent() {
                 price: "60,000원",
                 duration: "문의",
                 people: "1명",
-                image: "/main_product/family-pink.jpg",
+                image: "/main_product/job.jpg",
                 features: ["취업 사진 촬영"],
                 description: "취업용 사진 촬영"
             },
@@ -202,16 +202,29 @@ export default function ProductsPageContent() {
                 price: "100,000원",
                 duration: "문의",
                 people: "문의",
-                image: "/main_product/family-pink-laydown.jpg",
+                image: "/main_product/recovery.jpg",
                 features: ["사진 복원 서비스"],
                 description: "사진 복원 서비스"
+            },
+            {
+                id: 13,
+                category: "single",
+                title: "주니어",
+                price: "50,000원",
+                duration: "문의",
+                people: "문의",
+                image: "/main_product/junior.jpg",
+                features: ["주니어 사진 촬영"],
+                description: "주니어 사진 촬영"
             },
         ];
 
     // 프리미엄 상품(패키지)
     const premiumProducts = products.filter(p => p.category === "package");
-    // 단독상품(나머지)
-    const singleProducts = products.filter(p => p.category !== "package");
+    // 세로로 긴 이미지는 id 7(프로필), 8(커플), 10(증명&여권), 11(취업)
+    const verticalProductIds = [7, 8, 10, 11];
+    const verticalProducts = products.filter(p => verticalProductIds.includes(p.id));
+    const horizontalProducts = products.filter(p => p.category !== "package" && !verticalProductIds.includes(p.id));
 
     return (
         <div className="min-h-screen bg-white">
@@ -256,28 +269,83 @@ export default function ProductsPageContent() {
                 <div className="mb-16 bg-white rounded-lg shadow-sm">
                     <h2 className="text-2xl mt-16 pt-5 font-bold mb-6 text-center">개별 상품</h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-2 pb-8 px-3">
-                        {singleProducts.map((product) => (
-                            <div key={product.id} className="bg-white shadow-md overflow-hidden relative group aspect-[4/3] flex items-stretch">
-                                <div className="absolute inset-0">
-                                    <img
-                                        src={product.image}
-                                        alt={product.title}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                    />
-                                    <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
-                                </div>
-                                {/* 전체 오버레이 */}
-                                <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
-                                    <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
-                                        <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
-                                        <div className="text-base md:text-lg font-normal text-white mb-1">{product.price}</div>
-                                        <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
-                                            {product.features && product.features.length > 0 && product.features.join(", ")}
+                        {/* 데스크탑(768px 이상)에서는 모든 상품(가로+세로형) 3열 그리드에 렌더링 */}
+                        <div className="hidden md:contents">
+                            {[...horizontalProducts, ...verticalProducts].map((product) => (
+                                <div key={product.id} className={`bg-white shadow-md overflow-hidden relative group flex items-stretch ${verticalProductIds.includes(product.id) ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
+                                    <div className="absolute inset-0">
+                                        <img
+                                            src={product.image}
+                                            alt={product.title}
+                                            className={`w-full h-full ${product.id === 7 ? 'object-cover' : verticalProductIds.includes(product.id) ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300 bg-white`}
+                                        />
+                                        <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
+                                    </div>
+                                    {/* 전체 오버레이 */}
+                                    <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
+                                        <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
+                                            <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
+                                            <div className="text-base md:text-lg font-normal text-white mb-1">{product.price}</div>
+                                            <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
+                                                {product.features && product.features.length > 0 && product.features.join(", ")}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            ))}
+                        </div>
+                        {/* 모바일(768px 미만)에서는 가로형 상품만 2열 그리드에, 세로형 상품은 아래 2x2 그리드에 렌더링 */}
+                        <div className="block md:hidden w-full col-span-2">
+                            <div className="grid grid-cols-2 gap-2">
+                                {horizontalProducts.map((product) => (
+                                    <div key={product.id} className="bg-white shadow-md overflow-hidden relative group aspect-[4/3] flex items-stretch">
+                                        <div className="absolute inset-0">
+                                            <img
+                                                src={product.image}
+                                                alt={product.title}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                            />
+                                            <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
+                                        </div>
+                                        {/* 전체 오버레이 */}
+                                        <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
+                                            <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
+                                                <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
+                                                <div className="text-base md:text-lg font-normal text-white mb-1">{product.price}</div>
+                                                <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
+                                                    {product.features && product.features.length > 0 && product.features.join(", ")}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                            {/* 세로형 상품은 별도의 2x2 그리드로 렌더링 */}
+                            <div className="grid grid-cols-2 gap-2 mt-2">
+                                {verticalProducts.map((product) => (
+                                    <div key={product.id} className="bg-white shadow-md overflow-hidden relative group aspect-[3/4] flex items-stretch">
+                                        <div className="absolute inset-0">
+                                            <img
+                                                src={product.image}
+                                                alt={product.title}
+                                                className={`w-full h-full ${product.id === 7 ? 'object-cover' : 'object-contain'} group-hover:scale-105 transition-transform duration-300 bg-white`}
+                                            />
+                                            <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
+                                        </div>
+                                        {/* 전체 오버레이 */}
+                                        <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
+                                            <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
+                                                <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
+                                                <div className="text-base md:text-lg font-normal text-white mb-1">{product.price}</div>
+                                                <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
+                                                    {product.features && product.features.length > 0 && product.features.join(", ")}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
