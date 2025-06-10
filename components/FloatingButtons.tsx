@@ -21,7 +21,7 @@ export default function FloatingButtons() {
                 href="https://talk.naver.com/ct/wcaal4"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-14 h-14 rounded-full bg-[#19ce60] shadow-lg text-white hover:bg-[#13b152] transition"
+                className="flex items-center justify-center w-14 h-14 rounded-full bg-[#bfa888] shadow-lg text-white hover:bg-[#a68b6d] transition"
                 title="네이버 톡톡"
             >
                 <MessageCircleMore className="w-7 h-7" />

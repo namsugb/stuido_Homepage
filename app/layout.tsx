@@ -48,9 +48,9 @@ export default function RootLayout({
                 <Link href="/events" className="text-gray-700 hover:text-[#bfa888] transition">
                   이벤트
                 </Link>
-                <Link href="/gallery" className="text-gray-700 hover:text-[#bfa888] transition">
+                {/* <Link href="/gallery" className="text-gray-700 hover:text-[#bfa888] transition">
                   의상
-                </Link>
+                </Link> */}
                 <Link
                   href="/reservation"
                   className="flex items-center bg-[#bfa888] text-white px-4 py-2 rounded-full hover:bg-[#a68b6d] transition"
