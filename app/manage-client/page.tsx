@@ -857,12 +857,10 @@ export default function ManageClientPage() {
             <div>
               <label className="block text-sm font-medium mb-1">촬영 유형 *</label>
               <select className="w-full border rounded px-2 py-1" value={addForm.shootingType} onChange={e => setAddForm(f => ({ ...f, shootingType: e.target.value }))}>
-                <option value="family">가족사진</option>
-                <option value="wedding">웨딩/리마인드</option>
-                <option value="celebration">칠순/팔순</option>
-                <option value="profile">프로필/증명</option>
-                <option value="pet">반려동물</option>
-                <option value="event">행사스냅</option>
+                <option value="가족사진">가족사진</option>
+                <option value="웨딩/리마인드">웨딩/리마인드</option>
+                <option value="칠순/팔순">칠순/팔순</option>
+                <option value="프로필/증명">프로필/증명</option>
               </select>
             </div>
             <div>
