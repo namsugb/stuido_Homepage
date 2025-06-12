@@ -41,7 +41,7 @@ type Reservation = {
   message: string | null
   created_at: string
   // status 필드는 옵션으로 처리하고 타입 변경
-  status?: "신규문의" | "상담중" | "예약확정" | "촬영완료"
+  status?: "신규문의" | "상담중" | "예약확정" | "촬영완료" | "보류"
   memo?: string // 관리자 메모
 }
 
@@ -267,7 +267,7 @@ export default function ManageClientPage() {
   // 통계 계산 (status 컬럼이 있는 경우만)
   const getStats = () => {
     if (!hasStatusColumn) {
-      return { total: reservations.length, 신규문의: 0, 상담중: 0, 예약확정: 0, 촬영완료: 0 }
+      return { total: reservations.length, 신규문의: 0, 상담중: 0, 예약확정: 0, 촬영완료: 0, 보류: 0 }
     }
 
     const total = reservations.length
@@ -275,8 +275,9 @@ export default function ManageClientPage() {
     const 상담중 = reservations.filter((r) => r.status === "상담중").length
     const 예약확정 = reservations.filter((r) => r.status === "예약확정").length
     const 촬영완료 = reservations.filter((r) => r.status === "촬영완료").length
+    const 보류 = reservations.filter((r) => r.status === "보류").length
 
-    return { total, 신규문의, 상담중, 예약확정, 촬영완료 }
+    return { total, 신규문의, 상담중, 예약확정, 촬영완료, 보류 }
   }
 
   // 로그인 처리
@@ -385,10 +386,15 @@ export default function ManageClientPage() {
         status: "예약확정",
       });
       if (result.success) {
-        setReservations((prev) => [...prev, result.data[0]]);
-        setFilteredReservations((prev) => [...prev, result.data[0]]);
-        setIsAddModalOpen(false);
-        setAddForm({ name: "", phone: "", date: "", time: "", shootingType: "family", people: "", message: "", memo: "" });
+        if (Array.isArray(result.data) && result.data.length > 0) {
+          const newReservation = result.data[0];
+          setReservations((prev) => [...prev, newReservation]);
+          setFilteredReservations((prev) => [...prev, newReservation]);
+          setIsAddModalOpen(false);
+          setAddForm({ name: "", phone: "", date: "", time: "", shootingType: "family", people: "", message: "", memo: "" });
+        } else {
+          setAddError("저장 결과 데이터가 없습니다.");
+        }
       } else {
         setAddError(result.message || "저장 실패");
       }
@@ -448,9 +454,9 @@ export default function ManageClientPage() {
 
   return (
     <div className="container mt-32 mx-auto p-4 md:p-8">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-2 md:gap-0">
         <h1 className="text-3xl font-bold">예약 관리 시스템</h1>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-2 md:mt-0 justify-end">
           <Button variant="outline" onClick={() => setIsAddModalOpen(true)}>
             예약 추가
           </Button>
@@ -514,6 +520,14 @@ export default function ManageClientPage() {
               <div className="text-2xl font-bold text-blue-600">{stats.촬영완료}</div>
             </CardContent>
           </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium">보류</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-gray-500">{stats.보류}</div>
+            </CardContent>
+          </Card>
         </div>
       )}
 
@@ -528,6 +542,7 @@ export default function ManageClientPage() {
               <TabsTrigger value="상담중">상담중 ({stats.상담중})</TabsTrigger>
               <TabsTrigger value="예약확정">예약확정 ({stats.예약확정})</TabsTrigger>
               <TabsTrigger value="촬영완료">촬영완료 ({stats.촬영완료})</TabsTrigger>
+              <TabsTrigger value="보류">보류 ({stats.보류})</TabsTrigger>
             </TabsList>
           </Tabs>
         )}
@@ -690,7 +705,18 @@ export default function ManageClientPage() {
       {/* 예약 상세 모달 */}
       {selectedReservation && editReservation && (
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogContent className="sm:max-w-md">
+          <DialogContent
+            className="custom-dialog-content !max-w-[420px] w-full sm:w-[420px] sm:!max-w-[420px]"
+            style={{
+              maxWidth: '95vw',
+              width: '100%',
+              maxHeight: '80vh',
+              minWidth: '320px',
+              overflowY: 'auto',
+              padding: '1.5rem',
+              borderRadius: '1rem',
+            }}
+          >
             <DialogHeader>
               <DialogTitle>예약 상세 정보</DialogTitle>
               <DialogDescription>예약 ID: {editReservation.id}</DialogDescription>
@@ -776,6 +802,7 @@ export default function ManageClientPage() {
                     <option value="상담중">상담중</option>
                     <option value="예약확정">예약확정</option>
                     <option value="촬영완료">촬영완료</option>
+                    <option value="보류">보류</option>
                   </select>
                 </div>
               )}
@@ -784,9 +811,21 @@ export default function ManageClientPage() {
                 <span className="col-span-3">{new Date(editReservation.created_at).toLocaleString("ko-KR")}</span>
               </div>
             </div>
-            <DialogFooter>
-              <Button onClick={handleSaveEdit} variant="default">저장</Button>
-              <Button onClick={() => setIsModalOpen(false)}>닫기</Button>
+            <DialogFooter className="flex flex-row justify-center gap-4 mt-4 w-full">
+              <Button
+                onClick={handleSaveEdit}
+                className="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-2 rounded w-1/2 sm:w-32"
+                style={{ order: 1 }}
+              >
+                저장
+              </Button>
+              <Button
+                onClick={() => setIsModalOpen(false)}
+                className="bg-red-100 hover:bg-red-200 text-red-600 font-bold px-6 py-2 rounded w-1/2 sm:w-32 border border-red-300"
+                style={{ order: 2 }}
+              >
+                닫기
+              </Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
@@ -861,9 +900,14 @@ function getStatusBadge(status: string) {
     case "촬영완료":
     case "completed":
       return <Badge className="bg-blue-500">촬영완료</Badge>
+    case "보류":
+      return <Badge className="bg-gray-400">보류</Badge>
     case "cancelled":
       return <Badge className="bg-red-500">취소됨</Badge>
     default:
       return <Badge className="bg-gray-500">{status}</Badge>
   }
 }
+
+/* 반응형 상세 모달 스타일 */
+import "../manage-client-modal.css"

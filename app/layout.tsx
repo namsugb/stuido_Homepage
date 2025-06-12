@@ -20,6 +20,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <title>아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문</title>
+        <meta name="description" content="전라남도 순천 아침햇살 스튜디오는 가족사진, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 전문적으로 제공합니다. 소중한 순간을 아름답게 남겨드립니다." />
+        <meta name="keywords" content="순천 가족사진, 순천 스튜디오, 프로필 사진, 리마인드웨딩, 증명사진, 아침햇살 스튜디오, 가족사진관" />
+        <meta property="og:title" content="아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문" />
+        <meta property="og:description" content="전라남도 순천 아침햇살 스튜디오에서 가족, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 경험하세요." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://achimhaessal.kr" />
+        <meta property="og:image" content="/logo/logo.jpeg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문" />
+        <meta name="twitter:description" content="순천 가족사진, 프로필, 리마인드웨딩, 증명사진 전문 스튜디오" />
+        <meta name="twitter:image" content="/logo/logo.jpeg" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body>
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
           <div className="container mx-auto px-2">

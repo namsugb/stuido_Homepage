@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight, Menu, MessageCircle, Phone, Calendar, Camera, User } from "lucide-react"
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 
 export default function Page() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -340,81 +341,119 @@ export default function Page() {
       <div className="w-full h-px bg-gray-200 my-8" />
 
       {/* 고객 후기 섹션 */}
-      < section className="bg-white py-20" >
+      <section className="bg-white py-20">
         <div className="container mx-auto px-6">
           <h2 className="mb-12 text-center text-3xl font-bold">고객 후기</h2>
-          <div className="mx-auto max-w-4xl">
-            <div className="relative rounded-lg bg-white p-8 shadow-sm">
-              <div className="mb-6 text-center">
-                <p className="mb-6 text-lg italic text-gray-600">
-                  "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록 배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진 결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다."
-                </p>
-                <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                  <img src="/main_gallery/family/family01.jpg" alt="3대 가족 촬영 예시" className="h-full w-full object-cover" />
-                </div>
-                <p className="mt-2 font-medium">김지영 고객님</p>
-                <p className="text-sm text-gray-500">가족 촬영</p>
-              </div>
-
-              <div className="flex justify-center gap-2">
-                {[0, 1, 2].map((i) => (
-                  <button
-                    key={i}
-                    className={`h-2 w-2 rounded-full ${i === 0 ? "bg-[#bfa888]" : "bg-gray-300"}`}
-                    aria-label={`후기 ${i + 1}로 이동`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="relative rounded-lg bg-white p-8 shadow-sm mt-4">
-              <div className="mb-6 text-center">
-                <p className="mb-6 text-lg italic text-gray-600">
-                  "증명사진 촬영이 처음이라 긴장했는데, 작가님이 친절하게 포즈와 표정을 지도해주셔서 자연스럽게 잘 나왔어요. 빠른 결과물 전달도 만족스럽습니다!"
-                </p>
-                <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                  <img src="/main_gallery/id/id01.jpg" alt="증명사진 촬영 예시" className="h-full w-full object-cover" />
-                </div>
-                <p className="mt-2 font-medium">이수민 고객님</p>
-                <p className="text-sm text-gray-500">증명사진 촬영</p>
-              </div>
-
-              <div className="flex justify-center gap-2">
-                {[0, 1, 2].map((i) => (
-                  <button
-                    key={i}
-                    className={`h-2 w-2 rounded-full ${i === 1 ? "bg-[#bfa888]" : "bg-gray-300"}`}
-                    aria-label={`후기 ${i + 1}로 이동`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="relative rounded-lg bg-white p-8 shadow-sm mt-4">
-              <div className="mb-6 text-center">
-                <p className="mb-6 text-lg italic text-gray-600">
-                  "프로필 촬영을 했는데, 다양한 컨셉과 조명으로 여러 스타일을 시도해볼 수 있어서 좋았어요. 결과물도 세련되고 자연스럽게 나와서 매우 만족합니다."
-                </p>
-                <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                  <img src="/main_gallery/profile/profile01.jpg" alt="프로필 촬영 예시" className="h-full w-full object-cover" />
-                </div>
-                <p className="mt-2 font-medium">박정훈 고객님</p>
-                <p className="text-sm text-gray-500">프로필 촬영</p>
-              </div>
-
-              <div className="flex justify-center gap-2">
-                {[0, 1, 2].map((i) => (
-                  <button
-                    key={i}
-                    className={`h-2 w-2 rounded-full ${i === 2 ? "bg-[#bfa888]" : "bg-gray-300"}`}
-                    aria-label={`후기 ${i + 1}로 이동`}
-                  />
-                ))}
-              </div>
-            </div>
+          <div className="mx-auto max-w-2xl">
+            {/* 첫 번째 슬라이더: 가족/증명/프로필 */}
+            {(() => {
+              const reviews1 = [
+                {
+                  text: "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록 배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진 결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다.",
+                  img: "/main_gallery/family/family01.jpg",
+                  alt: "3대 가족 촬영 예시",
+                  name: "김지영 고객님",
+                  type: "가족 촬영"
+                },
+                {
+                  text: "증명사진 촬영이 처음이라 긴장했는데, 작가님이 친절하게 포즈와 표정을 지도해주셔서 자연스럽게 잘 나왔어요. 빠른 결과물 전달도 만족스럽습니다!",
+                  img: "/main_gallery/id/id01.jpg",
+                  alt: "증명사진 촬영 예시",
+                  name: "이수민 고객님",
+                  type: "증명사진 촬영"
+                },
+                {
+                  text: "프로필 촬영을 했는데, 다양한 컨셉과 조명으로 여러 스타일을 시도해볼 수 있어서 좋았어요. 결과물도 세련되고 자연스럽게 나와서 매우 만족합니다.",
+                  img: "/main_gallery/profile/profile01.jpg",
+                  alt: "프로필 촬영 예시",
+                  name: "박정훈 고객님",
+                  type: "프로필 촬영"
+                }
+              ];
+              const [index1, setIndex1] = useState(0);
+              useEffect(() => {
+                const timer = setInterval(() => {
+                  setIndex1((prev) => (prev + 1) % reviews1.length);
+                }, 7000);
+                return () => clearInterval(timer);
+              }, [reviews1.length]);
+              return (
+                <Carousel opts={{ loop: true }}>
+                  <CarouselContent style={{ transform: `translateX(-${index1 * 100}%)`, transition: 'transform 0.5s' }}>
+                    {reviews1.map((review, i) => (
+                      <CarouselItem key={i}>
+                        <div className="relative rounded-lg bg-white p-8 shadow-sm">
+                          <div className="mb-6 text-center">
+                            <p className="mb-6 text-lg italic text-gray-600">"{review.text}"</p>
+                            <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
+                              <img src={review.img} alt={review.alt} className="h-full w-full object-cover" />
+                            </div>
+                            <p className="mt-2 font-medium">{review.name}</p>
+                            <p className="text-sm text-gray-500">{review.type}</p>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+              );
+            })()}
+            {/* 두 번째 슬라이더: 리마인드/취업/30주년 가족사진 */}
+            {(() => {
+              const reviews2 = [
+                {
+                  text: "결혼 20주년 리마인드 촬영을 했는데, 처음 결혼할 때의 설렘이 다시 느껴졌어요. 작가님이 자연스럽게 이끌어주셔서 부부 모두 만족스러운 결과물을 얻었습니다.",
+                  img: "/main_gallery/remind/remind_윤혜원_(10).jpg",
+                  alt: "리마인드 촬영 예시",
+                  name: "최은정 고객님",
+                  type: "리마인드웨딩 촬영"
+                },
+                {
+                  text: "취업용 증명사진을 촬영했는데, 표정과 각도까지 세심하게 신경써주셔서 자신감 있는 사진을 얻을 수 있었습니다. 덕분에 면접도 잘 보고 왔어요!",
+                  img: "/main_gallery/id/id02.jpg",
+                  alt: "취업 증명사진 예시",
+                  name: "정유진 고객님",
+                  type: "취업 증명사진 촬영"
+                },
+                {
+                  text: "부모님 결혼 30주년 기념으로 가족사진을 촬영했는데, 온 가족이 함께한 시간이 너무 소중하게 남았습니다. 사진도 너무 예쁘게 나와서 모두 만족했어요.",
+                  img: "/main_gallery/family/family02.jpg",
+                  alt: "30주년 가족사진 예시",
+                  name: "이정훈 고객님",
+                  type: "30주년 가족사진 촬영"
+                }
+              ];
+              const [index2, setIndex2] = useState(0);
+              useEffect(() => {
+                const timer = setInterval(() => {
+                  setIndex2((prev) => (prev + 1) % reviews2.length);
+                }, 7000);
+                return () => clearInterval(timer);
+              }, [reviews2.length]);
+              return (
+                <Carousel opts={{ loop: true }} className="mt-12">
+                  <CarouselContent style={{ transform: `translateX(-${index2 * 100}%)`, transition: 'transform 0.5s' }}>
+                    {reviews2.map((review, i) => (
+                      <CarouselItem key={i}>
+                        <div className="relative rounded-lg bg-white p-8 shadow-sm">
+                          <div className="mb-6 text-center">
+                            <p className="mb-6 text-lg italic text-gray-600">"{review.text}"</p>
+                            <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
+                              <img src={review.img} alt={review.alt} className="h-full w-full object-cover" />
+                            </div>
+                            <p className="mt-2 font-medium">{review.name}</p>
+                            <p className="text-sm text-gray-500">{review.type}</p>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+              );
+            })()}
           </div>
         </div>
-      </section >
+      </section>
 
       <div className="w-full h-px bg-gray-200 my-8" />
 
