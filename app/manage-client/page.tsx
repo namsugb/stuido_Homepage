@@ -27,6 +27,8 @@ import { CalendarIcon, Download, Search, X, Trash2 } from "lucide-react"
 import { ReservationStatusUpdater } from "./reservation-status-updater"
 import { Toaster, toast } from "sonner"
 import { addReservation } from "../actions/reservation"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 // Reservation 타입의 status 필드 타입 변경
 type Reservation = {
@@ -41,7 +43,7 @@ type Reservation = {
   message: string | null
   created_at: string
   // status 필드는 옵션으로 처리하고 타입 변경
-  status?: "신규문의" | "상담중" | "예약확정" | "촬영완료" | "보류"
+  status?: "신규문의" | "상담중" | "예약확정" | "보류"
   memo?: string // 관리자 메모
 }
 
@@ -267,17 +269,16 @@ export default function ManageClientPage() {
   // 통계 계산 (status 컬럼이 있는 경우만)
   const getStats = () => {
     if (!hasStatusColumn) {
-      return { total: reservations.length, 신규문의: 0, 상담중: 0, 예약확정: 0, 촬영완료: 0, 보류: 0 }
+      return { total: reservations.length, 신규문의: 0, 상담중: 0, 예약확정: 0, 보류: 0 }
     }
 
     const total = reservations.length
     const 신규문의 = reservations.filter((r) => r.status === "신규문의").length
     const 상담중 = reservations.filter((r) => r.status === "상담중").length
     const 예약확정 = reservations.filter((r) => r.status === "예약확정").length
-    const 촬영완료 = reservations.filter((r) => r.status === "촬영완료").length
     const 보류 = reservations.filter((r) => r.status === "보류").length
 
-    return { total, 신규문의, 상담중, 예약확정, 촬영완료, 보류 }
+    return { total, 신규문의, 상담중, 예약확정, 보류 }
   }
 
   // 로그인 처리
@@ -514,14 +515,6 @@ export default function ManageClientPage() {
           </Card>
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium">촬영완료</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-blue-600">{stats.촬영완료}</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium">보류</CardTitle>
             </CardHeader>
             <CardContent>
@@ -541,7 +534,6 @@ export default function ManageClientPage() {
               <TabsTrigger value="신규문의">신규문의 ({stats.신규문의})</TabsTrigger>
               <TabsTrigger value="상담중">상담중 ({stats.상담중})</TabsTrigger>
               <TabsTrigger value="예약확정">예약확정 ({stats.예약확정})</TabsTrigger>
-              <TabsTrigger value="촬영완료">촬영완료 ({stats.촬영완료})</TabsTrigger>
               <TabsTrigger value="보류">보류 ({stats.보류})</TabsTrigger>
             </TabsList>
           </Tabs>
@@ -570,44 +562,30 @@ export default function ManageClientPage() {
 
           {/* 날짜 범위 선택 */}
           <div className="flex gap-2">
-            <Popover open={isStartDateOpen} onOpenChange={setIsStartDateOpen}>
-              <PopoverTrigger asChild>
-                <Button variant="outline" className="w-[180px] justify-start text-left font-normal">
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {startDate ? format(startDate, "yyyy-MM-dd") : "시작 날짜"}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={startDate}
-                  onSelect={(date) => {
-                    setStartDate(date)
-                    setIsStartDateOpen(false)
-                  }}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date as Date)}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="시작 날짜"
+              className="border rounded px-3 py-2 w-[180px]"
+              selectsStart
+              startDate={startDate}
+              endDate={endDate}
+              isClearable
+            />
 
-            <Popover open={isEndDateOpen} onOpenChange={setIsEndDateOpen}>
-              <PopoverTrigger asChild>
-                <Button variant="outline" className="w-[180px] justify-start text-left font-normal">
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {endDate ? format(endDate, "yyyy-MM-dd") : "종료 날짜"}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={endDate}
-                  onSelect={(date) => {
-                    setEndDate(date)
-                    setIsEndDateOpen(false)
-                  }}
-                />
-              </PopoverContent>
-            </Popover>
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date as Date)}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="종료 날짜"
+              className="border rounded px-3 py-2 w-[180px]"
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              minDate={startDate}
+              isClearable
+            />
 
             {(startDate || endDate) && (
               <Button
@@ -801,7 +779,6 @@ export default function ManageClientPage() {
                     <option value="신규문의">신규문의</option>
                     <option value="상담중">상담중</option>
                     <option value="예약확정">예약확정</option>
-                    <option value="촬영완료">촬영완료</option>
                     <option value="보류">보류</option>
                   </select>
                 </div>
@@ -895,9 +872,6 @@ function getStatusBadge(status: string) {
       return <Badge className="bg-yellow-500">신규문의</Badge>
     case "상담중":
       return <Badge className="bg-blue-300">상담중</Badge>
-    case "촬영완료":
-    case "completed":
-      return <Badge className="bg-blue-500">촬영완료</Badge>
     case "보류":
       return <Badge className="bg-gray-400">보류</Badge>
     case "cancelled":

@@ -115,9 +115,10 @@ export default function ReservationPage() {
       <main className="container mt-16 mx-auto px-6 pt-20 pb-20">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">온라인 예약</h1>
+            <h1 className="text-4xl font-bold mb-4">예약 문의</h1>
             <p className="text-gray-600">
-              아래 양식을 작성하여 촬영 예약을 신청해주세요. 예약 확정은 전화 또는 문자로 안내드립니다.
+              아래 양식을 작성하여 촬영 예약을 신청해주세요. <br />
+              예약 확정은 전화 또는 문자로 안내드립니다.
             </p>
           </div>
 
@@ -127,7 +128,7 @@ export default function ReservationPage() {
               <div className="w-20 h-20 bg-[#bfa888] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="h-10 w-10 text-white" />
               </div>
-              <h2 className="text-2xl font-bold mb-4">예약 신청이 완료되었습니다</h2>
+              <h2 className="text-2xl font-bold mb-4">예약 문의가가 완료되었습니다</h2>
               <p className="text-gray-600 mb-6">
                 입력하신 연락처로 예약 확정 안내를 드리겠습니다. 영업일 기준 1-2일 내에 연락드립니다.
               </p>
@@ -382,10 +383,6 @@ export default function ReservationPage() {
               <li className="flex items-start">
                 <span className="text-[#bfa888] mr-2">•</span>
                 예약 취소는 촬영 7일 전까지 연락주셔야 합니다.
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#bfa888] mr-2">•</span>
-                일요일은 기본적으로 휴무이며, 매월 첫째, 셋째 일요일은 예약이 불가합니다.
               </li>
               <li className="flex items-start">
                 <span className="text-[#bfa888] mr-2">•</span>

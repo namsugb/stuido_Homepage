@@ -349,30 +349,6 @@ export default function ProductsPageContent() {
                     </div>
                 </div>
 
-                {/* 추가 안내 */}
-                <div className="mt-16 bg-white rounded-lg p-8 shadow-sm">
-                    <h2 className="text-2xl font-bold text-center mb-6">촬영 안내사항</h2>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 className="font-bold mb-3 text-lg">촬영 전 준비사항</h3>
-                            <ul className="space-y-2 text-gray-600">
-                                <li>• 촬영 1시간 전 도착 권장</li>
-                                <li>• 편안한 복장으로 오시면 의상 제공</li>
-                                <li>• 헤어&메이크업 서비스 포함</li>
-                                <li>• 특별한 소품이 있으시면 가져오세요</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="font-bold mb-3 text-lg">결과물 안내</h3>
-                            <ul className="space-y-2 text-gray-600">
-                                <li>• 촬영 후 7-10일 내 완성</li>
-                                <li>• 고품질 디지털 파일 제공</li>
-                                <li>• 액자 및 앨범 무료 배송</li>
-                                <li>• 추가 인화 서비스 가능</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </main >
             <footer className="bg-[#333] py-8 text-white">
                 <div className="container mx-auto px-6 text-center">

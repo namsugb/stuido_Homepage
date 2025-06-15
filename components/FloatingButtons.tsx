@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { CalendarCheck, MessageCircleMore, Phone } from "lucide-react";
+import { MessageCircleMore, Phone } from "lucide-react";
 
 export default function FloatingButtons() {
     const pathname = usePathname();
@@ -29,10 +29,10 @@ export default function FloatingButtons() {
             {/* 예약하기 */}
             <a
                 href="/reservation"
-                className="flex items-center justify-center w-14 h-14 rounded-full bg-[#bfa888] shadow-lg text-white hover:bg-[#a68b6d] transition"
+                className="flex items-center justify-center w-14 h-14 rounded-full bg-[#bfa888] shadow-lg text-white hover:bg-[#a68b6d] transition text-md"
                 title="예약하기"
             >
-                <CalendarCheck className="w-7 h-7" />
+                예약 <br /> 문의
             </a>
         </div>
     );
