@@ -567,11 +567,8 @@ export default function ManageClientPage() {
               onChange={(date) => setStartDate(date as Date)}
               dateFormat="yyyy-MM-dd"
               placeholderText="시작 날짜"
-              className="border rounded px-3 py-2 w-[180px]"
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
-              isClearable
+              className="border rounded px-3 py-2 w-full max-w-xs"
+              withPortal
             />
 
             <DatePicker
@@ -579,12 +576,8 @@ export default function ManageClientPage() {
               onChange={(date) => setEndDate(date as Date)}
               dateFormat="yyyy-MM-dd"
               placeholderText="종료 날짜"
-              className="border rounded px-3 py-2 w-[180px]"
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
-              isClearable
+              className="border rounded px-3 py-2 w-full max-w-xs"
+              withPortal
             />
 
             {(startDate || endDate) && (
