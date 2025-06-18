@@ -511,7 +511,8 @@ export default function Page() {
             </div>
           </div>
           <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} 아침햇살 스튜디오. All rights reserved.
+            © {new Date().getFullYear()} 아침햇살 스튜디오. All rights reserved.<br />
+            대표 : 남유행, 사업자등록번호: 416-10-35417
           </div>
         </div>
       </footer >

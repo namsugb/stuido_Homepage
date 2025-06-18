@@ -396,7 +396,9 @@ export default function ReservationPage() {
       {/* 푸터 */}
       <footer className="bg-[#333] py-8 text-white">
         <div className="container mx-auto px-6 text-center">
-          <p className="text-sm text-gray-400">© {new Date().getFullYear()} 아침햇살 스튜디오. All rights reserved.</p>
+          <p className="text-sm text-gray-400">© {new Date().getFullYear()} 아침햇살 스튜디오. All rights reserved.<br />
+            대표 : 남유행, 사업자등록번호: 416-10-35417
+          </p>
         </div>
       </footer>
     </div>
