@@ -226,7 +226,7 @@ export default function Page() {
               </div>
 
               {/* 텍스트/버튼: pointer-events-auto로 활성화 */}
-              <div className="slider-text-container flex flex-col justify-center z-50 pointer-events-auto">
+              <div className="slider-text-container flex flex-col justify-center z-50 pointer-events-auto md:ml-40 md:pr-32">
                 <div className="slider-content-box mt-10">
                   <h2 className="slider-title">{sliderImages[currentSlide].title}</h2>
                   <p className="slider-description">{sliderImages[currentSlide].description}</p>
