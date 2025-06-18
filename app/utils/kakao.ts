@@ -10,9 +10,9 @@ interface KakaoNotificationData {
 export async function sendKakaoNotification(data: KakaoNotificationData) {
     try {
         // Lunasoft API 설정 확인
-        const LUNA_USERID = "skatmdtn0310";
-        const LUNA_API_KEY = "4UR1KDVQBF8JF91EI7BMI8KDZFSE9WBB9787J5OW";
-        const LUNA_TEMPLATE_CODE = 50036;
+        const LUNA_USERID = process.env.LUNA_USERID;
+        const LUNA_API_KEY = process.env.LUNA_API_KEY;
+        const LUNA_TEMPLATE_CODE = process.env.LUNA_TEMPLATE_CODE;
 
         if (!LUNA_USERID || !LUNA_API_KEY || !LUNA_TEMPLATE_CODE) {
             console.warn("Lunasoft 알림톡 설정이 되어있지 않습니다.");
@@ -22,16 +22,16 @@ export async function sendKakaoNotification(data: KakaoNotificationData) {
         const phoneNumber = data.phone.replace(/-/g, '');
 
         const requestBody = {
-            userid: "skatmdtn0310",
-            api_key: "4UR1KDVQBF8JF91EI7BMI8KDZFSE9WBB9787J5OW",
-            template_id: 50036,
+            userid: LUNA_USERID,
+            api_key: LUNA_API_KEY,
+            template_id: LUNA_TEMPLATE_CODE,
             messages: [
                 {
                     no: "1",
-                    tel_num: "01039412259",
+                    tel_num: "01089300045",
                     use_sms: "0",
                     sms_content: "아침햇살 스튜디오 예약 문의",
-                    msg_content: `아침햇살 스튜디오님\n 새로운 예약문의가 있습니다.\n-고객정보\n이름 : ${data.name}\n연락처 : ${data.phone}\n촬영유형 : ${data.shootingType}`,
+                    msg_content: `아침햇살 스튜디오님\n새로운 예약문의가 있습니다.\n\n-고객정보\n이름 : ${data.name}\n연락처 : ${data.phone}\n촬영유형 : ${data.shootingType}`,
                 },
             ],
         }
