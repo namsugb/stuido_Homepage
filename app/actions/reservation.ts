@@ -1,6 +1,7 @@
 "use server"
 
 import { createServerSupabaseClient } from "@/lib/supabase"
+import { sendKakaoNotification } from "../utils/kakao"
 
 export type ReservationFormData = {
   name: string
@@ -62,6 +63,21 @@ export async function submitReservation(formData: ReservationFormData) {
         success: false,
         message: "예약 저장 중 오류가 발생했습니다. 다시 시도해주세요.",
       }
+    }
+
+    // 알림톡 발송
+    const kakaoResult = await sendKakaoNotification({
+      name: formData.name,
+      phone: formData.phone,
+      date: formData.date,
+      time: formData.time,
+      shootingType: formData.shootingType,
+      people: Number.parseInt(formData.people),
+    });
+
+    if (!kakaoResult.success) {
+      console.error("Kakao notification error:", kakaoResult.error);
+      // 알림톡 발송 실패해도 예약은 성공으로 처리
     }
 
     return {
