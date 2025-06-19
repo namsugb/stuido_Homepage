@@ -94,6 +94,7 @@ export async function submitReservation(formData: ReservationFormData) {
   }
 }
 
+// 관리자 페이지에서 직접 예약 추가
 export async function addReservation(formData: any) {
   try {
     const supabase = createServerSupabaseClient();
