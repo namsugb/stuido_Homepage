@@ -47,7 +47,7 @@ export default function ProductsPageContent() {
                 price: "1,000,000원",
                 duration: "문의",
                 people: "2-4명",
-                image: "/main_product/small-family.jpg",
+                image: "/main_product/small-family-package.jpg",
                 features: [
                     "전체원본 제공",
                     "의상 2벌",

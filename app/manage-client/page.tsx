@@ -45,6 +45,7 @@ type Reservation = {
   // status 필드는 옵션으로 처리하고 타입 변경
   status?: "신규문의" | "상담중" | "예약확정" | "보류"
   memo?: string // 관리자 메모
+  referral_sources?: string // 유입경로
 }
 
 export default function ManageClientPage() {
@@ -89,6 +90,7 @@ export default function ManageClientPage() {
     people: "",
     message: "",
     memo: "",
+    referral_sources: "",
   })
   const [addError, setAddError] = useState("")
 
@@ -116,6 +118,7 @@ export default function ManageClientPage() {
           message: editReservation.message,
           status: editReservation.status,
           memo: editReservation.memo || null,
+          referral_sources: editReservation.referral_sources || null,
         })
         .eq("id", Number(editReservation.id))
         .select()
@@ -244,6 +247,7 @@ export default function ManageClientPage() {
           reservation.phone.toLowerCase().includes(term) ||
           (reservation.email && reservation.email.toLowerCase().includes(term)) ||
           reservation.shooting_type.toLowerCase().includes(term) ||
+          (reservation.referral_sources && reservation.referral_sources.toLowerCase().includes(term)) ||
           (reservation.message && reservation.message.toLowerCase().includes(term)),
       )
     }
@@ -313,6 +317,7 @@ export default function ManageClientPage() {
       "시간",
       "촬영 유형",
       "인원",
+      "유입경로",
       "메시지",
       "생성일",
       hasStatusColumn ? "상태" : "",
@@ -329,6 +334,7 @@ export default function ManageClientPage() {
         reservation.time,
         reservation.shooting_type,
         reservation.people,
+        reservation.referral_sources || "",
         reservation.message || "",
         reservation.created_at,
         hasStatusColumn ? reservation.status : "",
@@ -392,7 +398,7 @@ export default function ManageClientPage() {
           setReservations((prev) => [...prev, newReservation]);
           setFilteredReservations((prev) => [...prev, newReservation]);
           setIsAddModalOpen(false);
-          setAddForm({ name: "", phone: "", date: "", time: "", shootingType: "family", people: "", message: "", memo: "" });
+          setAddForm({ name: "", phone: "", date: "", time: "", shootingType: "family", people: "", message: "", memo: "", referral_sources: "" });
         } else {
           setAddError("저장 결과 데이터가 없습니다.");
         }
@@ -545,7 +551,7 @@ export default function ManageClientPage() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
             <Input
-              placeholder="이름, 전화번호, 이메일 검색..."
+              placeholder="이름, 전화번호, 이메일, 유입경로 검색..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
@@ -613,6 +619,7 @@ export default function ManageClientPage() {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">촬영 유형</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">날짜</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">시간</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">유입경로</th>
                 {hasStatusColumn && (
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">상태</th>
                 )}
@@ -622,7 +629,7 @@ export default function ManageClientPage() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredReservations.length === 0 ? (
                 <tr>
-                  <td colSpan={hasStatusColumn ? 7 : 6} className="px-6 py-4 text-center text-gray-500">
+                  <td colSpan={hasStatusColumn ? 8 : 7} className="px-6 py-4 text-center text-gray-500">
                     {searchTerm || startDate || endDate ? "검색 결과가 없습니다." : "예약 데이터가 없습니다."}
                   </td>
                 </tr>
@@ -642,6 +649,7 @@ export default function ManageClientPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reservation.shooting_type}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reservation.date}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reservation.time}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reservation.referral_sources || "N/A"}</td>
                     {hasStatusColumn && (
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {reservation.status && getStatusBadge(reservation.status)}
@@ -744,6 +752,15 @@ export default function ManageClientPage() {
                 />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
+                <span className="text-right font-medium">유입경로:</span>
+                <input
+                  className="col-span-3 border rounded px-2 py-1"
+                  value={editReservation.referral_sources || ""}
+                  onChange={e => setEditReservation({ ...editReservation, referral_sources: e.target.value })}
+                  placeholder="웹사이트, 인스타그램, 네이버 등"
+                />
+              </div>
+              <div className="grid grid-cols-4 items-center gap-4">
                 <span className="text-right font-medium">메시지:</span>
                 <input
                   className="col-span-3 border rounded px-2 py-1"
@@ -836,6 +853,10 @@ export default function ManageClientPage() {
             <div>
               <label className="block text-sm font-medium mb-1">인원 *</label>
               <input type="number" className="w-full border rounded px-2 py-1" value={addForm.people} onChange={e => setAddForm(f => ({ ...f, people: e.target.value }))} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">유입경로</label>
+              <input className="w-full border rounded px-2 py-1" value={addForm.referral_sources} onChange={e => setAddForm(f => ({ ...f, referral_sources: e.target.value }))} placeholder="웹사이트, 인스타그램, 네이버 등" />
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">요청사항/메모</label>
