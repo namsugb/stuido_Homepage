@@ -7,16 +7,26 @@ import { ArrowLeft, X } from "lucide-react"
 // Replace the galleryData object with the following that uses placeholder images
 const galleryData = {
   all: [
-    // family
-    { src: "/main_gallery/family/family01.jpg", alt: "가족사진 1", category: "family" },
-    { src: "/main_gallery/family/family02.jpg", alt: "가족사진 2", category: "family" },
-    { src: "/main_gallery/family/family03.jpg", alt: "가족사진 3", category: "family" },
-    { src: "/main_gallery/family/family04.jpg", alt: "가족사진 4", category: "family" },
-    { src: "/main_gallery/family/family05.jpg", alt: "가족사진 5", category: "family" },
-    { src: "/main_gallery/family/family06.jpg", alt: "가족사진 6", category: "family" },
-    { src: "/main_gallery/family/family07.jpg", alt: "가족사진 7", category: "family" },
-    { src: "/main_gallery/family/family08.jpg", alt: "가족사진 8", category: "family" },
-    { src: "/main_gallery/family/family09.jpg", alt: "가족사진 9", category: "family" },
+    // family - 새로운 이미지들로 교체
+    { src: "/main_gallery/family/[크기변환]IMG_0626.jpg", alt: "가족사진 1", category: "family" },
+    { src: "/main_gallery/family/[크기변환]B64A0049_(2).jpg", alt: "가족사진 2", category: "family" },
+    { src: "/main_gallery/family/[크기변환]8U0A1147-1.jpg", alt: "가족사진 3", category: "family" },
+    { src: "/main_gallery/family/[크기변환]7X1A3243 20x24_1차.jpg", alt: "가족사진 4", category: "family" },
+    { src: "/main_gallery/family/[크기변환]7X1A0451_1차.JPG", alt: "가족사진 5", category: "family" },
+    { src: "/main_gallery/family/[크기변환]007_04_1차.jpg", alt: "가족사진 6", category: "family" },
+    { src: "/main_gallery/family/[크기변환]007_03_1차.jpg", alt: "가족사진 7", category: "family" },
+    { src: "/main_gallery/family/[크기변환]007_02_1차.jpg", alt: "가족사진 8", category: "family" },
+    { src: "/main_gallery/family/[크기변환]006_02_1차.jpg", alt: "가족사진 9", category: "family" },
+    { src: "/main_gallery/family/[크기변환]5_3차.jpg", alt: "가족사진 10", category: "family" },
+    { src: "/main_gallery/family/[크기변환]004A1651.JPG", alt: "가족사진 11", category: "family" },
+    { src: "/main_gallery/family/[크기변환]004A1572.JPG", alt: "가족사진 12", category: "family" },
+    { src: "/main_gallery/family/[크기변환]004A1432.JPG", alt: "가족사진 13", category: "family" },
+    { src: "/main_gallery/family/[크기변환]004A1257 30x40 복사.jpg", alt: "가족사진 14", category: "family" },
+    { src: "/main_gallery/family/[크기변환]004A0838_(2).jpg", alt: "가족사진 15", category: "family" },
+    { src: "/main_gallery/family/[크기변환]004A0817_(2).jpg", alt: "가족사진 16", category: "family" },
+    { src: "/main_gallery/family/[크기변환]004A0352_(2).jpg", alt: "가족사진 17", category: "family" },
+    { src: "/main_gallery/family/[크기변환]004A0351_(2).jpg", alt: "가족사진 18", category: "family" },
+    { src: "/main_gallery/family/[크기변환]004A0344_(2).jpg", alt: "가족사진 19", category: "family" },
 
     // id
     { src: "/main_gallery/id/id01.jpg", alt: "증명사진 1", category: "id" },
@@ -51,17 +61,31 @@ const galleryData = {
     { src: "/main_gallery/profile/profile10.jpg", alt: "프로필사진 10", category: "friend" },
     { src: "/main_gallery/profile/profile11.jpg", alt: "프로필사진 11", category: "friend" },
 
-    // remind (리마인드웨딩)
-    { src: "/main_gallery/remind/remind_2f1a8824_12x17.jpg", alt: "리마인드웨딩 1", category: "wedding" },
-    { src: "/main_gallery/remind/remind_003_03_1차.jpg", alt: "리마인드웨딩 2", category: "wedding" },
-    { src: "/main_gallery/remind/remind_004_01_1차.jpg", alt: "리마인드웨딩 3", category: "wedding" },
-    { src: "/main_gallery/remind/remind_004a0344-1.jpg", alt: "리마인드웨딩 4", category: "wedding" },
-    { src: "/main_gallery/remind/remind_004a0391.jpg", alt: "리마인드웨딩 5", category: "wedding" },
-    { src: "/main_gallery/remind/remind_005_01_1차.jpg", alt: "리마인드웨딩 6", category: "wedding" },
-    { src: "/main_gallery/remind/remind_8u0a0352_복사.jpg", alt: "리마인드웨딩 7", category: "wedding" },
-    { src: "/main_gallery/remind/remind_박봉숙_(4).jpg", alt: "리마인드웨딩 8", category: "wedding" },
-    { src: "/main_gallery/remind/remind_윤혜원_(10).jpg", alt: "리마인드웨딩 9", category: "wedding" },
-    { src: "/main_gallery/remind/remind_윤혜원_(8).jpg", alt: "리마인드웨딩 10", category: "wedding" }
+    // remind (리마인드웨딩) - 새로운 이미지들로 교체
+    { src: "/main_gallery/remind/[크기변환]윤혜원 (10).JPG", alt: "리마인드웨딩 1", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]윤혜원 (8).jpg", alt: "리마인드웨딩 2", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]박봉숙 (4).jpg", alt: "리마인드웨딩 3", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]8U0A0352 복사.jpg", alt: "리마인드웨딩 4", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]005_01_1차.jpg", alt: "리마인드웨딩 5", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]004A0391.jpg", alt: "리마인드웨딩 6", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]004A0344-1.jpg", alt: "리마인드웨딩 7", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]004_01_1차.jpg", alt: "리마인드웨딩 8", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]003_03_1차.jpg", alt: "리마인드웨딩 9", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]2F1A8824 12x17.JPG", alt: "리마인드웨딩 10", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]2F1A8813.JPG", alt: "리마인드웨딩 11", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]2F1A8770 5x7.JPG", alt: "리마인드웨딩 12", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]2F1A8670.JPG", alt: "리마인드웨딩 13", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]2F1A8121.JPG", alt: "리마인드웨딩 14", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]2F1A3776 표지뒤.JPG", alt: "리마인드웨딩 15", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]2F1A1780_1차.JPG", alt: "리마인드웨딩 16", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]2F1A1763-66.JPG", alt: "리마인드웨딩 17", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]2F1A1749-68.JPG", alt: "리마인드웨딩 18", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]0A8A8123.JPG", alt: "리마인드웨딩 19", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]0A8A8108-1216 디아섹_1차.JPG", alt: "리마인드웨딩 20", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]0A8A8081-810_1차.JPG", alt: "리마인드웨딩 21", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]윤혜원 (15).JPG", alt: "리마인드웨딩 22", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]윤혜원 (14).JPG", alt: "리마인드웨딩 23", category: "wedding" },
+    { src: "/main_gallery/remind/[크기변환]윤혜원 (12).JPG", alt: "리마인드웨딩 24", category: "wedding" }
   ],
 }
 
