@@ -12,9 +12,10 @@ export default function ReservationPage() {
     phone: "",
     date: "",
     time: "",
-    shootingType: "family",
+    shootingType: "가족 사진",
     people: "",
     message: "",
+    referall_source: "홈페이지",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -77,9 +78,10 @@ export default function ReservationPage() {
           phone: "",
           date: "",
           time: "",
-          shootingType: "family",
+          shootingType: "",
           people: "",
           message: "",
+          referall_source: "홈페이지",
         })
       } else {
         setServerError(result.message)
@@ -94,12 +96,10 @@ export default function ReservationPage() {
 
   // 촬영 유형 옵션
   const shootingTypes = [
-    { value: "family", label: "가족 사진" },
-    { value: "wedding", label: "웨딩 / 리마인드 웨딩" },
-    { value: "celebration", label: "칠순 / 팔순 잔치" },
-    { value: "profile", label: "프로필 / 증명사진" },
-    { value: "pet", label: "반려동물 촬영" },
-    { value: "event", label: "행사 스냅" },
+    { value: "가족 사진", label: "가족 사진" },
+    { value: "웨딩 / 리마인드 웨딩", label: "웨딩 / 리마인드 웨딩" },
+    { value: "칠순 / 팔순 잔치", label: "칠순 / 팔순 잔치" },
+    { value: "프로필 / 증명사진", label: "프로필 / 증명사진" },
   ]
 
   // 예약 가능 시간 옵션

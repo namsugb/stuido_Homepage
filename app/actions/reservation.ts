@@ -11,6 +11,7 @@ export type ReservationFormData = {
   shootingType: string
   people: string
   message: string
+  referall_source: string
 }
 
 export async function submitReservation(formData: ReservationFormData) {
@@ -24,7 +25,8 @@ export async function submitReservation(formData: ReservationFormData) {
       !formData.date ||
       !formData.time ||
       !formData.shootingType ||
-      !formData.people
+      !formData.people ||
+      !formData.referall_source
     ) {
       return {
         success: false,
@@ -53,6 +55,7 @@ export async function submitReservation(formData: ReservationFormData) {
           people: Number.parseInt(formData.people),
           message: formData.message || null,
           status: "신규문의",
+          referall_source: formData.referall_source,
         },
       ])
       .select()
