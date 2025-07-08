@@ -250,16 +250,16 @@ export default function ProductsPageContent() {
                                     />
                                     <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
                                 </div>
-                                {/* 전체 오버레이 */}
-                                <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
-                                    <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
-                                        <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
-                                        <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
-                                            {product.features && product.features.length > 0 && product.features.join(", ")}
+                                {/* 하단 정보 오버레이 */}
+                                    <div className="absolute bottom-0 left-0 right-0 w-full z-10 bg-gradient-to-t from-black/80 to-transparent p-3">
+                                        <div className="text-center text-white">
+                                            <div className="text-lg md:text-xl font-normal mb-1 whitespace-pre-line">{product.title}</div>
+                                            <div className="text-xs md:text-sm font-normal whitespace-pre-line mb-1">
+                                                {product.features && product.features.length > 0 && product.features.join(", ")}
+                                            </div>
+                                            <div className="text-xs md:text-lg font-normal">{product.price}</div>
                                         </div>
-                                        <div className="text-xs md:text-lg font-normal text-white mb-1">{product.price}</div>
                                     </div>
-                                </div>
                             </div>
                         ))}
                     </div>
@@ -281,12 +281,12 @@ export default function ProductsPageContent() {
                                         />
                                         <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
                                     </div>
-                                    {/* 전체 오버레이 */}
-                                    <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
-                                        <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
-                                            <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
-                                            <div className="text-base md:text-lg font-normal text-white mb-1">{product.price}</div>
-                                            <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
+                                    {/* 하단 정보 오버레이 */}
+                                    <div className="absolute bottom-0 left-0 right-0 w-full z-10 bg-gradient-to-t from-black/80 to-transparent p-3">
+                                        <div className="text-center text-white">
+                                            <div className="text-lg md:text-xl font-normal mb-1 whitespace-pre-line">{product.title}</div>
+                                            <div className="text-base md:text-lg font-normal mb-1">{product.price}</div>
+                                            <div className="text-xs md:text-sm font-normal whitespace-pre-line">
                                                 {product.features && product.features.length > 0 && product.features.join(", ")}
                                             </div>
                                         </div>
@@ -307,12 +307,12 @@ export default function ProductsPageContent() {
                                             />
                                             <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
                                         </div>
-                                        {/* 전체 오버레이 */}
-                                        <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
-                                            <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
-                                                <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
-                                                <div className="text-base md:text-lg font-normal text-white mb-1">{product.price}</div>
-                                                <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
+                                        {/* 하단 정보 오버레이 */}
+                                        <div className="absolute bottom-0 left-0 right-0 w-full z-10 bg-gradient-to-t from-black/80 to-transparent p-3">
+                                            <div className="text-center text-white">
+                                                <div className="text-lg md:text-xl font-normal mb-1 whitespace-pre-line">{product.title}</div>
+                                                <div className="text-base md:text-lg font-normal mb-1">{product.price}</div>
+                                                <div className="text-xs md:text-sm font-normal whitespace-pre-line">
                                                     {product.features && product.features.length > 0 && product.features.join(", ")}
                                                 </div>
                                             </div>
@@ -332,12 +332,12 @@ export default function ProductsPageContent() {
                                             />
                                             <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
                                         </div>
-                                        {/* 전체 오버레이 */}
-                                        <div className="absolute inset-0 w-full h-full z-10 flex flex-col items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0 group-focus:opacity-0">
-                                            <div className="bg-black bg-opacity-20 w-full h-full px-4 py-3 text-center flex flex-col items-center justify-center rounded-b">
-                                                <div className="text-lg md:text-xl font-normal text-white mb-1 whitespace-pre-line">{product.title}</div>
-                                                <div className="text-base md:text-lg font-normal text-white mb-1">{product.price}</div>
-                                                <div className="text-xs md:text-sm font-normal text-white whitespace-pre-line">
+                                        {/* 하단 정보 오버레이 */}
+                                        <div className="absolute bottom-0 left-0 right-0 w-full z-10 bg-gradient-to-t from-black/80 to-transparent p-3">
+                                            <div className="text-center text-white">
+                                                <div className="text-lg md:text-xl font-normal mb-1 whitespace-pre-line">{product.title}</div>
+                                                <div className="text-base md:text-lg font-normal mb-1">{product.price}</div>
+                                                <div className="text-xs md:text-sm font-normal whitespace-pre-line">
                                                     {product.features && product.features.length > 0 && product.features.join(", ")}
                                                 </div>
                                             </div>
@@ -359,4 +359,4 @@ export default function ProductsPageContent() {
             </footer>
         </div >
     )
-} 
+}
