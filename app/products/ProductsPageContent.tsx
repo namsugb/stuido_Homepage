@@ -241,25 +241,25 @@ export default function ProductsPageContent() {
                     <h2 className="text-2xl my-5 py-5 font-bold mb-6 text-center">패키지 상품</h2>
                     <div className="grid grid-cols-2 gap-2 mb-16 pb-8 px-3">
                         {premiumProducts.map((product) => (
-                            <div key={product.id} className="bg-white shadow-lg overflow-hidden relative group aspect-[4/3] flex items-stretch">
-                                <div className="absolute inset-0">
+                            <div key={product.id} className="bg-white shadow-lg overflow-hidden relative group flex flex-col">
+                                {/* 이미지 영역 */}
+                                <div className="aspect-[4/3] overflow-hidden">
                                     <img
                                         src={product.image}
                                         alt={product.title}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     />
-                                    <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
                                 </div>
-                                {/* 하단 정보 오버레이 */}
-                                    <div className="absolute bottom-0 left-0 right-0 w-full z-10 bg-gradient-to-t from-black/80 to-transparent p-3">
-                                        <div className="text-center text-white">
-                                            <div className="text-lg md:text-xl font-normal mb-1 whitespace-pre-line">{product.title}</div>
-                                            <div className="text-xs md:text-sm font-normal whitespace-pre-line mb-1">
-                                                {product.features && product.features.length > 0 && product.features.join(", ")}
-                                            </div>
-                                            <div className="text-xs md:text-lg font-normal">{product.price}</div>
+                                {/* 하단 정보 영역 - 사진 바깥 */}
+                                <div className="p-3 bg-white">
+                                    <div className="text-center">
+                                        <div className="text-lg md:text-xl font-semibold mb-1 text-gray-800">{product.title}</div>
+                                        <div className="text-xs md:text-sm text-gray-600 mb-1">
+                                            {product.features && product.features.length > 0 && product.features.join(", ")}
                                         </div>
+                                        <div className="text-sm md:text-lg font-bold text-red-600">{product.price}</div>
                                     </div>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -272,21 +272,21 @@ export default function ProductsPageContent() {
                         {/* 데스크탑(768px 이상)에서는 모든 상품(가로+세로형) 3열 그리드에 렌더링 */}
                         <div className="hidden md:contents">
                             {[...horizontalProducts, ...verticalProducts].map((product) => (
-                                <div key={product.id} className={`bg-white shadow-md overflow-hidden relative group flex items-stretch ${verticalProductIds.includes(product.id) ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
-                                    <div className="absolute inset-0">
+                                <div key={product.id} className="bg-white shadow-md overflow-hidden relative group flex flex-col">
+                                    {/* 이미지 영역 */}
+                                    <div className={`overflow-hidden ${verticalProductIds.includes(product.id) ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
                                         <img
                                             src={product.image}
                                             alt={product.title}
                                             className={`w-full h-full ${product.id === 7 ? 'object-cover' : verticalProductIds.includes(product.id) ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300 bg-white`}
                                         />
-                                        <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
                                     </div>
-                                    {/* 하단 정보 오버레이 */}
-                                    <div className="absolute bottom-0 left-0 right-0 w-full z-10 bg-gradient-to-t from-black/80 to-transparent p-3">
-                                        <div className="text-center text-white">
-                                            <div className="text-lg md:text-xl font-normal mb-1 whitespace-pre-line">{product.title}</div>
-                                            <div className="text-base md:text-lg font-normal mb-1">{product.price}</div>
-                                            <div className="text-xs md:text-sm font-normal whitespace-pre-line">
+                                    {/* 하단 정보 영역 - 사진 바깥 */}
+                                    <div className="p-2 bg-white">
+                                        <div className="text-center">
+                                            <div className="text-sm md:text-base font-semibold mb-1 text-gray-800">{product.title}</div>
+                                            <div className="text-xs md:text-sm font-bold text-red-600 mb-1">{product.price}</div>
+                                            <div className="text-xs text-gray-600">
                                                 {product.features && product.features.length > 0 && product.features.join(", ")}
                                             </div>
                                         </div>
@@ -298,21 +298,21 @@ export default function ProductsPageContent() {
                         <div className="block md:hidden w-full col-span-2">
                             <div className="grid grid-cols-2 gap-2">
                                 {horizontalProducts.map((product) => (
-                                    <div key={product.id} className="bg-white shadow-md overflow-hidden relative group aspect-[4/3] flex items-stretch">
-                                        <div className="absolute inset-0">
+                                    <div key={product.id} className="bg-white shadow-md overflow-hidden relative group flex flex-col">
+                                        {/* 이미지 영역 */}
+                                        <div className="aspect-[4/3] overflow-hidden">
                                             <img
                                                 src={product.image}
                                                 alt={product.title}
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                             />
-                                            <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
                                         </div>
-                                        {/* 하단 정보 오버레이 */}
-                                        <div className="absolute bottom-0 left-0 right-0 w-full z-10 bg-gradient-to-t from-black/80 to-transparent p-3">
-                                            <div className="text-center text-white">
-                                                <div className="text-lg md:text-xl font-normal mb-1 whitespace-pre-line">{product.title}</div>
-                                                <div className="text-base md:text-lg font-normal mb-1">{product.price}</div>
-                                                <div className="text-xs md:text-sm font-normal whitespace-pre-line">
+                                        {/* 하단 정보 영역 - 사진 바깥 */}
+                                        <div className="p-2 bg-white">
+                                            <div className="text-center">
+                                                <div className="text-sm font-semibold mb-1 text-gray-800">{product.title}</div>
+                                                <div className="text-sm font-bold text-red-600 mb-1">{product.price}</div>
+                                                <div className="text-xs text-gray-600">
                                                     {product.features && product.features.length > 0 && product.features.join(", ")}
                                                 </div>
                                             </div>
@@ -323,21 +323,21 @@ export default function ProductsPageContent() {
                             {/* 세로형 상품은 별도의 2x2 그리드로 렌더링 */}
                             <div className="grid grid-cols-2 gap-2 mt-2">
                                 {verticalProducts.map((product) => (
-                                    <div key={product.id} className="bg-white shadow-md overflow-hidden relative group aspect-[3/4] flex items-stretch">
-                                        <div className="absolute inset-0">
+                                    <div key={product.id} className="bg-white shadow-md overflow-hidden relative group flex flex-col">
+                                        {/* 이미지 영역 */}
+                                        <div className="aspect-[3/4] overflow-hidden">
                                             <img
                                                 src={product.image}
                                                 alt={product.title}
                                                 className={`w-full h-full ${product.id === 7 ? 'object-cover' : 'object-contain'} group-hover:scale-105 transition-transform duration-300 bg-white`}
                                             />
-                                            <div className="absolute inset-0 bg-black bg-opacity-20 h-full w-full" />
                                         </div>
-                                        {/* 하단 정보 오버레이 */}
-                                        <div className="absolute bottom-0 left-0 right-0 w-full z-10 bg-gradient-to-t from-black/80 to-transparent p-3">
-                                            <div className="text-center text-white">
-                                                <div className="text-lg md:text-xl font-normal mb-1 whitespace-pre-line">{product.title}</div>
-                                                <div className="text-base md:text-lg font-normal mb-1">{product.price}</div>
-                                                <div className="text-xs md:text-sm font-normal whitespace-pre-line">
+                                        {/* 하단 정보 영역 - 사진 바깥 */}
+                                        <div className="p-2 bg-white">
+                                            <div className="text-center">
+                                                <div className="text-sm font-semibold mb-1 text-gray-800">{product.title}</div>
+                                                <div className="text-sm font-bold text-red-600 mb-1">{product.price}</div>
+                                                <div className="text-xs text-gray-600">
                                                     {product.features && product.features.length > 0 && product.features.join(", ")}
                                                 </div>
                                             </div>
