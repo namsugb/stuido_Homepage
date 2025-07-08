@@ -123,12 +123,23 @@ body {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  padding-top: 6rem; /* Adjust padding to move slider down */
+  padding-top: 4rem; /* Reduced padding for better viewport utilization */
 }
 
 @media (min-width: 768px) {
   .hero-section {
-    padding-top: 7rem; /* Adjust padding for larger screens */
+    padding-top: 5rem; /* Reduced padding for larger screens */
+  }
+}
+
+/* Ensure slider images fill the remaining viewport height */
+.slider-row {
+  height: calc(100vh - 4rem); /* Account for header height */
+}
+
+@media (min-width: 768px) {
+  .slider-row {
+    height: calc(100vh - 5rem); /* Account for header height on larger screens */
   }
 }
 
@@ -401,12 +412,16 @@ body {
 /* 모바일 반응형 - 간격 조정 */
 @media (max-width: 768px) {
   .hero-section {
-    height: 80vh;
-    padding-top: 3rem;
+    height: 100vh; /* Use full viewport height on mobile */
+    padding-top: 4rem;
+  }
+
+  .slider-row {
+    height: calc(100vh - 4rem); /* Ensure proper height calculation */
   }
 
   .slider-image-container {
-    height: 100vh;
+    height: 100%;
   }
 
   .slider-text-container {
@@ -457,13 +472,16 @@ body {
 /* 작은 모바일 화면 - 더 작은 간격 */
 @media (max-width: 480px) {
   .hero-section {
-    height: 80vh;
-    padding-top: 2.5rem;
+    height: 100vh; /* Use full viewport height */
+    padding-top: 3.5rem;
+  }
+
+  .slider-row {
+    height: calc(100vh - 3.5rem);
   }
 
   .slider-image-container {
-    height: 40vh;
-    margin-top: 5rem;
+    height: 100%;
   }
 
   .slider-text-container {
