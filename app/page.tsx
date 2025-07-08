@@ -235,7 +235,7 @@ export default function Page() {
           <h2 className="mb-8 text-3xl font-bold text-center">상품 소개</h2>
 
           {/* 그리드 기반 카드 레이아웃 */}
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
             {[
               {
                 title: "가족사진",
@@ -250,44 +250,48 @@ export default function Page() {
                 category: "wedding",
               },
               {
-                title: "칠순/팔순",
-                description: "인생의 뜻깊은 순간을 품격있게 담아 가족 모두가 소중히 간직할 수 있는 사진을 선사합니다.",
-                image: "/product/hanbok-couple-new.jpeg",
-                category: "celebration",
-              },
-              {
-                title: "장수",
-                description: "100세 시대, 건강하고 행복한 노년의 모습을 아름답게 담아 소중한 기록으로 남겨드립니다.",
+                title: "장수기념",
+                description: "할머니, 할아버지의 특별한 순간을 아름답게 기록합니다.",
                 image: "/product/senior-hanbok-new.jpeg",
                 category: "longevity",
               },
               {
-                title: "프로필",
-                description: "개인의 매력과 개성을 살린 프로필 사진으로 특별한 인상을 남겨보세요.",
-                image: "/product/profile-photo-new.jpeg",
-                category: "profile",
+                title: "칠순/팔순",
+                description: "소중한 분의 생신을 기념하는 특별한 촬영을 진행합니다.",
+                image: "/product/hanbok-couple-new.jpeg",
+                category: "celebration",
               },
               {
-                title: "증명",
-                description: "취업, 입학 등에 필요한 다양한 규격의 증명사진을 전문적으로 촬영해 드립니다.",
+                title: "증명사진",
+                description: "취업, 여권, 비자 등 다양한 용도의 증명사진을 전문적으로 촬영합니다.",
                 image: "/product/id-photo-new.jpeg",
                 category: "id",
               },
-            ].map((item, index) => (
+              {
+                title: "프로필",
+                description: "개인의 매력을 최대한 끌어내는 프로필 사진을 촬영합니다.",
+                image: "/product/profile-photo-new.jpeg",
+                category: "profile",
+              },
+            ].map((product, index) => (
               <Link
                 key={index}
-                href={`/products?category=${item.category}`}
-                className="rounded-lg bg-white p-2 pb-4 pt-2 shadow-2xl hover:shadow-md transition block"
+                href={`/products?category=${product.category}`}
+                className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
               >
-                <div className="mb-4 relative h-80 w-full overflow-hidden rounded-lg">
+                {/* 이미지 영역 */}
+                <div className="aspect-[4/3] relative overflow-hidden">
                   <img
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
-                    className="h-full w-full object-cover"
+                    src={product.image}
+                    alt={product.title}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
-                <p className="text-sm text-gray-600">{item.description}</p>
+                {/* 정보 영역 - 이미지 하단 */}
+                <div className="p-3 md:p-4">
+                  <h3 className="text-sm md:text-lg font-bold mb-2 text-gray-900">{product.title}</h3>
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed line-clamp-3">{product.description}</p>
+                </div>
               </Link>
             ))}
           </div>
