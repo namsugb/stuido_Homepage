@@ -179,7 +179,7 @@ export default function Page() {
 
 
       {/* 메인 히어로 섹션 - 모던한 슬라이더 */}
-      <section className="hero-section pt-16">
+      <section className="hero-section">
         {/* 슬라이더 배경 */}
         <div className="slider-row relative h-full w-full">
           {/* 이미지/오버레이: pointer-events-none, z-0 */}

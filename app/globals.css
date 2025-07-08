@@ -123,23 +123,23 @@ body {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-  padding-top: 4rem; /* Reduced padding for better viewport utilization */
+  padding-top: 3rem; /* Reduced padding to show more of the image */
 }
 
 @media (min-width: 768px) {
   .hero-section {
-    padding-top: 5rem; /* Reduced padding for larger screens */
+    padding-top: 4rem; /* Reduced padding for larger screens */
   }
 }
 
 /* Ensure slider images fill the remaining viewport height */
 .slider-row {
-  height: calc(100vh - 4rem); /* Account for header height */
+  height: calc(100vh - 3rem); /* Account for reduced header height */
 }
 
 @media (min-width: 768px) {
   .slider-row {
-    height: calc(100vh - 5rem); /* Account for header height on larger screens */
+    height: calc(100vh - 4rem); /* Account for reduced header height on larger screens */
   }
 }
 
@@ -413,11 +413,11 @@ body {
 @media (max-width: 768px) {
   .hero-section {
     height: 100vh; /* Use full viewport height on mobile */
-    padding-top: 4rem;
+    padding-top: 3rem; /* Reduced padding for mobile */
   }
 
   .slider-row {
-    height: calc(100vh - 4rem); /* Ensure proper height calculation */
+    height: calc(100vh - 3rem); /* Ensure proper height calculation */
   }
 
   .slider-image-container {
@@ -473,11 +473,11 @@ body {
 @media (max-width: 480px) {
   .hero-section {
     height: 100vh; /* Use full viewport height */
-    padding-top: 3.5rem;
+    padding-top: 3rem; /* Further reduced padding for small screens */
   }
 
   .slider-row {
-    height: calc(100vh - 3.5rem);
+    height: calc(100vh - 3rem);
   }
 
   .slider-image-container {
