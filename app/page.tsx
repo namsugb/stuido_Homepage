@@ -201,41 +201,21 @@ export default function Page() {
           )}
 
 
-          {/* 메인 이미지 슬라이더 - 네비게이션 고정, 가운데 영역만 움직임 */}
+          {/* 메인 이미지 슬라이더 - 전체 폭 이미지 */}
           {firstImageLoaded && (
-            <div className="slider-center-area flex h-full mx-auto relative z-30">
-
-              {/* 이미지: pointer-events-none → 그대로 유지 */}
-              <div className="slider-image-container relative flex items-center justify-center mt-8 pointer-events-none">
-                {sliderImages.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"} pointer-events-none`}
-                  >
-                    <div className="relative h-full w-full flex items-center justify-center">
-                      <div className="relative max-h-full max-w-full px-6 md:px-12">
-                        <img
-                          src={image.src || "/placeholder.svg"}
-                          alt={image.alt}
-                          className="hero-slider-image object-contain object-center max-h-full max-w-full rounded-lg shadow-2xl"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* 텍스트/버튼: pointer-events-auto로 활성화 */}
-              <div className="slider-text-container flex flex-col justify-center z-50 pointer-events-auto md:ml-40 lg:ml-20 xl:ml-40 md:pr-32 lg:pr-16 xl:pr-32">
-                <div className="slider-content-box mt-10">
-                  <h2 className="slider-title">{sliderImages[currentSlide].title}</h2>
-                  <p className="slider-description">{sliderImages[currentSlide].description}</p>
-                  <div className="relative z-50 flex flex-row gap-3 items-center justify-center md:justify-start">
-                    <Link href="/gallery" className="slider-btn bg-white text-black">갤러리 보기</Link>
-                    <Link href="/reservation" className="slider-btn border border-white text-white">예약문의</Link>
-                  </div>
+            <div className="absolute inset-0 z-30">
+              {sliderImages.map((image, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"}`}
+                >
+                  <img
+                    src={image.src || "/placeholder.svg"}
+                    alt={image.alt}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </div>
+              ))}
             </div>
           )}
 
@@ -292,11 +272,11 @@ export default function Page() {
                 href={`/products?category=${item.category}`}
                 className="rounded-lg bg-white p-2 pb-4 pt-2 shadow-2xl hover:shadow-md transition block"
               >
-                <div className="mb-4 relative h-64 w-full overflow-hidden rounded-lg">
+                <div className="mb-4 relative h-80 w-full overflow-hidden rounded-lg">
                   <img
                     src={item.image || "/placeholder.svg"}
                     alt={item.title}
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-cover"
                   />
                 </div>
                 <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
@@ -321,7 +301,7 @@ export default function Page() {
                 <img
                   src={image.src || "/placeholder.svg"}
                   alt={image.alt}
-                  className="rounded-md w-full h-full object-fit"
+                  className="rounded-md w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
             ))}
