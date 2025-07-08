@@ -413,11 +413,11 @@ body {
 @media (max-width: 768px) {
   .hero-section {
     height: 100vh; /* Use full viewport height on mobile */
-    padding-top: 3rem; /* Reduced padding for mobile */
+    padding-top: 4rem; /* Adjusted padding to prevent header overlap */
   }
 
   .slider-row {
-    height: calc(100vh - 3rem); /* Ensure proper height calculation */
+    height: calc(100vh - 4rem); /* Ensure proper height calculation */
   }
 
   .slider-image-container {
@@ -428,16 +428,17 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    top: 35vh;
+    bottom: 0; /* Position at bottom instead of calculated position */
     width: 100vw;
     height: auto;
     z-index: 30;
     margin: auto;
-    padding: 10rem 1.5rem;
+    padding: 2rem 1.5rem; /* Reduced padding */
     display: flex;
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); /* Add gradient background */
   }
 
   .slider-content-box {
@@ -473,11 +474,11 @@ body {
 @media (max-width: 480px) {
   .hero-section {
     height: 100vh; /* Use full viewport height */
-    padding-top: 3rem; /* Further reduced padding for small screens */
+    padding-top: 4rem; /* Consistent padding with larger mobile */
   }
 
   .slider-row {
-    height: calc(100vh - 3rem);
+    height: calc(100vh - 4rem);
   }
 
   .slider-image-container {
@@ -485,9 +486,11 @@ body {
   }
 
   .slider-text-container {
-    height: 22vh;
-    transform: scale(0.85);
-    margin-top: -1.5rem;
+    bottom: 0; /* Keep at bottom */
+    height: auto; /* Let content determine height */
+    transform: none; /* Remove transform that might cause issues */
+    margin-top: 0; /* Reset margin */
+    padding: 1.5rem 1rem; /* Smaller padding for small screens */
   }
 
   .slider-content-box {

@@ -212,7 +212,7 @@ export default function Page() {
                   <img
                     src={image.src || "/placeholder.svg"}
                     alt={image.alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                   />
                   {/* 감성적인 문구 오버레이 */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8 text-white">
