@@ -121,9 +121,11 @@ body {
 .hero-section {
   position: relative;
   height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for better mobile support */
   width: 100%;
   overflow: hidden;
   padding-top: 5rem; /* Increased padding to prevent navbar overlap */
+  min-height: 600px; /* Minimum height to prevent excessive cropping */
 }
 
 @media (min-width: 768px) {
@@ -135,11 +137,15 @@ body {
 /* Ensure slider images fill the remaining viewport height */
 .slider-row {
   height: calc(100vh - 5rem); /* Account for proper header height */
+  height: calc(100dvh - 5rem); /* Dynamic viewport height for better mobile support */
+  min-height: calc(600px - 5rem); /* Minimum height to prevent cropping */
 }
 
 @media (min-width: 768px) {
   .slider-row {
     height: calc(100vh - 6rem); /* Account for proper header height on larger screens */
+    height: calc(100dvh - 6rem); /* Dynamic viewport height for better mobile support */
+    min-height: calc(600px - 6rem); /* Minimum height to prevent cropping */
   }
 }
 
@@ -413,11 +419,15 @@ body {
 @media (max-width: 768px) {
   .hero-section {
     height: 100vh; /* Use full viewport height on mobile */
+    height: 100dvh; /* Dynamic viewport height for better mobile support */
     padding-top: 5rem; /* Increased padding to prevent header overlap */
+    min-height: 600px; /* Minimum height to prevent excessive cropping */
   }
 
   .slider-row {
     height: calc(100vh - 5rem); /* Ensure proper height calculation */
+    height: calc(100dvh - 5rem); /* Dynamic viewport height for better mobile support */
+    min-height: calc(600px - 5rem); /* Minimum height to prevent cropping */
   }
 
   .slider-image-container {
@@ -474,11 +484,15 @@ body {
 @media (max-width: 480px) {
   .hero-section {
     height: 100vh; /* Use full viewport height */
+    height: 100dvh; /* Dynamic viewport height for better mobile support */
     padding-top: 5rem; /* Consistent padding with larger mobile */
+    min-height: 600px; /* Minimum height to prevent excessive cropping */
   }
 
   .slider-row {
     height: calc(100vh - 5rem);
+    height: calc(100dvh - 5rem); /* Dynamic viewport height for better mobile support */
+    min-height: calc(600px - 5rem); /* Minimum height to prevent cropping */
   }
 
   .slider-image-container {

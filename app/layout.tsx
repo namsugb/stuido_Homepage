@@ -34,6 +34,7 @@ export default function RootLayout({
         <meta name="twitter:description" content="순천 가족사진, 프로필, 리마인드웨딩, 증명사진 전문 스튜디오" />
         <meta name="twitter:image" content="/logo/logo.jpeg" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
       <body>
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
