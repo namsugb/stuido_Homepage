@@ -179,7 +179,7 @@ export default function Page() {
 
 
       {/* 메인 히어로 섹션 - 모던한 슬라이더 */}
-      <section className="hero-section">
+      <section className="hero-section pt-16">
         {/* 슬라이더 배경 */}
         <div className="slider-row relative h-full w-full">
           {/* 이미지/오버레이: pointer-events-none, z-0 */}
@@ -214,6 +214,13 @@ export default function Page() {
                     alt={image.alt}
                     className="w-full h-full object-cover"
                   />
+                  {/* 감성적인 문구 오버레이 */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8 text-white">
+                    <div className="text-center">
+                      <h2 className="text-2xl md:text-3xl font-bold mb-2">{image.title}</h2>
+                      <p className="text-lg md:text-xl opacity-90">{image.description}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
