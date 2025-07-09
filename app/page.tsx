@@ -18,21 +18,21 @@ export default function Page() {
     {
       src: "/slider/family-pink-portrait.jpeg",
       alt: "핑크 컨셉 가족 사진",
-      bgColor: "#f9e6e6",
+      bgColor: "#BD8181",
       title: "특별한 컨셉 촬영",
       description: "개성 있는 테마로 잊지 못할 추억을 만들어 드립니다",
     },
     {
       src: "/slider/wedding-portrait.jpeg",
       alt: "웨딩 촬영",
-      bgColor: "#e8eef5",
+      bgColor: "#A5877D",
       title: "인생의 빛나는 순간",
       description: "결혼이라는 특별한 여정의 시작을 아름답게 기록합니다",
     },
     {
       src: "/slider/traditional-family.jpeg",
       alt: "전통 한복 가족 사진",
-      bgColor: "#f5f0e8",
+      bgColor: "#FEFEFE",
       title: "소중한 가족의 순간",
       description: "세대를 아우르는 가족의 아름다운 이야기를 담습니다",
     },
@@ -207,15 +207,16 @@ export default function Page() {
               {sliderImages.map((image, index) => (
                 <div
                   key={index}
-                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"}`}
+                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "scale-100" : "opacity-0 scale-105"}`}
+                  style={{ backgroundColor: image.bgColor }}
                 >
                   <img
                     src={image.src || "/placeholder.svg"}
                     alt={image.alt}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-contain object-center"
                   />
                   {/* 감성적인 문구 오버레이 */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8 text-white">
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                     <div className="text-center">
                       <h2 className="text-2xl md:text-3xl font-bold mb-2">{image.title}</h2>
                       <p className="text-lg md:text-xl opacity-90">{image.description}</p>
@@ -228,6 +229,8 @@ export default function Page() {
 
         </div>
       </section >
+
+      <div className="w-full h-px bg-gray-200 my-8" />
 
       {/* 스튜디오 소개 섹션 */}
       < section id="about" className="py-16" >
@@ -277,10 +280,10 @@ export default function Page() {
               <Link
                 key={index}
                 href={`/products?category=${product.category}`}
-                className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
               >
                 {/* 이미지 영역 */}
-                <div className="aspect-[4/3] relative overflow-hidden">
+                <div className="w-full">
                   <img
                     src={product.image}
                     alt={product.title}
@@ -288,7 +291,7 @@ export default function Page() {
                   />
                 </div>
                 {/* 정보 영역 - 이미지 하단 */}
-                <div className="p-3 md:p-4">
+                <div className="p-3 md:p-4 flex-1 flex flex-col justify-end">
                   <h3 className="text-sm md:text-lg font-bold mb-2 text-gray-900">{product.title}</h3>
                   <p className="text-xs md:text-sm text-gray-600 leading-relaxed line-clamp-3">{product.description}</p>
                 </div>
