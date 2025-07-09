@@ -13,6 +13,11 @@ export default function Page() {
   const [firstImageLoaded, setFirstImageLoaded] = useState(false)
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
   const imagesLoadedCountRef = useRef(0)
+  const [showEventPopup, setShowEventPopup] = useState(false);
+
+  useEffect(() => {
+    setShowEventPopup(true);
+  }, []);
 
   const sliderImages = [
     {
@@ -32,7 +37,7 @@ export default function Page() {
     {
       src: "/slider/traditional-family.jpeg",
       alt: "전통 한복 가족 사진",
-      bgColor: "#FEFEFE",
+      bgColor: "#D8DCE7",
       title: "소중한 가족의 순간",
       description: "세대를 아우르는 가족의 아름다운 이야기를 담습니다",
     },
@@ -177,6 +182,27 @@ export default function Page() {
   return (
     <div className="relative min-h-screen bg-white">
 
+      {/* 이벤트 팝업 모달 */}
+      {showEventPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-lg shadow-lg p-8 max-w-xs w-full relative animate-fade-in">
+            <button
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl"
+              onClick={() => setShowEventPopup(false)}
+              aria-label="팝업 닫기"
+            >
+              ×
+            </button>
+            <h3 className="text-xl font-bold mb-4 text-center">🎉 이벤트 안내</h3>
+            <p className="text-gray-700 text-center mb-2">
+              6월 한정! 모든 촬영 예약 고객님께<br />
+              <span className="font-semibold text-[#bfa888]">고급 액자 무료 증정</span> 이벤트 진행 중입니다.<br />
+              지금 바로 예약하고 혜택을 받아보세요!
+            </p>
+          </div>
+        </div>
+      )}
+
 
       {/* 메인 히어로 섹션 - 모던한 슬라이더 */}
       <section className="hero-section">
@@ -238,7 +264,7 @@ export default function Page() {
           <h2 className="mb-8 text-3xl font-bold text-center">상품 소개</h2>
 
           {/* 그리드 기반 카드 레이아웃 */}
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-2 gap-y-8">
             {[
               {
                 title: "가족사진",
@@ -292,7 +318,8 @@ export default function Page() {
               <Link
                 key={index}
                 href={`/products?category=${product.category}`}
-                className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col w-full"
+              >
                 {/* 이미지 영역 */}
                 <div className="w-full aspect-[2/3]">
                   <img
@@ -302,9 +329,9 @@ export default function Page() {
                   />
                 </div>
                 {/* 정보 영역 */}
-                <div className="p-3 md:p-4">
-                  <h3 className="text-sm md:text-lg font-bold mb-2 text-gray-900">{product.title}</h3>
-                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed line-clamp-3">{product.description}</p>
+                <div className="p-2 md:p-3">
+                  <h3 className="text-xs md:text-base font-bold mb-1 text-gray-900">{product.title}</h3>
+                  <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed line-clamp-3">{product.description}</p>
                 </div>
               </Link>
             ))}
@@ -315,7 +342,7 @@ export default function Page() {
       <div className="w-full h-px bg-gray-200 my-32" />
 
       {/* 갤러리 섹션 */}
-      < section id="gallery" className="bg-white py-20" >
+      < section id="gallery" className="bg-white" >
         <div className="container mx-auto px-6">
           <h2 className="mb-12 text-center text-3xl font-bold text-black">갤러리</h2>
 
