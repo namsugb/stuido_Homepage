@@ -18,7 +18,7 @@ export default function Page() {
     {
       src: "/slider/family-pink-portrait.jpeg",
       alt: "핑크 컨셉 가족 사진",
-      bgColor: "#BD8181",
+      bgColor: "#CECFCF",
       title: "특별한 컨셉 촬영",
       description: "개성 있는 테마로 잊지 못할 추억을 만들어 드립니다",
     },
@@ -230,15 +230,15 @@ export default function Page() {
         </div>
       </section >
 
-      <div className="w-full h-px bg-gray-200 my-8" />
+      <div className="w-full h-px bg-gray-200 my-32" />
 
       {/* 스튜디오 소개 섹션 */}
-      < section id="about" className="py-16" >
+      <section id="about">
         <div className="container mx-auto px-2">
           <h2 className="mb-8 text-3xl font-bold text-center">상품 소개</h2>
 
           {/* 그리드 기반 카드 레이아웃 */}
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3">
             {[
               {
                 title: "가족사진",
@@ -253,16 +253,16 @@ export default function Page() {
                 category: "wedding",
               },
               {
-                title: "장수기념",
-                description: "할머니, 할아버지의 특별한 순간을 아름답게 기록합니다.",
-                image: "/product/senior-hanbok-new.jpeg",
-                category: "longevity",
-              },
-              {
                 title: "칠순/팔순",
                 description: "소중한 분의 생신을 기념하는 특별한 촬영을 진행합니다.",
                 image: "/product/hanbok-couple-new.jpeg",
                 category: "celebration",
+              },
+              {
+                title: "장수기념",
+                description: "할머니, 할아버지의 특별한 순간을 아름답게 기록합니다.",
+                image: "/product/senior-hanbok-new.jpeg",
+                category: "longevity",
               },
               {
                 title: "증명사진",
@@ -276,22 +276,33 @@ export default function Page() {
                 image: "/product/profile-photo-new.jpeg",
                 category: "profile",
               },
+              {
+                title: "복원",
+                description: "오래된 사진을 현대적인 기술로 복원하여 소중한 추억을 되살려드립니다.",
+                image: "/product/restoration.jpg",
+                category: "restoration",
+              },
+              {
+                title: "우정",
+                description: "친구들과의 특별한 순간을 아름답게 기록하여 평생의 추억을 만들어드립니다.",
+                image: "/product/friendship.jpg",
+                category: "friendship",
+              },
             ].map((product, index) => (
               <Link
                 key={index}
                 href={`/products?category=${product.category}`}
-                className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col"
-              >
+                className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 {/* 이미지 영역 */}
-                <div className="w-full">
+                <div className="w-full aspect-[2/3]">
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                {/* 정보 영역 - 이미지 하단 */}
-                <div className="p-3 md:p-4 flex-1 flex flex-col justify-end">
+                {/* 정보 영역 */}
+                <div className="p-3 md:p-4">
                   <h3 className="text-sm md:text-lg font-bold mb-2 text-gray-900">{product.title}</h3>
                   <p className="text-xs md:text-sm text-gray-600 leading-relaxed line-clamp-3">{product.description}</p>
                 </div>
@@ -301,7 +312,7 @@ export default function Page() {
         </div>
       </section >
 
-      <div className="w-full h-px bg-gray-200 my-8" />
+      <div className="w-full h-px bg-gray-200 my-32" />
 
       {/* 갤러리 섹션 */}
       < section id="gallery" className="bg-white py-20" >
