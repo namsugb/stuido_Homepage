@@ -13,11 +13,24 @@ export default function Page() {
   const [firstImageLoaded, setFirstImageLoaded] = useState(false)
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
   const imagesLoadedCountRef = useRef(0)
+  // 이벤트 팝업 상태
   const [showEventPopup, setShowEventPopup] = useState(false);
+  const [dontShowAgain, setDontShowAgain] = useState(false);
 
   useEffect(() => {
-    setShowEventPopup(true);
+    // localStorage에서 "다시 보지 않기" 상태 확인
+    const hidePopup = localStorage.getItem('hideEventPopup');
+    if (!hidePopup) {
+      setShowEventPopup(true);
+    }
   }, []);
+
+  const handleClosePopup = () => {
+    if (dontShowAgain) {
+      localStorage.setItem('hideEventPopup', 'true');
+    }
+    setShowEventPopup(false);
+  };
 
   const sliderImages = [
     {
@@ -185,20 +198,44 @@ export default function Page() {
       {/* 이벤트 팝업 모달 */}
       {showEventPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="bg-white rounded-lg shadow-lg p-8 max-w-xs w-full relative animate-fade-in">
+          <div className="bg-white rounded-lg shadow-lg p-10 max-w-lg w-full relative animate-fade-in">
             <button
               className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl"
-              onClick={() => setShowEventPopup(false)}
+              onClick={handleClosePopup}
               aria-label="팝업 닫기"
             >
               ×
             </button>
+            <div className="flex justify-center mb-4">
+              <img src="/image.png" alt="가족사진 특별 이벤트 안내 이미지" className="max-w-full h-auto rounded-md" />
+            </div>
             <h3 className="text-xl font-bold mb-4 text-center">🎉 이벤트 안내</h3>
-            <p className="text-gray-700 text-center mb-2">
+            <p className="text-gray-700 text-center mb-4">
               6월 한정! 모든 촬영 예약 고객님께<br />
               <span className="font-semibold text-[#bfa888]">고급 액자 무료 증정</span> 이벤트 진행 중입니다.<br />
               지금 바로 예약하고 혜택을 받아보세요!
             </p>
+            <div className="flex items-center justify-center mb-4">
+              <input
+                type="checkbox"
+                id="dontShowAgain"
+                checked={dontShowAgain}
+                onChange={(e) => setDontShowAgain(e.target.checked)}
+                className="mr-2 w-4 h-4 text-[#bfa888] border-gray-300 rounded focus:ring-[#bfa888] focus:ring-2"
+              />
+              <label htmlFor="dontShowAgain" className="text-sm text-gray-600">
+                다시 보지 않기
+              </label>
+            </div>
+            <div className="text-center">
+              <Link
+                href="/events"
+                className="inline-block bg-[#bfa888] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#a89a7a] transition-colors duration-200"
+                onClick={handleClosePopup}
+              >
+                이벤트 자세히 보기
+              </Link>
+            </div>
           </div>
         </div>
       )}
@@ -302,12 +339,12 @@ export default function Page() {
                 image: "/product/profile-photo-new.jpeg",
                 category: "profile",
               },
-              {
-                title: "복원",
-                description: "오래된 사진을 현대적인 기술로 복원하여 소중한 추억을 되살려드립니다.",
-                image: "/product/restoration.jpg",
-                category: "restoration",
-              },
+              // {
+              //   title: "복원",
+              //   description: "오래된 사진을 현대적인 기술로 복원하여 소중한 추억을 되살려드립니다.",
+              //   image: "/product/restoration.jpg",
+              //   category: "restoration",
+              // },
               {
                 title: "우정",
                 description: "친구들과의 특별한 순간을 아름답게 기록하여 평생의 추억을 만들어드립니다.",
