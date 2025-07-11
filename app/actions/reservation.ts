@@ -8,7 +8,7 @@ export type ReservationFormData = {
   phone: string
   date: string
   time: string
-  shootingType: string
+  shootingType: string[]
   people: string
   message: string
   referall_source: string
@@ -51,7 +51,7 @@ export async function submitReservation(formData: ReservationFormData) {
           phone: formData.phone,
           date: formData.date,
           time: formData.time,
-          shooting_type: formData.shootingType,
+          shooting_type: formData.shootingType.join(','), // shootingType를 문자열로 변환하여 저장
           people: Number.parseInt(formData.people),
           message: formData.message || null,
           status: "신규문의",
@@ -74,7 +74,7 @@ export async function submitReservation(formData: ReservationFormData) {
       phone: formData.phone,
       date: formData.date,
       time: formData.time,
-      shootingType: formData.shootingType,
+      shootingType: formData.shootingType.join(','), // shootingType를 문자열로 변환하여 전달
       people: Number.parseInt(formData.people),
     });
 
@@ -121,7 +121,7 @@ export async function addReservation(formData: any) {
           phone: formData.phone,
           date: formData.date,
           time: formData.time,
-          shooting_type: formData.shootingType,
+          shooting_type: formData.shootingType.join(','), // shootingType를 문자열로 변환하여 저장
           people: Number.parseInt(formData.people),
           message: formData.message || null,
           memo: formData.memo || null,

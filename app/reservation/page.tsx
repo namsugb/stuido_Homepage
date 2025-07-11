@@ -12,7 +12,7 @@ export default function ReservationPage() {
     phone: "",
     date: "",
     time: "",
-    shootingType: "가족 사진",
+    shootingType: [] as string[],
     people: "",
     message: "",
     referall_source: "홈페이지",
@@ -40,6 +40,21 @@ export default function ReservationPage() {
     }
   }
 
+  // 체크박스 변경 핸들러
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      shootingType: checked
+        ? [...prev.shootingType, value]
+        : prev.shootingType.filter((type) => type !== value)
+    }))
+    // 서버 에러 메시지 제거
+    if (serverError) {
+      setServerError(null)
+    }
+  }
+
   // 폼 유효성 검사
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
@@ -50,6 +65,7 @@ export default function ReservationPage() {
 
     if (!formData.date) newErrors.date = "날짜를 선택해주세요"
     if (!formData.time) newErrors.time = "시간을 선택해주세요"
+    if (formData.shootingType.length === 0) newErrors.shootingType = "촬영 유형을 선택해주세요"
     if (!formData.people) newErrors.people = "인원 수를 입력해주세요"
 
     setErrors(newErrors)
@@ -78,7 +94,7 @@ export default function ReservationPage() {
           phone: "",
           date: "",
           time: "",
-          shootingType: "",
+          shootingType: [],
           people: "",
           message: "",
           referall_source: "홈페이지",
@@ -96,10 +112,13 @@ export default function ReservationPage() {
 
   // 촬영 유형 옵션
   const shootingTypes = [
-    { value: "가족 사진", label: "가족 사진" },
-    { value: "웨딩 / 리마인드 웨딩", label: "웨딩 / 리마인드 웨딩" },
-    { value: "칠순 / 팔순 잔치", label: "칠순 / 팔순 잔치" },
-    { value: "프로필 / 증명사진", label: "프로필 / 증명사진" },
+    { value: "가족사진", label: "가족사진" },
+    { value: "리마인드웨딩", label: "리마인드웨딩" },
+    { value: "칠순팔순", label: "칠순팔순" },
+    { value: "장수기념", label: "장수기념" },
+    { value: "증명", label: "증명" },
+    { value: "프로필", label: "프로필" },
+    { value: "우정사진", label: "우정사진" },
   ]
 
   // 예약 가능 시간 옵션
@@ -252,23 +271,26 @@ export default function ReservationPage() {
                 </div>
 
                 {/* 촬영 유형 */}
-                <div>
-                  <label htmlFor="shootingType" className="block text-sm font-medium text-gray-700 mb-1">
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
                     촬영 유형 <span className="text-red-500">*</span>
                   </label>
-                  <select
-                    id="shootingType"
-                    name="shootingType"
-                    value={formData.shootingType}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#bfa888]"
-                  >
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {shootingTypes.map((type) => (
-                      <option key={type.value} value={type.value}>
-                        {type.label}
-                      </option>
+                      <label key={type.value} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="shootingType"
+                          value={type.value}
+                          checked={formData.shootingType.includes(type.value)}
+                          onChange={handleCheckboxChange}
+                          className="h-4 w-4 text-[#bfa888] focus:ring-[#bfa888] border-gray-300 rounded"
+                        />
+                        <span className="ml-2 text-sm text-gray-700">{type.label}</span>
+                      </label>
                     ))}
-                  </select>
+                  </div>
+                  {errors.shootingType && <p className="mt-1 text-sm text-red-500">{errors.shootingType}</p>}
                 </div>
 
                 {/* 인원 수 */}

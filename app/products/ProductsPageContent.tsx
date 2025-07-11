@@ -9,6 +9,7 @@ export default function ProductsPageContent() {
     const searchParams = useSearchParams();
     const initialCategory = searchParams.get("category") || "family";
     const [activeCategory, setActiveCategory] = useState(initialCategory);
+    const [activeTab, setActiveTab] = useState("individual"); // "package" 또는 "individual"
 
     useEffect(() => {
         setActiveCategory(initialCategory);
@@ -236,118 +237,146 @@ export default function ProductsPageContent() {
                     </p>
                 </div>
 
-                {/* 패키지지 상품 섹션 */}
-                <div className="mb-16 bg-white py-1 rounded-lg shadow-sm">
-                    <h2 className="text-2xl my-5 py-5 font-bold mb-6 text-center">패키지 상품</h2>
-                    <div className="grid grid-cols-2 gap-2 mb-16 pb-8 px-3">
-                        {premiumProducts.map((product) => (
-                            <div key={product.id} className="bg-white shadow-lg overflow-hidden relative group flex flex-col">
-                                {/* 이미지 영역 */}
-                                <div className="aspect-[4/3] overflow-hidden">
-                                    <img
-                                        src={product.image}
-                                        alt={product.title}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                    />
-                                </div>
-                                {/* 하단 정보 영역 - 사진 바깥 */}
-                                <div className="p-3 bg-white">
-                                    <div className="text-center">
-                                        <div className="text-lg md:text-xl font-semibold mb-1 text-gray-800">{product.title}</div>
-                                        <div className="text-xs md:text-sm text-gray-600 mb-1">
-                                            {product.features && product.features.length > 0 && product.features.join(", ")}
-                                        </div>
-                                        <div className="text-sm md:text-lg font-bold text-red-600">{product.price}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                {/* 카테고리 버튼 */}
+                <div className="flex justify-center mb-12">
+                    <div className="flex bg-gray-100 rounded-lg p-1">
+                        <button
+                            onClick={() => setActiveTab("individual")}
+                            className={`px-8 py-3 rounded-md font-medium transition-all duration-200 ${activeTab === "individual"
+                                ? "bg-white text-[#bfa888] shadow-md"
+                                : "text-gray-600 hover:text-gray-800"
+                                }`}
+                        >
+                            개별상품
+                        </button>
+                        <button
+                            onClick={() => setActiveTab("package")}
+                            className={`px-8 py-3 rounded-md font-medium transition-all duration-200 ${activeTab === "package"
+                                ? "bg-white text-[#bfa888] shadow-md"
+                                : "text-gray-600 hover:text-gray-800"
+                                }`}
+                        >
+                            패키지상품
+                        </button>
                     </div>
                 </div>
 
-                {/* 개별 상품품 섹션 */}
-                <div className="mb-16 bg-white rounded-lg shadow-sm">
-                    <h2 className="text-2xl mt-16 pt-5 font-bold mb-6 text-center">개별 상품</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 pb-8 px-3">
-                        {/* 데스크탑(768px 이상)에서는 모든 상품(가로+세로형) 3열 그리드에 렌더링 */}
-                        <div className="hidden md:contents">
-                            {[...horizontalProducts, ...verticalProducts].map((product) => (
-                                <div key={product.id} className="bg-white shadow-md overflow-hidden relative group flex flex-col">
+                {/* 개별 상품 섹션 */}
+                {activeTab === "individual" && (
+                    <div className="mb-16 bg-white rounded-lg shadow-sm">
+                        <h2 className="text-2xl font-bold mb-6 text-center">개별 상품</h2>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 pb-8 px-3">
+                            {/* 데스크탑(768px 이상)에서는 모든 상품(가로+세로형) 3열 그리드에 렌더링 */}
+                            <div className="hidden md:contents">
+                                {[...horizontalProducts, ...verticalProducts].map((product) => (
+                                    <div key={product.id} className="bg-white shadow-md overflow-hidden relative group flex flex-col">
+                                        {/* 이미지 영역 */}
+                                        <div className={`overflow-hidden ${verticalProductIds.includes(product.id) ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
+                                            <img
+                                                src={product.image}
+                                                alt={product.title}
+                                                className={`w-full h-full ${product.id === 7 ? 'object-cover' : verticalProductIds.includes(product.id) ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300 bg-white`}
+                                            />
+                                        </div>
+                                        {/* 하단 정보 영역 - 사진 바깥 */}
+                                        <div className="p-2 bg-white">
+                                            <div className="text-center">
+                                                <div className="text-sm md:text-base font-semibold mb-1 text-gray-800">{product.title}</div>
+                                                <div className="text-xs md:text-sm font-bold text-red-600 mb-1">{product.price}</div>
+                                                <div className="text-xs text-gray-600">
+                                                    {product.features && product.features.length > 0 && product.features.join(", ")}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            {/* 모바일(768px 미만)에서는 가로형 상품만 2열 그리드에, 세로형 상품은 아래 2x2 그리드에 렌더링 */}
+                            <div className="block md:hidden w-full col-span-2">
+                                <div className="grid grid-cols-2 gap-2">
+                                    {horizontalProducts.map((product) => (
+                                        <div key={product.id} className="bg-white shadow-md overflow-hidden relative group flex flex-col">
+                                            {/* 이미지 영역 */}
+                                            <div className="aspect-[4/3] overflow-hidden">
+                                                <img
+                                                    src={product.image}
+                                                    alt={product.title}
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                />
+                                            </div>
+                                            {/* 하단 정보 영역 - 사진 바깥 */}
+                                            <div className="p-2 bg-white">
+                                                <div className="text-center">
+                                                    <div className="text-sm font-semibold mb-1 text-gray-800">{product.title}</div>
+                                                    <div className="text-sm font-bold text-red-600 mb-1">{product.price}</div>
+                                                    <div className="text-xs text-gray-600">
+                                                        {product.features && product.features.length > 0 && product.features.join(", ")}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                {/* 세로형 상품은 별도의 2x2 그리드로 렌더링 */}
+                                <div className="grid grid-cols-2 gap-2 mt-2">
+                                    {verticalProducts.map((product) => (
+                                        <div key={product.id} className="bg-white shadow-md overflow-hidden relative group flex flex-col">
+                                            {/* 이미지 영역 */}
+                                            <div className="aspect-[3/4] overflow-hidden">
+                                                <img
+                                                    src={product.image}
+                                                    alt={product.title}
+                                                    className={`w-full h-full ${product.id === 7 ? 'object-cover' : 'object-contain'} group-hover:scale-105 transition-transform duration-300 bg-white`}
+                                                />
+                                            </div>
+                                            {/* 하단 정보 영역 - 사진 바깥 */}
+                                            <div className="p-2 bg-white">
+                                                <div className="text-center">
+                                                    <div className="text-sm font-semibold mb-1 text-gray-800">{product.title}</div>
+                                                    <div className="text-sm font-bold text-red-600 mb-1">{product.price}</div>
+                                                    <div className="text-xs text-gray-600">
+                                                        {product.features && product.features.length > 0 && product.features.join(", ")}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* 패키지 상품 섹션 */}
+                {activeTab === "package" && (
+                    <div className="mb-16 bg-white py-1 rounded-lg shadow-sm">
+                        <h2 className="text-2xl font-bold mb-6 text-center">패키지 상품</h2>
+                        <div className="grid grid-cols-2 gap-2 mb-16 pb-8 px-3">
+                            {premiumProducts.map((product) => (
+                                <div key={product.id} className="bg-white shadow-lg overflow-hidden relative group flex flex-col">
                                     {/* 이미지 영역 */}
-                                    <div className={`overflow-hidden ${verticalProductIds.includes(product.id) ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}>
+                                    <div className="aspect-[4/3] overflow-hidden">
                                         <img
                                             src={product.image}
                                             alt={product.title}
-                                            className={`w-full h-full ${product.id === 7 ? 'object-cover' : verticalProductIds.includes(product.id) ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300 bg-white`}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                         />
                                     </div>
                                     {/* 하단 정보 영역 - 사진 바깥 */}
-                                    <div className="p-2 bg-white">
+                                    <div className="p-3 bg-white">
                                         <div className="text-center">
-                                            <div className="text-sm md:text-base font-semibold mb-1 text-gray-800">{product.title}</div>
-                                            <div className="text-xs md:text-sm font-bold text-red-600 mb-1">{product.price}</div>
-                                            <div className="text-xs text-gray-600">
+                                            <div className="text-lg md:text-xl font-semibold mb-1 text-gray-800">{product.title}</div>
+                                            <div className="text-xs md:text-sm text-gray-600 mb-1">
                                                 {product.features && product.features.length > 0 && product.features.join(", ")}
                                             </div>
+                                            <div className="text-sm md:text-lg font-bold text-red-600">{product.price}</div>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        {/* 모바일(768px 미만)에서는 가로형 상품만 2열 그리드에, 세로형 상품은 아래 2x2 그리드에 렌더링 */}
-                        <div className="block md:hidden w-full col-span-2">
-                            <div className="grid grid-cols-2 gap-2">
-                                {horizontalProducts.map((product) => (
-                                    <div key={product.id} className="bg-white shadow-md overflow-hidden relative group flex flex-col">
-                                        {/* 이미지 영역 */}
-                                        <div className="aspect-[4/3] overflow-hidden">
-                                            <img
-                                                src={product.image}
-                                                alt={product.title}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                            />
-                                        </div>
-                                        {/* 하단 정보 영역 - 사진 바깥 */}
-                                        <div className="p-2 bg-white">
-                                            <div className="text-center">
-                                                <div className="text-sm font-semibold mb-1 text-gray-800">{product.title}</div>
-                                                <div className="text-sm font-bold text-red-600 mb-1">{product.price}</div>
-                                                <div className="text-xs text-gray-600">
-                                                    {product.features && product.features.length > 0 && product.features.join(", ")}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            {/* 세로형 상품은 별도의 2x2 그리드로 렌더링 */}
-                            <div className="grid grid-cols-2 gap-2 mt-2">
-                                {verticalProducts.map((product) => (
-                                    <div key={product.id} className="bg-white shadow-md overflow-hidden relative group flex flex-col">
-                                        {/* 이미지 영역 */}
-                                        <div className="aspect-[3/4] overflow-hidden">
-                                            <img
-                                                src={product.image}
-                                                alt={product.title}
-                                                className={`w-full h-full ${product.id === 7 ? 'object-cover' : 'object-contain'} group-hover:scale-105 transition-transform duration-300 bg-white`}
-                                            />
-                                        </div>
-                                        {/* 하단 정보 영역 - 사진 바깥 */}
-                                        <div className="p-2 bg-white">
-                                            <div className="text-center">
-                                                <div className="text-sm font-semibold mb-1 text-gray-800">{product.title}</div>
-                                                <div className="text-sm font-bold text-red-600 mb-1">{product.price}</div>
-                                                <div className="text-xs text-gray-600">
-                                                    {product.features && product.features.length > 0 && product.features.join(", ")}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
                     </div>
-                </div>
+                )}
 
             </main >
             <footer className="bg-[#333] py-8 text-white">

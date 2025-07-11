@@ -29,23 +29,20 @@ const galleryData = {
     { src: "/main_gallery/family/[크기변환]004A0344_(2).jpg", alt: "가족사진 19", category: "family" },
 
     // id
+    { src: "/main_gallery/id/id04.jpg", alt: "증명사진 4", category: "id" },
     { src: "/main_gallery/id/id01.jpg", alt: "증명사진 1", category: "id" },
     { src: "/main_gallery/id/id02.jpg", alt: "증명사진 2", category: "id" },
-    { src: "/main_gallery/id/id03.jpg", alt: "증명사진 3", category: "id" },
-    { src: "/main_gallery/id/id04.jpg", alt: "증명사진 4", category: "id" },
-    { src: "/main_gallery/id/id05.jpg", alt: "증명사진 5", category: "id" },
-    { src: "/main_gallery/id/id06.jpg", alt: "증명사진 6", category: "id" },
     { src: "/main_gallery/id/id07.jpg", alt: "증명사진 7", category: "id" },
     { src: "/main_gallery/id/id08.jpg", alt: "증명사진 8", category: "id" },
     { src: "/main_gallery/id/id09.jpg", alt: "증명사진 9", category: "id" },
     { src: "/main_gallery/id/id10.jpg", alt: "증명사진 10", category: "id" },
     { src: "/main_gallery/id/id11.jpg", alt: "증명사진 11", category: "id" },
+    { src: "/main_gallery/id/id06.jpg", alt: "증명사진 6", category: "id" },
 
     // long
     { src: "/main_gallery/long/long01.jpg", alt: "장수사진 1", category: "longevity" },
     { src: "/main_gallery/long/long02.jpg", alt: "장수사진 2", category: "longevity" },
     { src: "/main_gallery/long/long03.jpg", alt: "장수사진 3", category: "longevity" },
-    { src: "/main_gallery/long/long04.jpg", alt: "장수사진 4", category: "longevity" },
     { src: "/main_gallery/long/long05.jpg", alt: "장수사진 5", category: "longevity" },
 
     // profile

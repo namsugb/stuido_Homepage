@@ -45,7 +45,7 @@ export default function Page() {
       alt: "웨딩 촬영",
       bgColor: "#A5877D",
       title: "인생의 빛나는 순간",
-      description: "결혼이라는 특별한 여정의 시작을 아름답게 기록합니다",
+      description: "결혼의 소중한 순간을 다시 한번 아름답게 기록하여 특별한 추억을 만들어 드립니다.",
     },
     {
       src: "/slider/traditional-family.jpeg",
@@ -211,8 +211,8 @@ export default function Page() {
             </div>
             <h3 className="text-xl font-bold mb-4 text-center">🎉 이벤트 안내</h3>
             <p className="text-gray-700 text-center mb-4">
-              6월 한정! 모든 촬영 예약 고객님께<br />
-              <span className="font-semibold text-[#bfa888]">고급 액자 무료 증정</span> 이벤트 진행 중입니다.<br />
+              선착순 30명! 촬영 예약 고객님께<br />
+              <span className="font-semibold text-[#bfa888]">고급 액자 증정</span> 이벤트 진행 중입니다.<br />
               지금 바로 예약하고 혜택을 받아보세요!
             </p>
             <div className="flex items-center justify-center mb-4">
@@ -328,16 +328,16 @@ export default function Page() {
                 category: "longevity",
               },
               {
-                title: "증명사진",
-                description: "취업, 여권, 비자 등 다양한 용도의 증명사진을 전문적으로 촬영합니다.",
-                image: "/product/id-photo-new.jpeg",
-                category: "id",
-              },
-              {
                 title: "프로필",
                 description: "개인의 매력을 최대한 끌어내는 프로필 사진을 촬영합니다.",
                 image: "/product/profile-photo-new.jpeg",
                 category: "profile",
+              },
+              {
+                title: "증명사진",
+                description: "취업, 여권, 비자 등 다양한 용도의 증명사진을 전문적으로 촬영합니다.",
+                image: "/product/id-photo-new.jpeg",
+                category: "id",
               },
               // {
               //   title: "복원",
