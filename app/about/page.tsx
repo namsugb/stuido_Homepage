@@ -43,10 +43,10 @@ export default function AboutPage() {
 
                 {/* 작가 소개 섹션 */}
                 {activeTab === "photographer" && (
-                    <section className="mt-16 mb-16 flex flex-col md:flex-row items-center gap-8 md:gap-16">
-                        <div className="flex-shrink-0 w-full md:w-1/2 flex flex-col justify-center gap-4">
+                    <section className="mt-16 mb-16 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+                        <div className="flex-shrink-0 w-full md:w-1/2 flex flex-col items-center md:items-end lg:items-end justify-center">
                             <Image
-                                src="/photographer.jpg"
+                                src="/about/photographer.jpg"
                                 alt="사진작가 프로필"
                                 width={320}
                                 height={400}
@@ -82,25 +82,25 @@ export default function AboutPage() {
                 {/* 스튜디오 소개 섹션 */}
                 {activeTab === "studio" && (
                     <section className="mb-16 flex flex-col md:flex-row items-start gap-8 md:gap-16">
-                        <div className="w-full mt-16 md:w-1/2 flex flex-col justify-start items-start gap-32">
+                        <div className="w-full mt-16 md:w-1/2 flex flex-col justify-start items-end gap-8 lg:items-end">
                             <Image
-                                src="/studio-interior.jpg"
+                                src="/about/studio-interior1.jpg"
                                 alt="스튜디오 내부"
                                 width={500}
                                 height={350}
                                 className="rounded-lg shadow-md object-cover"
                             />
                             <Image
-                                src="/studio-interior.jpg"
+                                src="/about/studio-interior2.jpg"
                                 alt="스튜디오 내부"
-                                width={320}
+                                width={500}
                                 height={350}
                                 className="rounded-lg shadow-md object-cover"
                             />
                             <Image
-                                src="/studio-garden.jpg"
+                                src="/about/studio-interior3.jpg"
                                 alt="스튜디오 정원"
-                                width={320}
+                                width={500}
                                 height={350}
                                 className="rounded-lg shadow-md object-cover"
                             />
