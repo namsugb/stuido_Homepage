@@ -198,24 +198,24 @@ export default function Page() {
       {/* 이벤트 팝업 모달 */}
       {showEventPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-sm md:max-w-lg w-full relative animate-fade-in">
+          <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 max-w-sm md:max-w-lg w-full relative animate-fade-in">
             <button
-              className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-xl md:text-2xl"
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl md:text-3xl"
               onClick={handleClosePopup}
               aria-label="팝업 닫기"
             >
               ×
             </button>
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center mb-3">
               <img src="/image.png" alt="가족사진 특별 이벤트 안내 이미지" className="max-w-full h-auto rounded-md" />
             </div>
-            <h3 className="text-lg md:text-xl font-bold mb-4 text-center">🎉 이벤트 안내</h3>
-            <p className="text-sm md:text-base text-gray-700 text-center mb-4">
+            <h3 className="text-base md:text-lg font-bold mb-2 text-center">🎉 이벤트 안내</h3>
+            <p className="text-xs md:text-sm text-gray-700 text-center mb-3">
               선착순 30명! 촬영 예약 고객님께<br />
               <span className="font-semibold text-[#bfa888]">고급 액자 증정</span> 이벤트 진행 중입니다.<br />
               지금 바로 예약하고 혜택을 받아보세요!
             </p>
-            <div className="flex items-center justify-center mb-4">
+            <div className="flex items-center justify-center mb-3">
               <input
                 type="checkbox"
                 id="dontShowAgain"
@@ -223,14 +223,14 @@ export default function Page() {
                 onChange={(e) => setDontShowAgain(e.target.checked)}
                 className="mr-2 w-4 h-4 text-[#bfa888] border-gray-300 rounded focus:ring-[#bfa888] focus:ring-2"
               />
-              <label htmlFor="dontShowAgain" className="text-xs md:text-sm text-gray-600">
+              <label htmlFor="dontShowAgain" className="text-xs text-gray-600">
                 다시 보지 않기
               </label>
             </div>
             <div className="text-center">
               <Link
                 href="/events"
-                className="inline-block bg-[#bfa888] text-white px-4 md:px-6 py-2 rounded-lg text-sm md:text-base font-medium hover:bg-[#a89a7a] transition-colors duration-200"
+                className="inline-block bg-[#bfa888] text-white px-4 md:px-6 py-2 rounded-lg text-sm font-medium hover:bg-[#a89a7a] transition-colors duration-200"
                 onClick={handleClosePopup}
               >
                 이벤트 자세히 보기
