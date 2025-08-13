@@ -52,7 +52,7 @@ export default function Page() {
     },
     {
       src: "/slider/slider3_desktop.JPG",
-      srcMobile: "/slider/slider3_mobile.jpg",
+      srcMobile: "/slider/slider3_mobile.JPG",
       alt: "전통 한복 가족 사진",
       bgColor: "#D8DCE7",
       title: "소중한 가족의 순간",
@@ -356,9 +356,9 @@ export default function Page() {
 
       {/* 스튜디오 소개 섹션 */}
       <section id="about">
-        <div className="container mx-auto px-2 mt-24 mb-24">
+        <div className="container mx-auto px-2 mt-6 mb-12">
 
-          <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={200} height={200} className="mb-12 mx-auto" />
+          <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={200} height={200} className="mb-6 mx-auto" />
           <h2 className="mb-6 text-3xl text-center font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">상품 소개</h2>
           {/* <div className="flex mb-8 leading-8 tracking-normal italic text-justify flex-col items-center justify-center gap-0">
             <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={100} height={100} className=" mb-8" />
