@@ -143,7 +143,7 @@ export default function ReservationPage() {
 
           {isSubmitted ? (
             // 예약 완료 메시지
-            <div className="bg-white rounded-lg shadow-md p-8 text-center">
+            <div className="bg-card rounded-lg shadow-md p-8 text-center">
               <div className="w-20 h-20 bg-[#bfa888] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="h-10 w-10 text-white" />
               </div>
@@ -168,7 +168,7 @@ export default function ReservationPage() {
             </div>
           ) : (
             // 예약 폼
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-6 md:p-8">
+            <form onSubmit={handleSubmit} className="bg-card rounded-lg shadow-md p-6 md:p-8">
               {/* 서버 에러 메시지 표시 */}
               {serverError && (
                 <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md">

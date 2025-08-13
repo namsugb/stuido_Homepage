@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronLeft, ChevronRight, Menu, MessageCircle, Phone, Calendar, Camera, User } from "lucide-react"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 
@@ -34,21 +35,24 @@ export default function Page() {
 
   const sliderImages = [
     {
-      src: "/slider/family-pink-portrait.jpeg",
+      src: "/slider/slider1_desktop.JPG",
+      srcMobile: "/slider/slider1_mobile.JPG",
       alt: "핑크 컨셉 가족 사진",
       bgColor: "#CECFCF",
       title: "특별한 컨셉 촬영",
       description: "개성 있는 테마로 잊지 못할 추억을 만들어 드립니다",
     },
     {
-      src: "/slider/wedding-portrait.jpeg",
+      src: "/slider/slider2_desktop.JPG",
+      srcMobile: "/slider/slider2_mobile.JPG",
       alt: "웨딩 촬영",
       bgColor: "#A5877D",
       title: "인생의 빛나는 순간",
       description: "결혼의 소중한 순간을 다시 한번 아름답게 기록하여 특별한 추억을 만들어 드립니다.",
     },
     {
-      src: "/slider/traditional-family.jpeg",
+      src: "/slider/slider3_desktop.JPG",
+      srcMobile: "/slider/slider3_mobile.jpg",
       alt: "전통 한복 가족 사진",
       bgColor: "#D8DCE7",
       title: "소중한 가족의 순간",
@@ -63,35 +67,76 @@ export default function Page() {
     setImagesLoaded(false)
     setFirstImageLoaded(false)
 
-    // 모든 이미지 로드
+    // 모든 이미지 로드 (데스크탑 + 모바일)
     sliderImages.forEach((image, idx) => {
-      const img = new Image()
-      img.src = image.src
-      img.onload = () => {
-        imagesLoadedCountRef.current += 1
+      // 데스크탑 이미지 로드
+      const imgDesktop = new window.Image()
+      imgDesktop.src = image.src
+
+      // 모바일 이미지 로드
+      const imgMobile = new window.Image()
+      imgMobile.src = image.srcMobile
+
+      // 데스크탑 이미지 로드 완료 시
+      imgDesktop.onload = () => {
         if (idx === 0) {
-          // 이미지가 렌더 가능한 상태인지 다시 확인
-          if (img.complete) {
+          // 첫 번째 이미지가 로드되면 바로 표시
+          if (imgDesktop.complete) {
             requestAnimationFrame(() => {
               setFirstImageLoaded(true)
             })
           }
         }
 
-        if (imagesLoadedCountRef.current === sliderImages.length) {
-          setImagesLoaded(true)
+        // 모바일 이미지도 로드되었는지 확인
+        if (imgMobile.complete) {
+          imagesLoadedCountRef.current += 1
+          if (imagesLoadedCountRef.current === sliderImages.length) {
+            setImagesLoaded(true)
+          }
         }
       }
 
-      img.onerror = () => {
-        // 첫 번째 이미지가 에러여도 바로 표시
+      // 모바일 이미지 로드 완료 시
+      imgMobile.onload = () => {
+        if (idx === 0) {
+          // 첫 번째 이미지가 로드되면 바로 표시
+          if (imgDesktop.complete) {
+            requestAnimationFrame(() => {
+              setFirstImageLoaded(true)
+            })
+          }
+        }
+
+        // 데스크탑 이미지도 로드되었는지 확인
+        if (imgDesktop.complete) {
+          imagesLoadedCountRef.current += 1
+          if (imagesLoadedCountRef.current === sliderImages.length) {
+            setImagesLoaded(true)
+          }
+        }
+      }
+
+      // 에러 처리
+      imgDesktop.onerror = () => {
+        console.error(`Failed to load desktop image: ${image.src}`)
         if (idx === 0) setFirstImageLoaded(true)
-        // 이미지 로드 실패 시에도 카운터 증가
-        imagesLoadedCountRef.current += 1
-        console.error(`Failed to load image: ${image.src}`)
-        // 모든 이미지 처리가 완료되면 상태 업데이트
-        if (imagesLoadedCountRef.current === sliderImages.length) {
-          setImagesLoaded(true)
+        if (imgMobile.complete) {
+          imagesLoadedCountRef.current += 1
+          if (imagesLoadedCountRef.current === sliderImages.length) {
+            setImagesLoaded(true)
+          }
+        }
+      }
+
+      imgMobile.onerror = () => {
+        console.error(`Failed to load mobile image: ${image.srcMobile}`)
+        if (idx === 0) setFirstImageLoaded(true)
+        if (imgDesktop.complete) {
+          imagesLoadedCountRef.current += 1
+          if (imagesLoadedCountRef.current === sliderImages.length) {
+            setImagesLoaded(true)
+          }
         }
       }
     })
@@ -207,10 +252,16 @@ export default function Page() {
               ×
             </button>
             <div className="flex justify-center mb-3">
-              <img src="/image.png" alt="가족사진 특별 이벤트 안내 이미지" className="max-w-full h-auto rounded-md" />
+              <Image
+                src="/image.png"
+                alt="가족사진 특별 이벤트 안내 이미지"
+                width={400}
+                height={300}
+                className="max-w-full h-auto rounded-md"
+              />
             </div>
-            <h3 className="text-base md:text-lg font-bold mb-2 text-center">🎉 이벤트 안내</h3>
-            <p className="text-xs md:text-sm text-gray-700 text-center mb-3">
+            <h3 className="text-base md:text-lg font-bold mb-2 text-center font-playfair">🎉 이벤트 안내</h3>
+            <p className="text-xs md:text-sm text-gray-700 text-center mb-3 font-korean">
               선착순 30명! 촬영 예약 고객님께<br />
               <span className="font-semibold text-[#bfa888]">고급 액자 증정</span> 이벤트 진행 중입니다.<br />
               지금 바로 예약하고 혜택을 받아보세요!
@@ -273,16 +324,25 @@ export default function Page() {
                   className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? "scale-100" : "opacity-0 scale-105"}`}
                   style={{ backgroundColor: image.bgColor }}
                 >
-                  <img
+                  <Image
                     src={image.src || "/placeholder.svg"}
                     alt={image.alt}
-                    className="w-full h-full object-contain object-center"
+                    width={1920}
+                    height={1080}
+                    className="w-full h-full object-cover object-center hidden md:block"
+                  />
+                  <Image
+                    src={image.srcMobile || "/placeholder.svg"}
+                    alt={image.alt}
+                    width={768}
+                    height={1024}
+                    className="w-full h-full object-cover object-center md:hidden"
                   />
                   {/* 감성적인 문구 오버레이 */}
                   <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                     <div className="text-center">
-                      <h2 className="text-2xl md:text-3xl font-bold mb-2">{image.title}</h2>
-                      <p className="text-lg md:text-xl opacity-90">{image.description}</p>
+                      <h2 className="text-2xl md:text-3xl font-bold mb-2 font-playfair">{image.title}</h2>
+                      <p className="text-lg md:text-xl opacity-90 font-korean">{image.description}</p>
                     </div>
                   </div>
                 </div>
@@ -293,15 +353,24 @@ export default function Page() {
         </div>
       </section >
 
-      <div className="w-full h-px bg-gray-200 my-32" />
 
       {/* 스튜디오 소개 섹션 */}
       <section id="about">
-        <div className="container mx-auto px-2">
-          <h2 className="mb-8 text-3xl font-bold text-center">상품 소개</h2>
+        <div className="container mx-auto px-2 mt-24 mb-24">
+
+          <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={200} height={200} className="mb-12 mx-auto" />
+          <h2 className="mb-6 text-3xl text-center font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">상품 소개</h2>
+          {/* <div className="flex mb-8 leading-8 tracking-normal italic text-justify flex-col items-center justify-center gap-0">
+            <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={100} height={100} className=" mb-8" />
+            <h2 className="mb-8 text-3xl text-center font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">상품 소개</h2>
+          </div> */}
+          <p className="text-lg font-light font-korean mt-2 mb-12 md:text-2xl text-[#bfa888] text-center leading-relaxed text-pretty italic">
+            "아침햇살 스튜디오의 다양한 상품들을 확인해보세요".
+          </p>
+
 
           {/* 그리드 기반 카드 레이아웃 */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-2 gap-y-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-2 gap-y-2">
             {[
               {
                 title: "가족사진",
@@ -351,6 +420,12 @@ export default function Page() {
                 image: "/product/friendship.jpg",
                 category: "friendship",
               },
+              {
+                title: "",
+                description: "",
+                image: "/logo/logo.jpeg",
+                category: "wedding",
+              },
             ].map((product, index) => (
               <Link
                 key={index}
@@ -359,16 +434,18 @@ export default function Page() {
               >
                 {/* 이미지 영역 */}
                 <div className="w-full aspect-[2/3]">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.title}
+                    width={400}
+                    height={600}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 {/* 정보 영역 */}
                 <div className="p-2 md:p-3">
-                  <h3 className="text-xs md:text-base font-bold mb-1 text-gray-900">{product.title}</h3>
-                  <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed line-clamp-3">{product.description}</p>
+                  <h3 className="text-xs md:text-base font-bold mb-1 text-gray-900 font-playfair">{product.title}</h3>
+                  <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed line-clamp-3 font-korean">{product.description}</p>
                 </div>
               </Link>
             ))}
@@ -376,20 +453,25 @@ export default function Page() {
         </div>
       </section >
 
-      <div className="w-full h-px bg-gray-200 my-32" />
+      <div className="w-full h-px bg-gray-200 mt-0 mb-24" />
 
       {/* 갤러리 섹션 */}
       < section id="gallery" className="bg-white" >
         <div className="container mx-auto px-6">
-          <h2 className="mb-12 text-center text-3xl font-bold text-black">갤러리</h2>
+          <h2 className="mb-12 text-center text-3xl font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">갤러리</h2>
+          <p className="text-lg font-light font-korean mt-2 mb-12 md:text-2xl text-[#bfa888] text-center leading-relaxed text-pretty">
+            "아침햇살 스튜디오의 다양한 의상과 컨셉을 확인해보세요".
+          </p>
 
           {/* 그리드 기반 갤러리 레이아웃 */}
           <div className="gallery-grid">
             {galleryImages.slice(0, 8).map((image, index) => (
               <div key={index} className={`gallery-item ${index === 2 || index === 5 ? "span-2" : "span-1"}`}>
-                <img
+                <Image
                   src={image.src || "/placeholder.svg"}
                   alt={image.alt}
+                  width={400}
+                  height={400}
                   className="rounded-md w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -401,7 +483,7 @@ export default function Page() {
               href="/gallery"
               className="rounded-full border text-black border-black-800 px-8 py-3 font-medium transition hover:bg-gray-800 hover:text-white inline-block"
             >
-              더 많은 작품 보기
+              더 많은 의상&컨셉 보기
             </Link>
           </div>
         </div>
@@ -412,14 +494,14 @@ export default function Page() {
       {/* 고객 후기 섹션 */}
       <section className="bg-white py-20">
         <div className="container mx-auto px-6">
-          <h2 className="mb-12 text-center text-3xl font-bold">고객 후기</h2>
+          <h2 className="mb-12 text-center text-3xl font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">고객 후기</h2>
           <div className="mx-auto max-w-2xl">
             {/* 첫 번째 슬라이더: 가족/증명/프로필 */}
             {(() => {
               const reviews1 = [
                 {
                   text: "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록 배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진 결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다.",
-                  img: "/main_gallery/family/family01.jpg",
+                  img: "/main_gallery/family/[크기변환]004A0344_(2).jpg",
                   alt: "3대 가족 촬영 예시",
                   name: "김0영 고객님",
                   type: "가족 촬영"
@@ -455,7 +537,13 @@ export default function Page() {
                           <div className="mb-6 text-center">
                             <p className="mb-6 text-lg italic text-gray-600">"{review.text}"</p>
                             <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                              <img src={review.img} alt={review.alt} className="h-full w-full object-cover" />
+                              <Image
+                                src={review.img}
+                                alt={review.alt}
+                                width={64}
+                                height={64}
+                                className="h-full w-full object-cover"
+                              />
                             </div>
                             <p className="mt-2 font-medium">{review.name}</p>
                             <p className="text-sm text-gray-500">{review.type}</p>
@@ -472,7 +560,7 @@ export default function Page() {
               const reviews2 = [
                 {
                   text: "결혼 20주년 리마인드 촬영을 했는데, 처음 결혼할 때의 설렘이 다시 느껴졌어요. 작가님이 자연스럽게 이끌어주셔서 부부 모두 만족스러운 결과물을 얻었습니다.",
-                  img: "/main_gallery/remind/remind_윤혜원_(10).jpg",
+                  img: "/main_gallery/remind/[크기변환]0A8A8108-1216 디아섹_1차.JPG",
                   alt: "리마인드 촬영 예시",
                   name: "최0정 고객님",
                   type: "리마인드웨딩 촬영"
@@ -486,7 +574,7 @@ export default function Page() {
                 },
                 {
                   text: "부모님 결혼 30주년 기념으로 가족사진을 촬영했는데, 온 가족이 함께한 시간이 너무 소중하게 남았습니다. 사진도 너무 예쁘게 나와서 모두 만족했어요.",
-                  img: "/main_gallery/family/family02.jpg",
+                  img: "/main_gallery/remind/[크기변환]004A0344-1.jpg",
                   alt: "30주년 가족사진 예시",
                   name: "이0훈 고객님",
                   type: "30주년 가족사진 촬영"
@@ -508,7 +596,13 @@ export default function Page() {
                           <div className="mb-6 text-center">
                             <p className="mb-6 text-lg italic text-gray-600">"{review.text}"</p>
                             <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
-                              <img src={review.img} alt={review.alt} className="h-full w-full object-cover" />
+                              <Image
+                                src={review.img}
+                                alt={review.alt}
+                                width={64}
+                                height={64}
+                                className="h-full w-full object-cover"
+                              />
                             </div>
                             <p className="mt-2 font-medium">{review.name}</p>
                             <p className="text-sm text-gray-500">{review.type}</p>
@@ -524,14 +618,14 @@ export default function Page() {
         </div>
       </section>
 
-      <div className="w-full h-px bg-gray-200 my-8" />
+
 
       {/* 예약 안내 섹션 */}
       < section id="contact" className="bg-[#bfa888] py-20 text-white" >
         <div className="container mx-auto px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-6 text-3xl font-bold">지금 예약하세요</h2>
-            <p className="mb-8 text-lg">
+            <h2 className="mb-6 text-3xl font-light font-korean underline-offset-8 underline decoration-1 decoration-[#bfa888]">지금 예약하세요</h2>
+            <p className="mb-8 text-lg font-korean">
               소중한 순간을 아침햇살 스튜디오와 함께하세요.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -557,29 +651,29 @@ export default function Page() {
         <div className="container mx-auto px-6">
           <div className="grid gap-8 md:grid-cols-3">
             <div>
-              <h3 className="mb-4 text-lg font-bold">아침햇살 스튜디오</h3>
-              <p className="mb-2 text-sm text-gray-300">소중한 순간을 영원히</p>
-              <p className="text-sm text-gray-300">전라남도 순천시 조례동 1823-5</p>
+              <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">아침햇살 스튜디오</h3>
+              <p className="mb-2 text-sm text-gray-300 font-korean">소중한 순간을 영원히</p>
+              <p className="text-sm text-gray-300 font-korean">전라남도 순천시 조례동 1823-5</p>
             </div>
             <div>
-              <h3 className="mb-4 text-lg font-bold">연락처</h3>
-              <p className="mb-2 text-sm text-gray-300">전화: 061-721-4800</p>
-              <p className="text-sm text-gray-300">이메일: mirim0423@naver.com</p>
+              <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">연락처</h3>
+              <p className="mb-2 text-sm text-gray-300 font-korean">전화: 061-721-4800</p>
+              <p className="mb-2 text-sm text-gray-300 font-korean">이메일: mirim0423@naver.com</p>
               <div className="mt-4 flex items-center gap-3">
-                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs">예약</span>
-                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs">주차</span>
-                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs">무선 인터넷</span>
-                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs">애완동물 동반</span>
+                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs font-korean">예약</span>
+                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs font-korean">주차</span>
+                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs font-korean">무선 인터넷</span>
+                <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs font-korean">애완동물 동반</span>
               </div>
             </div>
             <div>
-              <h3 className="mb-4 text-lg font-bold">영업시간</h3>
-              <p className="mb-2 text-sm text-gray-300">평일: 10:00 - 18:30</p>
-              <p className="mb-2 text-sm text-gray-300">토요일: 10:00 - 18:30</p>
-              <p className="mb-2 text-sm text-gray-300">일요일: 예약 촬영만 진행</p>
+              <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">영업시간</h3>
+              <p className="mb-2 text-sm text-gray-300 font-korean">평일: 10:00 - 18:30</p>
+              <p className="mb-2 text-sm text-gray-300 font-korean">토요일: 10:00 - 18:30</p>
+              <p className="mb-2 text-sm text-gray-300 font-korean">일요일: 예약 촬영만 진행</p>
             </div>
           </div>
-          <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+          <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400 font-korean">
             © {new Date().getFullYear()} 아침햇살 스튜디오. All rights reserved.<br />
             대표 : 남유행, 사업자등록번호: 416-10-35417
           </div>

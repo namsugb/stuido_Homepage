@@ -1,11 +1,27 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Noto_Sans_KR, Playfair_Display, Inter } from "next/font/google"
 import "./globals.css"
 import Link from "next/link"
 import { Calendar, CalendarCheck, MessageCircleMore, Phone } from "lucide-react"
 import FloatingButtons from "@/components/FloatingButtons"
-const inter = Inter({ subsets: ["latin"] })
+
+const notoSansKR = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-noto-sans-kr"
+})
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-playfair-display"
+})
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter"
+})
 
 export const metadata: Metadata = {
   title: "아침햇살 스튜디오",
@@ -36,7 +52,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body>
+      <body className={`${notoSansKR.variable} ${playfairDisplay.variable} ${inter.variable}`}>
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">
           <div className="container mx-auto px-2">
             <div className="flex items-center justify-center py-6">
