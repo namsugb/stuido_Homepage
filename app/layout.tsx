@@ -78,7 +78,7 @@ export default function RootLayout({
                   상품소개
                 </Link>
                 <Link href="/events" className="text-gray-700 hover:text-[#bfa888] transition">
-                  이벤트
+                  이벤트🎉
                 </Link>
                 {/* <Link href="/restoration" className="text-gray-700 hover:text-[#bfa888] transition">
                   복원

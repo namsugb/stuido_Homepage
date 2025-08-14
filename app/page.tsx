@@ -339,10 +339,10 @@ export default function Page() {
                     className="w-full h-full object-cover object-center md:hidden"
                   />
                   {/* 감성적인 문구 오버레이 */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <div className="absolute top-10 left-0 right-0 p-8 text-black">
                     <div className="text-center">
-                      <h2 className="text-2xl md:text-3xl font-bold mb-2 font-playfair">{image.title}</h2>
-                      <p className="text-lg md:text-xl opacity-90 font-korean">{image.description}</p>
+                      <h2 className="text-2xl md:text-3xl mb-21 text-pretty font-serif">{image.title}</h2>
+                      <p className="text-lg md:text-xl opacity-90 text-pretty">{image.description}</p>
                     </div>
                   </div>
                 </div>

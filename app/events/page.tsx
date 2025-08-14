@@ -1,18 +1,164 @@
+'use client'
+
 import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+
+// 이벤트 타입 정의
+interface Event {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+    width: number;
+    height: number;
+}
 
 export default function EventsPage() {
+    const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showEventDetails, setShowEventDetails] = useState(false);
+
+    const events: Event[] = [
+        {
+            id: 1,
+            title: "오픈 이벤트",
+            description: "오픈 이벤트 설명",
+            image: "/event/event1.jpg",
+            width: 300,
+            height: 300,
+        },
+        {
+            id: 2,
+            title: "오픈 이벤트",
+            description: "오픈 이벤트 설명",
+            image: "/event/event2.jpg",
+            width: 300,
+            height: 300,
+        }
+    ];
+
+    const openModal = (event: Event) => {
+        setSelectedEvent(event);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedEvent(null);
+    };
+
+    const toggleEventDetails = () => {
+        setShowEventDetails(!showEventDetails);
+    };
+
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        };
+
+        if (isModalOpen) {
+            document.addEventListener('keydown', handleEscape);
+            return () => document.removeEventListener('keydown', handleEscape);
+        }
+    }, [isModalOpen]);
+
     return (
-        <div className="min-h-screen mt-20 bg-[#f8f8f6]">
-            <div className="container mx-auto px-6 py-10 flex justify-center">
-                <img src="/event/events.jpg" alt="이벤트" className="w-full max-w-4xl h-auto object-contain" />
+        <div className="min-h-screen bg-white">
+
+            {/* 이벤트 카드 섹션 */}
+            <section id="events" className="mt-32">
+                <h1 className="text-3xl font-light text-center font-noto mb-4"> 🎉 진행중인 이벤트 🎉</h1>
+                <p className="text-sm font-light text-center font-noto mb-8"> 이벤트에 참여해 가족들과 행복한 시간을 기록해보세요!</p>
+                <div className="mx-auto px-4 my-4">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+                        {/* 이벤트 카드 데이터 반복 */}
+                        {events.map((event) => (
+                            <div key={event.id} className="bg-white shadow-md rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                                <div className="w-full h-48" onClick={() => openModal(event)}>
+                                    <Image
+                                        src={event.image}
+                                        alt={event.title}
+                                        width={event.width}
+                                        height={event.height}
+                                        className="w-full h-full object-fill rounded-lg hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 이벤트 내용 자세히 보기 버튼 */}
+            <div className="text-center mt-12 mb-8">
+                <button
+                    onClick={toggleEventDetails}
+                    className="bg-[#bfa888] text-white px-8 py-3 rounded-full font-medium hover:bg-[#a89a7a] transition-colors duration-200 flex items-center mx-auto gap-2"
+                >
+                    {showEventDetails ? '이벤트 내용 접기' : '이벤트 내용 자세히 보기'}
+                    <svg
+                        className={`w-5 h-5 transition-transform duration-200 ${showEventDetails ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
             </div>
+
+            {/* 이벤트 이미지 - 접기/펼치기 기능 */}
+            {showEventDetails && (
+                <div className="container mx-auto px-6 py-10 flex justify-center animate-fade-in">
+                    <img src="/event/events.jpg" alt="이벤트" className="w-full max-w-4xl h-auto object-contain" />
+                </div>
+            )}
+
+            {/* 이미지 모달 */}
+            {isModalOpen && selectedEvent && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={closeModal}>
+                    <div className="relative max-w-4xl max-h-[90vh] bg-white rounded-lg overflow-hidden" onClick={(e) => e.stopPropagation()}>
+                        {/* 닫기 버튼 */}
+                        <button
+                            onClick={closeModal}
+                            className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-white rounded-full p-2 text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
+                        {/* 이미지 */}
+                        <div className="relative">
+                            <Image
+                                src={selectedEvent.image}
+                                alt={selectedEvent.title}
+                                width={800}
+                                height={600}
+                                className="w-full h-auto object-contain"
+                            />
+                        </div>
+
+                        {/* 이벤트 정보 */}
+                        <div className="p-6 bg-white">
+                            <h2 className="text-2xl font-bold mb-3 text-gray-900">{selectedEvent.title}</h2>
+                            <p className="text-gray-600 leading-relaxed">{selectedEvent.description}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
             {/* 예약 안내 섹션 */}
-            < section id="contact" className="bg-[#bfa888] py-20 text-white" >
+            < section id="contact" className="bg-[#bfa888] mt-20 py-20 text-white" >
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-3xl text-center">
-                        <h2 className="mb-6 text-3xl font-bold">지금 예약하세요</h2>
+                        <h2 className="mb-6 text-3xl font-thin font-noto">궁금한 사항이 있으신가요?</h2>
                         <p className="mb-8 text-lg">
-                            소중한 순간을 아침햇살 스튜디오와 함께하세요.
+                            편하게 문의 하세요!
                         </p>
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                             <a
