@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- 메인 페이지 -->
+  <url>
+    <loc>https://achimhaessal.kr/</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://achimhaessal.kr/slider/slider1_desktop.jpeg</image:loc>
+      <image:caption>아침햇살 스튜디오 대표 작품 - 가족사진</image:caption>
+      <image:title>가족사진 촬영</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://achimhaessal.kr/slider/slider2_desktop.jpeg</image:loc>
+      <image:caption>아침햇살 스튜디오 프로필사진</image:caption>
+      <image:title>프로필사진 촬영</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://achimhaessal.kr/slider/slider3_desktop.jpeg</image:loc>
+      <image:caption>아침햇살 스튜디오 리마인드웨딩</image:caption>
+      <image:title>리마인드웨딩 촬영</image:title>
+    </image:image>
+  </url>
+
+  <!-- 소개 페이지 -->
+  <url>
+    <loc>https://achimhaessal.kr/about</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://achimhaessal.kr/about/studio-interior1.jpg</image:loc>
+      <image:caption>아침햇살 스튜디오 내부</image:caption>
+      <image:title>스튜디오 시설</image:title>
+    </image:image>
+  </url>
+
+  <!-- 갤러리 페이지 -->
+  <url>
+    <loc>https://achimhaessal.kr/gallery</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://achimhaessal.kr/main_gallery/family/[크기변환]004A0344_(2).jpg</image:loc>
+      <image:caption>가족사진 갤러리</image:caption>
+      <image:title>가족사진 작품</image:title>
+    </image:image>
+  </url>
+
+  <!-- 상품소개 페이지 -->
+  <url>
+    <loc>https://achimhaessal.kr/products</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://achimhaessal.kr/main_product/big-family-package.jpg</image:loc>
+      <image:caption>가족사진 패키지 상품</image:caption>
+      <image:title>촬영 패키지</image:title>
+    </image:image>
+  </url>
+
+  <!-- 이벤트 페이지 -->
+  <url>
+    <loc>https://achimhaessal.kr/events</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://achimhaessal.kr/event/event1.jpg</image:loc>
+      <image:caption>진행중인 이벤트</image:caption>
+      <image:title>스튜디오 이벤트</image:title>
+    </image:image>
+  </url>
+
+  <!-- 예약문의 페이지 -->
+  <url>
+    <loc>https://achimhaessal.kr/reservation</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

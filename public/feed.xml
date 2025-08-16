@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>아침햇살 스튜디오</title>
+    <description>전라남도 순천 가족사진, 프로필, 리마인드웨딩, 증명사진 전문 스튜디오</description>
+    <link>https://achimhaessal.kr</link>
+    <language>ko-KR</language>
+    <lastBuildDate>Mon, 01 Jan 2024 00:00:00 GMT</lastBuildDate>
+    
+    <item>
+      <title>아침햇살 스튜디오 대표 작품</title>
+      <description>가족사진, 프로필사진, 리마인드웨딩 전문 촬영 서비스</description>
+      <link>https://achimhaessal.kr</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate>
+      <media:content url="https://achimhaessal.kr/slider/slider1_desktop.jpeg" type="image/jpeg" medium="image">
+        <media:title>가족사진 촬영</media:title>
+        <media:description>아침햇살 스튜디오 대표 작품 - 가족사진</media:description>
+      </media:content>
+      <media:content url="https://achimhaessal.kr/slider/slider2_desktop.jpeg" type="image/jpeg" medium="image">
+        <media:title>프로필사진 촬영</media:title>
+        <media:description>아침햇살 스튜디오 프로필사진</media:description>
+      </media:content>
+      <media:content url="https://achimhaessal.kr/slider/slider3_desktop.jpeg" type="image/jpeg" medium="image">
+        <media:title>리마인드웨딩 촬영</media:title>
+        <media:description>아침햇살 스튜디오 리마인드웨딩</media:description>
+      </media:content>
+    </item>
+    
+    <item>
+      <title>갤러리 - 가족사진 작품</title>
+      <description>다양한 가족사진 촬영 작품들을 만나보세요</description>
+      <link>https://achimhaessal.kr/gallery</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate>
+      <media:content url="https://achimhaessal.kr/main_gallery/family/[크기변환]004A0344_(2).jpg" type="image/jpeg" medium="image">
+        <media:title>가족사진 갤러리</media:title>
+        <media:description>가족사진 작품</media:description>
+      </media:content>
+    </item>
+    
+    <item>
+      <title>이벤트 - 진행중인 특별 이벤트</title>
+      <description>아침햇살 스튜디오의 특별 이벤트를 확인해보세요</description>
+      <link>https://achimhaessal.kr/events</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate>
+      <media:content url="https://achimhaessal.kr/event/event1.jpg" type="image/jpeg" medium="image">
+        <media:title>진행중인 이벤트</media:title>
+        <media:description>스튜디오 이벤트</media:description>
+      </media:content>
+    </item>
+    
+  </channel>
+</rss>

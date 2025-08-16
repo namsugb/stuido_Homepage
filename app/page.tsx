@@ -35,28 +35,74 @@ export default function Page() {
 
   const sliderImages = [
     {
-      src: "/slider/slider1_desktop.JPG",
-      srcMobile: "/slider/slider1_mobile.JPG",
-      alt: "핑크 컨셉 가족 사진",
-      bgColor: "#CECFCF",
-      title: "특별한 컨셉 촬영",
-      description: "개성 있는 테마로 잊지 못할 추억을 만들어 드립니다",
-    },
-    {
-      src: "/slider/slider2_desktop.JPG",
-      srcMobile: "/slider/slider2_mobile.JPG",
+      src: "/slider/slider1_desktop.jpeg",
+      srcMobile: "/slider/slider1_mobile.jpeg",
       alt: "웨딩 촬영",
-      bgColor: "#A5877D",
-      title: "인생의 빛나는 순간",
-      description: "결혼의 소중한 순간을 다시 한번 아름답게 기록하여 특별한 추억을 만들어 드립니다.",
+      bgColor: "#D8DCE7",
+      title: "영원히 간직하고 싶은 순간",
+      description: "소중한 추억을 아름답게 기록하여 특별한 이야기를 만들어 드립니다.",
+      desktoptextbackground: false,
+      mobiletextbackground: false,
     },
     {
-      src: "/slider/slider3_desktop.JPG",
-      srcMobile: "/slider/slider3_mobile.JPG",
-      alt: "전통 한복 가족 사진",
+      src: "/slider/slider2_desktop.jpeg",
+      srcMobile: "/slider/slider2_mobile.jpeg",
+      alt: "가족 사진",
+      bgColor: "#CECFCF",
+      title: "시간이 멈춘 듯한 순간",
+      description: "마음속에 영원히 간직하고 싶은 소중한 이야기를 담습니다",
+      desktoptextbackground: true,
+      mobiletextbackground: false
+    },
+    {
+      src: "/slider/slider3_desktop.jpeg",
+      srcMobile: "/slider/slider3_mobile.jpeg",
+      alt: "개인 프로필",
+      bgColor: "#A5877D",
+      title: "빛나는 순간",
+      description: "당신만의 특별한 이야기를 감성적으로 담아드립니다",
+      desktoptextbackground: true,
+      mobiletextbackground: false,
+    },
+    {
+      src: "/slider/slider4_desktop.jpeg",
+      srcMobile: "/slider/slider4_mobile.jpeg",
+      alt: "우정 사진",
       bgColor: "#D8DCE7",
-      title: "소중한 가족의 순간",
-      description: "세대를 아우르는 가족의 아름다운 이야기를 담습니다",
+      title: "마법 같은 순간",
+      description: "소중한 추억을 아름다운 작품으로 남겨드립니다",
+      desktoptextbackground: false,
+      mobiletextbackground: false,
+    },
+    {
+      src: "/slider/slider5_desktop.jpeg",
+      srcMobile: "/slider/slider5_mobile.jpeg",
+      alt: "컨셉 사진",
+      bgColor: "#CECFCF",
+      title: "꿈꾸던 순간",
+      description: "상상하던 모든 순간을 특별한 작품으로 만들어드립니다",
+      desktoptextbackground: false,
+      mobiletextbackground: true,
+    },
+    {
+      src: "/slider/slider6_desktop.jpeg",
+      srcMobile: "/slider/slider6_mobile.jpeg",
+      alt: "돌잔치 사진",
+      bgColor: "#A5877D",
+      title: "영원한 순간",
+      description: "시간이 흘러도 변치 않을 아름다운 순간을 담아냅니다",
+      desktoptextbackground: true,
+      mobiletextbackground: true,
+    },
+    {
+      src: "/slider/slider7_desktop.jpeg",
+      srcMobile: "/slider/slider7_mobile.jpeg",
+      alt: "돌잔치 사진",
+      bgColor: "#A5877D",
+      title: "빛나는 이야기",
+      description: "당신의 특별한 순간을 영원한 작품으로 남겨드립니다",
+      desktoptextbackground: true,
+      mobiletextbackground: false,
     },
   ]
 
@@ -260,10 +306,10 @@ export default function Page() {
                 className="max-w-full h-auto rounded-md"
               />
             </div>
-            <h3 className="text-base md:text-lg font-bold mb-2 text-center font-playfair">🎉 이벤트 안내</h3>
-            <p className="text-xs md:text-sm text-gray-700 text-center mb-3 font-korean">
-              선착순 30명! 촬영 예약 고객님께<br />
-              <span className="font-semibold text-[#bfa888]">고급 액자 증정</span> 이벤트 진행 중입니다.<br />
+            <h3 className="text-base md:text-lg font-bold mb-2 text-center font-noto">🎉 이벤트 안내</h3>
+            <p className="text-xs md:text-sm text-gray-700 text-center mb-3 font-noto">
+              8월 31일 까지 선착순 15팀!<br />
+              이벤트 진행 중입니다.<br />
               지금 바로 예약하고 혜택을 받아보세요!
             </p>
             <div className="flex items-center justify-center mb-3">
@@ -296,13 +342,6 @@ export default function Page() {
       <section className="hero-section">
         {/* 슬라이더 배경 */}
         <div className="slider-row relative h-full w-full">
-          {/* 이미지/오버레이: pointer-events-none, z-0 */}
-          <div
-            className="absolute inset-0 transition-colors duration-1000 z-0 pointer-events-none"
-            style={{ backgroundColor: sliderImages[currentSlide].bgColor }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 pointer-events-none"></div>
-          </div>
 
           {/* 로딩 인디케이터 */}
           {!firstImageLoaded && (
@@ -339,9 +378,9 @@ export default function Page() {
                     className="w-full h-full object-cover object-center md:hidden"
                   />
                   {/* 감성적인 문구 오버레이 */}
-                  <div className="absolute top-10 left-0 right-0 p-8 text-black">
-                    <div className="text-center">
-                      <h2 className="text-2xl md:text-3xl mb-21 text-pretty font-serif">{image.title}</h2>
+                  <div className="absolute inset-0  my-6 p-8 text-black max-w-2xl mx-auto">
+                    <div className={`text-center ${image.desktoptextbackground ? 'md:bg-gray-100/50 md:rounded-lg md:px-6 md:py-4' : ''} ${image.mobiletextbackground ? 'bg-gray-100/50 p-4 rounded-lg md:bg-transparent md:p-0 md:rounded-none' : ''}`}>
+                      <h2 className="text-2xl md:text-3xl text-pretty font-serif">{image.title}</h2>
                       <p className="text-lg md:text-xl opacity-90 text-pretty">{image.description}</p>
                     </div>
                   </div>
@@ -354,7 +393,7 @@ export default function Page() {
       </section >
 
 
-      {/* 스튜디오 소개 섹션 */}
+      {/* 상품 섹션 */}
       <section id="about">
         <div className="container mx-auto px-2 mt-6 mb-12">
 

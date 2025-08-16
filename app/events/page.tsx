@@ -77,13 +77,13 @@ export default function EventsPage() {
                         {/* 이벤트 카드 데이터 반복 */}
                         {events.map((event) => (
                             <div key={event.id} className="bg-white shadow-md rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300">
-                                <div className="w-full h-48" onClick={() => openModal(event)}>
+                                <div className="relative w-full pt-[100%]" onClick={() => openModal(event)}>
                                     <Image
                                         src={event.image}
                                         alt={event.title}
                                         width={event.width}
                                         height={event.height}
-                                        className="w-full h-full object-fill rounded-lg hover:scale-105 transition-transform duration-300"
+                                        className="absolute top-0 left-0 w-full h-full object-fill rounded-lg hover:scale-105 transition-transform duration-300"
                                     />
                                 </div>
                             </div>

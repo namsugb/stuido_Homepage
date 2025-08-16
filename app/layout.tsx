@@ -41,16 +41,98 @@ export default function RootLayout({
         <meta name="description" content="전라남도 순천 아침햇살 스튜디오는 가족사진, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 전문적으로 제공합니다. 소중한 순간을 아름답게 남겨드립니다." />
         <meta name="keywords" content="순천 가족사진, 순천 스튜디오, 프로필 사진, 리마인드웨딩, 증명사진, 아침햇살 스튜디오, 가족사진관" />
         <meta property="og:title" content="아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문" />
-        <meta property="og:description" content="전라남도 순천 아침햇살 스튜디오에서 가족, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 경험하세요." />
+        <meta property="og:description" content="전라남도 순천 아침햇살 스튜디오에서 가족, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 경험하세요. 소중한 순간을 아름답게 남겨드립니다." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://achimhaessal.kr" />
-        <meta property="og:image" content="/logo/logo.jpeg" />
+        <meta property="og:image" content="/slider/slider1_desktop.jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="아침햇살 스튜디오 대표 작품 - 가족사진" />
+        <meta property="og:site_name" content="아침햇살 스튜디오" />
+        <meta property="og:locale" content="ko_KR" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@achimhaessal" />
         <meta name="twitter:title" content="아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문" />
-        <meta name="twitter:description" content="순천 가족사진, 프로필, 리마인드웨딩, 증명사진 전문 스튜디오" />
-        <meta name="twitter:image" content="/logo/logo.jpeg" />
+        <meta name="twitter:description" content="순천 가족사진, 프로필, 리마인드웨딩, 증명사진 전문 스튜디오. 소중한 순간을 아름답게 남겨드립니다." />
+        <meta name="twitter:image" content="/slider/slider1_desktop.jpeg" />
+        <meta name="twitter:image:alt" content="아침햇살 스튜디오 대표 작품 - 가족사진" />
+
+        {/* 네이버 검색 최적화 */}
+        <meta name="naver-site-verification" content="" />
+        <meta property="article:author" content="아침햇살 스튜디오" />
+        <meta property="article:publisher" content="아침햇살 스튜디오" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+        {/* 추가 이미지 정보 */}
+        <link rel="image_src" href="/slider/slider1_desktop.jpeg" />
+        <meta name="thumbnail" content="/slider/slider1_desktop.jpeg" />
+
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        {/* Structured Data (JSON-LD) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "아침햇살 스튜디오",
+              "description": "전라남도 순천 가족사진, 프로필, 리마인드웨딩, 증명사진 전문 스튜디오",
+              "image": [
+                "https://achimhaessal.kr/slider/slider1_desktop.jpeg",
+                "https://achimhaessal.kr/slider/slider2_desktop.jpeg",
+                "https://achimhaessal.kr/slider/slider3_desktop.jpeg",
+                "https://achimhaessal.kr/main_gallery/family/[크기변환]004A0344_(2).jpg",
+                "https://achimhaessal.kr/main_product/big-family-package.jpg"
+              ],
+              "logo": "https://achimhaessal.kr/logo/logo.jpeg",
+              "url": "https://achimhaessal.kr",
+              "telephone": "061-721-4800",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "순천시",
+                "addressRegion": "전라남도",
+                "addressCountry": "KR"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "34.9506",
+                "longitude": "127.4872"
+              },
+              "openingHours": "Mo-Su 09:00-18:00",
+              "priceRange": "$$",
+              "serviceType": ["가족사진", "프로필사진", "리마인드웨딩", "증명사진"],
+              "areaServed": ["순천시", "전라남도"],
+              "hasMap": "https://map.naver.com/v5/search/아침햇살스튜디오",
+              "paymentAccepted": ["현금", "카드"],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "사진촬영 서비스",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "가족사진 촬영",
+                      "description": "소중한 가족과의 추억을 아름답게 담아드립니다"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "프로필사진 촬영",
+                      "description": "개인 프로필 및 비즈니스용 사진 촬영"
+                    }
+                  }
+                ]
+              }
+            })
+          }}
+        />
       </head>
       <body className={`${notoSansKR.variable} ${playfairDisplay.variable} ${inter.variable}`}>
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm">

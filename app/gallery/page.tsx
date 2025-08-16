@@ -12,20 +12,20 @@ const galleryData = {
     { src: "/main_gallery/family/[크기변환]007_03_1차.jpg", alt: "턱시도&드레스 가족사진 2", category: "family", subCategory: "tuxedo_dress" },
     { src: "/main_gallery/family/[크기변환]007_02_1차.jpg", alt: "턱시도&드레스 가족사진 3", category: "family", subCategory: "tuxedo_dress" },
     { src: "/main_gallery/family/[크기변환]006_02_1차.jpg", alt: "턱시도&드레스 가족사진 4", category: "family", subCategory: "tuxedo_dress" },
-    
+
     // family - 정장 컨셉
     { src: "/main_gallery/family/[크기변환]004A1651.JPG", alt: "정장 가족사진 1", category: "family", subCategory: "formal" },
     { src: "/main_gallery/family/[크기변환]004A1572.JPG", alt: "정장 가족사진 2", category: "family", subCategory: "formal" },
     { src: "/main_gallery/family/[크기변환]004A1432.JPG", alt: "정장 가족사진 3", category: "family", subCategory: "formal" },
     { src: "/main_gallery/family/[크기변환]004A0817_(2).jpg", alt: "정장 가족사진 4", category: "family", subCategory: "formal" },
     { src: "/main_gallery/family/[크기변환]004A0838_(2).jpg", alt: "정장 가족사진 5", category: "family", subCategory: "formal" },
-    
+
     // family - 한복
     { src: "/main_gallery/family/[크기변환]7X1A3243 20x24_1차.jpg", alt: "한복 가족사진 1", category: "family", subCategory: "hanbok" },
     { src: "/main_gallery/family/[크기변환]7X1A0451_1차.JPG", alt: "한복 가족사진 2", category: "family", subCategory: "hanbok" },
     { src: "/main_gallery/family/[크기변환]004A1257 30x40 복사.jpg", alt: "한복 가족사진 3", category: "family", subCategory: "hanbok" },
     { src: "/main_gallery/family/[크기변환]5_3차.jpg", alt: "한복 가족사진 4", category: "family", subCategory: "hanbok" },
-    
+
     // family - 캐주얼
     { src: "/main_gallery/family/[크기변환]IMG_0626.jpg", alt: "캐주얼 가족사진 1", category: "family", subCategory: "casual" },
     { src: "/main_gallery/family/[크기변환]B64A0049_(2).jpg", alt: "캐주얼 가족사진 2", category: "family", subCategory: "casual" },
@@ -104,15 +104,15 @@ export default function GalleryPage() {
   // 카테고리 및 하위 카테고리 필터링
   useEffect(() => {
     let filtered = galleryData.all
-    
+
     if (selectedCategory !== "all") {
       filtered = filtered.filter((img) => img.category === selectedCategory)
     }
-    
+
     if (selectedSubCategory) {
       filtered = filtered.filter((img) => img.subCategory === selectedSubCategory)
     }
-    
+
     setFilteredImages(filtered)
   }, [selectedCategory, selectedSubCategory])
 
@@ -160,22 +160,15 @@ export default function GalleryPage() {
 
   // 카테고리 데이터 (하위 카테고리 포함)
   const categories = [
-    { 
-      id: "family", 
+    {
+      id: "family",
       name: "가족사진",
       subCategories: [
-        { id: "tuxedo_dress", name: "턱시도&드레스 컨셉" },
-        { id: "formal", name: "정장 컨셉" },
+        { id: "tuxedo_dress", name: "드레스" },
+        { id: "formal", name: "정장" },
         { id: "hanbok", name: "한복" },
-        { id: "casual", name: "캐주얼" }
-      ]
-    },
-    { 
-      id: "wedding", 
-      name: "웨딩",
-      subCategories: [
-        { id: "semi_wedding", name: "세미웨딩" },
-        { id: "remind_wedding", name: "리마인드웨딩" }
+        { id: "casual", name: "캐주얼" },
+        { id: "remind_wedding", name: "리마인드" }
       ]
     },
     { id: "longevity", name: "장수사진" },
@@ -194,7 +187,7 @@ export default function GalleryPage() {
       {/* 갤러리 메인 컨텐츠 */}
       <main className="container mt-16 mx-auto px-6 pt-20 pb-20">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">갤러리</h1>
+          <h1 className="text-4xl font-thin mb-4 font-noto">갤러리</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
             아침햇살 스튜디오의 작품들을 감상해보세요. 가족사진, 리마인드웨딩, 칠순/팔순 잔치, 증명사진 등 다양한 촬영
             작품을 카테고리별로 확인하실 수 있습니다.
