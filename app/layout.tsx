@@ -58,12 +58,22 @@ export default function RootLayout({
         <meta name="twitter:image:alt" content="아침햇살 스튜디오 대표 작품 - 가족사진" />
 
         {/* 네이버 검색 최적화 */}
-        <meta name="naver-site-verification" content="" />
+        <meta name="naver-site-verification" content="be77199758e7c465cccd457df58da26627d38659" />
         <meta property="article:author" content="아침햇살 스튜디오" />
         <meta property="article:publisher" content="아침햇살 스튜디오" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+        {/* 네이버 이미지 갤러리 최적화 */}
+        <meta name="subject" content="아침햇살 스튜디오 - 순천 가족사진 전문" />
+        <meta name="content-language" content="ko" />
+        <meta name="revisit-after" content="1 days" />
+        <meta name="reply-to" content="contact@achimhaessal.kr" />
+        <meta name="category" content="Photography, Studio, Family Photo" />
+        <meta name="coverage" content="Worldwide" />
+        <meta name="distribution" content="Global" />
+        <meta name="rating" content="General" />
 
         {/* 추가 이미지 정보 */}
         <link rel="image_src" href="/slider/slider1_desktop.jpeg" />
@@ -127,6 +137,48 @@ export default function RootLayout({
                       "name": "프로필사진 촬영",
                       "description": "개인 프로필 및 비즈니스용 사진 촬영"
                     }
+                  }
+                ]
+              },
+              "mainEntity": {
+                "@type": "ImageGallery",
+                "name": "아침햇살 스튜디오 작품 갤러리",
+                "description": "가족사진, 프로필, 리마인드웨딩 전문 촬영 작품",
+                "image": [
+                  {
+                    "@type": "ImageObject",
+                    "contentUrl": "https://achimhaessal.kr/slider/slider1_desktop.jpeg",
+                    "name": "가족사진",
+                    "description": "따뜻한 가족사진 촬영",
+                    "caption": "가족사진"
+                  },
+                  {
+                    "@type": "ImageObject",
+                    "contentUrl": "https://achimhaessal.kr/slider/slider2_desktop.jpeg",
+                    "name": "프로필사진",
+                    "description": "전문적인 프로필 촬영",
+                    "caption": "프로필"
+                  },
+                  {
+                    "@type": "ImageObject",
+                    "contentUrl": "https://achimhaessal.kr/slider/slider3_desktop.jpeg",
+                    "name": "리마인드웨딩",
+                    "description": "소중한 추억을 되살리는 리마인드웨딩",
+                    "caption": "리마인드웨딩"
+                  },
+                  {
+                    "@type": "ImageObject",
+                    "contentUrl": "https://achimhaessal.kr/slider/slider4_desktop.jpeg",
+                    "name": "한복촬영",
+                    "description": "전통 한복을 입은 아름다운 촬영",
+                    "caption": "한복"
+                  },
+                  {
+                    "@type": "ImageObject",
+                    "contentUrl": "https://achimhaessal.kr/slider/slider5_desktop.jpeg",
+                    "name": "커플사진",
+                    "description": "사랑하는 연인과의 특별한 순간",
+                    "caption": "커플"
                   }
                 ]
               }
