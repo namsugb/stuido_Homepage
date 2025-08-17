@@ -2,48 +2,69 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft, X } from "lucide-react"
 
-// Replace the galleryData object with the following that uses placeholder images
+// 실제 파일명에 맞게 수정된 galleryData
 const galleryData = {
   all: [
-    // family - 턱시도&드레스 컨셉
-    { src: "/main_gallery/family/[크기변환]007_04_1차.jpg", alt: "턱시도&드레스 가족사진 1", category: "family", subCategory: "tuxedo_dress" },
-    { src: "/main_gallery/family/[크기변환]007_03_1차.jpg", alt: "턱시도&드레스 가족사진 2", category: "family", subCategory: "tuxedo_dress" },
-    { src: "/main_gallery/family/[크기변환]007_02_1차.jpg", alt: "턱시도&드레스 가족사진 3", category: "family", subCategory: "tuxedo_dress" },
-    { src: "/main_gallery/family/[크기변환]006_02_1차.jpg", alt: "턱시도&드레스 가족사진 4", category: "family", subCategory: "tuxedo_dress" },
+    // family - dress 컨셉 (드레스)
+    { src: "/main_gallery/family/dress/dress_01.jpg", alt: "드레스 가족사진 1", category: "family", subCategory: "dress" },
+    { src: "/main_gallery/family/dress/dress_02.jpg", alt: "드레스 가족사진 2", category: "family", subCategory: "dress" },
+    { src: "/main_gallery/family/dress/dress_03.jpg", alt: "드레스 가족사진 3", category: "family", subCategory: "dress" },
+    { src: "/main_gallery/family/dress/dress_04.jpg", alt: "드레스 가족사진 4", category: "family", subCategory: "dress" },
+    { src: "/main_gallery/family/dress/dress_05.jpg", alt: "드레스 가족사진 5", category: "family", subCategory: "dress" },
+    { src: "/main_gallery/family/dress/dress_06.jpg", alt: "드레스 가족사진 6", category: "family", subCategory: "dress" },
+    { src: "/main_gallery/family/dress/dress_07.jpg", alt: "드레스 가족사진 7", category: "family", subCategory: "dress" },
+    { src: "/main_gallery/family/dress/dress_08.jpg", alt: "드레스 가족사진 8", category: "family", subCategory: "dress" },
+    { src: "/main_gallery/family/dress/dress_09.jpg", alt: "드레스 가족사진 9", category: "family", subCategory: "dress" },
+    { src: "/main_gallery/family/dress/dress_10.jpg", alt: "드레스 가족사진 10", category: "family", subCategory: "dress" },
 
-    // family - 정장 컨셉
-    { src: "/main_gallery/family/[크기변환]004A1651.JPG", alt: "정장 가족사진 1", category: "family", subCategory: "formal" },
-    { src: "/main_gallery/family/[크기변환]004A1572.JPG", alt: "정장 가족사진 2", category: "family", subCategory: "formal" },
-    { src: "/main_gallery/family/[크기변환]004A1432.JPG", alt: "정장 가족사진 3", category: "family", subCategory: "formal" },
-    { src: "/main_gallery/family/[크기변환]004A0817_(2).jpg", alt: "정장 가족사진 4", category: "family", subCategory: "formal" },
-    { src: "/main_gallery/family/[크기변환]004A0838_(2).jpg", alt: "정장 가족사진 5", category: "family", subCategory: "formal" },
+    // family - uniform 컨셉 (정장)
+    { src: "/main_gallery/family/uniform/uniform_01.jpg", alt: "정장 가족사진 1", category: "family", subCategory: "uniform" },
+    { src: "/main_gallery/family/uniform/uniform_02.jpg", alt: "정장 가족사진 2", category: "family", subCategory: "uniform" },
+    { src: "/main_gallery/family/uniform/uniform_03.jpg", alt: "정장 가족사진 3", category: "family", subCategory: "uniform" },
+    { src: "/main_gallery/family/uniform/uniform_04.jpg", alt: "정장 가족사진 4", category: "family", subCategory: "uniform" },
+    { src: "/main_gallery/family/uniform/uniform_05.jpg", alt: "정장 가족사진 5", category: "family", subCategory: "uniform" },
+    { src: "/main_gallery/family/uniform/uniform_06.jpg", alt: "정장 가족사진 6", category: "family", subCategory: "uniform" },
+    { src: "/main_gallery/family/uniform/uniform_07.jpg", alt: "정장 가족사진 7", category: "family", subCategory: "uniform" },
+    { src: "/main_gallery/family/uniform/uniform_08.jpg", alt: "정장 가족사진 8", category: "family", subCategory: "uniform" },
+    { src: "/main_gallery/family/uniform/uniform_09.jpg", alt: "정장 가족사진 9", category: "family", subCategory: "uniform" },
+    { src: "/main_gallery/family/uniform/uniform_10.jpg", alt: "정장 가족사진 10", category: "family", subCategory: "uniform" },
 
-    // family - 한복
-    { src: "/main_gallery/family/[크기변환]7X1A3243 20x24_1차.jpg", alt: "한복 가족사진 1", category: "family", subCategory: "hanbok" },
-    { src: "/main_gallery/family/[크기변환]7X1A0451_1차.JPG", alt: "한복 가족사진 2", category: "family", subCategory: "hanbok" },
-    { src: "/main_gallery/family/[크기변환]004A1257 30x40 복사.jpg", alt: "한복 가족사진 3", category: "family", subCategory: "hanbok" },
-    { src: "/main_gallery/family/[크기변환]5_3차.jpg", alt: "한복 가족사진 4", category: "family", subCategory: "hanbok" },
+    // family - hanbok 컨셉 (한복)
+    { src: "/main_gallery/family/hanbok/hanbok_01.jpg", alt: "한복 가족사진 1", category: "family", subCategory: "hanbok" },
+    { src: "/main_gallery/family/hanbok/hanbok_02.jpg", alt: "한복 가족사진 2", category: "family", subCategory: "hanbok" },
+    { src: "/main_gallery/family/hanbok/hanbok_03.jpg", alt: "한복 가족사진 3", category: "family", subCategory: "hanbok" },
+    { src: "/main_gallery/family/hanbok/hanbok_04.jpg", alt: "한복 가족사진 4", category: "family", subCategory: "hanbok" },
+    { src: "/main_gallery/family/hanbok/hanbok_05.jpg", alt: "한복 가족사진 5", category: "family", subCategory: "hanbok" },
+    { src: "/main_gallery/family/hanbok/hanbok_06.jpg", alt: "한복 가족사진 6", category: "family", subCategory: "hanbok" },
+    { src: "/main_gallery/family/hanbok/hanbok_07.jpg", alt: "한복 가족사진 7", category: "family", subCategory: "hanbok" },
+    { src: "/main_gallery/family/hanbok/hanbok_08.jpg", alt: "한복 가족사진 8", category: "family", subCategory: "hanbok" },
+    { src: "/main_gallery/family/hanbok/hanbok_09.jpg", alt: "한복 가족사진 9", category: "family", subCategory: "hanbok" },
+    { src: "/main_gallery/family/hanbok/hanbok_10.jpg", alt: "한복 가족사진 10", category: "family", subCategory: "hanbok" },
 
-    // family - 캐주얼
-    { src: "/main_gallery/family/[크기변환]IMG_0626.jpg", alt: "캐주얼 가족사진 1", category: "family", subCategory: "casual" },
-    { src: "/main_gallery/family/[크기변환]B64A0049_(2).jpg", alt: "캐주얼 가족사진 2", category: "family", subCategory: "casual" },
-    { src: "/main_gallery/family/[크기변환]8U0A1147-1.jpg", alt: "캐주얼 가족사진 3", category: "family", subCategory: "casual" },
-    { src: "/main_gallery/family/[크기변환]004A0352_(2).jpg", alt: "캐주얼 가족사진 4", category: "family", subCategory: "casual" },
-    { src: "/main_gallery/family/[크기변환]004A0351_(2).jpg", alt: "캐주얼 가족사진 5", category: "family", subCategory: "casual" },
-    { src: "/main_gallery/family/[크기변환]004A0344_(2).jpg", alt: "캐주얼 가족사진 6", category: "family", subCategory: "casual" },
+    // family - casual 컨셉 (캐주얼)
+    { src: "/main_gallery/family/casual/casual_01.jpg", alt: "캐주얼 가족사진 1", category: "family", subCategory: "casual" },
+    { src: "/main_gallery/family/casual/casual_02.jpg", alt: "캐주얼 가족사진 2", category: "family", subCategory: "casual" },
+    { src: "/main_gallery/family/casual/casual_03.jpg", alt: "캐주얼 가족사진 3", category: "family", subCategory: "casual" },
+    { src: "/main_gallery/family/casual/casual_04.jpg", alt: "캐주얼 가족사진 4", category: "family", subCategory: "casual" },
+    { src: "/main_gallery/family/casual/casual_05.jpg", alt: "캐주얼 가족사진 5", category: "family", subCategory: "casual" },
+    { src: "/main_gallery/family/casual/casual_06.jpg", alt: "캐주얼 가족사진 6", category: "family", subCategory: "casual" },
+    { src: "/main_gallery/family/casual/casual_07.jpg", alt: "캐주얼 가족사진 7", category: "family", subCategory: "casual" },
+    { src: "/main_gallery/family/casual/casual_08.jpg", alt: "캐주얼 가족사진 8", category: "family", subCategory: "casual" },
+    { src: "/main_gallery/family/casual/casual_15.jpg", alt: "캐주얼 가족사진 9", category: "family", subCategory: "casual" },
+    { src: "/main_gallery/family/casual/casual_16.jpg", alt: "캐주얼 가족사진 10", category: "family", subCategory: "casual" },
 
     // 증명사진/프로필
-    { src: "/main_gallery/id/id04.jpg", alt: "증명사진 1", category: "id" },
-    { src: "/main_gallery/id/id01.jpg", alt: "증명사진 2", category: "id" },
-    { src: "/main_gallery/id/id02.jpg", alt: "증명사진 3", category: "id" },
-    { src: "/main_gallery/id/id07.jpg", alt: "증명사진 4", category: "id" },
-    { src: "/main_gallery/id/id08.jpg", alt: "증명사진 5", category: "id" },
-    { src: "/main_gallery/id/id09.jpg", alt: "증명사진 6", category: "id" },
-    { src: "/main_gallery/id/id10.jpg", alt: "증명사진 7", category: "id" },
-    { src: "/main_gallery/id/id11.jpg", alt: "증명사진 8", category: "id" },
-    { src: "/main_gallery/id/id06.jpg", alt: "증명사진 9", category: "id" },
+    { src: "/main_gallery/id/id01.jpg", alt: "증명사진 1", category: "id" },
+    { src: "/main_gallery/id/id02.jpg", alt: "증명사진 2", category: "id" },
+    { src: "/main_gallery/id/id03.jpg", alt: "증명사진 3", category: "id" },
+    { src: "/main_gallery/id/id04.jpg", alt: "증명사진 4", category: "id" },
+    { src: "/main_gallery/id/id05.jpg", alt: "증명사진 5", category: "id" },
+    { src: "/main_gallery/id/id06.jpg", alt: "증명사진 6", category: "id" },
+    { src: "/main_gallery/id/id07.jpg", alt: "증명사진 7", category: "id" },
+    { src: "/main_gallery/id/id08.jpg", alt: "증명사진 8", category: "id" },
     { src: "/main_gallery/profile/profile01.jpg", alt: "프로필사진 1", category: "id" },
     { src: "/main_gallery/profile/profile02.jpg", alt: "프로필사진 2", category: "id" },
     { src: "/main_gallery/profile/profile03.jpg", alt: "프로필사진 3", category: "id" },
@@ -53,7 +74,8 @@ const galleryData = {
     { src: "/main_gallery/long/long01.jpg", alt: "장수사진 1", category: "longevity" },
     { src: "/main_gallery/long/long02.jpg", alt: "장수사진 2", category: "longevity" },
     { src: "/main_gallery/long/long03.jpg", alt: "장수사진 3", category: "longevity" },
-    { src: "/main_gallery/long/long05.jpg", alt: "장수사진 4", category: "longevity" },
+    { src: "/main_gallery/long/long04.jpg", alt: "장수사진 4", category: "longevity" },
+    { src: "/main_gallery/long/long05.jpg", alt: "장수사진 5", category: "longevity" },
 
     // 우정/커플/주니어
     { src: "/main_gallery/profile/profile05.jpg", alt: "우정 사진 1", category: "friend" },
@@ -63,34 +85,6 @@ const galleryData = {
     { src: "/main_gallery/profile/profile09.jpg", alt: "주니어 사진 1", category: "friend" },
     { src: "/main_gallery/profile/profile10.jpg", alt: "주니어 사진 2", category: "friend" },
     { src: "/main_gallery/profile/profile11.jpg", alt: "주니어 사진 3", category: "friend" },
-
-    // 웨딩 - 세미웨딩 (스튜디오 촬영 느낌의 이미지들)
-    { src: "/main_gallery/remind/[크기변환]2F1A8824 12x17.JPG", alt: "세미웨딩 1", category: "wedding", subCategory: "semi_wedding" },
-    { src: "/main_gallery/remind/[크기변환]2F1A8813.JPG", alt: "세미웨딩 2", category: "wedding", subCategory: "semi_wedding" },
-    { src: "/main_gallery/remind/[크기변환]2F1A8770 5x7.JPG", alt: "세미웨딩 3", category: "wedding", subCategory: "semi_wedding" },
-    { src: "/main_gallery/remind/[크기변환]2F1A8670.JPG", alt: "세미웨딩 4", category: "wedding", subCategory: "semi_wedding" },
-    { src: "/main_gallery/remind/[크기변환]2F1A8121.JPG", alt: "세미웨딩 5", category: "wedding", subCategory: "semi_wedding" },
-    { src: "/main_gallery/remind/[크기변환]0A8A8123.JPG", alt: "세미웨딩 6", category: "wedding", subCategory: "semi_wedding" },
-    { src: "/main_gallery/remind/[크기변환]0A8A8108-1216 디아섹_1차.JPG", alt: "세미웨딩 7", category: "wedding", subCategory: "semi_wedding" },
-    { src: "/main_gallery/remind/[크기변환]0A8A8081-810_1차.JPG", alt: "세미웨딩 8", category: "wedding", subCategory: "semi_wedding" },
-
-    // 웨딩 - 리마인드웨딩 (기념 촬영 느낌의 이미지들)
-    { src: "/main_gallery/remind/[크기변환]윤혜원 (10).JPG", alt: "리마인드웨딩 1", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]윤혜원 (8).jpg", alt: "리마인드웨딩 2", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]윤혜원 (15).JPG", alt: "리마인드웨딩 3", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]윤혜원 (14).JPG", alt: "리마인드웨딩 4", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]윤혜원 (12).JPG", alt: "리마인드웨딩 5", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]박봉숙 (4).jpg", alt: "리마인드웨딩 6", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]8U0A0352 복사.jpg", alt: "리마인드웨딩 7", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]005_01_1차.jpg", alt: "리마인드웨딩 8", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]004A0391.jpg", alt: "리마인드웨딩 9", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]004A0344-1.jpg", alt: "리마인드웨딩 10", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]004_01_1차.jpg", alt: "리마인드웨딩 11", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]003_03_1차.jpg", alt: "리마인드웨딩 12", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]2F1A3776 표지뒤.JPG", alt: "리마인드웨딩 13", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]2F1A1780_1차.JPG", alt: "리마인드웨딩 14", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]2F1A1763-66.JPG", alt: "리마인드웨딩 15", category: "wedding", subCategory: "remind_wedding" },
-    { src: "/main_gallery/remind/[크기변환]2F1A1749-68.JPG", alt: "리마인드웨딩 16", category: "wedding", subCategory: "remind_wedding" }
   ],
 }
 
@@ -158,22 +152,21 @@ export default function GalleryPage() {
     document.body.style.overflow = "auto"
   }
 
-  // 카테고리 데이터 (하위 카테고리 포함)
+  // 카테고리 데이터 (실제 폴더 구조에 맞게 수정)
   const categories = [
     {
       id: "family",
       name: "가족사진",
       subCategories: [
-        { id: "tuxedo_dress", name: "드레스" },
-        { id: "formal", name: "정장" },
+        { id: "dress", name: "드레스" },
+        { id: "uniform", name: "정장" },
         { id: "hanbok", name: "한복" },
-        { id: "casual", name: "캐주얼" },
-        { id: "remind_wedding", name: "리마인드" }
+        { id: "casual", name: "캐주얼" }
       ]
     },
     { id: "longevity", name: "장수사진" },
     { id: "id", name: "증명사진/프로필" },
-    { id: "friend", name: "우정/커플/주니어" },
+    { id: "friend", name: "우정/커플/주니어" }
   ]
 
   // 현재 카테고리의 하위 카테고리 가져오기
@@ -187,7 +180,7 @@ export default function GalleryPage() {
       {/* 갤러리 메인 컨텐츠 */}
       <main className="container mt-16 mx-auto px-6 pt-20 pb-20">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-thin mb-4 font-noto">갤러리</h1>
+          <h1 className="text-4xl font-medium mb-4 font-noto">갤러리</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
             아침햇살 스튜디오의 작품들을 감상해보세요. 가족사진, 리마인드웨딩, 칠순/팔순 잔치, 증명사진 등 다양한 촬영
             작품을 카테고리별로 확인하실 수 있습니다.
@@ -248,10 +241,15 @@ export default function GalleryPage() {
           ) : filteredImages.length > 0 ? (
             filteredImages.map((image, index) => (
               <div key={index} className="gallery-masonry-item" onClick={() => handleImageClick(image.src)}>
-                <img
+                <Image
                   src={image.src || "/placeholder.svg"}
                   alt={image.alt}
+                  width={400}
+                  height={300}
                   className="w-full h-auto cursor-pointer transition-transform duration-500 rounded-lg group-hover:scale-105"
+                  quality={85}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
             ))
@@ -272,11 +270,15 @@ export default function GalleryPage() {
           >
             <X className="h-6 w-6" />
           </button>
-          <img
+          <Image
             src={selectedImage || "/placeholder.svg"}
             alt="확대 이미지"
+            width={1200}
+            height={800}
             className="max-h-[90vh] max-w-[90vw] object-contain"
             onClick={(e) => e.stopPropagation()}
+            quality={95}
+            priority
           />
         </div>
       )}

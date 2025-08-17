@@ -10,7 +10,7 @@ export default function AboutPage() {
         <div className="min-h-screen bg-white">
             <main className="container mx-auto px-4 pt-24 pb-20">
                 <div className="text-center mt-16 mb-12">
-                    <h1 className="text-4xl font-bold my-4">아침햇살 스튜디오 소개</h1>
+                    <h1 className="text-4xl font-medium my-4 font-noto">아침햇살 스튜디오 소개</h1>
                     <p className="text-gray-600 max-w-2xl mx-auto">
                         따뜻한 햇살처럼, 소중한 순간을 아름답게 담아드립니다.<br />
                         가족의 이야기, 인생의 전환점, 그리고 당신만의 특별한 시간을 사진으로 남겨보세요.
@@ -106,7 +106,7 @@ export default function AboutPage() {
                             />
                         </div>
                         <div className="flex-1">
-                            <h2 className="text-2xl font-bold mb-3">스튜디오 소개</h2>
+                            <h2 className="text-2xl font-medium font-noto mb-3">스튜디오 소개</h2>
                             <p className="text-gray-700 mb-2">
                                 <b>☀️ "사진, 잘 나온 것도 좋지만… 오래 남는 게 더 좋더라고요."</b><br />
                                 요즘은 워낙 사진 잘 찍는 분들도 많고,<br />
@@ -192,7 +192,7 @@ export default function AboutPage() {
 
                 {/* 서비스 특징 */}
                 <section className="mb-16">
-                    <h2 className="text-2xl font-bold mb-3 text-center">아침햇살 스튜디오의 약속</h2>
+                    <h2 className="text-2xl font-medium font-noto mb-3 text-center">아침햇살 스튜디오의 약속</h2>
                     <ul className="grid md:grid-cols-3 gap-8 text-gray-700 text-center">
                         <li className="bg-white rounded-lg shadow p-6">
                             <b className="block text-lg mb-2 text-[#bfa888]">평생의 추억</b>

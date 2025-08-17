@@ -39,8 +39,8 @@ export default function Page() {
       srcMobile: "/slider/slider1_mobile.jpeg",
       alt: "웨딩 촬영",
       bgColor: "#D8DCE7",
-      title: "영원히 간직하고 싶은 순간",
-      description: "소중한 추억을 아름답게 기록하여 특별한 이야기를 만들어 드립니다.",
+      title: "사랑이 꽃피는 시간",
+      description: "가족의 아름다운 시간을 감동적인 작품으로 담아냅니다.",
       desktoptextbackground: false,
       mobiletextbackground: false,
     },
@@ -49,8 +49,8 @@ export default function Page() {
       srcMobile: "/slider/slider2_mobile.jpeg",
       alt: "가족 사진",
       bgColor: "#CECFCF",
-      title: "시간이 멈춘 듯한 순간",
-      description: "마음속에 영원히 간직하고 싶은 소중한 이야기를 담습니다",
+      title: "우리 가족의 이야기",
+      description: "세대를 이어 전할 소중한 추억을 기록합니다",
       desktoptextbackground: true,
       mobiletextbackground: false
     },
@@ -59,8 +59,8 @@ export default function Page() {
       srcMobile: "/slider/slider3_mobile.jpeg",
       alt: "개인 프로필",
       bgColor: "#A5877D",
-      title: "빛나는 순간",
-      description: "당신만의 특별한 이야기를 감성적으로 담아드립니다",
+      title: "당신만의 매력",
+      description: "아름다운 나의 모습을 간직할 수 있는 작품으로 표현해드립니다.",
       desktoptextbackground: true,
       mobiletextbackground: false,
     },
@@ -69,8 +69,8 @@ export default function Page() {
       srcMobile: "/slider/slider4_mobile.jpeg",
       alt: "우정 사진",
       bgColor: "#D8DCE7",
-      title: "마법 같은 순간",
-      description: "소중한 추억을 아름다운 작품으로 남겨드립니다",
+      title: "함께하는 행복",
+      description: "가족과 함께하는 즐거운 추억을 특별하게 남겨드립니다",
       desktoptextbackground: false,
       mobiletextbackground: false,
     },
@@ -79,8 +79,8 @@ export default function Page() {
       srcMobile: "/slider/slider5_mobile.jpeg",
       alt: "컨셉 사진",
       bgColor: "#CECFCF",
-      title: "꿈꾸던 순간",
-      description: "상상하던 모든 순간을 특별한 작품으로 만들어드립니다",
+      title: "상상이 현실로",
+      description: "당신이 꿈꾸던 모든 모습을 사진에 담아 표현해드립니다",
       desktoptextbackground: false,
       mobiletextbackground: true,
     },
@@ -99,93 +99,89 @@ export default function Page() {
       srcMobile: "/slider/slider7_mobile.jpeg",
       alt: "돌잔치 사진",
       bgColor: "#A5877D",
-      title: "빛나는 이야기",
-      description: "당신의 특별한 순간을 영원한 작품으로 남겨드립니다",
+      title: "감동의 순간들",
+      description: "인생의 소중한 이야기를 기록합니다",
       desktoptextbackground: true,
       mobiletextbackground: false,
     },
+    {
+      src: "/slider/slider8_desktop.jpeg",
+      srcMobile: "/slider/slider8_mobile.jpeg",
+      alt: "돌잔치 사진",
+      bgColor: "#A5877D",
+      title: "추억이 담긴 이야기",
+      description: "특별한 날의 감동을 아름답게 기록해드립니다",
+      desktoptextbackground: false,
+      mobiletextbackground: true,
+    },
   ]
 
-  // 이미지 사전 로딩 함수 - 오류 수정
+  // 개선된 이미지 사전 로딩 함수
   const preloadImages = () => {
     // 이미지 로드 카운터 초기화
     imagesLoadedCountRef.current = 0
     setImagesLoaded(false)
     setFirstImageLoaded(false)
 
-    // 모든 이미지 로드 (데스크탑 + 모바일)
-    sliderImages.forEach((image, idx) => {
-      // 데스크탑 이미지 로드
-      const imgDesktop = new window.Image()
-      imgDesktop.src = image.src
+    // 첫 번째 이미지를 우선 로드
+    const firstImage = sliderImages[0]
+    const firstImgDesktop = new window.Image()
+    const firstImgMobile = new window.Image()
 
-      // 모바일 이미지 로드
-      const imgMobile = new window.Image()
-      imgMobile.src = image.srcMobile
-
-      // 데스크탑 이미지 로드 완료 시
-      imgDesktop.onload = () => {
-        if (idx === 0) {
-          // 첫 번째 이미지가 로드되면 바로 표시
-          if (imgDesktop.complete) {
-            requestAnimationFrame(() => {
-              setFirstImageLoaded(true)
-            })
-          }
-        }
-
-        // 모바일 이미지도 로드되었는지 확인
-        if (imgMobile.complete) {
-          imagesLoadedCountRef.current += 1
-          if (imagesLoadedCountRef.current === sliderImages.length) {
-            setImagesLoaded(true)
-          }
-        }
+    // 첫 번째 이미지 로드 완료 시 즉시 표시
+    const handleFirstImageLoad = () => {
+      if (firstImgDesktop.complete || firstImgMobile.complete) {
+        requestAnimationFrame(() => {
+          setFirstImageLoaded(true)
+        })
       }
+    }
 
-      // 모바일 이미지 로드 완료 시
-      imgMobile.onload = () => {
-        if (idx === 0) {
-          // 첫 번째 이미지가 로드되면 바로 표시
-          if (imgDesktop.complete) {
-            requestAnimationFrame(() => {
-              setFirstImageLoaded(true)
-            })
+    firstImgDesktop.onload = handleFirstImageLoad
+    firstImgMobile.onload = handleFirstImageLoad
+    firstImgDesktop.onerror = () => {
+      console.error(`Failed to load first desktop image: ${firstImage.src}`)
+      setFirstImageLoaded(true)
+    }
+    firstImgMobile.onerror = () => {
+      console.error(`Failed to load first mobile image: ${firstImage.srcMobile}`)
+      setFirstImageLoaded(true)
+    }
+
+    // 첫 번째 이미지 로드 시작
+    firstImgDesktop.src = firstImage.src
+    firstImgMobile.src = firstImage.srcMobile
+
+    // 나머지 이미지들은 지연 로드
+    setTimeout(() => {
+      sliderImages.slice(1).forEach((image, idx) => {
+        const imgDesktop = new window.Image()
+        const imgMobile = new window.Image()
+
+        const handleImageLoad = () => {
+          if (imgDesktop.complete && imgMobile.complete) {
+            imagesLoadedCountRef.current += 1
+            if (imagesLoadedCountRef.current === sliderImages.length - 1) {
+              setImagesLoaded(true)
+            }
           }
         }
 
-        // 데스크탑 이미지도 로드되었는지 확인
-        if (imgDesktop.complete) {
-          imagesLoadedCountRef.current += 1
-          if (imagesLoadedCountRef.current === sliderImages.length) {
-            setImagesLoaded(true)
-          }
+        imgDesktop.onload = handleImageLoad
+        imgMobile.onload = handleImageLoad
+        imgDesktop.onerror = () => {
+          console.error(`Failed to load desktop image: ${image.src}`)
+          handleImageLoad()
         }
-      }
+        imgMobile.onerror = () => {
+          console.error(`Failed to load mobile image: ${image.srcMobile}`)
+          handleImageLoad()
+        }
 
-      // 에러 처리
-      imgDesktop.onerror = () => {
-        console.error(`Failed to load desktop image: ${image.src}`)
-        if (idx === 0) setFirstImageLoaded(true)
-        if (imgMobile.complete) {
-          imagesLoadedCountRef.current += 1
-          if (imagesLoadedCountRef.current === sliderImages.length) {
-            setImagesLoaded(true)
-          }
-        }
-      }
-
-      imgMobile.onerror = () => {
-        console.error(`Failed to load mobile image: ${image.srcMobile}`)
-        if (idx === 0) setFirstImageLoaded(true)
-        if (imgDesktop.complete) {
-          imagesLoadedCountRef.current += 1
-          if (imagesLoadedCountRef.current === sliderImages.length) {
-            setImagesLoaded(true)
-          }
-        }
-      }
-    })
+        imgDesktop.src = image.src
+        imgMobile.src = image.srcMobile
+      })
+    }, 100) // 100ms 후 나머지 이미지 로드 시작
   }
 
   // 컴포넌트 마운트 시 이미지 사전 로딩
@@ -209,13 +205,13 @@ export default function Page() {
     setCurrentSlide((prev) => (prev === 0 ? sliderImages.length - 1 : prev - 1))
   }
 
-  // 자동 슬라이드 기능 - 8초로 설정
+  // 자동 슬라이드 기능 - 7초로 설정
   useEffect(() => {
     // 이미지가 로드된 후에만 자동 슬라이드 시작
     if (isAutoPlaying && imagesLoaded) {
       autoPlayRef.current = setInterval(() => {
         nextSlide()
-      }, 8000)
+      }, 7000)
     }
 
     return () => {
@@ -283,13 +279,27 @@ export default function Page() {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  // 화면 클릭으로 슬라이드 전환
+  const handleSliderClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const clickX = e.clientX - rect.left
+    const clickPosition = clickX / rect.width
+
+    // 화면 왼쪽 절반 클릭시 이전 슬라이드, 오른쪽 절반 클릭시 다음 슬라이드
+    if (clickPosition < 0.5) {
+      prevSlide()
+    } else {
+      nextSlide()
+    }
+  }
+
   return (
     <div className="relative min-h-screen bg-white">
 
       {/* 이벤트 팝업 모달 */}
       {showEventPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-4 md:p-6 max-w-sm md:max-w-lg w-full relative animate-fade-in">
+          <div className="bg-white rounded-lg shadow-lg px-8 py-10 md:p-6 max-w-sm md:max-w-lg w-full relative animate-fade-in">
             <button
               className="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl md:text-3xl"
               onClick={handleClosePopup}
@@ -297,7 +307,7 @@ export default function Page() {
             >
               ×
             </button>
-            <div className="flex justify-center mb-3">
+            <div className=" flex justify-center mb-3">
               <Image
                 src="/image.png"
                 alt="가족사진 특별 이벤트 안내 이미지"
@@ -308,8 +318,7 @@ export default function Page() {
             </div>
             <h3 className="text-base md:text-lg font-bold mb-2 text-center font-noto">🎉 이벤트 안내</h3>
             <p className="text-xs md:text-sm text-gray-700 text-center mb-3 font-noto">
-              8월 31일 까지 선착순 15팀!<br />
-              이벤트 진행 중입니다.<br />
+              8월 31일 까지 <span className="text-red-500">선착순 15팀!</span> 이벤트 진행 중입니다.<br />
               지금 바로 예약하고 혜택을 받아보세요!
             </p>
             <div className="flex items-center justify-center mb-3">
@@ -343,12 +352,12 @@ export default function Page() {
         {/* 슬라이더 배경 */}
         <div className="slider-row relative h-full w-full">
 
-          {/* 로딩 인디케이터 */}
+          {/* 로딩 인디케이터 - 첫 번째 이미지만 로드되면 숨김 */}
           {!firstImageLoaded && (
-            <div className="absolute inset-0 z-30 flex items-center justify-center bg-gray-100">
+            <div className="absolute inset-0 z-40 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 border-4 border-[#bfa888] border-t-transparent rounded-full animate-spin"></div>
-                <p className="mt-4 text-gray-600">이미지 로딩 중...</p>
+                <div className="w-12 h-12 border-3 border-[#bfa888] border-t-transparent rounded-full animate-spin"></div>
+                <p className="mt-3 text-sm text-gray-600 animate-pulse">잠시만 기다려주세요...</p>
               </div>
             </div>
           )}
@@ -356,7 +365,7 @@ export default function Page() {
 
           {/* 메인 이미지 슬라이더 - 전체 폭 이미지 */}
           {firstImageLoaded && (
-            <div className="absolute inset-0 z-30">
+            <div className="absolute inset-0 z-30 cursor-pointer" onClick={handleSliderClick}>
               {sliderImages.map((image, index) => (
                 <div
                   key={index}
@@ -369,6 +378,10 @@ export default function Page() {
                     width={1920}
                     height={1080}
                     className="w-full h-full object-cover object-center hidden md:block"
+                    priority={index === 0} // 첫 번째 이미지만 우선 로딩
+                    quality={85} // 품질을 85%로 설정하여 파일 크기 줄임
+                    placeholder="blur" // 블러 플레이스홀더 사용
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                   <Image
                     src={image.srcMobile || "/placeholder.svg"}
@@ -376,10 +389,14 @@ export default function Page() {
                     width={768}
                     height={1024}
                     className="w-full h-full object-cover object-center md:hidden"
+                    priority={index === 0} // 첫 번째 이미지만 우선 로딩
+                    quality={85} // 품질을 85%로 설정하여 파일 크기 줄임
+                    placeholder="blur" // 블러 플레이스홀더 사용
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                   {/* 감성적인 문구 오버레이 */}
                   <div className="absolute inset-0  my-6 p-8 text-black max-w-2xl mx-auto">
-                    <div className={`text-center ${image.desktoptextbackground ? 'md:bg-gray-100/50 md:rounded-lg md:px-6 md:py-4' : ''} ${image.mobiletextbackground ? 'bg-gray-100/50 p-4 rounded-lg md:bg-transparent md:p-0 md:rounded-none' : ''}`}>
+                    <div className={`text-center ${image.desktoptextbackground ? 'md:bg-gray-100/30 md:rounded-lg md:px-6 md:py-4' : ''} ${image.mobiletextbackground ? 'bg-gray-100/50 p-4 rounded-lg md:bg-transparent md:p-0 md:rounded-none' : ''}`}>
                       <h2 className="text-2xl md:text-3xl text-pretty font-serif">{image.title}</h2>
                       <p className="text-lg md:text-xl opacity-90 text-pretty">{image.description}</p>
                     </div>
@@ -483,8 +500,8 @@ export default function Page() {
                 </div>
                 {/* 정보 영역 */}
                 <div className="p-2 md:p-3">
-                  <h3 className="text-xs md:text-base font-bold mb-1 text-gray-900 font-playfair">{product.title}</h3>
-                  <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed line-clamp-3 font-korean">{product.description}</p>
+                  <h3 className="text-xs md:text-base font-bold mb-1 text-gray-900 font-noto">{product.title}</h3>
+                  <p className="text-[11px] md:text-xs text-gray-600 leading-relaxed line-clamp-3 font-noto">{product.description}</p>
                 </div>
               </Link>
             ))}
