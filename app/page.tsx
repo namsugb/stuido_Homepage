@@ -104,16 +104,7 @@ export default function Page() {
       desktoptextbackground: true,
       mobiletextbackground: false,
     },
-    {
-      src: "/slider/slider8_desktop.jpeg",
-      srcMobile: "/slider/slider8_mobile.jpeg",
-      alt: "돌잔치 사진",
-      bgColor: "#A5877D",
-      title: "추억이 담긴 이야기",
-      description: "특별한 날의 감동을 아름답게 기록해드립니다",
-      desktoptextbackground: false,
-      mobiletextbackground: true,
-    },
+
   ]
 
   // 개선된 이미지 사전 로딩 함수
