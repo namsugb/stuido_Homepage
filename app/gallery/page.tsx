@@ -94,6 +94,7 @@ export default function GalleryPage() {
   const [filteredImages, setFilteredImages] = useState(galleryData.all)
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
 
   // 카테고리 및 하위 카테고리 필터링
   useEffect(() => {
@@ -122,6 +123,7 @@ export default function GalleryPage() {
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category)
     setSelectedSubCategory(null) // 카테고리 변경 시 하위 카테고리 초기화
+    setLoadedImages(new Set()) // 로드된 이미지 상태 초기화
     setIsLoading(true)
     // 카테고리 변경 시 로딩 효과를 위한 짧은 딜레이
     setTimeout(() => {
@@ -132,10 +134,19 @@ export default function GalleryPage() {
   // 하위 카테고리 변경 핸들러
   const handleSubCategoryChange = (subCategory: string | null) => {
     setSelectedSubCategory(subCategory)
+    setLoadedImages(new Set()) // 로드된 이미지 상태 초기화
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)
     }, 300)
+  }
+
+  // 이미지 로드 완료 핸들러
+  const handleImageLoad = (src: string) => {
+    // 약간의 지연을 추가하여 더 부드러운 효과
+    setTimeout(() => {
+      setLoadedImages(prev => new Set([...prev, src]))
+    }, 100)
   }
 
   // 이미지 클릭 핸들러
@@ -235,24 +246,37 @@ export default function GalleryPage() {
           {isLoading ? (
             Array.from({ length: 12 }).map((_, index) => (
               <div key={index} className="gallery-masonry-item animate-pulse">
-                <div className="bg-gray-200 rounded-lg" style={{ aspectRatio: "4/3", width: "100%", height: "200px" }}></div>
+                <div className="bg-gray-100 rounded-lg" style={{ aspectRatio: "4/3", width: "100%", height: "200px" }}>
+                  <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg"></div>
+                </div>
               </div>
             ))
           ) : filteredImages.length > 0 ? (
-            filteredImages.map((image, index) => (
-              <div key={index} className="gallery-masonry-item" onClick={() => handleImageClick(image.src)}>
-                <Image
-                  src={image.src || "/placeholder.svg"}
-                  alt={image.alt}
-                  width={400}
-                  height={300}
-                  className="w-full h-auto cursor-pointer transition-transform duration-500 rounded-lg group-hover:scale-105"
-                  quality={85}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                />
-              </div>
-            ))
+            filteredImages.map((image, index) => {
+              const isImageLoaded = loadedImages.has(image.src)
+              return (
+                <div
+                  key={index}
+                  className={`gallery-masonry-item group transition-all duration-1000 ease-out ${isImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+                    }`}
+                  onClick={() => isImageLoaded && handleImageClick(image.src)}
+                >
+                  <div className="relative overflow-hidden rounded-lg">
+                    <Image
+                      src={image.src || "/placeholder.svg"}
+                      alt={image.alt}
+                      width={400}
+                      height={300}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="w-full h-auto cursor-pointer rounded-lg transition-transform duration-300 group-hover:scale-105"
+                      quality={85}
+                      onLoad={() => handleImageLoad(image.src)}
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              )
+            })
           ) : (
             <div className="col-span-full text-center py-12">
               <p className="text-gray-500 text-lg">해당 카테고리에 이미지가 없습니다.</p>

@@ -72,7 +72,7 @@ export default function Page() {
       title: "함께하는 행복",
       description: "가족과 함께하는 즐거운 추억을 특별하게 남겨드립니다",
       desktoptextbackground: false,
-      mobiletextbackground: false,
+      mobiletextbackground: true,
     },
     {
       src: "/slider/slider5_desktop.jpeg",
@@ -102,7 +102,7 @@ export default function Page() {
       title: "감동의 순간들",
       description: "인생의 소중한 이야기를 기록합니다",
       desktoptextbackground: true,
-      mobiletextbackground: false,
+      mobiletextbackground: true,
     },
 
   ]
@@ -387,7 +387,13 @@ export default function Page() {
                   />
                   {/* 감성적인 문구 오버레이 */}
                   <div className="absolute inset-0  my-6 p-8 text-black max-w-2xl mx-auto">
-                    <div className={`text-center ${image.desktoptextbackground ? 'md:bg-gray-100/30 md:rounded-lg md:px-6 md:py-4' : ''} ${image.mobiletextbackground ? 'bg-gray-100/50 p-4 rounded-lg md:bg-transparent md:p-0 md:rounded-none' : ''}`}>
+                    {/* 데스크톱 텍스트 */}
+                    <div className={`text-center hidden md:block ${image.desktoptextbackground ? 'bg-gray-100/30 rounded-lg px-6 py-4' : ''}`}>
+                      <h2 className="text-2xl md:text-3xl text-pretty font-serif">{image.title}</h2>
+                      <p className="text-lg md:text-xl opacity-90 text-pretty">{image.description}</p>
+                    </div>
+                    {/* 모바일 텍스트 */}
+                    <div className={`text-center block md:hidden ${image.mobiletextbackground ? 'bg-gray-100/50 p-4 rounded-lg' : ''}`}>
                       <h2 className="text-2xl md:text-3xl text-pretty font-serif">{image.title}</h2>
                       <p className="text-lg md:text-xl opacity-90 text-pretty">{image.description}</p>
                     </div>
