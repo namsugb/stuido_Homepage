@@ -231,8 +231,48 @@ export default function RootLayout({
             </div>
           </div>
         </header>
-        {children}
+
+
+        <main>
+          {children}
+        </main>
+
+        {/* Floating Buttons */}
         <FloatingButtons />
+
+        {/* 푸터 */}
+        <footer className="bg-[#333] py-12 text-white">
+          <div className="container mx-auto px-6">
+            <div className="grid gap-8 md:grid-cols-3">
+              <div>
+                <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">아침햇살 스튜디오</h3>
+                <p className="mb-2 text-sm text-gray-300 font-korean">소중한 순간을 영원히</p>
+                <p className="text-sm text-gray-300 font-korean">전라남도 순천시 조례동 1823-5</p>
+              </div>
+              <div>
+                <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">연락처</h3>
+                <p className="mb-2 text-sm text-gray-300 font-korean">전화: 061-721-4800</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">이메일: mirim0423@naver.com</p>
+                <div className="mt-4 flex items-center gap-3">
+                  <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs font-korean">예약</span>
+                  <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs font-korean">주차</span>
+                  <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs font-korean">무선 인터넷</span>
+                  <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs font-korean">애완동물 동반</span>
+                </div>
+              </div>
+              <div>
+                <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">영업시간</h3>
+                <p className="mb-2 text-sm text-gray-300 font-korean">평일: 10:00 - 18:30</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">토요일: 10:00 - 18:30</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">일요일: 예약 촬영만 진행</p>
+              </div>
+            </div>
+            <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400 font-korean">
+              © {new Date().getFullYear()} 아침햇살 스튜디오. All rights reserved.<br />
+              대표 : 남유행, 사업자등록번호: 416-10-35417
+            </div>
+          </div>
+        </footer >
       </body>
     </html>
   )

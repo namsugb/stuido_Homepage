@@ -231,7 +231,7 @@ export default function ProductsPageContent() {
         <div className="min-h-screen">
             <main className="container mx-auto px-3 pt-20 pb-20">
                 <div className="text-center mt-16 mb-12">
-                    <h1 className="text-4xl font-medium mb-4 font-noto">촬영 상품 안내</h1>
+                    <h1 className="text-4xl font-medium mb-4">촬영 상품 안내</h1>
                     <p className="text-gray-600 max-w-3xl mx-auto">
                         아침햇살 스튜디오의 다양한 촬영 상품을 확인해보세요.<br />
                     </p>
@@ -242,7 +242,7 @@ export default function ProductsPageContent() {
                     <div className="flex bg-gray-100 rounded-lg p-1">
                         <button
                             onClick={() => setActiveTab("individual")}
-                            className={`px-8 py-3 rounded-md font-medium font-noto transition-all duration-200 ${activeTab === "individual"
+                            className={`px-8 py-3 rounded-md font-medium transition-all duration-200 ${activeTab === "individual"
                                 ? "bg-card text-[#bfa888] shadow-md"
                                 : "text-gray-600 hover:text-gray-800"
                                 }`}
@@ -264,7 +264,7 @@ export default function ProductsPageContent() {
                 {/* 개별 상품 섹션 */}
                 {activeTab === "individual" && (
                     <div className="mb-16 bg-card rounded-lg shadow-sm">
-                        <h2 className="text-2xl font-medium mb-6 text-center font-noto">개별 상품</h2>
+                        <h2 className="text-2xl font-medium mb-6 text-center">개별 상품</h2>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 pb-8 px-3">
                             {/* 데스크탑(768px 이상)에서는 모든 상품(가로+세로형) 3열 그리드에 렌더링 */}
                             <div className="hidden md:contents">
@@ -282,7 +282,7 @@ export default function ProductsPageContent() {
                                         <div className="p-2 bg-card">
                                             <div className="text-center">
                                                 <div className="text-sm md:text-base font-semibold mb-1 text-gray-800">{product.title}</div>
-                                                <div className="text-xs md:text-sm font-bold text-red-600 mb-1">{product.price}</div>
+                                                <div className="text-xs md:text-sm font-bold text-[#bfa888] mb-1">{product.price}</div>
                                                 <div className="text-xs text-gray-600">
                                                     {product.features && product.features.length > 0 && product.features.join(", ")}
                                                 </div>
@@ -308,7 +308,7 @@ export default function ProductsPageContent() {
                                             <div className="p-2 bg-card">
                                                 <div className="text-center">
                                                     <div className="text-sm font-semibold mb-1 text-gray-800">{product.title}</div>
-                                                    <div className="text-sm font-bold text-red-600 mb-1">{product.price}</div>
+                                                    <div className="text-sm font-bold text-[#bfa888] mb-1">{product.price}</div>
                                                     <div className="text-xs text-gray-600">
                                                         {product.features && product.features.length > 0 && product.features.join(", ")}
                                                     </div>
@@ -333,7 +333,7 @@ export default function ProductsPageContent() {
                                             <div className="p-2 bg-card">
                                                 <div className="text-center">
                                                     <div className="text-sm font-semibold mb-1 text-gray-800">{product.title}</div>
-                                                    <div className="text-sm font-bold text-red-600 mb-1">{product.price}</div>
+                                                    <div className="text-sm font-bold text-[#bfa888] mb-1">{product.price}</div>
                                                     <div className="text-xs text-gray-600">
                                                         {product.features && product.features.length > 0 && product.features.join(", ")}
                                                     </div>
@@ -369,7 +369,7 @@ export default function ProductsPageContent() {
                                             <div className="text-xs md:text-sm text-gray-600 mb-1">
                                                 {product.features && product.features.length > 0 && product.features.join(", ")}
                                             </div>
-                                            <div className="text-sm md:text-lg font-bold text-red-600">{product.price}</div>
+                                            <div className="text-sm md:text-lg font-bold text-[#bfa888]">{product.price}</div>
                                         </div>
                                     </div>
                                 </div>

@@ -7,11 +7,10 @@ import { useState, useEffect } from "react";
 // 이벤트 타입 정의
 interface Event {
     id: number;
-    title: string;
-    description: string;
     image: string;
     width: number;
     height: number;
+    soldOut: boolean;
 }
 
 export default function EventsPage() {
@@ -21,24 +20,30 @@ export default function EventsPage() {
 
     const events: Event[] = [
         {
+            id: 0,
+            image: "/event/event0.jpg",
+            width: 300,
+            height: 300,
+            soldOut: true,
+        },
+        {
             id: 1,
-            title: "오픈 이벤트",
-            description: "오픈 이벤트 설명",
             image: "/event/event1.jpg",
             width: 300,
             height: 300,
+            soldOut: false,
         },
         {
             id: 2,
-            title: "오픈 이벤트",
-            description: "오픈 이벤트 설명",
             image: "/event/event2.jpg",
             width: 300,
             height: 300,
+            soldOut: false,
         }
     ];
 
     const openModal = (event: Event) => {
+        if (event.soldOut) return; // Sold Out된 이벤트는 클릭 불가
         setSelectedEvent(event);
         setIsModalOpen(true);
     };
@@ -70,21 +75,33 @@ export default function EventsPage() {
 
             {/* 이벤트 카드 섹션 */}
             <section id="events" className="mt-32">
-                <h1 className="text-3xl font-medium text-center font-noto mb-4"> 🎉 진행중인 이벤트 🎉</h1>
-                <p className="text-sm font-light text-center font-noto mb-8"> 이벤트에 참여해 가족들과 행복한 시간을 기록해보세요!</p>
+                <h1 className="text-3xl font-medium text-center mb-4"> 🎉 진행중인 이벤트 🎉</h1>
+                <p className="text-sm font-light text-center mb-8"> 이벤트에 참여해 가족들과 행복한 시간을 기록해보세요!</p>
                 <div className="mx-auto px-4 my-4">
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
                         {/* 이벤트 카드 데이터 반복 */}
                         {events.map((event) => (
-                            <div key={event.id} className="bg-white shadow-md rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                            <div key={event.id} className={`bg-white shadow-md rounded-lg overflow-hidden transition-shadow duration-300 ${event.soldOut
+                                ? 'cursor-not-allowed opacity-60'
+                                : 'cursor-pointer hover:shadow-lg'
+                                }`}>
                                 <div className="relative w-full pt-[100%]" onClick={() => openModal(event)}>
                                     <Image
                                         src={event.image}
-                                        alt={event.title}
+                                        alt="이벤트 이미지"
                                         width={event.width}
                                         height={event.height}
-                                        className="absolute top-0 left-0 w-full h-full object-fill rounded-lg hover:scale-105 transition-transform duration-300"
+                                        className={`absolute top-0 left-0 w-full h-full object-fill rounded-lg transition-transform duration-300 ${event.soldOut ? '' : 'hover:scale-105'
+                                            }`}
                                     />
+                                    {/* Sold Out 표시 */}
+                                    {event.soldOut && (
+                                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                                            <div className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-lg">
+                                                SOLD OUT
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         ))}
@@ -135,28 +152,33 @@ export default function EventsPage() {
                         <div className="relative">
                             <Image
                                 src={selectedEvent.image}
-                                alt={selectedEvent.title}
+                                alt="이벤트 이미지"
                                 width={800}
                                 height={600}
                                 className="w-full h-auto object-contain"
                             />
                         </div>
 
-                        {/* 이벤트 정보 */}
-                        <div className="p-6 bg-white">
-                            <h2 className="text-2xl font-bold mb-3 text-gray-900">{selectedEvent.title}</h2>
-                            <p className="text-gray-600 leading-relaxed">{selectedEvent.description}</p>
+                        <div className="text-center my-4">
+                            <p className="text-gray-500 text-sm mb-2">궁금한 사항이 있으신가요? 편하게 문의 하세요!</p>
+                            <a
+                                href="tel:061-721-4800"
+                                className="inline-block bg-[#bfa888] text-white px-6 py-2 rounded-full font-medium hover:bg-[#a89a7a] transition-colors duration-200"
+                            >
+                                예약문의
+                            </a>
                         </div>
+
                     </div>
                 </div>
             )}
 
 
             {/* 예약 안내 섹션 */}
-            < section id="contact" className="bg-[#bfa888] mt-20 py-20 text-white" >
+            <section id="contact" className="bg-[#bfa888] mt-8 py-12 text-white">
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-3xl text-center">
-                        <h2 className="mb-6 text-3xl font-thin font-noto">궁금한 사항이 있으신가요?</h2>
+                        <h2 className="mb-6 text-3xl font-thin">궁금한 사항이 있으신가요?</h2>
                         <p className="mb-8 text-lg">
                             편하게 문의 하세요!
                         </p>
@@ -176,7 +198,7 @@ export default function EventsPage() {
                         </div>
                     </div>
                 </div>
-            </section >
+            </section>
         </div>
     )
 }
