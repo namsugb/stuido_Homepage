@@ -482,6 +482,7 @@ export default function MainPageClient() {
                                 {
                                     text: "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록 배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진 결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다.",
                                     img: "/main_gallery/family/casual/casual_01.jpg",
+                                    alt: "가족 촬영 예시",
                                     name: "김0영 고객님",
                                     type: "가족 촬영"
                                 },
@@ -577,7 +578,7 @@ export default function MainPageClient() {
                                                         <div className="mx-auto h-16 w-16 overflow-hidden rounded-full">
                                                             <Image
                                                                 src={review.img}
-                                                                alt={review.alt}
+                                                                alt={review.alt || review.name}
                                                                 width={64}
                                                                 height={64}
                                                                 className="h-full w-full object-cover"
