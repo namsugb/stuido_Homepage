@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Camera, Clock, Star, Users, ArrowRight, CheckCircle, Image, Sparkles } from "lucide-react"
+import { Camera, Clock, Star, Users, ArrowRight, CheckCircle, Image, Sparkles, Phone } from "lucide-react"
 
 export default function RestorationClient() {
     const [activeTab, setActiveTab] = useState("service")
@@ -120,8 +120,8 @@ export default function RestorationClient() {
                             <button
                                 onClick={() => setActiveTab("service")}
                                 className={`px-8 py-3 rounded-md font-medium transition-all duration-200 ${activeTab === "service"
-                                        ? "bg-white text-[#bfa888] shadow-md"
-                                        : "text-gray-600 hover:text-gray-800"
+                                    ? "bg-white text-[#bfa888] shadow-md"
+                                    : "text-gray-600 hover:text-gray-800"
                                     }`}
                             >
                                 서비스 소개
@@ -129,8 +129,8 @@ export default function RestorationClient() {
                             <button
                                 onClick={() => setActiveTab("process")}
                                 className={`px-8 py-3 rounded-md font-medium transition-all duration-200 ${activeTab === "process"
-                                        ? "bg-white text-[#bfa888] shadow-md"
-                                        : "text-gray-600 hover:text-gray-800"
+                                    ? "bg-white text-[#bfa888] shadow-md"
+                                    : "text-gray-600 hover:text-gray-800"
                                     }`}
                             >
                                 복원 과정
@@ -138,8 +138,8 @@ export default function RestorationClient() {
                             <button
                                 onClick={() => setActiveTab("examples")}
                                 className={`px-8 py-3 rounded-md font-medium transition-all duration-200 ${activeTab === "examples"
-                                        ? "bg-white text-[#bfa888] shadow-md"
-                                        : "text-gray-600 hover:text-gray-800"
+                                    ? "bg-white text-[#bfa888] shadow-md"
+                                    : "text-gray-600 hover:text-gray-800"
                                     }`}
                             >
                                 복원 예시
