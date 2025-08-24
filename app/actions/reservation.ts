@@ -76,6 +76,7 @@ export async function submitReservation(formData: ReservationFormData) {
       time: formData.time,
       shootingType: formData.shootingType.join(','), // shootingType를 문자열로 변환하여 전달
       people: Number.parseInt(formData.people),
+      studio: "아침햇살 스튜디오",
     });
 
     const kakaoResultToCustomer = await sendKakaoNotificationToCustomer({
