@@ -100,7 +100,7 @@ export default function ReservationClient() {
                     referall_source: "홈페이지",
                 })
             } else {
-                setServerError(result.error || "예약 제출 중 오류가 발생했습니다.")
+                setServerError(result.message || "예약 제출 중 오류가 발생했습니다.")
             }
         } catch (error) {
             console.error("예약 제출 오류:", error)
@@ -232,7 +232,14 @@ export default function ReservationClient() {
                                         className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#bfa888] ${errors.date ? "border-red-300" : "border-gray-300"
                                             }`}
                                     />
-                                    <Calendar className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
+                                    {/* <button
+                                        type="button"
+                                        onClick={() => document.getElementById('date')?.focus()}
+                                        className="absolute right-3 top-2.5 h-5 w-5 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                                        aria-label="달력 열기"
+                                    >
+                                        <Calendar className="w-5 h-5" />
+                                    </button> */}
                                 </div>
                                 {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
                             </div>

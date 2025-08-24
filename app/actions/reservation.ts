@@ -1,7 +1,7 @@
 "use server"
 
 import { createServerSupabaseClient } from "@/lib/supabase"
-import { sendKakaoNotification } from "../utils/kakao"
+import { sendKakaoNotification, sendKakaoNotificationToCustomer } from "../utils/kakao"
 
 export type ReservationFormData = {
   name: string
@@ -78,8 +78,23 @@ export async function submitReservation(formData: ReservationFormData) {
       people: Number.parseInt(formData.people),
     });
 
+    const kakaoResultToCustomer = await sendKakaoNotificationToCustomer({
+      name: formData.name,
+      phone: formData.phone,
+      date: formData.date,
+      time: formData.time,
+      shootingType: formData.shootingType.join(','), // shootingType를 문자열로 변환하여 전달
+      people: Number.parseInt(formData.people),
+      studio: "아침햇살 스튜디오",
+    });
+
     if (!kakaoResult.success) {
-      console.error("Kakao notification error:", kakaoResult.error);
+      console.error("스튜디오에 보내는 알림톡 발송 실패:", kakaoResult.error);
+      // 알림톡 발송 실패해도 예약은 성공으로 처리
+    }
+
+    if (!kakaoResultToCustomer.success) {
+      console.error("고객에게 보내는 알림톡 발송 실패:", kakaoResultToCustomer.error);
       // 알림톡 발송 실패해도 예약은 성공으로 처리
     }
 

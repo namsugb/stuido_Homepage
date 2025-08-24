@@ -5,6 +5,7 @@ interface KakaoNotificationData {
     time: string;
     shootingType: string;
     people: number;
+    studio: string;
 }
 
 // 스튜디오에 보내는 알림톡
@@ -13,7 +14,7 @@ export async function sendKakaoNotification(data: KakaoNotificationData) {
         // Lunasoft API 설정 확인
         const LUNA_USERID = process.env.LUNA_USERID;
         const LUNA_API_KEY = process.env.LUNA_API_KEY;
-        const LUNA_TEMPLATE_CODE = process.env.LUNA_TEMPLATE_CODE;
+        const LUNA_TEMPLATE_CODE = 50036;
 
         if (!LUNA_USERID || !LUNA_API_KEY || !LUNA_TEMPLATE_CODE) {
             console.warn("Lunasoft 알림톡 설정이 되어있지 않습니다.");
@@ -29,7 +30,7 @@ export async function sendKakaoNotification(data: KakaoNotificationData) {
             messages: [
                 {
                     no: "1",
-                    tel_num: "01089300045",
+                    tel_num: "01050040036",
                     use_sms: "0",
                     sms_content: "아침햇살 스튜디오 예약 문의",
                     msg_content: `아침햇살 스튜디오님\n새로운 예약문의가 있습니다.\n\n-고객정보\n이름 : ${data.name}\n연락처 : ${data.phone}\n촬영유형 : ${data.shootingType}\n촬영일시 : ${data.date}`,
@@ -78,7 +79,7 @@ export async function sendKakaoNotificationToCustomer(data: KakaoNotificationDat
         // Lunasoft API 설정 확인
         const LUNA_USERID = process.env.LUNA_USERID;
         const LUNA_API_KEY = process.env.LUNA_API_KEY;
-        const LUNA_TEMPLATE_CODE = 50035;
+        const LUNA_TEMPLATE_CODE = 50037;
 
         if (!LUNA_USERID || !LUNA_API_KEY || !LUNA_TEMPLATE_CODE) {
             console.warn("Lunasoft 알림톡 설정이 되어있지 않습니다.");
@@ -96,8 +97,9 @@ export async function sendKakaoNotificationToCustomer(data: KakaoNotificationDat
                     no: "1",
                     tel_num: phoneNumber,
                     use_sms: "0",
-                    sms_content: "아침햇살 스튜디오 예약 문의",
-                    msg_content: `[아침햇살 스튜디오]\n${data.name}님 예약 문의 주셔서 감사합니다.]\n곧 상담 연락을 드리겠습니다.`,
+                    sms_content: `${data.studio} 예약 문의`,
+                    msg_content: `[${data.studio}]\n안녕하세요 ${data.name}님 예약 문의 주셔서 감사합니다.\n곧 상담 연락을 드리겠습니다.\n궁금하신점이 있으시면 언제든 물어보세요`,
+
                 },
             ],
         }
