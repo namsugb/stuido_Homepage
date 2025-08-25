@@ -267,7 +267,7 @@ export default function RestorationClient() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
-                            href="tel:061-721-4800"
+                            href="tel:032-875-4788"
                             className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#bfa888] rounded-full hover:bg-gray-100 transition-colors"
                         >
                             <Phone className="h-5 w-5 mr-2" />

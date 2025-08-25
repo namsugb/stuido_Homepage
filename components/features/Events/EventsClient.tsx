@@ -80,7 +80,7 @@ export default function EventsClient() {
                                 <div className="relative w-full pt-[100%]" onClick={() => openModal(event)}>
                                     <OptimizedImage
                                         src={event.image}
-                                        alt={`${event.title} - 아침햇살 스튜디오 진행 이벤트 이미지`}
+                                        alt={`${event.title} - 팝콘스튜디오 인천점 진행 이벤트 이미지`}
                                         width={event.width}
                                         height={event.height}
                                         className="absolute top-0 left-0 w-full h-full object-fill rounded-lg hover:scale-105 transition-transform duration-300"
@@ -162,7 +162,7 @@ export default function EventsClient() {
                                 예약하기
                             </Link>
                             <a
-                                href="tel:061-721-4800"
+                                href="tel:032-875-4788"
                                 className="inline-block border-2 border-[#bfa888] text-[#bfa888] px-8 py-3 rounded-full font-medium hover:bg-[#bfa888] hover:text-white transition-colors duration-200"
                             >
                                 전화 문의
@@ -186,7 +186,7 @@ export default function EventsClient() {
                             <div className="mt-12 text-center">
                                 <OptimizedImage
                                     src={selectedEvent.image}
-                                    alt={`${selectedEvent.title} - 아침햇살 스튜디오 이벤트 상세 이미지`}
+                                    alt={`${selectedEvent.title} - 팝콘스튜디오 인천점 이벤트 상세 이미지`}
                                     width={selectedEvent.width}
                                     height={selectedEvent.height}
                                     className="w-full h-auto rounded-lg mx-auto"

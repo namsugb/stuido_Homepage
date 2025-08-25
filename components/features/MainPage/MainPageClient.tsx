@@ -339,14 +339,14 @@ export default function MainPageClient() {
             <section id="about">
                 <div className="container mx-auto px-2 mt-6 mb-12">
 
-                    <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={200} height={200} className="mb-6 mx-auto" />
+                    <Image src="/logo/logo.jpeg" alt="팝콘스튜디오 인천점 로고" width={200} height={200} className="mb-6 mx-auto" />
                     <h2 className="mb-3 text-3xl text-center font-bold decoration-[#bfa888]">상품 소개</h2>
                     {/* <div className="flex mb-8 leading-8 tracking-normal italic text-justify flex-col items-center justify-center gap-0">
-          <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={100} height={100} className=" mb-8" />
+          <Image src="/logo/logo.jpeg" alt="팝콘스튜디오 인천점 로고" width={100} height={100} className=" mb-8" />
           <h2 className="mb-8 text-3xl text-center font-light italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">상품 소개</h2>
         </div> */}
                     <p className="text-lg font-light mt-2 mb-12 md:text-2xl text-gray-600 text-center leading-relaxed text-pretty">
-                        "아침햇살 스튜디오의 다양한 상품들을 확인해보세요".
+                        "팝콘스튜디오 인천점의 다양한 상품들을 확인해보세요".
                     </p>
 
 
@@ -440,7 +440,7 @@ export default function MainPageClient() {
                 <div className="container mx-auto px-4">
                     <h2 className="mb-3 text-center text-3xl font-light  decoration-[#bfa888]">갤러리</h2>
                     <p className="text-lg font-light mt-2 mb-12 md:text-2xl text-gray-600 text-center leading-relaxed text-pretty">
-                        "아침햇살 스튜디오의 다양한 작품을 감상해보세요. "
+                        "팝콘스튜디오 인천점의 다양한 작품을 감상해보세요. "
                     </p>
 
                     {/* 그리드 기반 갤러리 레이아웃 */}
@@ -603,15 +603,15 @@ export default function MainPageClient() {
                 <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-4xl font-bold mb-6">지금 예약하세요</h2>
                     <p className="text-xl mb-8 max-w-2xl mx-auto">
-                        소중한 순간을 아침햇살 스튜디오와 함께하세요
+                        소중한 순간을 팝콘스튜디오 인천점와 함께하세요
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
-                            href="tel:061-721-4800"
+                            href="tel:032-875-4788"
                             className="inline-flex items-center justify-center px-8 py-3 bg-white text-[#bfa888] rounded-full font-medium hover:bg-gray-100 transition-colors"
                         >
                             <Phone className="w-5 h-5 mr-2" />
-                            061-721-4800
+                            032-875-4788
                         </a>
                         <Link
                             href="/reservation"

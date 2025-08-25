@@ -10,7 +10,7 @@ export default function FloatingButtons() {
         <div className="fixed bottom-3 right-3 z-50 flex flex-col gap-3 justify-center md:items-end">
             {/* 전화 */}
             <a
-                href="tel:061-721-4800"
+                href="tel:032-875-4788"
                 className="flex items-center justify-center w-12 h-12 md:w-20 md:h-20 rounded-full bg-white shadow-xl text-[#bfa888] hover:bg-[#f5eee6] transition border border-[#bfa888] hover:scale-110"
                 title="전화 문의"
             >

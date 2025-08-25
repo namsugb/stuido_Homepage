@@ -10,33 +10,33 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://achimhaessal.kr/slider/slider1_desktop.jpeg</image:loc>
-      <image:caption>가족사진 - 따뜻한 가족의 소중한 순간을 담은 아침햇살 스튜디오 대표작</image:caption>
+      <image:caption>가족사진 - 따뜻한 가족의 소중한 순간을 담은 팝콘스튜디오 인천점 대표작</image:caption>
       <image:title>가족사진</image:title>
-      <image:geo_location>순천시, 전라남도</image:geo_location>
+      <image:geo_location>인천광역시, 미추홀구</image:geo_location>
     </image:image>
     <image:image>
       <image:loc>https://achimhaessal.kr/slider/slider2_desktop.jpeg</image:loc>
       <image:caption>프로필 - 전문적이고 자연스러운 개인 프로필 촬영</image:caption>
       <image:title>프로필</image:title>
-      <image:geo_location>순천시, 전라남도</image:geo_location>
+      <image:geo_location>인천광역시, 미추홀구</image:geo_location>
     </image:image>
     <image:image>
       <image:loc>https://achimhaessal.kr/slider/slider3_desktop.jpeg</image:loc>
       <image:caption>리마인드웨딩 - 소중한 추억을 되살리는 특별한 촬영</image:caption>
       <image:title>리마인드웨딩</image:title>
-      <image:geo_location>순천시, 전라남도</image:geo_location>
+      <image:geo_location>인천광역시, 미추홀구</image:geo_location>
     </image:image>
     <image:image>
       <image:loc>https://achimhaessal.kr/slider/slider4_desktop.jpeg</image:loc>
       <image:caption>한복 - 전통의 아름다움을 담은 한복 촬영</image:caption>
       <image:title>한복</image:title>
-      <image:geo_location>순천시, 전라남도</image:geo_location>
+      <image:geo_location>인천광역시, 미추홀구</image:geo_location>
     </image:image>
     <image:image>
       <image:loc>https://achimhaessal.kr/slider/slider5_desktop.jpeg</image:loc>
       <image:caption>커플 - 사랑하는 연인과의 달콤한 순간</image:caption>
       <image:title>커플</image:title>
-      <image:geo_location>순천시, 전라남도</image:geo_location>
+      <image:geo_location>인천광역시, 미추홀구</image:geo_location>
     </image:image>
   </url>
 
@@ -48,7 +48,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://achimhaessal.kr/about/studio-interior1.jpg</image:loc>
-      <image:caption>아침햇살 스튜디오 내부</image:caption>
+      <image:caption>팝콘스튜디오 인천점 내부</image:caption>
       <image:title>스튜디오 시설</image:title>
     </image:image>
   </url>

@@ -356,7 +356,7 @@ export default function ReservationClient() {
                     <div className="mt-8 p-4 bg-gray-50 rounded-lg">
                         <h3 className="text-sm font-medium text-gray-700 mb-2">문의사항이 있으시면</h3>
                         <p className="text-sm text-gray-600">
-                            전화: <a href="tel:061-721-4800" className="text-[#bfa888] hover:underline">061-721-4800</a>
+                            전화: <a href="tel:032-875-4788" className="text-[#bfa888] hover:underline">032-875-4788</a>
                         </p>
                     </div>
                 </div>

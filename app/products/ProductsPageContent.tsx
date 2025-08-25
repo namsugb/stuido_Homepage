@@ -233,7 +233,7 @@ export default function ProductsPageContent() {
                 <div className="text-center mt-16 mb-12">
                     <h1 className="text-4xl font-medium mb-4">촬영 상품 안내</h1>
                     <p className="text-gray-600 max-w-3xl mx-auto">
-                        아침햇살 스튜디오의 다양한 촬영 상품을 확인해보세요.<br />
+                        팝콘스튜디오 인천점의 다양한 촬영 상품을 확인해보세요.<br />
                     </p>
                 </div>
 
@@ -381,8 +381,8 @@ export default function ProductsPageContent() {
             </main >
             <footer className="bg-[#333] py-8 text-white">
                 <div className="container mx-auto px-6 text-center">
-                    <p className="text-sm text-gray-400">© {new Date().getFullYear()} 아침햇살 스튜디오. All rights reserved.<br />
-                        대표 : 남유행, 사업자등록번호: 416-10-35417
+                    <p className="text-sm text-gray-400">© {new Date().getFullYear()} 팝콘스튜디오 인천점. All rights reserved.<br />
+                        대표 : 이종춘, 사업자등록번호: 416-10-35417
                     </p>
                 </div>
             </footer>
