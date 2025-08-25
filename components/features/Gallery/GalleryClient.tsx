@@ -9,7 +9,7 @@ import { imagePresets } from "@/components/ui/ImagePresets"
 
 export default function GalleryClient() {
     const [selectedCategory, setSelectedCategory] = useState("family")
-    const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null)
+    const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>("hanbok")
     const [filteredImages, setFilteredImages] = useState(galleryData.all)
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -56,7 +56,8 @@ export default function GalleryClient() {
     // 카테고리 변경 핸들러
     const handleCategoryChange = (category: string) => {
         setSelectedCategory(category)
-        setSelectedSubCategory(null) // 카테고리 변경 시 하위 카테고리 초기화
+        // 가족사진 카테고리 선택 시 한복을 기본으로 설정, 다른 카테고리는 null
+        setSelectedSubCategory(category === "family" ? "hanbok" : null)
         setLoadedImages(new Set()) // 로드된 이미지 상태 초기화
         setIsLoading(true)
         // 카테고리 변경 시 로딩 효과를 위한 짧은 딜레이
