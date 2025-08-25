@@ -11,7 +11,7 @@ export default function AboutClient() {
         <div className="min-h-screen bg-white">
             <main className="container mx-auto px-4 pt-24 pb-20">
                 <div className="text-center mt-16 mb-12">
-                    <h1 className="text-4xl font-medium my-4">아침햇살 스튜디오</h1>
+                    <h1 className="text-4xl font-medium my-4">팝콘스튜디오 인천점</h1>
                     <p className="text-gray-600 max-w-2xl mx-auto">
                         따뜻한 햇살처럼, 소중한 순간을 아름답게 담아드립니다.<br />
                         가족의 이야기, 인생의 전환점, 그리고 당신만의 특별한 시간을 사진으로 남겨보세요.
@@ -48,7 +48,7 @@ export default function AboutClient() {
                         <div className="flex-shrink-0 w-full md:w-1/2 flex flex-col items-center md:items-end lg:items-end justify-center">
                             <OptimizedImage
                                 src="/about/photographer.jpg"
-                                alt="아침햇살 스튜디오 대표 사진작가 남유행님의 프로필 사진. 전문적이고 따뜻한 인상의 중년 남성 사진작가"
+                                alt="팝콘스튜디오 인천점 대표 사진작가 이종춘님의 프로필 사진. 전문적이고 따뜻한 인상의 중년 남성 사진작가"
                                 width={320}
                                 height={400}
                                 className="rounded-lg shadow-md object-cover"
@@ -58,7 +58,7 @@ export default function AboutClient() {
                         <div className="flex-1">
                             <h2 className="text-2xl font-bold mb-3">대표 소개</h2>
                             <p className="text-gray-700 mb-2">
-                                <b>남유행</b> | 아침햇살스튜디오 대표 / 한국프로사진협회 초대작가
+                                <b>이종춘</b> | 아침햇살스튜디오 대표 / 한국프로사진협회 초대작가
                             </p>
                             <p className="text-gray-700 mb-4">
                                 사진은 제게 '사람의 마음을 담는 일'입니다.<br />
@@ -199,7 +199,7 @@ export default function AboutClient() {
                         <div className="w-full mt-16 md:w-1/2 flex flex-col justify-start items-end gap-8 lg:items-end">
                             <OptimizedImage
                                 src="/about/studio-interior1.jpg"
-                                alt="아침햇살 스튜디오 내부 전경. 자연광이 들어오는 따뜻한 분위기의 촬영 공간"
+                                alt="팝콘스튜디오 인천점 내부 전경. 자연광이 들어오는 따뜻한 분위기의 촬영 공간"
                                 width={500}
                                 height={350}
                                 className="rounded-lg shadow-md object-cover"
@@ -207,7 +207,7 @@ export default function AboutClient() {
                             />
                             <OptimizedImage
                                 src="/about/studio-interior2.jpg"
-                                alt="아침햇살 스튜디오 내부 촬영 공간. 전문적인 조명과 배경이 구비된 스튜디오"
+                                alt="팝콘스튜디오 인천점 내부 촬영 공간. 전문적인 조명과 배경이 구비된 스튜디오"
                                 width={500}
                                 height={350}
                                 className="rounded-lg shadow-md object-cover"
@@ -215,7 +215,7 @@ export default function AboutClient() {
                             />
                             <OptimizedImage
                                 src="/about/studio-interior3.jpg"
-                                alt="아침햇살 스튜디오 내부 휴식 공간. 편안하게 대기할 수 있는 아늑한 공간"
+                                alt="팝콘스튜디오 인천점 내부 휴식 공간. 편안하게 대기할 수 있는 아늑한 공간"
                                 width={500}
                                 height={350}
                                 className="rounded-lg shadow-md object-cover"
@@ -226,7 +226,7 @@ export default function AboutClient() {
                             <div>
                                 <h2 className="text-2xl font-bold mb-3">스튜디오 소개</h2>
                                 <p className="text-gray-700 mb-4">
-                                    아침햇살 스튜디오는 전라남도 순천시 조례동에 위치한 전문 사진 스튜디오입니다.<br />
+                                    팝콘스튜디오 인천점는 인천광역시 미추홀구에 위치한 전문 사진 스튜디오입니다.<br />
                                     자연광을 최대한 활용한 촬영 공간과 최신 장비를 갖춰 고품질의 사진을 제공합니다.
                                 </p>
                                 <h3 className="text-xl font-semibold mb-2">주요 특징</h3>
@@ -242,10 +242,10 @@ export default function AboutClient() {
                             <div>
                                 <h3 className="text-xl font-semibold mb-2">위치 및 연락처</h3>
                                 <p className="text-gray-700 mb-2">
-                                    <strong>주소:</strong> 전라남도 순천시 조례동 1823-5<br />
-                                    <strong>전화:</strong> 061-721-4800<br />
-                                    <strong>영업시간:</strong> 평일 10:00-18:30, 토요일 10:00-18:30<br />
-                                    <strong>일요일:</strong> 예약 촬영만 진행
+                                    <strong>주소:</strong> 인천 미추홀구 인하로77번길 18 2층<br />
+                                    <strong>전화:</strong> 032-875-4788<br />
+                                    <strong>영업시간:</strong> 월10:30-19:00, 화10:30-19:00, 수10:30-19:00, 목10:30-19:00, 금10:30-19:00, 토10:30-17:00<br />
+                                    <strong>일요일:</strong> 정기휴무 (매주 일요일)
                                 </p>
                             </div>
 
@@ -263,14 +263,14 @@ export default function AboutClient() {
 
                 {/* 공통 하단 섹션 */}
                 <section className="text-center py-16 bg-gray-50 rounded-lg">
-                    <h2 className="text-2xl font-bold mb-6">아침햇살 스튜디오와 함께하세요</h2>
+                    <h2 className="text-2xl font-bold mb-6">팝콘스튜디오 인천점와 함께하세요</h2>
                     <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
                         소중한 순간을 아름답게 담아드리는 것이 저희의 사명입니다.<br />
                         전문성과 따뜻한 마음으로 여러분의 특별한 순간을 기다리고 있습니다.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
-                            href="tel:061-721-4800"
+                            href="tel:032-875-4788"
                             className="inline-flex items-center justify-center px-8 py-3 bg-[#bfa888] text-white rounded-full hover:bg-[#a8957a] transition-colors"
                         >
                             전화 문의

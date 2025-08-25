@@ -100,7 +100,7 @@ export default function GalleryClient() {
             <div className="text-center mt-6 mb-4">
                 <h1 className="text-4xl font-medium mb-4">갤러리</h1>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                    아침햇살 스튜디오의 작품들을 감상해보세요. 가족사진, 리마인드웨딩, 칠순/팔순 잔치, 증명사진 등 다양한 촬영
+                    팝콘스튜디오 인천점의 작품들을 감상해보세요. 가족사진, 리마인드웨딩, 칠순/팔순 잔치, 증명사진 등 다양한 촬영
                     작품을 카테고리별로 확인하실 수 있습니다.
                 </p>
             </div>

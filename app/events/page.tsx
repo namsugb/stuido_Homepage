@@ -162,7 +162,7 @@ export default function EventsPage() {
                         <div className="text-center my-4">
                             <p className="text-gray-500 text-sm mb-2">궁금한 사항이 있으신가요? 편하게 문의 하세요!</p>
                             <a
-                                href="tel:061-721-4800"
+                                href="tel:032-875-4788"
                                 className="inline-block bg-[#bfa888] text-white px-6 py-2 rounded-full font-medium hover:bg-[#a89a7a] transition-colors duration-200"
                             >
                                 예약문의
@@ -184,10 +184,10 @@ export default function EventsPage() {
                         </p>
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                             <a
-                                href="tel:061-721-4800"
+                                href="tel:032-875-4788"
                                 className="rounded-full bg-white px-8 py-3 font-medium text-[#bfa888] transition hover:bg-[#f5eee6]"
                             >
-                                061-721-4800
+                                032-875-4788
                             </a>
                             <Link
                                 href="/reservation"

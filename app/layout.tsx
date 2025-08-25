@@ -24,7 +24,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "아침햇살 스튜디오",
+  title: "팝콘스튜디오 인천점",
   description: "가족 사진 스튜디오",
   generator: 'v0.dev'
 }
@@ -37,36 +37,36 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <title>아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문</title>
-        <meta name="description" content="전라남도 순천 아침햇살 스튜디오는 가족사진, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 전문적으로 제공합니다. 소중한 순간을 아름답게 남겨드립니다." />
-        <meta name="keywords" content="순천 가족사진, 순천 스튜디오, 프로필 사진, 리마인드웨딩, 증명사진, 아침햇살 스튜디오, 가족사진관" />
-        <meta property="og:title" content="아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문" />
-        <meta property="og:description" content="전라남도 순천 아침햇살 스튜디오에서 가족, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 경험하세요. 소중한 순간을 아름답게 남겨드립니다." />
+        <title>팝콘스튜디오 인천점 | 순천 가족사진, 프로필, 리마인드웨딩 전문</title>
+        <meta name="description" content="인천 팝콘스튜디오 인천점는 가족사진, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 전문적으로 제공합니다. 소중한 순간을 아름답게 남겨드립니다." />
+        <meta name="keywords" content="순천 가족사진, 순천 스튜디오, 프로필 사진, 리마인드웨딩, 증명사진, 팝콘스튜디오 인천점, 가족사진관" />
+        <meta property="og:title" content="팝콘스튜디오 인천점 | 순천 가족사진, 프로필, 리마인드웨딩 전문" />
+        <meta property="og:description" content="인천 팝콘스튜디오 인천점에서 가족, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 경험하세요. 소중한 순간을 아름답게 남겨드립니다." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://achimhaessal.kr" />
         <meta property="og:image" content="/slider/slider1_desktop.jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="아침햇살 스튜디오 대표 작품 - 가족사진" />
-        <meta property="og:site_name" content="아침햇살 스튜디오" />
+        <meta property="og:image:alt" content="팝콘스튜디오 인천점 대표 작품 - 가족사진" />
+        <meta property="og:site_name" content="팝콘스튜디오 인천점" />
         <meta property="og:locale" content="ko_KR" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@achimhaessal" />
-        <meta name="twitter:title" content="아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문" />
+        <meta name="twitter:title" content="팝콘스튜디오 인천점 | 순천 가족사진, 프로필, 리마인드웨딩 전문" />
         <meta name="twitter:description" content="순천 가족사진, 프로필, 리마인드웨딩, 증명사진 전문 스튜디오. 소중한 순간을 아름답게 남겨드립니다." />
         <meta name="twitter:image" content="/slider/slider1_desktop.jpeg" />
-        <meta name="twitter:image:alt" content="아침햇살 스튜디오 대표 작품 - 가족사진" />
+        <meta name="twitter:image:alt" content="팝콘스튜디오 인천점 대표 작품 - 가족사진" />
 
         {/* 네이버 검색 최적화 */}
         <meta name="naver-site-verification" content="be77199758e7c465cccd457df58da26627d38659" />
-        <meta property="article:author" content="아침햇살 스튜디오" />
-        <meta property="article:publisher" content="아침햇살 스튜디오" />
+        <meta property="article:author" content="팝콘스튜디오 인천점" />
+        <meta property="article:publisher" content="팝콘스튜디오 인천점" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
         {/* 네이버 이미지 갤러리 최적화 */}
-        <meta name="subject" content="아침햇살 스튜디오 - 순천 가족사진 전문" />
+        <meta name="subject" content="팝콘스튜디오 인천점 - 순천 가족사진 전문" />
         <meta name="content-language" content="ko" />
         <meta name="revisit-after" content="1 days" />
         <meta name="reply-to" content="contact@achimhaessal.kr" />
@@ -89,8 +89,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "아침햇살 스튜디오",
-              "description": "전라남도 순천 가족사진, 프로필, 리마인드웨딩, 증명사진 전문 스튜디오",
+              "name": "팝콘스튜디오 인천점",
+              "description": "인천 가족사진, 프로필, 리마인드웨딩, 증명사진 전문 스튜디오",
               "image": [
                 "https://achimhaessal.kr/slider/slider1_desktop.jpeg",
                 "https://achimhaessal.kr/slider/slider2_desktop.jpeg",
@@ -100,11 +100,11 @@ export default function RootLayout({
               ],
               "logo": "https://achimhaessal.kr/logo/logo.jpeg",
               "url": "https://achimhaessal.kr",
-              "telephone": "061-721-4800",
+              "telephone": "032-875-4788",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "순천시",
-                "addressRegion": "전라남도",
+                "addressRegion": "인천광역시",
                 "addressCountry": "KR"
               },
               "geo": {
@@ -115,7 +115,7 @@ export default function RootLayout({
               "openingHours": "Mo-Su 09:00-18:00",
               "priceRange": "$$",
               "serviceType": ["가족사진", "프로필사진", "리마인드웨딩", "증명사진"],
-              "areaServed": ["순천시", "전라남도"],
+              "areaServed": ["인천광역시", "미추홀구"],
               "hasMap": "https://map.naver.com/v5/search/아침햇살스튜디오",
               "paymentAccepted": ["현금", "카드"],
               "hasOfferCatalog": {
@@ -142,7 +142,7 @@ export default function RootLayout({
               },
               "mainEntity": {
                 "@type": "ImageGallery",
-                "name": "아침햇살 스튜디오 작품 갤러리",
+                "name": "팝콘스튜디오 인천점 작품 갤러리",
                 "description": "가족사진, 프로필, 리마인드웨딩 전문 촬영 작품",
                 "image": [
                   {
@@ -192,7 +192,7 @@ export default function RootLayout({
             <div className="flex items-center justify-center py-6">
               <Link href="/" className="flex items-center">
                 <div className="h-10 w-6 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
-                  <img src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" className="h-full w-full object-contain" />
+                  <img src="/logo/logo.jpeg" alt="팝콘스튜디오 인천점 로고" className="h-full w-full object-contain" />
                 </div>
                 <div className="ml-2 flex flex-col text-base md:text-lg font-bold text-gray-800 leading-tight min-w-[80px]">
                   <span className="whitespace-nowrap">아침햇살</span>
@@ -245,13 +245,13 @@ export default function RootLayout({
           <div className="container mx-auto px-6">
             <div className="grid gap-8 md:grid-cols-3">
               <div>
-                <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">아침햇살 스튜디오</h3>
+                <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">팝콘스튜디오 인천점</h3>
                 <p className="mb-2 text-sm text-gray-300 font-korean">소중한 순간을 영원히</p>
-                <p className="text-sm text-gray-300 font-korean">전라남도 순천시 조례동 1823-5</p>
+                <p className="text-sm text-gray-300 font-korean">인천 미추홀구 인하로77번길 18 2층</p>
               </div>
               <div>
                 <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">연락처</h3>
-                <p className="mb-2 text-sm text-gray-300 font-korean">전화: 061-721-4800</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">전화: 032-875-4788</p>
                 <p className="mb-2 text-sm text-gray-300 font-korean">이메일: mirim0423@naver.com</p>
                 <div className="mt-4 flex items-center gap-3">
                   <span className="rounded-full bg-[#bfa888] px-2 py-1 text-xs font-korean">예약</span>
@@ -262,14 +262,18 @@ export default function RootLayout({
               </div>
               <div>
                 <h3 className="mb-4 text-lg font-light font-korean italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">영업시간</h3>
-                <p className="mb-2 text-sm text-gray-300 font-korean">평일: 10:00 - 18:30</p>
-                <p className="mb-2 text-sm text-gray-300 font-korean">토요일: 10:00 - 18:30</p>
-                <p className="mb-2 text-sm text-gray-300 font-korean">일요일: 예약 촬영만 진행</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">월: 10:30 - 19:00</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">화: 10:30 - 19:00</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">수: 10:30 - 19:00</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">목: 10:30 - 19:00</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">금: 10:30 - 19:00</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">토: 10:30 - 17:00</p>
+                <p className="mb-2 text-sm text-gray-300 font-korean">일: 정기휴무 (매주 일요일)</p>
               </div>
             </div>
             <div className="mt-8 border-t border-gray-700 pt-8 text-center text-sm text-gray-400 font-korean">
-              © {new Date().getFullYear()} 아침햇살 스튜디오. All rights reserved.<br />
-              대표 : 남유행, 사업자등록번호: 416-10-35417
+              © {new Date().getFullYear()} 팝콘스튜디오 인천점. All rights reserved.<br />
+              대표 : 이종춘, 사업자등록번호: 416-10-35417
             </div>
           </div>
         </footer >
