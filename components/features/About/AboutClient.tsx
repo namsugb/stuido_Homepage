@@ -1,14 +1,74 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import OptimizedImage from "@/components/ui/OptimizedImage"
 import { imagePresets } from "@/components/ui/ImagePresets"
 
 export default function AboutClient() {
     const [activeTab, setActiveTab] = useState("photographer") // "photographer" 또는 "studio"
+    const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null)
+
+    const handleImageClick = (src: string, alt: string) => {
+        setSelectedImage({ src, alt })
+    }
+
+    const closeModal = () => {
+        setSelectedImage(null)
+    }
+
+    // ESC 키로 모달 닫기 및 body 스크롤 제어
+    useEffect(() => {
+        const handleEscKey = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                closeModal()
+            }
+        }
+
+        if (selectedImage) {
+            document.addEventListener('keydown', handleEscKey)
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleEscKey)
+            document.body.style.overflow = 'unset'
+        }
+    }, [selectedImage])
 
     return (
         <div className="min-h-screen bg-white">
+            {/* 이미지 모달 */}
+            {selectedImage && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
+                    onClick={closeModal}
+                >
+                    <div
+                        className="relative max-w-4xl max-h-full"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            onClick={closeModal}
+                            className="absolute -top-12 right-0 text-white text-4xl hover:text-gray-300 transition-colors z-10 bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center"
+                            aria-label="모달 닫기"
+                        >
+                            ×
+                        </button>
+                        <OptimizedImage
+                            src={selectedImage.src}
+                            alt={selectedImage.alt}
+                            width={800}
+                            height={600}
+                            className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                            {...imagePresets.gallery}
+                        />
+                        <p className="text-white text-center mt-4 text-sm bg-black bg-opacity-50 rounded px-3 py-1">{selectedImage.alt}</p>
+                    </div>
+                </div>
+            )}
+
             <main className="container mx-auto px-4 pt-24 pb-20">
                 <div className="text-center mt-16 mb-12">
                     <h1 className="text-4xl font-medium my-4">아침햇살 스튜디오</h1>
@@ -45,15 +105,20 @@ export default function AboutClient() {
                 {/* 작가 소개 섹션 */}
                 {activeTab === "photographer" && (
                     <section className="mt-16 mb-16 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-                        <div className="flex-shrink-0 w-full md:w-1/2 flex flex-col items-center md:items-end lg:items-end justify-center">
-                            <OptimizedImage
-                                src="/about/photographer.jpg"
-                                alt="아침햇살 스튜디오 대표 사진작가 남유행님의 프로필 사진. 전문적이고 따뜻한 인상의 중년 남성 사진작가"
-                                width={320}
-                                height={400}
-                                className="rounded-lg shadow-md object-cover"
-                                {...imagePresets.profile}
-                            />
+                        <div className="flex-shrink-0 w-full md:w-1/2 flex flex-col items-center justify-center">
+                            <div
+                                className="cursor-pointer transform transition-transform hover:scale-105"
+                                onClick={() => handleImageClick("/about/photographer.jpg", "아침햇살 스튜디오 대표 사진작가 남유행님의 프로필 사진. 전문적이고 따뜻한 인상의 중년 남성 사진작가")}
+                            >
+                                <OptimizedImage
+                                    src="/about/photographer.jpg"
+                                    alt="아침햇살 스튜디오 대표 사진작가 남유행님의 프로필 사진. 전문적이고 따뜻한 인상의 중년 남성 사진작가"
+                                    width={320}
+                                    height={400}
+                                    className="rounded-lg shadow-md object-cover"
+                                    {...imagePresets.profile}
+                                />
+                            </div>
                         </div>
                         <div className="flex-1">
                             <h2 className="text-2xl font-bold mb-3">대표 소개</h2>
@@ -75,7 +140,7 @@ export default function AboutClient() {
                                 <li>현) 한국프로사진협회 전남지회 고문</li>
                                 <li>전) 한국프로사진협회 작가제도부 위원장</li>
                                 <li>전) 한국프로사진협회 교육이사</li>
-                                <li>전) 한국프로사진협회 전라남도지회 지회장</li>
+                                <li>전) 한국프로사진협회 전남지회 지회장</li>
                             </ul>
                         </div>
                     </section>
@@ -84,111 +149,235 @@ export default function AboutClient() {
 
 
                 {activeTab === "studio" && (
-                    <section className="mb-16 flex flex-col md:flex-row items-start gap-8 md:gap-16">
-                        <div className="w-full mt-16 md:w-1/2 flex flex-col justify-start items-end gap-8 lg:items-end">
-                            <OptimizedImage
-                                src="/about/studio-interior1.jpg"
-                                alt="스튜디오 내부"
-                                width={500}
-                                height={350}
-                                className="rounded-lg shadow-md object-cover"
-                            />
-                            <OptimizedImage
-                                src="/about/studio-interior2.jpg"
-                                alt="스튜디오 내부"
-                                width={500}
-                                height={350}
-                                className="rounded-lg shadow-md object-cover"
-                            />
-                            <OptimizedImage
-                                src="/about/studio-interior3.jpg"
-                                alt="스튜디오 정원"
-                                width={500}
-                                height={350}
-                                className="rounded-lg shadow-md object-cover"
-                            />
+                    <section className="mb-16">
+                        {/* 스튜디오 소개 텍스트 */}
+                        <div className="mb-12">
+                            <h2 className="text-2xl font-medium font-noto mb-6 text-center">스튜디오 소개</h2>
+                            <div className="max-w-4xl mx-auto text-gray-700 leading-relaxed">
+                                <p className="mb-4">
+                                    <b>☀️ "사진, 잘 나온 것도 좋지만… 오래 남는 게 더 좋더라고요."</b><br />
+                                    요즘은 워낙 사진 잘 찍는 분들도 많고,<br />
+                                    폰 카메라도 참 잘 나와요.<br />
+                                    그래도 누군가 "진짜 나 다운 사진을 남기고 싶다"고 하실 땐<br />
+                                    늘 마음이 움직여요.<br />
+                                    딱딱하게 포즈만 잡고 찍는 그런 사진 말고요.<br />
+                                    그 사람만의 분위기, 눈빛, 웃음, 삶의 온도 같은 것들…<br />
+                                    그게 정말 오래 남더라고요.<br />
+                                    그 순간을 잘 담아드리고 싶어서,<br />
+                                    오늘도 조심스럽고 진심으로 카메라를 들고 있어요.
+                                </p>
+                                <p className="mb-4">
+                                    <b>📷 사진, 우리 집은 2대째 하고 있어요.</b><br />
+                                    저희 스튜디오는 2대째, 사진을 전공한 인물사진 전문 작가가 운영하고 있어요.<br />
+                                    아버님 세대부터 사진 일을 하셨고,<br />
+                                    저 역시 사진을 전공하면서 자연스럽게 이 길로 오게 됐죠.<br />
+                                    한 장의 사진이 사람의 마음을 움직이는 걸,<br />
+                                    어릴 때부터 곁에서 지켜보며 배웠거든요.
+                                </p>
+                            </div>
                         </div>
-                        <div className="flex-1">
-                            <h2 className="text-2xl font-medium font-noto mb-3">스튜디오 소개</h2>
-                            <p className="text-gray-700 mb-2">
-                                <b>☀️ "사진, 잘 나온 것도 좋지만… 오래 남는 게 더 좋더라고요."</b><br />
-                                요즘은 워낙 사진 잘 찍는 분들도 많고,<br />
-                                폰 카메라도 참 잘 나와요.<br />
-                                그래도 누군가 "진짜 나 다운 사진을 남기고 싶다"고 하실 땐<br />
-                                늘 마음이 움직여요.<br />
-                                딱딱하게 포즈만 잡고 찍는 그런 사진 말고요.<br />
-                                그 사람만의 분위기, 눈빛, 웃음, 삶의 온도 같은 것들…<br />
-                                그게 정말 오래 남더라고요.<br />
-                                그 순간을 잘 담아드리고 싶어서,<br />
-                                오늘도 조심스럽고 진심으로 카메라를 들고 있어요.<br />
-                                <br />
-                                <b>📷 사진, 우리 집은 2대째 하고 있어요.</b><br />
-                                저희 스튜디오는 2대째, 사진을 전공한 인물사진 전문 작가가 운영하고 있어요.<br />
-                                아버님 세대부터 사진 일을 하셨고,<br />
-                                저 역시 사진을 전공하면서 자연스럽게 이 길로 오게 됐죠.<br />
-                                한 장의 사진이 사람의 마음을 움직이는 걸,<br />
-                                어릴 때부터 곁에서 지켜보며 배웠거든요.<br />
-                                무엇보다 "인물사진", 그중에서도<br />
-                                사람의 시간과 감정을 담아내는 사진이 가장 소중하게 느껴졌어요.<br />
-                                그래서 스튜디오도 그렇게 운영해왔고,<br />
-                                어느새 30년이 넘었네요.<br />
-                                <br />
-                                <b>👨‍👩‍👧‍👦 3,000팀이 넘는 가족을 만나며</b><br />
-                                그 시간 동안<br />
-                                3,000팀이 넘는 가족과 인물사진을 촬영했어요.<br />
-                                처음엔 돌잔치 때 오셨던 분이<br />
-                                초등학교 입학사진, 졸업사진, 취업사진까지 함께 하기도 하고요.<br />
-                                부모님 환갑기념 가족사진을 찍으셨던 분이<br />
-                                나중에 다시 와서 리마인드 웨딩촬영을 하시기도 했죠.<br />
-                                그 모든 순간이,<br />
-                                정말 소중한 인연이자 기록이에요.<br />
-                                <br />
-                                <b>🌿 아침햇살스튜디오의 사진은 좀 다릅니다.</b><br />
-                                정말 많은 분들이 이렇게 말씀하세요.<br />
-                                "사진만 찍으면 어색해져요"<br />
-                                저희도 이해해요. 낯선 공간에, 렌즈 앞에 서는 건 누구나 긴장되죠.<br />
-                                그래서 저희는 무조건 천천히 시작해요.<br />
-                                먼저 차 한 잔 마시면서 얘기부터 나눠요.<br />
-                                어떤 사진이 필요하신지,<br />
-                                요즘 어떤 일들로 지내고 계신지,<br />
-                                편하게 이야기 나누다 보면 자연스럽게 표정도 풀리더라고요.<br />
-                                촬영은 그렇게,<br />
-                                당신이 당신답게 웃을 수 있는 순간을 기다리며 진행해요.<br />
-                                한 장 한 장이 조금 더 당신 같기를 바라는 마음으로<br />
-                                촬영하고, 보정하고, 출력까지 정성껏 합니다.<br />
-                                <br />
-                                무엇보다 저희 스튜디오는<br />
-                                순천 외곽에 자리한 조용한 하우스형 스튜디오예요.<br />
-                                400평 규모의 정원이 있어서 계절 따라 풍경이 바뀌고,<br />
-                                계절마다 분위기가 다른 야외 정원,<br />
-                                아이도 어르신도 편하게 쉴 수 있는 감성 카페 공간도 함께 있어요.<br />
-                                촬영도 중요하지만, 그 시간을 편안하게 보내는 것도 중요하다고 생각해요.<br />
-                                <br />
 
-                                <b>🌞 우리만의 사진, 우리만의 순간</b><br />
-                                어떤 분은 "그냥 취업사진만 잘 찍어주세요" 하고 오셨다가,<br />
-                                "이런 표정이 제 얼굴에도 있었네요" 하며 웃고 가시기도 해요.<br />
-                                그게 바로 저희가 사진을 좋아하는 이유예요.<br />
-                                사람을, 기억을, 그 순간의 감정을<br />
-                                오래도록 꺼내볼 수 있는 형태로 남길 수 있으니까요.<br />
-                                아무 때나 좋아요.<br />
-                                날씨 좋은 날, 기분 좋은 날,<br />
-                                혹은 그냥 왠지 오늘은 사진을 찍고 싶어진 날.<br />
-                                편하게 놀러오듯 들러주세요.<br />
-                                당신을 닮은 따뜻한 사진,<br />
-                                아침햇살처럼 빛나게 준비해드릴게요.<br />
-                                <br />
-                                우리 스튜디오가 중요하게 생각하는 것<br />
-                                한 마디로 말하자면,<br />
-                                <b>"내가 찍히고 싶은 사진을 찍어드리고 싶다"</b>는 마음이에요.<br />
-                                너무 과하게 꾸미지 않으면서<br />
-                                그 사람만의 매력을, 있는 그대로 보여주는 사진.<br />
-                                오래 봐도 마음이 따뜻해지는 그런 사진.<br />
-                                그게 저희가 지향하는 사진이에요.<br />
-                                <br />
-                                – 순천 인물사진 전문<br />
-                                아침햇살스튜디오에서 드립니다 :)
-                            </p>
+                        {/* 스튜디오 인테리어 갤러리 */}
+                        <div className="mb-12">
+                            <h3 className="text-xl font-semibold mb-6 text-center text-gray-800">스튜디오 공간</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                                <div className="space-y-4">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/studio-interior1.jpg", "아름답고 다양한 컬러의 의상")}
+                                    >
+                                        <OptimizedImage
+                                            src="/about/studio-interior1.jpg"
+                                            alt="아침햇살 스튜디오 내부 전경. 자연광이 들어오는 따뜻한 분위기의 촬영 공간"
+                                            width={400}
+                                            height={300}
+                                            className="rounded-lg shadow-lg object-cover w-full h-64"
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-4">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/studio-interior2.jpg", "아침햇살 스튜디오 내부 촬영 공간. 전문적인 조명과 배경이 구비된 스튜디오")}
+                                    >
+                                        <OptimizedImage
+                                            src="/about/studio-interior2.jpg"
+                                            alt="아침햇살 스튜디오 내부 촬영 공간. 전문적인 조명과 배경이 구비된 스튜디오"
+                                            width={400}
+                                            height={300}
+                                            className="rounded-lg shadow-lg object-cover w-full h-64"
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-4">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/studio-interior3.jpg", "고급스러운 다양한 소품들")}
+                                    >
+                                        <OptimizedImage
+                                            src="/about/studio-interior3.jpg"
+                                            alt="아침햇살 스튜디오 정원. 계절마다 다른 풍경을 보여주는 아름다운 야외 공간"
+                                            width={400}
+                                            height={300}
+                                            className="rounded-lg shadow-lg object-cover w-full h-64"
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 새로 추가된 카카오톡 사진들 갤러리 */}
+                        <div className="mb-12">
+                            <h3 className="text-xl font-semibold mb-6 text-center text-gray-800">다양한 세트장</h3>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+                                <div className="space-y-2">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/KakaoTalk_20250815_161804879_01.jpg", "한옥세트")}
+                                    >
+                                        <OptimizedImage
+                                            src="/about/KakaoTalk_20250815_161804879_01.jpg"
+                                            alt="한옥세트"
+                                            width={250}
+                                            height={250}
+                                            className="rounded-lg shadow-md object-cover w-full h-48"
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/KakaoTalk_20250815_161804879_02.jpg", "화이트 배경세트")}
+                                    >
+                                        <OptimizedImage
+                                            src="/about/KakaoTalk_20250815_161804879_02.jpg"
+                                            alt="화이트 배경세트"
+                                            width={250}
+                                            height={250}
+                                            className="rounded-lg shadow-md object-cover w-full h-48"
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/KakaoTalk_20250815_161804879_03.jpg", "실크 커튼 배경")}
+                                    >
+                                        <OptimizedImage
+                                            src="/about/KakaoTalk_20250815_161804879_03.jpg"
+                                            alt="실크 커튼 배경"
+                                            width={250}
+                                            height={250}
+                                            className="rounded-lg shadow-md object-cover w-full h-48"
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/KakaoTalk_20250815_161804879_04.jpg", "그라데이션 배경")}
+                                    >
+                                        <OptimizedImage
+                                            src="/about/KakaoTalk_20250815_161804879_04.jpg"
+                                            alt="그라데이션 배경세트"
+                                            width={250}
+                                            height={250}
+                                            className="rounded-lg shadow-md object-cover w-full h-48"
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/KakaoTalk_20250815_161804879_05.jpg", "자연광 배경세트")}
+                                    >
+                                        <OptimizedImage
+                                            src="/about/KakaoTalk_20250815_161804879_05.jpg"
+                                            alt="자연광 배경세트"
+                                            width={250}
+                                            height={250}
+                                            className="rounded-lg shadow-md object-cover w-full h-48"
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/KakaoTalk_20250815_161804879_06.jpg", "그레이 배경세트")}
+                                    >
+                                        <OptimizedImage
+                                            src="/about/KakaoTalk_20250815_161804879_06.jpg"
+                                            alt="그레이 배경세트"
+                                            width={250}
+                                            height={250}
+                                            className="rounded-lg shadow-md object-cover w-full h-48"
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        {/* 추가 스튜디오 정보 */}
+                        <div className="max-w-4xl mx-auto">
+                            <div className="bg-gray-50 rounded-lg p-8">
+                                <h3 className="text-xl font-semibold mb-4 text-center text-gray-800">스튜디오 특징</h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h4 className="font-semibold text-[#bfa888] mb-2">🏠 공간 구성</h4>
+                                        <ul className="text-sm text-gray-600 space-y-1">
+                                            <li>• 자연광을 최대한 활용한 촬영 공간</li>
+                                            <li>• 400평 규모의 계절별 변화하는 정원</li>
+                                            <li>• 편안한 대기 공간과 감성 카페</li>
+                                            <li>• 다양한 배경과 소품 구비</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-semibold text-[#bfa888] mb-2">📸 촬영 환경</h4>
+                                        <ul className="text-sm text-gray-600 space-y-1">
+                                            <li>• 전문 촬영 장비 및 조명 시스템</li>
+                                            <li>• 무료 주차 공간</li>
+                                            <li>• 순천 외곽의 조용한 하우스형 스튜디오</li>
+                                            <li>• 계절마다 다른 분위기의 야외 촬영</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 스튜디오 철학과 가치 */}
+                        <div className="mt-12 max-w-4xl mx-auto">
+                            <div className="text-center">
+                                <h3 className="text-xl font-semibold mb-4 text-gray-800">우리만의 사진, 우리만의 순간</h3>
+                                <p className="text-gray-700 mb-6 leading-relaxed">
+                                    어떤 분은 "그냥 취업사진만 잘 찍어주세요" 하고 오셨다가,<br />
+                                    "이런 표정이 제 얼굴에도 있었네요" 하며 웃고 가시기도 해요.<br />
+                                    그게 바로 저희가 사진을 좋아하는 이유예요.<br />
+                                    사람을, 기억을, 그 순간의 감정을<br />
+                                    오래도록 꺼내볼 수 있는 형태로 남길 수 있으니까요.
+                                </p>
+                                <p className="text-gray-700 mb-6 leading-relaxed">
+                                    <b>우리 스튜디오가 중요하게 생각하는 것</b><br />
+                                    한 마디로 말하자면,<br />
+                                    <b>"내가 찍히고 싶은 사진을 찍어드리고 싶다"</b>는 마음이에요.<br />
+                                    너무 과하게 꾸미지 않으면서<br />
+                                    그 사람만의 매력을, 있는 그대로 보여주는 사진.<br />
+                                    오래 봐도 마음이 따뜻해지는 그런 사진.<br />
+                                    그게 저희가 지향하는 사진이에요.
+                                </p>
+                                <p className="text-[#bfa888] font-medium">
+                                    – 순천 가족사진 전문 아침햇살스튜디오에서 드립니다 :)
+                                </p>
+                            </div>
                         </div>
                     </section>
                 )}
