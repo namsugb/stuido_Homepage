@@ -59,6 +59,18 @@ export const galleryData = {
         { src: "/main_gallery/id/id06.jpg", alt: "증명사진 6", category: "id" },
         { src: "/main_gallery/id/id07.jpg", alt: "증명사진 7", category: "id" },
         { src: "/main_gallery/id/id08.jpg", alt: "증명사진 8", category: "id" },
+        { src: "/main_gallery/id/id09.jpg", alt: "증명사진 9", category: "id" },
+        { src: "/main_gallery/id/id10.jpg", alt: "증명사진 10", category: "id" },
+        { src: "/main_gallery/id/id11.jpg", alt: "증명사진 11", category: "id" },
+        { src: "/main_gallery/id/id12.jpg", alt: "증명사진 12", category: "id" },
+        { src: "/main_gallery/id/id13.jpg", alt: "증명사진 13", category: "id" },
+        { src: "/main_gallery/id/id14.jpg", alt: "증명사진 14", category: "id" },
+        { src: "/main_gallery/id/id15.jpg", alt: "증명사진 15", category: "id" },
+        { src: "/main_gallery/id/id16.jpg", alt: "증명사진 16", category: "id" },
+        { src: "/main_gallery/id/id17.jpg", alt: "증명사진 17", category: "id" },
+        { src: "/main_gallery/id/id18.jpg", alt: "증명사진 18", category: "id" },
+        { src: "/main_gallery/id/id19.jpg", alt: "증명사진 19", category: "id" },
+
 
 
         // 장수사진
