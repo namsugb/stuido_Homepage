@@ -59,10 +59,7 @@ export const galleryData = {
         { src: "/main_gallery/id/id06.jpg", alt: "증명사진 6", category: "id" },
         { src: "/main_gallery/id/id07.jpg", alt: "증명사진 7", category: "id" },
         { src: "/main_gallery/id/id08.jpg", alt: "증명사진 8", category: "id" },
-        { src: "/main_gallery/profile/profile01.jpg", alt: "프로필사진 1", category: "id" },
-        { src: "/main_gallery/profile/profile02.jpg", alt: "프로필사진 2", category: "id" },
-        { src: "/main_gallery/profile/profile03.jpg", alt: "프로필사진 3", category: "id" },
-        { src: "/main_gallery/profile/profile04.jpg", alt: "프로필사진 4", category: "id" },
+
 
         // 장수사진
         { src: "/main_gallery/long/long01.jpg", alt: "장수사진 1", category: "longevity" },
