@@ -96,6 +96,8 @@
   }
 
   body {
+    background-color: #ffffff !important;
+    /* 즉시 적용 */
     @apply bg-background text-foreground;
     font-family: 'Gowun Dodum', var(--font-noto-sans-kr), 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     scroll-behavior: smooth;
@@ -160,6 +162,8 @@
   overflow: hidden;
   padding-top: 5rem;
   min-height: 600px;
+  background-color: #f8f9fa;
+  /* 기본 배경색 추가 */
 }
 
 .slider-row {

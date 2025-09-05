@@ -17,7 +17,7 @@ export default function HeroSlider({ onImageClick }: HeroSliderProps) {
     const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
     const imagesLoadedCountRef = useRef(0)
 
-    // 개선된 이미지 사전 로딩 함수
+
     const preloadImages = () => {
         imagesLoadedCountRef.current = 0
         setImagesLoaded(false)
@@ -153,6 +153,7 @@ export default function HeroSlider({ onImageClick }: HeroSliderProps) {
                                     placeholder="blur"
                                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                                 />
+                                {/* 텍스트 배경 */}
                                 <div className="absolute inset-0 my-6 p-8 text-black max-w-2xl mx-auto">
                                     <div className={`text-center hidden md:block ${image.desktoptextbackground ? 'bg-gray-100/30 rounded-lg px-6 py-4' : ''}`}>
                                         <h2 className="text-2xl md:text-3xl text-pretty font-serif">{image.title}</h2>
