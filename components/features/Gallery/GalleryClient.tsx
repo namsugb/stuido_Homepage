@@ -14,6 +14,7 @@ export default function GalleryClient() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
     const [imagesReady, setImagesReady] = useState(false)
     const [visibleImages, setVisibleImages] = useState<Set<string>>(new Set())
+    const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
 
     // 카테고리 및 하위 카테고리 필터링
     useEffect(() => {
@@ -34,13 +35,34 @@ export default function GalleryClient() {
     useEffect(() => {
         if (filteredImages.length === 0) return
 
-        // 모든 이미지의 실제 높이를 미리 계산
+        // 이미 로딩된 이미지와 새로 로딩해야 할 이미지 분리
         const preloadImages = async () => {
-            const promises = filteredImages.map((image) => {
+            const newImages = filteredImages.filter(img => !loadedImages.has(img.src))
+
+            // 모든 이미지가 이미 로딩된 경우
+            if (newImages.length === 0) {
+                setImagesReady(true)
+                // 이미지들이 순차적으로 나타나도록 애니메이션
+                filteredImages.forEach((image, index) => {
+                    setTimeout(() => {
+                        setVisibleImages(prev => new Set([...prev, image.src]))
+                    }, index * 50) // 50ms 간격으로 순차적 등장
+                })
+                return
+            }
+
+            // 새로운 이미지만 로딩
+            const promises = newImages.map((image) => {
                 return new Promise((resolve) => {
                     const img = new Image()
-                    img.onload = () => resolve(image)
-                    img.onerror = () => resolve(image)
+                    img.onload = () => {
+                        setLoadedImages(prev => new Set([...prev, image.src]))
+                        resolve(image)
+                    }
+                    img.onerror = () => {
+                        setLoadedImages(prev => new Set([...prev, image.src]))
+                        resolve(image)
+                    }
                     img.src = image.src
                 })
             })
@@ -59,7 +81,7 @@ export default function GalleryClient() {
         setImagesReady(false)
         setVisibleImages(new Set()) // 가시성 상태 초기화
         preloadImages()
-    }, [filteredImages])
+    }, [filteredImages, loadedImages])
 
 
     // 이미지 클릭 핸들러
@@ -174,8 +196,8 @@ export default function GalleryClient() {
                                     <div
                                         key={`${image.category}-${image.subCategory}-${index}`}
                                         className={`gallery-masonry-item group transition-all duration-700 ease-out ${isVisible
-                                                ? 'opacity-100 scale-100 translate-y-0'
-                                                : 'opacity-0 scale-95 translate-y-4'
+                                            ? 'opacity-100 scale-100 translate-y-0'
+                                            : 'opacity-0 scale-95 translate-y-4'
                                             }`}
                                         onClick={() => isVisible && handleImageClick(image.src)}
                                     >
