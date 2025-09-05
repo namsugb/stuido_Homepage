@@ -12,8 +12,7 @@ export default function GalleryClient() {
     const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>("hanbok")
     const [filteredImages, setFilteredImages] = useState(galleryData.all)
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
-    const [isLoading, setIsLoading] = useState(true)
-    const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
+    const [imagesReady, setImagesReady] = useState(false)
 
     // 카테고리 및 하위 카테고리 필터링
     useEffect(() => {
@@ -28,16 +27,31 @@ export default function GalleryClient() {
         }
 
         setFilteredImages(filtered)
-        setIsLoading(false)
     }, [selectedCategory, selectedSubCategory])
 
-    // 이미지 로드 완료 핸들러
-    const handleImageLoad = (src: string) => {
-        // 약간의 지연을 추가하여 더 부드러운 효과
-        setTimeout(() => {
-            setLoadedImages(prev => new Set([...prev, src]))
-        }, 100)
-    }
+    // 이미지 preload 로직
+    useEffect(() => {
+        if (filteredImages.length === 0) return
+
+        // 모든 이미지의 실제 높이를 미리 계산
+        const preloadImages = async () => {
+            const promises = filteredImages.map((image) => {
+                return new Promise((resolve) => {
+                    const img = new Image()
+                    img.onload = () => resolve(image)
+                    img.onerror = () => resolve(image)
+                    img.src = image.src
+                })
+            })
+
+            await Promise.all(promises)
+            setImagesReady(true)
+        }
+
+        setImagesReady(false)
+        preloadImages()
+    }, [filteredImages])
+
 
     // 이미지 클릭 핸들러
     const handleImageClick = (src: string) => {
@@ -58,22 +72,11 @@ export default function GalleryClient() {
         setSelectedCategory(category)
         // 가족사진 카테고리 선택 시 한복을 기본으로 설정, 다른 카테고리는 null
         setSelectedSubCategory(category === "family" ? "hanbok" : null)
-        setLoadedImages(new Set()) // 로드된 이미지 상태 초기화
-        setIsLoading(true)
-        // 카테고리 변경 시 로딩 효과를 위한 짧은 딜레이
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 500)
     }
 
     // 하위 카테고리 변경 핸들러
     const handleSubCategoryChange = (subCategory: string | null) => {
         setSelectedSubCategory(subCategory)
-        setLoadedImages(new Set()) // 로드된 이미지 상태 초기화
-        setIsLoading(true)
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 300)
     }
 
     // ESC 키로 라이트박스 닫기
@@ -150,21 +153,13 @@ export default function GalleryClient() {
 
                 {/* 갤러리 그리드 */}
                 <div className="gallery-masonry">
-                    {isLoading ? (
-                        Array.from({ length: 12 }).map((_, index) => (
-                            <div key={index} className="gallery-masonry-item animate-pulse">
-                                <div className="bg-gray-200 rounded-lg" style={{ aspectRatio: "4/3", width: "100%", height: "200px" }}></div>
-                            </div>
-                        ))
-                    ) : filteredImages.length > 0 ? (
-                        filteredImages.map((image, index) => {
-                            const isImageLoaded = loadedImages.has(image.src)
-                            return (
+                    {imagesReady ? (
+                        filteredImages.length > 0 ? (
+                            filteredImages.map((image, index) => (
                                 <div
-                                    key={index}
-                                    className={`gallery-masonry-item group transition-all duration-1000 ease-out ${isImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-                                        }`}
-                                    onClick={() => isImageLoaded && handleImageClick(image.src)}
+                                    key={`${image.category}-${image.subCategory}-${index}`}
+                                    className="gallery-masonry-item group transition-all duration-300 ease-out"
+                                    onClick={() => handleImageClick(image.src)}
                                 >
                                     <div className="relative overflow-hidden rounded-lg bg-gray-50">
                                         <OptimizedImage
@@ -173,17 +168,23 @@ export default function GalleryClient() {
                                             width={400}
                                             height={300}
                                             className="w-full h-auto cursor-pointer rounded-lg group-hover:scale-105"
-                                            onLoad={() => handleImageLoad(image.src)}
                                             {...imagePresets.gallery}
                                         />
                                     </div>
                                 </div>
-                            )
-                        })
+                            ))
+                        ) : (
+                            <div className="col-span-full text-center py-12">
+                                <p className="text-gray-500 text-lg">선택된 카테고리에 이미지가 없습니다.</p>
+                            </div>
+                        )
                     ) : (
-                        <div className="col-span-full text-center py-12">
-                            <p className="text-gray-500 text-lg">선택된 카테고리에 이미지가 없습니다.</p>
-                        </div>
+                        // 로딩 스켈레톤 (고정 높이)
+                        Array.from({ length: 12 }).map((_, index) => (
+                            <div key={index} className="gallery-masonry-item">
+                                <div className="bg-gray-200 rounded-lg animate-pulse" style={{ height: '200px' }}></div>
+                            </div>
+                        ))
                     )}
                 </div>
             </div>
