@@ -13,6 +13,7 @@ export default function GalleryClient() {
     const [filteredImages, setFilteredImages] = useState(galleryData.all)
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
     const [imagesReady, setImagesReady] = useState(false)
+    const [visibleImages, setVisibleImages] = useState<Set<string>>(new Set())
 
     // 카테고리 및 하위 카테고리 필터링
     useEffect(() => {
@@ -46,9 +47,17 @@ export default function GalleryClient() {
 
             await Promise.all(promises)
             setImagesReady(true)
+
+            // 이미지들이 순차적으로 나타나도록 애니메이션
+            filteredImages.forEach((image, index) => {
+                setTimeout(() => {
+                    setVisibleImages(prev => new Set([...prev, image.src]))
+                }, index * 50) // 50ms 간격으로 순차적 등장
+            })
         }
 
         setImagesReady(false)
+        setVisibleImages(new Set()) // 가시성 상태 초기화
         preloadImages()
     }, [filteredImages])
 
@@ -72,11 +81,15 @@ export default function GalleryClient() {
         setSelectedCategory(category)
         // 가족사진 카테고리 선택 시 한복을 기본으로 설정, 다른 카테고리는 null
         setSelectedSubCategory(category === "family" ? "hanbok" : null)
+        // 카테고리 변경 시 애니메이션 리셋
+        setVisibleImages(new Set())
     }
 
     // 하위 카테고리 변경 핸들러
     const handleSubCategoryChange = (subCategory: string | null) => {
         setSelectedSubCategory(subCategory)
+        // 하위 카테고리 변경 시 애니메이션 리셋
+        setVisibleImages(new Set())
     }
 
     // ESC 키로 라이트박스 닫기
@@ -155,24 +168,30 @@ export default function GalleryClient() {
                 <div className="gallery-masonry">
                     {imagesReady ? (
                         filteredImages.length > 0 ? (
-                            filteredImages.map((image, index) => (
-                                <div
-                                    key={`${image.category}-${image.subCategory}-${index}`}
-                                    className="gallery-masonry-item group transition-all duration-300 ease-out"
-                                    onClick={() => handleImageClick(image.src)}
-                                >
-                                    <div className="relative overflow-hidden rounded-lg bg-gray-50">
-                                        <OptimizedImage
-                                            src={image.src || "/placeholder.svg"}
-                                            alt={`${image.alt} - ${image.category} 카테고리 촬영 사진`}
-                                            width={400}
-                                            height={300}
-                                            className="w-full h-auto cursor-pointer rounded-lg group-hover:scale-105"
-                                            {...imagePresets.gallery}
-                                        />
+                            filteredImages.map((image, index) => {
+                                const isVisible = visibleImages.has(image.src)
+                                return (
+                                    <div
+                                        key={`${image.category}-${image.subCategory}-${index}`}
+                                        className={`gallery-masonry-item group transition-all duration-700 ease-out ${isVisible
+                                                ? 'opacity-100 scale-100 translate-y-0'
+                                                : 'opacity-0 scale-95 translate-y-4'
+                                            }`}
+                                        onClick={() => isVisible && handleImageClick(image.src)}
+                                    >
+                                        <div className="relative overflow-hidden rounded-lg bg-gray-50">
+                                            <OptimizedImage
+                                                src={image.src || "/placeholder.svg"}
+                                                alt={`${image.alt} - ${image.category} 카테고리 촬영 사진`}
+                                                width={400}
+                                                height={300}
+                                                className="w-full h-auto cursor-pointer rounded-lg group-hover:scale-105 transition-transform duration-300"
+                                                {...imagePresets.gallery}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            ))
+                                )
+                            })
                         ) : (
                             <div className="col-span-full text-center py-12">
                                 <p className="text-gray-500 text-lg">선택된 카테고리에 이미지가 없습니다.</p>
