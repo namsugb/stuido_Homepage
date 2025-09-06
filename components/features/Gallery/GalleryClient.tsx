@@ -55,11 +55,17 @@ export default function GalleryClient() {
         setDisplayedCount(newCount)
         setHasMoreImages(newCount < filteredImages.length)
         setIsLoadingMore(false)
+
+        // 이전 이미지들은 그대로 유지하고 새로 추가된 이미지들만 애니메이션 적용
+        // setLoadedImages(new Set()) 제거 - 이전 이미지들이 사라지지 않도록
     }
 
     // 이미지 로드 완료 핸들러
     const handleImageLoad = (src: string) => {
-        setLoadedImages(prev => new Set([...prev, src]))
+        // 약간의 지연을 추가하여 더 부드러운 효과
+        setTimeout(() => {
+            setLoadedImages(prev => new Set([...prev, src]))
+        }, 100)
     }
 
     // 이미지 클릭 핸들러
@@ -123,10 +129,10 @@ export default function GalleryClient() {
             <div className="text-center mt-6 mb-4">
                 <h1 className="text-4xl font-medium mb-4">갤러리</h1>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                    아침햇살 스튜디오의 작품들을 감상해보세요. 가족사진, 리마인드웨딩, 칠순/팔순 잔치, 증명사진 등 다양한 촬영
-                    작품을 카테고리별로 확인하실 수 있습니다.
+                    아침햇살 스튜디오의 작품들을 감상해보세요.
                 </p>
             </div>
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-2">
                 {/* 카테고리 필터 */}
                 <div className="flex flex-col justify-center items-center mb-8">
@@ -180,11 +186,13 @@ export default function GalleryClient() {
                         ))
                     ) : currentImages.length > 0 ? (
                         currentImages.map((image, index) => {
+                            const isImageLoaded = loadedImages.has(image.src)
                             return (
                                 <div
                                     key={index}
-                                    className="gallery-masonry-item group"
-                                    onClick={() => handleImageClick(image.src)}
+                                    className={`gallery-masonry-item group transition-all duration-1000 ease-out ${isImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+                                        }`}
+                                    onClick={() => isImageLoaded && handleImageClick(image.src)}
                                 >
                                     <div className="relative overflow-hidden rounded-lg bg-gray-50">
                                         <OptimizedImage
