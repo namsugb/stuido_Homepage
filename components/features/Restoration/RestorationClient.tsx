@@ -83,7 +83,7 @@ export default function RestorationClient() {
     return (
         <div className="min-h-screen bg-white">
             {/* 헤더 섹션 */}
-            <section className="relative bg-gradient-to-br from-[#f5eee6] to-[#e8e0d0] pt-32 pb-20">
+            <section className="relative bg-gradient-to-br from-[#f5eee6] to-[#e8e0d0] page-content pb-20">
                 <div className="container mx-auto px-6">
                     <div className="text-center max-w-4xl mx-auto">
                         <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6">

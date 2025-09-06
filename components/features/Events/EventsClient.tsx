@@ -69,7 +69,7 @@ export default function EventsClient() {
     return (
         <div className="min-h-screen bg-white">
             {/* 이벤트 카드 섹션 */}
-            <section id="events" className="mt-32">
+            <section id="events" className="page-content">
                 <h1 className="text-3xl font-medium text-center font-noto mb-4"> 🎉 진행중인 이벤트 🎉</h1>
                 <p className="text-sm font-light text-center font-noto mb-8"> 이벤트에 참여해 가족들과 행복한 시간을 기록해보세요!</p>
                 <div className="mx-auto px-4 my-4">

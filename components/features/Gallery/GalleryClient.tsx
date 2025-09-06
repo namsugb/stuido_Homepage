@@ -2,21 +2,25 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ArrowLeft, X } from "lucide-react"
+import { ArrowLeft, X, ChevronDown } from "lucide-react"
 import { galleryData } from "@/data/galleryImages"
 import OptimizedImage from "@/components/ui/OptimizedImage"
 import { imagePresets } from "@/components/ui/ImagePresets"
 
 export default function GalleryClient() {
     const [selectedCategory, setSelectedCategory] = useState("family")
-    const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>("hanbok")
+    const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>("dress")
     const [filteredImages, setFilteredImages] = useState(galleryData.all)
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
-    const [imagesReady, setImagesReady] = useState(false)
-    const [visibleImages, setVisibleImages] = useState<Set<string>>(new Set())
+    const [isLoading, setIsLoading] = useState(true)
     const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
 
-    // 카테고리 및 하위 카테고리 필터링
+    // 더 보기 기능을 위한 상태
+    const [displayedCount, setDisplayedCount] = useState(12) // 처음에 보여줄 이미지 개수
+    const [isLoadingMore, setIsLoadingMore] = useState(false)
+    const [hasMoreImages, setHasMoreImages] = useState(true)
+
+    // 카테고리 필터링
     useEffect(() => {
         let filtered = galleryData.all
 
@@ -29,60 +33,34 @@ export default function GalleryClient() {
         }
 
         setFilteredImages(filtered)
+        setDisplayedCount(12) // 카테고리 변경 시 초기화
+        setHasMoreImages(filtered.length > 12)
+        setIsLoading(false)
     }, [selectedCategory, selectedSubCategory])
 
-    // 이미지 preload 로직
-    useEffect(() => {
-        if (filteredImages.length === 0) return
+    // 현재 표시할 이미지들
+    const currentImages = filteredImages.slice(0, displayedCount)
 
-        // 이미 로딩된 이미지와 새로 로딩해야 할 이미지 분리
-        const preloadImages = async () => {
-            const newImages = filteredImages.filter(img => !loadedImages.has(img.src))
 
-            // 모든 이미지가 이미 로딩된 경우
-            if (newImages.length === 0) {
-                setImagesReady(true)
-                // 이미지들이 순차적으로 나타나도록 애니메이션
-                filteredImages.forEach((image, index) => {
-                    setTimeout(() => {
-                        setVisibleImages(prev => new Set([...prev, image.src]))
-                    }, index * 50) // 50ms 간격으로 순차적 등장
-                })
-                return
-            }
+    // 더 보기 버튼 클릭 핸들러
+    const handleLoadMore = async () => {
+        if (isLoadingMore) return
 
-            // 새로운 이미지만 로딩
-            const promises = newImages.map((image) => {
-                return new Promise((resolve) => {
-                    const img = new Image()
-                    img.onload = () => {
-                        setLoadedImages(prev => new Set([...prev, image.src]))
-                        resolve(image)
-                    }
-                    img.onerror = () => {
-                        setLoadedImages(prev => new Set([...prev, image.src]))
-                        resolve(image)
-                    }
-                    img.src = image.src
-                })
-            })
+        setIsLoadingMore(true)
 
-            await Promise.all(promises)
-            setImagesReady(true)
+        // 로딩 효과를 위한 딜레이
+        await new Promise(resolve => setTimeout(resolve, 500))
 
-            // 이미지들이 순차적으로 나타나도록 애니메이션
-            filteredImages.forEach((image, index) => {
-                setTimeout(() => {
-                    setVisibleImages(prev => new Set([...prev, image.src]))
-                }, index * 50) // 50ms 간격으로 순차적 등장
-            })
-        }
+        const newCount = Math.min(displayedCount + 12, filteredImages.length)
+        setDisplayedCount(newCount)
+        setHasMoreImages(newCount < filteredImages.length)
+        setIsLoadingMore(false)
+    }
 
-        setImagesReady(false)
-        setVisibleImages(new Set()) // 가시성 상태 초기화
-        preloadImages()
-    }, [filteredImages, loadedImages])
-
+    // 이미지 로드 완료 핸들러
+    const handleImageLoad = (src: string) => {
+        setLoadedImages(prev => new Set([...prev, src]))
+    }
 
     // 이미지 클릭 핸들러
     const handleImageClick = (src: string) => {
@@ -103,15 +81,22 @@ export default function GalleryClient() {
         setSelectedCategory(category)
         // 가족사진 카테고리 선택 시 한복을 기본으로 설정, 다른 카테고리는 null
         setSelectedSubCategory(category === "family" ? "hanbok" : null)
-        // 카테고리 변경 시 애니메이션 리셋
-        setVisibleImages(new Set())
+        setLoadedImages(new Set()) // 로드된 이미지 상태 초기화
+        setIsLoading(true)
+        // 카테고리 변경 시 로딩 효과를 위한 짧은 딜레이
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 500)
     }
 
     // 하위 카테고리 변경 핸들러
     const handleSubCategoryChange = (subCategory: string | null) => {
         setSelectedSubCategory(subCategory)
-        // 하위 카테고리 변경 시 애니메이션 리셋
-        setVisibleImages(new Set())
+        setLoadedImages(new Set()) // 로드된 이미지 상태 초기화
+        setIsLoading(true)
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 300)
     }
 
     // ESC 키로 라이트박스 닫기
@@ -175,58 +160,82 @@ export default function GalleryClient() {
                                         : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200"
                                         }`}
                                 >
+                                    {subCategory === "hanbok" && "한복"}
                                     {subCategory === "dress" && "드레스"}
                                     {subCategory === "uniform" && "정장"}
-                                    {subCategory === "hanbok" && "한복"}
                                     {subCategory === "casual" && "캐주얼"}
                                 </button>
                             ))}
-
                         </div>
                     )}
                 </div>
 
                 {/* 갤러리 그리드 */}
                 <div className="gallery-masonry">
-                    {imagesReady ? (
-                        filteredImages.length > 0 ? (
-                            filteredImages.map((image, index) => {
-                                const isVisible = visibleImages.has(image.src)
-                                return (
-                                    <div
-                                        key={`${image.category}-${image.subCategory}-${index}`}
-                                        className={`gallery-masonry-item group transition-all duration-700 ease-out ${isVisible
-                                            ? 'opacity-100 scale-100 translate-y-0'
-                                            : 'opacity-0 scale-95 translate-y-4'
-                                            }`}
-                                        onClick={() => isVisible && handleImageClick(image.src)}
-                                    >
-                                        <div className="relative overflow-hidden rounded-lg bg-gray-50">
-                                            <OptimizedImage
-                                                src={image.src || "/placeholder.svg"}
-                                                alt={`${image.alt} - ${image.category} 카테고리 촬영 사진`}
-                                                width={400}
-                                                height={300}
-                                                className="w-full h-auto cursor-pointer rounded-lg group-hover:scale-105 transition-transform duration-300"
-                                                {...imagePresets.gallery}
-                                            />
-                                        </div>
-                                    </div>
-                                )
-                            })
-                        ) : (
-                            <div className="col-span-full text-center py-12">
-                                <p className="text-gray-500 text-lg">선택된 카테고리에 이미지가 없습니다.</p>
-                            </div>
-                        )
-                    ) : (
-                        // 로딩 스켈레톤 (고정 높이)
+                    {isLoading ? (
                         Array.from({ length: 12 }).map((_, index) => (
-                            <div key={index} className="gallery-masonry-item">
-                                <div className="bg-gray-200 rounded-lg animate-pulse" style={{ height: '200px' }}></div>
+                            <div key={index} className="gallery-masonry-item animate-pulse">
+                                <div className="bg-gray-200 rounded-lg" style={{ aspectRatio: "4/3", width: "100%", height: "200px" }}></div>
                             </div>
                         ))
+                    ) : currentImages.length > 0 ? (
+                        currentImages.map((image, index) => {
+                            return (
+                                <div
+                                    key={index}
+                                    className="gallery-masonry-item group"
+                                    onClick={() => handleImageClick(image.src)}
+                                >
+                                    <div className="relative overflow-hidden rounded-lg bg-gray-50">
+                                        <OptimizedImage
+                                            src={image.src || "/placeholder.svg"}
+                                            alt={`${image.alt} - ${image.category} 카테고리 촬영 사진`}
+                                            width={400}
+                                            height={300}
+                                            className="w-full h-auto cursor-pointer rounded-lg group-hover:scale-105 transition-transform duration-300"
+                                            onLoad={() => handleImageLoad(image.src)}
+                                            {...imagePresets.gallery}
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        })
+                    ) : (
+                        <div className="col-span-full text-center py-12">
+                            <p className="text-gray-500 text-lg">선택된 카테고리에 이미지가 없습니다.</p>
+                        </div>
                     )}
+                </div>
+
+                {/* 더 보기 버튼 */}
+                {hasMoreImages && (
+                    <div className="flex justify-center mt-8">
+                        <button
+                            onClick={handleLoadMore}
+                            disabled={isLoadingMore}
+                            className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-200 ${isLoadingMore
+                                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                : "bg-[#bfa888] text-white hover:bg-[#a8956f] hover:shadow-lg transform hover:scale-105"
+                                }`}
+                        >
+                            {isLoadingMore ? (
+                                <>
+                                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                    로딩 중...
+                                </>
+                            ) : (
+                                <>
+                                    더 보기
+                                    <ChevronDown className="w-4 h-4" />
+                                </>
+                            )}
+                        </button>
+                    </div>
+                )}
+
+                {/* 이미지 개수 표시 */}
+                <div className="text-center mt-4 text-gray-500 text-sm">
+                    {currentImages.length} / {filteredImages.length} 이미지
                 </div>
             </div>
 

@@ -460,7 +460,7 @@ export default function ManageClientPage() {
   }
 
   return (
-    <div className="container mt-32 mx-auto p-4 md:p-8">
+    <div className="container page-content mx-auto p-4 md:p-8">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-2 md:gap-0">
         <h1 className="text-3xl font-bold">예약 관리 시스템</h1>
         <div className="flex gap-2 mt-2 md:mt-0 justify-end">
