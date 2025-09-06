@@ -10,10 +10,13 @@
  *   node scripts/compress-large-images.js --dir ./assets --concurrency 4
  */
 
-const fs = require('fs');
-const path = require('path');
-const os = require('os');
-const sharp = require('sharp');
+
+
+import fs from 'fs';
+import path from 'path';
+import os from 'os';
+import sharp from 'sharp';
+
 
 const BYTES_PER_MB = 1024 * 1024;
 

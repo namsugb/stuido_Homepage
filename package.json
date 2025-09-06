@@ -11,7 +11,7 @@
     "rename-family": "node scripts/rename-family-images.js",
     "rename-casual": "node scripts/rename-family-images.js --folder casual",
     "rename-hanbok": "node scripts/rename-family-images.js --folder hanbok",
-    "compress-images": "node scripts/compress-large-images.js --dir ./public --maxMB 1",
+    "compress-images": "node scripts/compress-large-images.js --dir ./public --maxMB 0.5",
     "rename-files": "node scripts/rename-path-based.js --dir ./public"
   },
   "dependencies": {
