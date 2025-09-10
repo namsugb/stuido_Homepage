@@ -24,7 +24,7 @@ function parseArgs() {
     const args = process.argv.slice(2);
     const options = {
         dir: process.cwd(),
-        maxMB: 1,
+        maxMB: 0.5,
         concurrency: Math.max(2, Math.min(os.cpus()?.length || 4, 8)),
         dryRun: false,
         include: ['.jpg', '.jpeg', '.png', '.webp', '.avif'],
