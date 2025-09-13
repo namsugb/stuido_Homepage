@@ -1,3 +1,5 @@
+"use client"
+
 import { Metadata } from 'next'
 import { eventsMetadata } from '@/app/metadata'
 import Link from "next/link";
