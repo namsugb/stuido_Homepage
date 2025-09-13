@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <title>아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문</title>
+
         <meta name="description" content="전라남도 순천 아침햇살 스튜디오는 가족사진, 프로필, 리마인드웨딩, 증명사진 등 다양한 촬영을 전문적으로 제공합니다. 소중한 순간을 아름답게 남겨드립니다." />
         <meta name="keywords" content="순천 가족사진, 순천 스튜디오, 프로필 사진, 리마인드웨딩, 증명사진, 아침햇살 스튜디오, 가족사진관" />
         <meta property="og:title" content="아침햇살 스튜디오 | 순천 가족사진, 프로필, 리마인드웨딩 전문" />

@@ -16,6 +16,8 @@ export type Reservation = {
   created_at: string
   status: "pending" | "confirmed" | "cancelled" | "completed"
 }
+//관리자페이지 함수
+
 
 // 모든 예약 가져오기
 export async function getReservations(): Promise<Reservation[]> {

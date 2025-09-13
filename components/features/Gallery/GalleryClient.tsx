@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import { ArrowLeft, X, ChevronDown } from "lucide-react"
 import { galleryData } from "@/data/galleryImages"
@@ -12,11 +12,11 @@ export default function GalleryClient() {
     const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>("dress")
     const [filteredImages, setFilteredImages] = useState(galleryData.all)
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
-    const [isLoading, setIsLoading] = useState(true)
-    const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
+    const [isTransitioning, setIsTransitioning] = useState(false)
+    const [imageLoadStates, setImageLoadStates] = useState<Record<string, boolean>>({})
+    const [displayedCount, setDisplayedCount] = useState(12)
 
     // 더 보기 기능을 위한 상태
-    const [displayedCount, setDisplayedCount] = useState(12) // 처음에 보여줄 이미지 개수
     const [isLoadingMore, setIsLoadingMore] = useState(false)
     const [hasMoreImages, setHasMoreImages] = useState(true)
 
@@ -35,12 +35,16 @@ export default function GalleryClient() {
         setFilteredImages(filtered)
         setDisplayedCount(12) // 카테고리 변경 시 초기화
         setHasMoreImages(filtered.length > 12)
-        setIsLoading(false)
+        // setIsLoading(false) // 이 부분은 카테고리 변경 핸들러에서 처리
     }, [selectedCategory, selectedSubCategory])
 
     // 현재 표시할 이미지들
     const currentImages = filteredImages.slice(0, displayedCount)
 
+    // 모든 이미지가 로드되었는지 확인
+    const allImagesLoaded = useMemo(() => {
+        return currentImages.length > 0 && currentImages.every(image => imageLoadStates[image.src])
+    }, [currentImages, imageLoadStates])
 
     // 더 보기 버튼 클릭 핸들러
     const handleLoadMore = async () => {
@@ -56,16 +60,12 @@ export default function GalleryClient() {
         setHasMoreImages(newCount < filteredImages.length)
         setIsLoadingMore(false)
 
-        // 이전 이미지들은 그대로 유지하고 새로 추가된 이미지들만 애니메이션 적용
-        // setLoadedImages(new Set()) 제거 - 이전 이미지들이 사라지지 않도록
+
     }
 
     // 이미지 로드 완료 핸들러
     const handleImageLoad = (src: string) => {
-        // 약간의 지연을 추가하여 더 부드러운 효과
-        setTimeout(() => {
-            setLoadedImages(prev => new Set([...prev, src]))
-        }, 100)
+        setImageLoadStates(prev => ({ ...prev, [src]: true }))
     }
 
     // 이미지 클릭 핸들러
@@ -82,17 +82,29 @@ export default function GalleryClient() {
         document.body.style.overflow = "auto"
     }
 
-    // 카테고리 변경 핸들러
+    // 카테고리 변경 핸들러 개선
     const handleCategoryChange = (category: string) => {
+        setIsTransitioning(true)
         setSelectedCategory(category)
-        // 가족사진 카테고리 선택 시 한복을 기본으로 설정, 다른 카테고리는 null
-        setSelectedSubCategory(category === "family" ? "hanbok" : null)
-        setLoadedImages(new Set()) // 로드된 이미지 상태 초기화
-        setIsLoading(true)
-        // 카테고리 변경 시 로딩 효과를 위한 짧은 딜레이
+        setSelectedSubCategory(category === "family" ? "dress" : null)
+        setImageLoadStates({})
+
+        // 데이터 필터링
+        let filtered = galleryData.all
+        if (category) {
+            filtered = filtered.filter((image) => image.category === category)
+        }
+        if (category === "family" && selectedSubCategory) {
+            filtered = filtered.filter((image) => image.subCategory === selectedSubCategory)
+        }
+
+        setFilteredImages(filtered)
+        setDisplayedCount(12)
+
+        // 전환 완료
         setTimeout(() => {
-            setIsLoading(false)
-        }, 500)
+            setIsTransitioning(false)
+        }, 100)
     }
 
     // 하위 카테고리 변경 핸들러
@@ -178,41 +190,34 @@ export default function GalleryClient() {
 
                 {/* 갤러리 그리드 */}
                 <div className="gallery-masonry">
-                    {isLoading ? (
-                        Array.from({ length: 12 }).map((_, index) => (
-                            <div key={index} className="gallery-masonry-item animate-pulse">
-                                <div className="bg-gray-200 rounded-lg" style={{ aspectRatio: "4/3", width: "100%", height: "200px" }}></div>
-                            </div>
-                        ))
-                    ) : currentImages.length > 0 ? (
-                        currentImages.map((image, index) => {
-                            const isImageLoaded = loadedImages.has(image.src)
-                            return (
-                                <div
-                                    key={index}
-                                    className={`gallery-masonry-item group transition-all duration-1000 ease-out ${isImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-                                        }`}
-                                    onClick={() => isImageLoaded && handleImageClick(image.src)}
-                                >
-                                    <div className="relative overflow-hidden rounded-lg bg-gray-50">
-                                        <OptimizedImage
-                                            src={image.src || "/placeholder.svg"}
-                                            alt={`${image.alt} - ${image.category} 카테고리 촬영 사진`}
-                                            width={400}
-                                            height={300}
-                                            className="w-full h-auto cursor-pointer rounded-lg group-hover:scale-105 transition-transform duration-300"
-                                            onLoad={() => handleImageLoad(image.src)}
-                                            {...imagePresets.gallery}
-                                        />
-                                    </div>
+                    {currentImages.map((image, index) => {
+                        const isImageLoaded = imageLoadStates[image.src]
+                        const shouldShow = isImageLoaded && !isTransitioning
+
+                        return (
+                            <div
+                                key={`${image.src}-${index}`}
+                                className={`gallery-masonry-item group transition-all duration-500 ease-out ${shouldShow ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                                    }`}
+                                style={{
+                                    transitionDelay: `${index * 30}ms`
+                                }}
+                                onClick={() => shouldShow && handleImageClick(image.src)}
+                            >
+                                <div className="relative overflow-hidden rounded-lg bg-gray-50">
+                                    <OptimizedImage
+                                        src={image.src || "/placeholder.svg"}
+                                        alt={`${image.alt} - ${image.category} 카테고리 촬영 사진`}
+                                        width={400}
+                                        height={300}
+                                        className="w-full h-auto cursor-pointer rounded-lg group-hover:scale-105 transition-transform duration-300"
+                                        onLoad={() => handleImageLoad(image.src)}
+                                        {...imagePresets.gallery}
+                                    />
                                 </div>
-                            )
-                        })
-                    ) : (
-                        <div className="col-span-full text-center py-12">
-                            <p className="text-gray-500 text-lg">선택된 카테고리에 이미지가 없습니다.</p>
-                        </div>
-                    )}
+                            </div>
+                        )
+                    })}
                 </div>
 
                 {/* 더 보기 버튼 */}

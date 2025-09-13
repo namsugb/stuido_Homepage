@@ -1,8 +1,10 @@
-'use client'
-
+import { Metadata } from 'next'
+import { eventsMetadata } from '@/app/metadata'
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+
+export const metadata: Metadata = eventsMetadata
 
 // 이벤트 타입 정의
 interface Event {

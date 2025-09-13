@@ -124,3 +124,39 @@ export const eventsMetadata: Metadata = {
         ],
     },
 }
+
+// 소개 페이지 메타데이터
+export const aboutMetadata: Metadata = {
+    title: '소개 | 아침햇살 스튜디오',
+    description: '전라남도 순천 아침햇살 스튜디오를 소개합니다. 20년 경력의 전문 사진작가가 소중한 순간을 아름답게 담아드립니다.',
+    openGraph: {
+        title: '소개 | 아침햇살 스튜디오',
+        description: '20년 경력의 전문 사진작가가 소중한 순간을 아름답게 담아드립니다.',
+        images: [
+            {
+                url: '/about/photographer.jpg',
+                width: 1200,
+                height: 630,
+                alt: '아침햇살 스튜디오 사진작가',
+            },
+        ],
+    },
+}
+
+// 예약 페이지 메타데이터
+export const reservationMetadata: Metadata = {
+    title: '예약문의 | 아침햇살 스튜디오',
+    description: '아침햇살 스튜디오 촬영 예약을 신청하세요. 가족사진, 프로필, 리마인드웨딩 등 다양한 촬영 서비스를 제공합니다.',
+    openGraph: {
+        title: '예약문의 | 아침햇살 스튜디오',
+        description: '아침햇살 스튜디오 촬영 예약을 신청하세요.',
+        images: [
+            {
+                url: '/slider/slider1_desktop.jpeg',
+                width: 1200,
+                height: 630,
+                alt: '아침햇살 스튜디오 촬영 예약',
+            },
+        ],
+    },
+}
