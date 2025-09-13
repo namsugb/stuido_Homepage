@@ -19,6 +19,8 @@ export default function GalleryClient() {
     // 더 보기 기능을 위한 상태
     const [isLoadingMore, setIsLoadingMore] = useState(false)
     const [hasMoreImages, setHasMoreImages] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
+    const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set())
 
     // 카테고리 필터링
     useEffect(() => {
