@@ -186,14 +186,16 @@ export default function AboutClient() {
                                         className="cursor-pointer transform transition-transform hover:scale-105"
                                         onClick={() => handleImageClick("/about/studio-interior1.jpg", "아름답고 다양한 컬러의 의상")}
                                     >
-                                        <OptimizedImage
-                                            src="/about/studio-interior1.jpg"
-                                            alt="아침햇살 스튜디오 내부 전경. 자연광이 들어오는 따뜻한 분위기의 촬영 공간"
-                                            width={400}
-                                            height={300}
-                                            className="rounded-lg shadow-lg object-cover w-full h-64"
-                                            {...imagePresets.gallery}
-                                        />
+                                        <div className="w-full h-64 rounded-lg shadow-lg overflow-hidden">
+                                            <OptimizedImage
+                                                src="/about/studio-interior1.jpg"
+                                                alt="아침햇살 스튜디오 내부 전경. 자연광이 들어오는 따뜻한 분위기의 촬영 공간"
+                                                width={400}
+                                                height={300}
+                                                className="w-full h-full object-cover"
+                                                {...imagePresets.gallery}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="space-y-4">
@@ -201,14 +203,16 @@ export default function AboutClient() {
                                         className="cursor-pointer transform transition-transform hover:scale-105"
                                         onClick={() => handleImageClick("/about/studio-interior2.jpg", "아침햇살 스튜디오 내부 촬영 공간. 전문적인 조명과 배경이 구비된 스튜디오")}
                                     >
-                                        <OptimizedImage
-                                            src="/about/studio-interior2.jpg"
-                                            alt="아침햇살 스튜디오 내부 촬영 공간. 전문적인 조명과 배경이 구비된 스튜디오"
-                                            width={400}
-                                            height={300}
-                                            className="rounded-lg shadow-lg object-cover w-full h-64"
-                                            {...imagePresets.gallery}
-                                        />
+                                        <div className="w-full h-64 rounded-lg shadow-lg overflow-hidden">
+                                            <OptimizedImage
+                                                src="/about/studio-interior2.jpg"
+                                                alt="아침햇살 스튜디오 내부 촬영 공간. 전문적인 조명과 배경이 구비된 스튜디오"
+                                                width={400}
+                                                height={300}
+                                                className="w-full h-full object-cover"
+                                                {...imagePresets.gallery}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="space-y-4">
@@ -216,20 +220,39 @@ export default function AboutClient() {
                                         className="cursor-pointer transform transition-transform hover:scale-105"
                                         onClick={() => handleImageClick("/about/studio-interior3.jpg", "고급스러운 다양한 소품들")}
                                     >
-                                        <OptimizedImage
-                                            src="/about/studio-interior3.jpg"
-                                            alt="아침햇살 스튜디오 정원. 계절마다 다른 풍경을 보여주는 아름다운 야외 공간"
-                                            width={400}
-                                            height={300}
-                                            className="rounded-lg shadow-lg object-cover w-full h-64"
-                                            {...imagePresets.gallery}
-                                        />
+                                        <div className="w-full h-64 rounded-lg shadow-lg overflow-hidden">
+                                            <OptimizedImage
+                                                src="/about/studio-interior3.jpg"
+                                                alt="아침햇살 스튜디오 정원. 계절마다 다른 풍경을 보여주는 아름다운 야외 공간"
+                                                width={400}
+                                                height={300}
+                                                className="w-full h-full object-cover"
+                                                {...imagePresets.gallery}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="space-y-4">
+                                    <div
+                                        className="cursor-pointer transform transition-transform hover:scale-105"
+                                        onClick={() => handleImageClick("/about/studio-interior4.jpg", "정원이 있는 스튜디오")}
+                                    >
+                                        <div className="w-full h-64 rounded-lg shadow-lg overflow-hidden">
+                                            <OptimizedImage
+                                                src="/about/studio-interior4.jpg"
+                                                alt="아침햇살 스튜디오 정원. 계절마다 다른 풍경을 보여주는 아름다운 야외 공간"
+                                                width={400}
+                                                height={300}
+                                                className="w-full h-full object-cover"
+                                                {...imagePresets.gallery}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* 새로 추가된 카카오톡 사진들 갤러리 */}
+
                         <div className="mb-12">
                             <h3 className="text-xl font-semibold mb-6 text-center text-gray-800">다양한 세트장</h3>
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">

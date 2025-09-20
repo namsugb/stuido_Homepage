@@ -61,7 +61,8 @@ export default function OptimizedImage({
                     className={cn(
                         "transition-all duration-300",
                         isLoading && "scale-105 blur-sm",
-                        hasError && "opacity-50"
+                        hasError && "opacity-50",
+                        className
                     )}
                     priority={priority}
                     placeholder={effectivePlaceholder}

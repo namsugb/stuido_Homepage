@@ -115,7 +115,7 @@ export default function HeroSlider({ onImageClick }: HeroSliderProps) {
         <section className="hero-section">
             <div className="slider-row relative h-full w-full">
                 {!firstImageLoaded && (
-                    <div className="absolute inset-0 z-40 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+                    <div className="absolute inset-0 z-40 flex items-center justify-center bg-white">
                         <div className="flex flex-col items-center">
                             <div className="w-12 h-12 border-3 border-[#bfa888] border-t-transparent rounded-full animate-spin"></div>
                             <p className="mt-3 text-sm text-gray-600 animate-pulse">잠시만 기다려주세요...</p>

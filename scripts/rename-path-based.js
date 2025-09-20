@@ -9,8 +9,8 @@
  *   node scripts/rename-path-based.js --dir ./public --start-number 1
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 function parseArgs() {
     const args = process.argv.slice(2);

@@ -36,7 +36,7 @@ export default function EventPopup() {
                 </button>
                 <div className="flex justify-center mb-3">
                     <Image
-                        src="/image.png"
+                        src="/event/event3.jpg"
                         alt="가족사진 특별 이벤트 안내 이미지"
                         width={400}
                         height={300}
@@ -45,7 +45,7 @@ export default function EventPopup() {
                 </div>
                 <h3 className="text-base md:text-lg font-bold mb-2 text-center">🎉 이벤트 안내</h3>
                 <p className="text-xs md:text-sm text-gray-700 text-center mb-3">
-                    <span className="text-red-500">선착순 15팀!</span> 이벤트 진행 중입니다.<br />
+                    <span className="text-red-500">매월 20팀!</span> 이벤트 진행중 입니다.<br />
                     지금 바로 예약하고 혜택을 받아보세요!
                 </p>
                 <div className="flex items-center justify-center mb-3">

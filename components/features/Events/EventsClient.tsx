@@ -31,7 +31,7 @@ export default function EventsClient() {
             image: "/event/event1.jpg",
             width: 300,
             height: 300,
-            soldOut: false,
+            soldOut: true,
         },
         {
             id: 2,
@@ -39,7 +39,21 @@ export default function EventsClient() {
             width: 300,
             height: 300,
             soldOut: false,
-        }
+        },
+        {
+            id: 3,
+            image: "/event/event3.jpg",
+            width: 300,
+            height: 300,
+            soldOut: false,
+        },
+        {
+            id: 4,
+            image: "/event/event4.jpg",
+            width: 300,
+            height: 300,
+            soldOut: false,
+        },
     ];
 
     const openModal = (event: Event) => {
@@ -153,8 +167,8 @@ export default function EventsClient() {
                             <Image
                                 src={selectedEvent.image}
                                 alt="이벤트 이미지"
-                                width={800}
-                                height={600}
+                                width={selectedEvent.width}
+                                height={selectedEvent.height}
                                 className="w-full h-auto object-contain"
                             />
                         </div>
