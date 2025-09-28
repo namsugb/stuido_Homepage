@@ -36,7 +36,7 @@ export default function EventPopup() {
                 </button>
                 <div className="flex justify-center mb-3">
                     <Image
-                        src="/event/event3.jpg"
+                        src="/event/event_04.jpg"
                         alt="가족사진 특별 이벤트 안내 이미지"
                         width={400}
                         height={300}
