@@ -171,7 +171,7 @@ export default function GalleryClient() {
                     {/* 하위 카테고리 필터 (가족사진인 경우에만) */}
                     {selectedCategory === "family" && (
                         <div className="flex flex-wrap gap-2">
-                            {["dress", "uniform", "hanbok", "casual"].map((subCategory) => (
+                            {["dress", "uniform", "hanbok", "casual", "aniversary", "outside", "semiwedding"].map((subCategory) => (
                                 <button
                                     key={subCategory}
                                     onClick={() => handleSubCategoryChange(subCategory)}
@@ -184,6 +184,9 @@ export default function GalleryClient() {
                                     {subCategory === "dress" && "드레스"}
                                     {subCategory === "uniform" && "정장"}
                                     {subCategory === "casual" && "캐주얼"}
+                                    {subCategory === "aniversary" && "기념일"}
+                                    {subCategory === "outside" && "야외"}
+                                    {subCategory === "semiwedding" && "세미웨딩"}
                                 </button>
                             ))}
                         </div>

@@ -142,189 +142,57 @@ export default function MainPageClient() {
     // 갤러리 이미지 데이터
     const galleryImages = [
         {
-            src: "/gallery/KakaoTalk_20250523_002337024_07.jpg",
+            src: "/main/gallery/main_gallery_01.jpg",
             alt: "핑크 컨셉 가족 사진 - 아름다운 드레스와 함께한 가족 촬영",
             span: 1,
         },
         {
-            src: "/gallery/KakaoTalk_20250523_002337024_08.jpg",
+            src: "/main/gallery/main_gallery_02.jpg",
             alt: "핑크 컨셉 가족 사진 - 따뜻한 분위기의 가족 촬영",
             span: 1,
         },
         {
-            src: "/gallery/KakaoTalk_20250523_002337024_09.jpg",
+            src: "/main/gallery/main_gallery_03.jpg",
             alt: "핑크 컨셉 가족 사진 - 자연스러운 포즈의 가족 촬영",
             span: 1,
         },
         {
-            src: "/gallery/KakaoTalk_20250523_002337024_10.jpg",
+            src: "/main/gallery/main_gallery_04.jpg",
             alt: "핑크 컨셉 가족 사진 - 행복한 순간을 담은 가족 촬영",
             span: 1,
         },
         {
-            src: "/gallery/KakaoTalk_20250523_002337024_11.jpg",
+            src: "/main/gallery/main_gallery_05.jpg",
             alt: "핑크 컨셉 가족 사진 - 아름다운 배경의 가족 촬영",
             span: 1,
         },
         {
-            src: "/gallery/KakaoTalk_20250523_002337024_12.jpg",
+            src: "/main/gallery/main_gallery_06.jpg",
             alt: "핑크 컨셉 가족 사진 - 따뜻한 미소의 가족 촬영",
             span: 1,
         },
         {
-            src: "/gallery/KakaoTalk_20250523_002337024_13.jpg",
+            src: "/main/gallery/main_gallery_07.jpg",
             alt: "핑크 컨셉 가족 사진 - 소중한 추억을 담은 가족 촬영",
             span: 1,
         },
         {
-            src: "/gallery/KakaoTalk_20250523_002337024_14.jpg",
+            src: "/main/gallery/main_gallery_08.jpg",
             alt: "핑크 컨셉 가족 사진 - 아름다운 의상의 가족 촬영",
             span: 1,
         },
         {
-            src: "/gallery/KakaoTalk_20250523_002337024_15.jpg",
+            src: "/main/gallery/main_gallery_09.jpg",
             alt: "핑크 컨셉 가족 사진 - 행복한 가족의 모습",
             span: 1,
         },
         {
-            src: "/gallery/KakaoTalk_20250523_002337024.jpg",
+            src: "/main/gallery/main_gallery_10.jpg",
             alt: "핑크 컨셉 가족 촬영 작품",
             span: 1,
         },
     ]
 
-    // 상품 데이터
-    const products = [
-        {
-            id: 1,
-            category: "가족사진",
-            title: "소가족 패키지",
-            price: "150,000원",
-            originalPrice: "200,000원",
-            duration: "2시간",
-            people: "2-4명",
-            image: "/main_product/small-family.jpg",
-            features: ["원본 100장", "보정 30장", "앨범 1권", "액자 1개"],
-            description: "소중한 가족의 추억을 담는 기본 패키지",
-            popular: true
-        },
-        {
-            id: 2,
-            category: "가족사진",
-            title: "대가족 패키지",
-            price: "250,000원",
-            originalPrice: "300,000원",
-            duration: "3시간",
-            people: "5명 이상",
-            image: "/main_product/big-family.jpg",
-            features: ["원본 150장", "보정 50장", "앨범 1권", "액자 2개"],
-            description: "대가족을 위한 프리미엄 패키지",
-            popular: false
-        },
-        {
-            id: 3,
-            category: "웨딩",
-            title: "리마인드 웨딩",
-            price: "300,000원",
-            originalPrice: "400,000원",
-            duration: "4시간",
-            people: "2명",
-            image: "/main_product/remind-wedding.jpg",
-            features: ["원본 200장", "보정 80장", "앨범 1권", "액자 3개"],
-            description: "특별한 순간을 다시 한번 아름답게",
-            popular: true
-        },
-        {
-            id: 4,
-            category: "프로필",
-            title: "프로필 촬영",
-            price: "80,000원",
-            originalPrice: "100,000원",
-            duration: "1시간",
-            people: "1명",
-            image: "/main_product/profile.jpg",
-            features: ["원본 50장", "보정 20장", "액자 1개"],
-            description: "개인의 매력을 최대한 끌어내는 프로필",
-            popular: false
-        },
-        {
-            id: 5,
-            category: "웨딩",
-            title: "신랑신부 패키지",
-            price: "350,000원",
-            originalPrice: "450,000원",
-            duration: "5시간",
-            people: "2명",
-            image: "/main_product/couple.jpg",
-            features: ["원본 250장", "보정 100장", "앨범 2권", "액자 4개"],
-            description: "신랑신부만의 특별한 순간을 아름답게",
-            popular: true
-        },
-        {
-            id: 6,
-            category: "가족사진",
-            title: "친구 패키지",
-            price: "180,000원",
-            originalPrice: "220,000원",
-            duration: "2.5시간",
-            people: "3-6명",
-            image: "/main_product/friend.jpg",
-            features: ["원본 120장", "보정 40장", "앨범 1권", "액자 2개"],
-            description: "친구들과 함께하는 즐거운 촬영",
-            popular: false
-        },
-        {
-            id: 7,
-            category: "특별",
-            title: "장수 패키지",
-            price: "200,000원",
-            originalPrice: "250,000원",
-            duration: "3시간",
-            people: "가족 전체",
-            image: "/main_product/longevity.jpg",
-            features: ["원본 150장", "보정 60장", "앨범 1권", "액자 3개"],
-            description: "어르신의 장수를 축하하는 특별한 패키지",
-            popular: true
-        },
-        {
-            id: 8,
-            category: "비즈니스",
-            title: "직장인 프로필",
-            price: "120,000원",
-            originalPrice: "150,000원",
-            duration: "1.5시간",
-            people: "1명",
-            image: "/main_product/job.jpg",
-            features: ["원본 80장", "보정 30장", "액자 1개"],
-            description: "비즈니스에 최적화된 전문적인 프로필",
-            popular: false
-        }
-    ]
-
-    // 리뷰 데이터
-    const reviews = [
-        {
-            id: 1,
-            name: "김가족",
-            text: "정말 만족스러운 촬영이었습니다. 작가님이 친절하게 포즈를 잡아주시고, 결과물도 너무 예뻐요!",
-            rating: 5,
-            image: "/gallery/KakaoTalk_20250523_002337024_07.jpg"
-        },
-        {
-            id: 2,
-            name: "이부부",
-            text: "리마인드 웨딩 촬영을 했는데, 처음 결혼할 때보다 더 아름답게 나왔어요. 추천합니다!",
-            rating: 5,
-            image: "/gallery/KakaoTalk_20250523_002337024_08.jpg"
-        },
-        {
-            id: 3,
-            name: "박프로필",
-            text: "프로필 촬영을 했는데, 제가 생각했던 것보다 훨씬 자연스럽고 예쁘게 나왔습니다.",
-            rating: 5,
-            image: "/gallery/KakaoTalk_20250523_002337024_09.jpg"
-        }
-    ]
 
     return (
         <div className="min-h-screen bg-white w-full overflow-x-hidden">
@@ -341,10 +209,7 @@ export default function MainPageClient() {
 
                     <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={200} height={200} className="mb-6 mx-auto" />
                     <h2 className="mb-3 text-3xl text-center font-bold decoration-[#bfa888]">상품 소개</h2>
-                    {/* <div className="flex mb-8 leading-8 tracking-normal italic text-justify flex-col items-center justify-center gap-0">
-          <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={100} height={100} className=" mb-8" />
-          <h2 className="mb-8 text-3xl text-center font-light italic underline-offset-8 underline decoration-1 decoration-[#bfa888]">상품 소개</h2>
-        </div> */}
+
                     <p className="text-lg font-light mt-2 mb-12 md:text-2xl text-gray-600 text-center leading-relaxed text-pretty">
                         "아침햇살 스튜디오의 다양한 상품들을 확인해보세요".
                     </p>
@@ -356,55 +221,50 @@ export default function MainPageClient() {
                             {
                                 title: "가족사진",
                                 description: "3대가 함께하는 가족사진부터 아이들의 성장 기록까지, 소중한 가족의 모든 순간을 담습니다.",
-                                image: "/product/big-family.jpg",
+                                image: "/main/product/main_product_01.jpeg",
                                 category: "family",
                             },
                             {
                                 title: "리마인드웨딩",
                                 description: "결혼의 소중한 순간을 다시 한번 아름답게 기록하여 특별한 추억을 만들어 드립니다.",
-                                image: "/product/remind-wedding-updated.jpeg",
+                                image: "/main/product/main_product_02.jpeg",
                                 category: "wedding",
                             },
                             {
                                 title: "칠순/팔순",
                                 description: "소중한 분의 생신을 기념하는 특별한 촬영을 진행합니다.",
-                                image: "/product/hanbok-couple-new.jpeg",
+                                image: "/main/product/main_product_03.jpeg",
                                 category: "celebration",
                             },
                             {
                                 title: "장수기념",
                                 description: "할머니, 할아버지의 특별한 순간을 아름답게 기록합니다.",
-                                image: "/product/senior-hanbok-new.jpeg",
+                                image: "/main/product/main_product_04.jpeg",
                                 category: "longevity",
                             },
                             {
                                 title: "프로필",
                                 description: "개인의 매력을 최대한 끌어내는 프로필 사진을 촬영합니다.",
-                                image: "/product/profile-photo-new.jpeg",
+                                image: "/main/product/main_product_05.jpeg",
                                 category: "profile",
                             },
                             {
                                 title: "증명사진",
                                 description: "취업, 여권, 비자 등 다양한 용도의 증명사진을 전문적으로 촬영합니다.",
-                                image: "/product/id-photo-new.jpeg",
+                                image: "/main/product/main_product_06.jpeg",
                                 category: "id",
                             },
-                            // {
-                            //   title: "복원",
-                            //   description: "오래된 사진을 현대적인 기술로 복원하여 소중한 추억을 되살려드립니다.",
-                            //   image: "/product/restoration.jpg",
-                            //   category: "restoration",
-                            // },
+
                             {
                                 title: "우정",
                                 description: "친구들과의 특별한 순간을 아름답게 기록하여 평생의 추억을 만들어드립니다.",
-                                image: "/product/friendship.jpg",
+                                image: "/main/product/main_product_07.jpeg",
                                 category: "friendship",
                             },
                             {
                                 title: "",
                                 description: "",
-                                image: "/logo/logo.jpeg",
+                                image: "/logo/logo_01.jpeg",
                                 category: "wedding",
                             },
                         ].map((product, index) => (
@@ -481,21 +341,21 @@ export default function MainPageClient() {
                             const reviews1 = [
                                 {
                                     text: "3대가 함께하는 가족사진을 찍었는데, 정말 만족스러웠습니다. 특히 어르신들이 편안하게 촬영할 수 있도록 배려해주신 점이 인상적이었어요. 사진 퀄리티도 정말 좋았고, 한복 촬영에 특화되어 있어서 더욱 멋진 결과물을 얻을 수 있었습니다. 소중한 추억을 만들어주셔서 감사합니다.",
-                                    img: "/main_gallery/family/casual/casual_01.jpg",
+                                    img: "/gallery/family/casual/gallery_family_casual_01.jpg",
                                     alt: "가족 촬영 예시",
                                     name: "김0영 고객님",
                                     type: "가족 촬영"
                                 },
                                 {
                                     text: "증명사진 촬영이 처음이라 긴장했는데, 작가님이 친절하게 포즈와 표정을 지도해주셔서 자연스럽게 잘 나왔어요. 빠른 결과물 전달도 만족스럽습니다!",
-                                    img: "/main_gallery/id/id01.jpg",
+                                    img: "/gallery/id/gallery_id_32.jpg",
                                     alt: "증명사진 촬영 예시",
                                     name: "이0민 고객님",
                                     type: "증명사진 촬영"
                                 },
                                 {
                                     text: "프로필 촬영을 했는데, 다양한 컨셉과 조명으로 여러 스타일을 시도해볼 수 있어서 좋았어요. 결과물도 세련되고 자연스럽게 나와서 매우 만족합니다.",
-                                    img: "/main_gallery/profile/profile01.jpg",
+                                    img: "/gallery/id/gallery_id_46.jpg",
                                     alt: "프로필 촬영 예시",
                                     name: "박0훈 고객님",
                                     type: "프로필 촬영"
@@ -540,21 +400,21 @@ export default function MainPageClient() {
                             const reviews2 = [
                                 {
                                     text: "결혼 20주년 리마인드 촬영을 했는데, 처음 결혼할 때의 설렘이 다시 느껴졌어요. 작가님이 자연스럽게 이끌어주셔서 부부 모두 만족스러운 결과물을 얻었습니다.",
-                                    img: "/main_gallery/remind/[크기변환]0A8A8108-1216 디아섹_1차.JPG",
+                                    img: "/gallery/remind/gallery_remind_01.jpg",
                                     alt: "리마인드 촬영 예시",
                                     name: "최0정 고객님",
                                     type: "리마인드웨딩 촬영"
                                 },
                                 {
                                     text: "취업용 증명사진을 촬영했는데, 표정과 각도까지 세심하게 신경써주셔서 자신감 있는 사진을 얻을 수 있었습니다. 덕분에 면접도 잘 보고 왔어요!",
-                                    img: "/main_gallery/id/id02.jpg",
+                                    img: "/gallery/id/gallery_id_39.jpg",
                                     alt: "취업 증명사진 예시",
                                     name: "정0진 고객님",
                                     type: "취업 증명사진 촬영"
                                 },
                                 {
                                     text: "부모님 결혼 30주년 기념으로 가족사진을 촬영했는데, 온 가족이 함께한 시간이 너무 소중하게 남았습니다. 사진도 너무 예쁘게 나와서 모두 만족했어요.",
-                                    img: "/main_gallery/remind/[크기변환]004A0344-1.jpg",
+                                    img: "/gallery/remind/gallery_remind_02.jpg",
                                     alt: "30주년 가족사진 예시",
                                     name: "이0훈 고객님",
                                     type: "30주년 가족사진 촬영"

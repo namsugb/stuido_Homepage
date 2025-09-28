@@ -101,7 +101,7 @@ export default function HeroSlider({ onImageClick }: HeroSliderProps) {
         if (isAutoPlaying && imagesLoaded) {
             autoPlayRef.current = setInterval(() => {
                 nextSlide()
-            }, 1000)
+            }, 2000)
         }
 
         return () => {

@@ -2,8 +2,8 @@ import { SliderImage } from "@/types"
 
 export const sliderImages: SliderImage[] = [
     {
-        src: "/slider/slider_desktop_01.jpg",
-        srcMobile: "/slider/slider_mobile_01.jpg",
+        src: "/main/slider/desktop/main_slider_desktop_01.jpeg",
+        srcMobile: "/main/slider/mobile/main_slider_mobile_01.jpeg",
         alt: "웨딩 촬영",
         bgColor: "#D8DCE7",
         title: "사랑이 꽃피는 시간",
@@ -12,8 +12,8 @@ export const sliderImages: SliderImage[] = [
         mobiletextbackground: false,
     },
     {
-        src: "/slider/slider_desktop_02.jpeg",
-        srcMobile: "/slider/slider_mobile_02.jpeg",
+        src: "/main/slider/desktop/main_slider_desktop_02.jpeg",
+        srcMobile: "/main/slider/mobile/main_slider_mobile_02.jpeg",
         alt: "가족 사진",
         bgColor: "#CECFCF",
         title: "우리 가족의 이야기",
@@ -22,8 +22,8 @@ export const sliderImages: SliderImage[] = [
         mobiletextbackground: false
     },
     {
-        src: "/slider/slider_desktop_03.jpeg",
-        srcMobile: "/slider/slider_mobile_03.jpeg",
+        src: "/main/slider/desktop/main_slider_desktop_03.jpeg",
+        srcMobile: "/main/slider/mobile/main_slider_mobile_03.jpeg",
         alt: "개인 프로필",
         bgColor: "#A5877D",
         title: "당신만의 매력",
@@ -32,8 +32,8 @@ export const sliderImages: SliderImage[] = [
         mobiletextbackground: false,
     },
     {
-        src: "/slider/slider_desktop_04.jpeg",
-        srcMobile: "/slider/slider_mobile_04.jpeg",
+        src: "/main/slider/desktop/main_slider_desktop_04.jpeg",
+        srcMobile: "/main/slider/mobile/main_slider_mobile_04.jpeg",
         alt: "우정 사진",
         bgColor: "#D8DCE7",
         title: "함께하는 행복",
@@ -42,8 +42,8 @@ export const sliderImages: SliderImage[] = [
         mobiletextbackground: true,
     },
     {
-        src: "/slider/slider_desktop_05.jpeg",
-        srcMobile: "/slider/slider_mobile_05.jpeg",
+        src: "/main/slider/desktop/main_slider_desktop_05.jpeg",
+        srcMobile: "/main/slider/mobile/main_slider_mobile_05.jpeg",
         alt: "컨셉 사진",
         bgColor: "#CECFCF",
         title: "상상이 현실로",
@@ -52,8 +52,8 @@ export const sliderImages: SliderImage[] = [
         mobiletextbackground: true,
     },
     {
-        src: "/slider/slider_desktop_06.jpeg",
-        srcMobile: "/slider/slider_mobile_06.jpeg",
+        src: "/main/slider/desktop/main_slider_desktop_06.jpeg",
+        srcMobile: "/main/slider/mobile/main_slider_mobile_06.jpeg",
         alt: "돌잔치 사진",
         bgColor: "#A5877D",
         title: "영원한 순간",
@@ -61,4 +61,5 @@ export const sliderImages: SliderImage[] = [
         desktoptextbackground: true,
         mobiletextbackground: true,
     },
+
 ]

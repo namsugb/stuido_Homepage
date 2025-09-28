@@ -192,7 +192,7 @@ export default function RootLayout({
             <div className="flex items-center justify-center py-6">
               <Link href="/" className="flex items-center">
                 <div className="h-10 w-6 md:h-12 md:w-12 overflow-hidden rounded-full bg-white flex items-center justify-center border border-gray-200">
-                  <img src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" className="h-full w-full object-contain" />
+                  <img src="/logo/logo_01.jpeg" alt="아침햇살 스튜디오 로고" className="h-full w-full object-contain" />
                 </div>
                 <div className="ml-2 flex flex-col text-base md:text-lg font-bold text-gray-800 leading-tight min-w-[80px]">
                   <span className="whitespace-nowrap">아침햇살</span>
@@ -214,9 +214,9 @@ export default function RootLayout({
                 <Link href="/events" className="text-gray-700 hover:text-[#bfa888] transition">
                   이벤트🎉
                 </Link>
-                {/* <Link href="/restoration" className="text-gray-700 hover:text-[#bfa888] transition">
+                <Link href="/restoration" className="text-gray-700 hover:text-[#bfa888] transition">
                   복원
-                </Link> */}
+                </Link>
                 {/* <Link href="/gallery" className="text-gray-700 hover:text-[#bfa888] transition">
                   의상
                 </Link> */}
