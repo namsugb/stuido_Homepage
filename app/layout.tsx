@@ -218,7 +218,7 @@ export default function RootLayout({
                   복원
                 </Link>
                 {/* <Link href="/gallery" className="text-gray-700 hover:text-[#bfa888] transition">
-                  의상
+                  의상0
                 </Link> */}
                 <Link
                   href="/reservation"
