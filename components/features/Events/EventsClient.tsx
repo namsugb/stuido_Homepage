@@ -20,6 +20,13 @@ export default function EventsClient() {
 
     const events: Event[] = [
         {
+            id: 3,
+            image: "/event/event_04_v2.jpg",
+            width: 300,
+            height: 300,
+            soldOut: false,
+        },
+        {
             id: 0,
             image: "/event/event_01_v2.jpg",
             width: 300,
@@ -38,21 +45,14 @@ export default function EventsClient() {
             image: "/event/event_03_v2.jpg",
             width: 300,
             height: 300,
-            soldOut: false,
-        },
-        {
-            id: 3,
-            image: "/event/event_04_v2.jpg",
-            width: 300,
-            height: 300,
-            soldOut: false,
+            soldOut: true,
         },
         {
             id: 4,
             image: "/event/event_05_v2.jpg",
             width: 300,
             height: 300,
-            soldOut: false,
+            soldOut: true,
         },
     ];
 
