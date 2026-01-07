@@ -98,7 +98,7 @@ export const productsMetadata: Metadata = {
         description: '아침햇살 스튜디오의 다양한 촬영 패키지를 소개합니다.',
         images: [
             {
-                url: '/main_product/big-family-package.jpg',
+                url: '/product/product_02_v2.jpg',
                 width: 1200,
                 height: 630,
                 alt: '가족사진 패키지 상품',

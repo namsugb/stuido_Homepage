@@ -48,7 +48,7 @@ export default function ProductsPageContent() {
                 price: "1,000,000원",
                 duration: "문의",
                 people: "2-4명",
-                image: "/main_product/small-family-package.jpg",
+                image: "/product/product_01_v2.JPG",
                 features: [
                     "전체원본 제공",
                     "의상 2벌",
@@ -65,7 +65,7 @@ export default function ProductsPageContent() {
                 price: "1,500,000원",
                 duration: "문의",
                 people: "5명 이상",
-                image: "/main_product/big-family-package.jpg",
+                image: "/product/product_02_v2.jpg",
                 features: [
                     "전체원본 제공",
                     "의상 2벌",
@@ -82,7 +82,7 @@ export default function ProductsPageContent() {
                 price: "99,000원",
                 duration: "문의",
                 people: "2-4명",
-                image: "/main_product/small-family.jpg",
+                image: "/product/product_03_v2.jpg",
                 features: ["28×36cm 기본액자 1개"],
                 description: "소가족 촬영, 기본 액자 포함"
             },
@@ -93,7 +93,7 @@ export default function ProductsPageContent() {
                 price: "190,000원",
                 duration: "문의",
                 people: "5명 이상",
-                image: "/main_product/big-family.jpg",
+                image: "/product/product_04_v2.jpg",
                 features: ["40×50cm 기본액자 1개"],
                 description: "대가족 촬영, 대형 액자 포함"
             },
@@ -104,7 +104,7 @@ export default function ProductsPageContent() {
                 price: "150,000원",
                 duration: "문의",
                 people: "2명",
-                image: "/main_product/remind-parents.jpg",
+                image: "/product/product_05_v2.jpg",
                 features: ["30×43cm 기본액자 1개"],
                 description: "부모님 리마인드 촬영, 기본 액자 포함"
             },
@@ -115,7 +115,7 @@ export default function ProductsPageContent() {
                 price: "150,000원",
                 duration: "문의",
                 people: "가족 전체",
-                image: "/main_product/grandparents.jpg",
+                image: "/product/product_06_v2.jpg",
                 features: ["28×36cm 기본액자 1개"],
                 description: "칠순/팔순 상차림 촬영, 기본 액자 포함"
             },
@@ -126,7 +126,7 @@ export default function ProductsPageContent() {
                 price: "150,000원",
                 duration: "문의",
                 people: "1명",
-                image: "/main_product/longevity.jpg",
+                image: "/product/product_07_v2.jpg",
                 features: ["28×36cm 기본액자 1개"],
                 description: "장수사진 촬영, 기본 액자 포함"
             },
@@ -137,7 +137,7 @@ export default function ProductsPageContent() {
                 price: "200,000원",
                 duration: "문의",
                 people: "가족 전체",
-                image: "/main_product/remind-family.jpg",
+                image: "/product/product_08_v2.jpg",
                 features: ["28×36cm 기본액자 1개"],
                 description: "가족 리마인드 촬영, 기본 액자 포함"
             },
@@ -148,7 +148,7 @@ export default function ProductsPageContent() {
                 price: "70,000원",
                 duration: "문의",
                 people: "1명",
-                image: "/main_product/profile.jpg",
+                image: "/product/product_09_v2.jpg",
                 features: ["의상 1벌", "수정본 1장"],
                 description: "프로필 촬영, 의상 1벌 및 수정본 1장 제공"
             },
@@ -159,7 +159,7 @@ export default function ProductsPageContent() {
                 price: "100,000원",
                 duration: "문의",
                 people: "2명",
-                image: "/main_product/couple.jpg",
+                image: "/product/product_10_v2.jpg",
                 features: ["수정본 2장", "4×6inch 2매"],
                 description: "커플 촬영, 수정본 2장 및 4×6inch 2매 제공"
             },
@@ -170,7 +170,7 @@ export default function ProductsPageContent() {
                 price: "20,000원",
                 duration: "문의",
                 people: "1명 기준",
-                image: "/main_product/friend.jpg",
+                image: "/product/product_11_v2.JPG",
                 features: ["포켓용 2매"],
                 description: "우정 촬영, 1인 기준 포켓용 2매 제공"
             },
@@ -181,7 +181,7 @@ export default function ProductsPageContent() {
                 price: "30,000원",
                 duration: "문의",
                 people: "1명",
-                image: "/main_product/info.jpg",
+                image: "/product/product_12_v2.jpg",
                 features: ["증명/여권 사진 촬영"],
                 description: "증명 및 여권 사진 촬영"
             },
@@ -192,7 +192,7 @@ export default function ProductsPageContent() {
                 price: "60,000원",
                 duration: "문의",
                 people: "1명",
-                image: "/main_product/job.jpg",
+                image: "/product/product_13_v2.jpg",
                 features: ["취업 사진 촬영"],
                 description: "취업용 사진 촬영"
             },
@@ -203,7 +203,7 @@ export default function ProductsPageContent() {
                 price: "100,000원",
                 duration: "문의",
                 people: "문의",
-                image: "/main_product/recovery.jpg",
+                image: "/product/product_14_v2.jpg",
                 features: ["사진 복원 서비스"],
                 description: "사진 복원 서비스"
             },
@@ -214,7 +214,7 @@ export default function ProductsPageContent() {
                 price: "50,000원",
                 duration: "문의",
                 people: "문의",
-                image: "/main_product/junior.jpg",
+                image: "/product/product_15_v2.jpg",
                 features: ["주니어 사진 촬영"],
                 description: "주니어 사진 촬영"
             },
