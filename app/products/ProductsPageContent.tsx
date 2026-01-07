@@ -82,7 +82,7 @@ export default function ProductsPageContent() {
                 price: "99,000원",
                 duration: "문의",
                 people: "2-4명",
-                image: "/product/product_11_v2.jpg",
+                image: "/product/product_11_v2.JPG",
                 features: ["28×36cm 기본액자 1개"],
                 description: "소가족 촬영, 기본 액자 포함"
             },
@@ -170,7 +170,7 @@ export default function ProductsPageContent() {
                 price: "20,000원",
                 duration: "문의",
                 people: "1명 기준",
-                image: "/product/product_15_v2.JPG",
+                image: "/product/product_15_v2.jpg",
                 features: ["포켓용 2매"],
                 description: "우정 촬영, 1인 기준 포켓용 2매 제공"
             },
