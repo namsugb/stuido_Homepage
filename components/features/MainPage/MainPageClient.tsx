@@ -207,7 +207,7 @@ export default function MainPageClient() {
             <section id="about">
                 <div className="container mx-auto px-2 mt-6 mb-12">
 
-                    <Image src="/logo/logo.jpeg" alt="아침햇살 스튜디오 로고" width={200} height={200} className="mb-6 mx-auto" />
+                    <Image src="/logo/logo_01.jpeg" alt="아침햇살 스튜디오 로고" width={200} height={200} className="mb-6 mx-auto" />
                     <h2 className="mb-3 text-3xl text-center font-bold decoration-[#bfa888]">상품 소개</h2>
 
                     <p className="text-lg font-light mt-2 mb-12 md:text-2xl text-gray-600 text-center leading-relaxed text-pretty">

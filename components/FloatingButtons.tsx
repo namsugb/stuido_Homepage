@@ -29,10 +29,10 @@ export default function FloatingButtons() {
             {/* 예약하기 */}
             <a
                 href="/reservation"
-                className="flex items-center justify-center w-12 h-12 md:w-20 md:h-20 rounded-full bg-[#bfa888] shadow-xl text-white hover:bg-[#a68b6d] transition text-sm md:text-lg font-semibold hover:scale-110"
+                className="flex items-center justify-center w-12 h-12 md:w-20 md:h-20 rounded-full bg-[#bfa888] shadow-xl text-white hover:bg-[#a68b6d] transition text-sm md:text-xl font-semibold hover:scale-110"
                 title="예약하기"
             >
-                예약 <br /> 문의
+                예약
             </a>
         </div>
     );
