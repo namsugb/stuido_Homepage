@@ -1,117 +1,152 @@
-"use client"
+﻿"use client"
 
-import Link from "next/link";
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import Link from "next/link"
+import Image from "next/image"
+import { useEffect, useState } from "react"
 
-// 이벤트 타입 정의
 interface Event {
-    id: number;
-    image: string;
-    width: number;
-    height: number;
-    soldOut: boolean;
+    id: number
+    title: string
+    image: string
+    width: number
+    height: number
+    soldOut: boolean
+    modalImages: string[]
 }
 
+const toModalImagePath = (folderName: string, fileName: string) => {
+    return encodeURI(`/event/modal/${folderName}/${fileName}`)
+}
+
+const event19ModalImages = [
+    "가정의달 맞이 원본촬영 이벤트 19만원 1.jpg",
+    "가정의달 맞이 원본촬영 이벤트 19만원 2.jpg",
+    "가정의달 맞이 원본촬영 이벤트 19만원 3.jpg",
+    "가정의달 맞이 원본촬영 이벤트 19만원 4.jpg",
+    "가정의달 맞이 원본촬영 이벤트 19만원 5.jpg",
+    "가정의달 맞이 원본촬영 이벤트 19만원 6.jpg",
+    "가정의달 맞이 원본촬영 이벤트 19만원 7.jpg",
+    "가정의달 맞이 원본촬영 이벤트 19만원 8.jpg",
+].map((fileName) => toModalImagePath("19modal", fileName))
+
 export default function EventsClient() {
-    const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [showEventDetails, setShowEventDetails] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const events: Event[] = [
         {
-            id: 3,
+            id: 0,
+            title: "오픈 이벤트",
             image: "/event/event_04_v2.jpg",
             width: 300,
             height: 300,
             soldOut: false,
+            modalImages: ["/event/event_04_v2.jpg"],
         },
         {
-            id: 0,
+            id: 1,
+            title: "가정의달 맞이 원본촬영 이벤트 19만원",
+            image: "/event/event_07_v2.jpg",
+            width: 300,
+            height: 300,
+            soldOut: false,
+            modalImages: event19ModalImages,
+        },
+        {
+            id: 2,
+            title: "마감된 이벤트",
             image: "/event/event_01_v2.jpg",
             width: 300,
             height: 300,
             soldOut: true,
+            modalImages: ["/event/event_01_v2.jpg"],
         },
         {
-            id: 1,
+            id: 3,
+            title: "마감된 이벤트",
             image: "/event/event_02_v2.jpg",
             width: 300,
             height: 300,
             soldOut: true,
+            modalImages: ["/event/event_02_v2.jpg"],
         },
         {
-            id: 2,
+            id: 4,
+            title: "마감된 이벤트",
             image: "/event/event_03_v2.jpg",
             width: 300,
             height: 300,
             soldOut: true,
+            modalImages: ["/event/event_03_v2.jpg"],
         },
         {
-            id: 4,
+            id: 5,
+            title: "마감된 이벤트",
             image: "/event/event_05_v2.jpg",
             width: 300,
             height: 300,
             soldOut: true,
+            modalImages: ["/event/event_05_v2.jpg"],
         },
-    ];
+    ]
 
     const openModal = (event: Event) => {
-        if (event.soldOut) return; // Sold Out된 이벤트는 클릭 불가
-        setSelectedEvent(event);
-        setIsModalOpen(true);
-    };
+        if (event.soldOut) return
+        setSelectedEvent(event)
+        setIsModalOpen(true)
+    }
 
     const closeModal = () => {
-        setIsModalOpen(false);
-        setSelectedEvent(null);
-    };
-
-    const toggleEventDetails = () => {
-        setShowEventDetails(!showEventDetails);
-    };
+        setIsModalOpen(false)
+        setSelectedEvent(null)
+    }
 
     useEffect(() => {
-        const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        };
+        if (!isModalOpen) return
 
-        if (isModalOpen) {
-            document.addEventListener('keydown', handleEscape);
-            return () => document.removeEventListener('keydown', handleEscape);
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                closeModal()
+            }
         }
-    }, [isModalOpen]);
+
+        const originalOverflow = document.body.style.overflow
+        document.body.style.overflow = "hidden"
+        document.addEventListener("keydown", handleEscape)
+
+        return () => {
+            document.body.style.overflow = originalOverflow
+            document.removeEventListener("keydown", handleEscape)
+        }
+    }, [isModalOpen])
 
     return (
         <div className="min-h-screen bg-white">
-
-            {/* 이벤트 카드 섹션 */}
             <section id="events" className="mt-32">
-                <h1 className="text-3xl font-medium text-center mb-4"> 🎉 진행중인 이벤트 🎉</h1>
-                <p className="text-sm font-light text-center mb-8"> 이벤트에 참여해 가족들과 행복한 시간을 기록해보세요!</p>
-                <div className="mx-auto px-4 my-4">
-                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
-                        {/* 이벤트 카드 데이터 반복 */}
+                <h1 className="mb-4 text-center text-3xl font-medium">🎉 진행중인 이벤트 🎉</h1>
+                <p className="mb-8 text-center text-sm font-light">이벤트에 참여해 가족들과 행복한 시간을 기록해보세요!</p>
+                <div className="mx-auto my-4 px-4">
+                    <div className="grid grid-cols-2 gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
                         {events.map((event) => (
-                            <div key={event.id} className={`bg-white shadow-md rounded-lg overflow-hidden transition-shadow duration-300 ${event.soldOut
-                                ? 'cursor-not-allowed opacity-60'
-                                : 'cursor-pointer hover:shadow-lg'
-                                }`}>
+                            <div
+                                key={event.id}
+                                className={`overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 ${event.soldOut
+                                    ? "cursor-not-allowed opacity-60"
+                                    : "cursor-pointer hover:shadow-lg"
+                                    }`}
+                            >
                                 <div className="relative w-full pt-[100%]" onClick={() => openModal(event)}>
                                     <Image
                                         src={event.image}
-                                        alt="이벤트 이미지"
+                                        alt={`${event.title} 이미지`}
                                         width={event.width}
                                         height={event.height}
-                                        className={`absolute top-0 left-0 w-full h-full object-fill rounded-lg transition-transform duration-300 ${event.soldOut ? '' : 'hover:scale-105'
+                                        className={`absolute left-0 top-0 h-full w-full rounded-lg object-fill transition-transform duration-300 ${event.soldOut ? "" : "hover:scale-105"
                                             }`}
                                     />
-                                    {/* Sold Out 표시 */}
                                     {event.soldOut && (
-                                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                            <div className="bg-red-600 text-white px-4 py-2 rounded-full font-bold text-lg">
+                                        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                                            <div className="rounded-full bg-red-600 px-4 py-2 text-lg font-bold text-white">
                                                 SOLD OUT
                                             </div>
                                         </div>
@@ -123,79 +158,68 @@ export default function EventsClient() {
                 </div>
             </section>
 
-            {/* 이벤트 내용 자세히 보기 버튼 */}
-            <div className="text-center mt-12 mb-8">
-                <button
-                    onClick={toggleEventDetails}
-                    className="bg-[#bfa888] text-white px-8 py-3 rounded-full font-medium hover:bg-[#a89a7a] transition-colors duration-200 flex items-center mx-auto gap-2"
-                >
-                    {showEventDetails ? '이벤트 내용 접기' : '이벤트 내용 자세히 보기'}
-                    <svg
-                        className={`w-5 h-5 transition-transform duration-200 ${showEventDetails ? 'rotate-180' : ''}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-            </div>
-
-            {/* 이벤트 이미지 - 접기/펼치기 기능 */}
-            {showEventDetails && (
-                <div className="container mx-auto px-6 py-10 flex justify-center animate-fade-in">
-                    <img src="/event/events.jpg" alt="이벤트" className="w-full max-w-4xl h-auto object-contain" />
-                </div>
-            )}
-
-            {/* 이미지 모달 */}
             {isModalOpen && selectedEvent && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={closeModal}>
-                    <div className="relative max-w-4xl max-h-[90vh] bg-white rounded-lg overflow-hidden" onClick={(e) => e.stopPropagation()}>
-                        {/* 닫기 버튼 */}
-                        <button
-                            onClick={closeModal}
-                            className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-white rounded-full p-2 text-gray-600 hover:text-gray-900 transition-colors duration-200"
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-
-                        {/* 이미지 */}
-                        <div className="relative">
-                            <Image
-                                src={selectedEvent.image}
-                                alt="이벤트 이미지"
-                                width={selectedEvent.width}
-                                height={selectedEvent.height}
-                                className="w-full h-auto object-contain"
-                            />
-                        </div>
-
-                        <div className="text-center my-4">
-                            <p className="text-gray-500 text-sm mb-2">궁금한 사항이 있으신가요? 편하게 문의 하세요!</p>
-                            <a
-                                href="tel:061-721-4800"
-                                className="inline-block bg-[#bfa888] text-white px-6 py-2 rounded-full font-medium hover:bg-[#a89a7a] transition-colors duration-200"
+                <div className="fixed inset-0 z-50 bg-black/70 p-4" onClick={closeModal}>
+                    <div
+                        className="mx-auto flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="relative border-b border-[#efe7dc] px-6 py-5">
+                            <button
+                                onClick={closeModal}
+                                aria-label="이벤트 모달 닫기"
+                                className="absolute right-4 top-4 rounded-full bg-[#f6f1ea] p-2 text-gray-600 transition hover:bg-[#eadfce] hover:text-gray-900"
                             >
-                                예약문의
-                            </a>
+                                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                            <h2 className="pr-12 text-xl font-semibold text-[#6e573f]">{selectedEvent.title}</h2>
+                            <p className="mt-1 text-sm text-gray-500">이벤트 이미지 {selectedEvent.modalImages.length}장이 표시됩니다.</p>
                         </div>
 
+                        <div className="overflow-y-auto bg-[#fcfaf7] px-4 py-4 sm:px-6">
+                            <div className="grid grid-cols-1 gap-4">
+                                {selectedEvent.modalImages.map((modalImage, index) => (
+                                    <div
+                                        key={`${selectedEvent.id}-${index}`}
+                                        className="overflow-hidden rounded-2xl border border-[#efe7dc] bg-white shadow-sm"
+                                    >
+                                        <img
+                                            src={modalImage}
+                                            alt={`${selectedEvent.title} 상세 이미지 ${index + 1}`}
+                                            className="h-auto w-full object-contain"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="border-t border-[#efe7dc] px-6 py-4">
+                            <div className="flex flex-row items-center justify-center gap-3">
+                                <Link
+                                    href="/reservation"
+                                    className="inline-block rounded-full bg-[#bfa888] px-8 py-3 font-medium text-white transition-colors duration-200 hover:bg-[#a89a7a]"
+                                >
+                                    예약하기
+                                </Link>
+                                <a
+                                    href="tel:061-721-4800"
+                                    className="inline-block rounded-full border-2 border-[#bfa888] px-8 py-3 font-medium text-[#bfa888] transition-colors duration-200 hover:bg-[#bfa888] hover:text-white"
+                                >
+                                    전화 문의
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
 
-
-            {/* 예약 안내 섹션 */}
-            <section id="contact" className="bg-[#bfa888] mt-8 py-12 text-white">
+            <section id="contact" className="mt-8 bg-[#bfa888] py-12 text-white">
                 <div className="container mx-auto px-6">
                     <div className="mx-auto max-w-3xl text-center">
                         <h2 className="mb-6 text-3xl font-thin">궁금한 사항이 있으신가요?</h2>
-                        <p className="mb-8 text-lg">
-                            편하게 문의 하세요!
-                        </p>
+                        <p className="mb-8 text-lg">편하게 문의해 주세요.</p>
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                             <a
                                 href="tel:061-721-4800"
@@ -216,3 +240,4 @@ export default function EventsClient() {
         </div>
     )
 }
+
