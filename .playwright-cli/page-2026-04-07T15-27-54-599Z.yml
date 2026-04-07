@@ -1,0 +1,87 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "아침햇살 스튜디오 로고 아침햇살 스튜디오" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "아침햇살 스튜디오 로고" [ref=e7]
+        - generic [ref=e8]:
+          - generic [ref=e9]: 아침햇살
+          - generic [ref=e10]: 스튜디오
+      - navigation [ref=e11]:
+        - link "소개" [ref=e12] [cursor=pointer]:
+          - /url: /about
+        - link "갤러리" [ref=e13] [cursor=pointer]:
+          - /url: /gallery
+        - link "상품소개" [ref=e14] [cursor=pointer]:
+          - /url: /products
+        - link "이벤트🎉" [ref=e15] [cursor=pointer]:
+          - /url: /events
+        - link "복원" [ref=e16] [cursor=pointer]:
+          - /url: /restoration
+        - link "예약문의" [ref=e17] [cursor=pointer]:
+          - /url: /reservation
+          - img [ref=e18]
+          - generic [ref=e20]: 예약문의
+  - main [ref=e21]:
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - heading "예약 관리 시스템" [level=1] [ref=e24]
+        - generic [ref=e25]:
+          - button "예약 추가" [ref=e26] [cursor=pointer]
+          - button "로그아웃" [ref=e27] [cursor=pointer]
+      - alert [ref=e28]:
+        - generic [ref=e29]:
+          - strong [ref=e30]: "알림:"
+          - text: "'status' 컬럼이 테이블에 존재하지 않습니다. 상태 관리 기능은 비활성화되었습니다. 아래 SQL을 실행하여 status 컬럼을 추가할 수 있습니다:"
+          - generic [ref=e31]: ALTER TABLE reservations ADD COLUMN status TEXT DEFAULT '신규문의';
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - img [ref=e35]
+          - textbox "이름, 전화번호, 이메일, 유입경로 검색..." [ref=e38]
+        - generic [ref=e39]:
+          - textbox "시작 날짜" [ref=e42]
+          - textbox "종료 날짜" [ref=e45]
+        - button "CSV 내보내기" [ref=e46] [cursor=pointer]:
+          - img
+          - text: CSV 내보내기
+      - table [ref=e49]:
+        - rowgroup [ref=e50]:
+          - row "ID 이름 연락처 촬영 유형 날짜 시간 유입경로 삭제" [ref=e51]:
+            - columnheader "ID" [ref=e52]
+            - columnheader "이름" [ref=e53]
+            - columnheader "연락처" [ref=e54]
+            - columnheader "촬영 유형" [ref=e55]
+            - columnheader "날짜" [ref=e56]
+            - columnheader "시간" [ref=e57]
+            - columnheader "유입경로" [ref=e58]
+            - columnheader "삭제" [ref=e59]
+        - rowgroup [ref=e60]:
+          - row "예약 데이터가 없습니다." [ref=e61]:
+            - cell "예약 데이터가 없습니다." [ref=e62]
+      - generic [ref=e63]: 총 0개의 예약이 표시됨 (전체 0개 중)
+      - region "Notifications alt+T"
+  - contentinfo [ref=e64]:
+    - generic [ref=e65]:
+      - generic [ref=e66]:
+        - generic [ref=e67]:
+          - heading "아침햇살 스튜디오" [level=3] [ref=e68]
+          - paragraph [ref=e69]: 소중한 순간을 영원히
+          - paragraph [ref=e70]: 전라남도 순천시 조례동 1823-5
+        - generic [ref=e71]:
+          - heading "연락처" [level=3] [ref=e72]
+          - paragraph [ref=e73]: "전화: 061-721-4800"
+          - paragraph [ref=e74]: "이메일: mirim0423@naver.com"
+          - generic [ref=e75]:
+            - generic [ref=e76]: 예약
+            - generic [ref=e77]: 주차
+            - generic [ref=e78]: 무선 인터넷
+            - generic [ref=e79]: 애완동물 동반
+        - generic [ref=e80]:
+          - heading "영업시간" [level=3] [ref=e81]
+          - paragraph [ref=e82]: "평일: 10:00 - 18:30"
+          - paragraph [ref=e83]: "토요일: 10:00 - 18:30"
+          - paragraph [ref=e84]: "일요일: 예약 촬영만 진행"
+      - generic [ref=e85]:
+        - text: © 2026 아침햇살 스튜디오. All rights reserved.
+        - text: "대표 : 남유행, 사업자등록번호: 416-10-35417"
+  - alert [ref=e86]

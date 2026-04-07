@@ -35,6 +35,13 @@ export async function sendKakaoNotification(data: KakaoNotificationData) {
                     sms_content: "아침햇살 스튜디오 예약 문의",
                     msg_content: `아침햇살 스튜디오님\n새로운 예약문의가 있습니다.\n\n-고객정보\n이름 : ${data.name}\n연락처 : ${data.phone}\n촬영유형 : ${data.shootingType}\n촬영일시 : ${data.date}`,
                 },
+                {
+                    no: "1",
+                    tel_num: "01066457724",
+                    use_sms: "0",
+                    sms_content: "아침햇살 스튜디오 예약 문의",
+                    msg_content: `아침햇살 스튜디오님\n새로운 예약문의가 있습니다.\n\n-고객정보\n이름 : ${data.name}\n연락처 : ${data.phone}\n촬영유형 : ${data.shootingType}\n촬영일시 : ${data.date}`,
+                }
             ],
         }
 

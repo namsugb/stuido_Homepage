@@ -1,0 +1,58 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "아침햇살 스튜디오 로고 아침햇살 스튜디오" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "아침햇살 스튜디오 로고" [ref=e7]
+        - generic [ref=e8]:
+          - generic [ref=e9]: 아침햇살
+          - generic [ref=e10]: 스튜디오
+      - navigation [ref=e11]:
+        - link "소개" [ref=e12] [cursor=pointer]:
+          - /url: /about
+        - link "갤러리" [ref=e13] [cursor=pointer]:
+          - /url: /gallery
+        - link "상품소개" [ref=e14] [cursor=pointer]:
+          - /url: /products
+        - link "이벤트🎉" [ref=e15] [cursor=pointer]:
+          - /url: /events
+        - link "복원" [ref=e16] [cursor=pointer]:
+          - /url: /restoration
+        - link "예약문의" [ref=e17] [cursor=pointer]:
+          - /url: /reservation
+          - img [ref=e18]
+          - generic [ref=e20]: 예약문의
+  - main [ref=e21]:
+    - generic [ref=e23]:
+      - heading "관리자 로그인" [level=1] [ref=e24]
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]: 비밀번호
+          - textbox "비밀번호" [ref=e28]:
+            - /placeholder: 관리자 비밀번호를 입력하세요
+        - button "로그인" [ref=e29] [cursor=pointer]
+  - contentinfo [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - heading "아침햇살 스튜디오" [level=3] [ref=e34]
+          - paragraph [ref=e35]: 소중한 순간을 영원히
+          - paragraph [ref=e36]: 전라남도 순천시 조례동 1823-5
+        - generic [ref=e37]:
+          - heading "연락처" [level=3] [ref=e38]
+          - paragraph [ref=e39]: "전화: 061-721-4800"
+          - paragraph [ref=e40]: "이메일: mirim0423@naver.com"
+          - generic [ref=e41]:
+            - generic [ref=e42]: 예약
+            - generic [ref=e43]: 주차
+            - generic [ref=e44]: 무선 인터넷
+            - generic [ref=e45]: 애완동물 동반
+        - generic [ref=e46]:
+          - heading "영업시간" [level=3] [ref=e47]
+          - paragraph [ref=e48]: "평일: 10:00 - 18:30"
+          - paragraph [ref=e49]: "토요일: 10:00 - 18:30"
+          - paragraph [ref=e50]: "일요일: 예약 촬영만 진행"
+      - generic [ref=e51]:
+        - text: © 2026 아침햇살 스튜디오. All rights reserved.
+        - text: "대표 : 남유행, 사업자등록번호: 416-10-35417"
+  - alert [ref=e52]

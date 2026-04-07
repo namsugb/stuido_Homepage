@@ -1,0 +1,3 @@
+[     800ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "new-password"): (More info: https://goo.gl/9p2vKq) %o @ https://www.suncheonfamilyphoto.com/manage-client:0
+[     853ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://www.suncheonfamilyphoto.com/favicon.ico:0
+[   42585ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pwgvbduxfyjrxepvsmaq.supabase.co/rest/v1/reservations?select=*&limit=1:0
